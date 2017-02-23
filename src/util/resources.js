@@ -7,3 +7,7 @@ import { API_BASE } from 'src/config/constants';
 export const postsResource = axios.create({
   baseURL: `${API_BASE}/posts/`
 });
+
+export const emailResource = axios.create({
+  baseURL: `${API_BASE}/email/`
+});
