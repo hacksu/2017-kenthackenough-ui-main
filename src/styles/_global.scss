@@ -79,9 +79,9 @@ h3:hover {
   height: 100%;
 
   background: linear-gradient(#0d004c, #210d7f);
-  
+
   font-family: 'Press Start 2P', sans-serif;
-  
+
 }
 
 .moon {
@@ -155,7 +155,7 @@ h3:hover {
 }
 
 .cloud1 {
-  position: absolute;
+  position: fixed;
     margin-top: 15%;
     animation: cloudDrift;
     animation-duration: 300s;
@@ -166,7 +166,7 @@ h3:hover {
 }
 
 .cloud2 {
-  position: absolute;
+  position: fixed;
     margin-top: 10%;
     animation: cloudDrift;
     animation-duration: 500s;
@@ -186,11 +186,11 @@ h3:hover {
   z-index: 50;
   width: 100%;
   background: url('http://thedrawingblanks.com/khe/wire.png') repeat-x;
-  
+
   bottom: 22vh;
   // border: solid white 3px;
   height: 110px;
-  
+
 }
 
 .wireBG {
@@ -203,7 +203,7 @@ h3:hover {
   // border: solid white 3px;
   height: 110px;
   opacity: 0.5;
-  
+
 }
 
 .ground {
@@ -214,7 +214,7 @@ h3:hover {
 
   background-color: #090034;
   // margin-left: -20px;
-  
+
   width: 100%;
   height: 20vh;
 }
@@ -224,7 +224,7 @@ h3:hover {
   background: url('http://thedrawingblanks.com/khe/floor.png') repeat-x;
   top: -25px;
   //background-size: 1000px 1000px;
-  
+
 
   height: 110px;
   width: 100vw;
@@ -246,9 +246,9 @@ h3:hover {
   margin-left: 15%;
   margin-right:15%;
   margin-top: 20%;
-  
+
   // height: 600px;
-  
+
 }
 .underground h2 {
   color: lightblue;
@@ -281,7 +281,7 @@ h3:hover {
     position: absolute;
   background: url('http://thedrawingblanks.com/khe/lamppost.png') repeat-y;
   background-position: center top;
-    
+
     width: 38px;
   opacity: .8;
 }
@@ -290,7 +290,7 @@ h3:hover {
   margin-left: 5%;
   margin-top: 25px;
   animation-delay: -10s;
-  
+
 }
 #post1{
     height: 50px;
@@ -306,8 +306,8 @@ h3:hover {
 }
 
 @-webkit-keyframes colorChange {
-  0%   { 
-    -webkit-filter: hue-rotate(0deg); 
+  0%   {
+    -webkit-filter: hue-rotate(0deg);
     filter: hue-rotate(0deg); }
 
   100% { -webkit-filter: hue-rotate(360deg); filter: hue-rotate(3600deg); }
@@ -322,7 +322,7 @@ h3:hover {
   opacity: .9;
 }
 
-#rank:hover { 
+#rank:hover {
   opacity: 1;
     border: 4px solid darkred;
 
