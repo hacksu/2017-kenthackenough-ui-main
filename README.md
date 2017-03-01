@@ -1,10 +1,8 @@
-# Vue.js starter template
+# Kent Hack Enough 2017 Attendee Site
 
 <p align="center">
-  <img src="src/assets/images/logo.png" height="100" />
+  <img src="https://khe.io/img/blue_logo.svg" height="100" />
 </p>
-
-A bare-bones starter-template to get your hands dirty with awesome [Vue.js](https://github.com/vuejs/vue) library.
 
 Built with:
 * [Vue.js 2](https://github.com/vuejs/vue)
@@ -12,10 +10,8 @@ Built with:
 * [Axios](https://github.com/mzabriskie/axios)
 * [Animate.css](https://github.com/daneden/animate.css)
 * [Babel](https://babeljs.io/)
-* [Bootstrap 4](https://v4-alpha.getbootstrap.com/)
 * [BrowserSync](https://www.browsersync.io/)
 * [ESLint](http://eslint.org/)
-* [Font Awesome](http://fontawesome.io/)
 * [JSONPlaceholder](http://jsonplaceholder.typicode.com/)
 * [SASS](http://sass-lang.com/)
 * [Webpack 2](https://webpack.js.org/)
@@ -66,5 +62,6 @@ yarn build
 
 Runs the webpack module-bundler with production-settings (compress etc.) and builds the project to `/build` directory.
 
-## Demo
-Navigate to [https://vue-starter.ville.io/](https://vue-starter.ville.io/) and see the awesomeness IRL :bowtie:
+## Get Involved
+Feel free to fork the repo and make changes. We're happy to review pull requests and issues.
+You may also join our Slack team here: https://khe.slack.com/signup
