@@ -65,3 +65,20 @@ Runs the webpack module-bundler with production-settings (compress etc.) and bui
 ## Get Involved
 Feel free to fork the repo and make changes. We're happy to review pull requests and issues.
 You may also join our Slack team here: https://khe.slack.com/signup
+
+### Keep your fork updated
+As we do work on the repo, you'll notice that your fork might not have all the latest stuff!
+We need add the main repo as a remote source to your fork. It's pretty easy.  
+
+Clone your fork and run the following command:
+```
+git remote add upstream https://github.com/hacksu/2017-kenthackenough-ui-main.git
+```
+
+Now to pull changes from the `develop` branch it's as easy as running
+```
+git pull upstream develop
+```
+
+It's important to note we only do this for pulling the latest code from the main repository. 
+Any time you want to have some new code included in the project you still need to submit a pull request to the `develop` branch.
