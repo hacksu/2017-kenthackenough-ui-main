@@ -1,5 +1,3 @@
-@import url('https://fonts.googleapis.com/css?family=Press+Start+2P');
-
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -15,11 +13,11 @@ html {
 body {
   //padding-top: 5em;
 
-  font-family: sans-serif;
+  font-family: "hydrophilia-iced", sans-serif;
 }
 
 h1 {
-	font-family: 'Press Start 2P', 'Oswald', sans-serif;
+  font-family: "hydrophilia-iced",sans-serif;
 }
 
 img {
@@ -39,9 +37,10 @@ body {
   position: absolute;
   width: 100%;
   text-align: center;
-  top: 15vw;
+  top: 10vw;
   z-index: 999999999;
   padding: 0 10px;
+  font-size: 2rem;
 }
 
 h1 {
@@ -49,7 +48,7 @@ h1 {
   opacity: 1;
   margin-bottom: 2rem;
   line-height: 1.5;
-  font-size: 3rem;
+  font-size: 5rem;
   padding: 0 10px;
 }
 
@@ -58,8 +57,8 @@ h3 {
 	width: auto;
 	color: $water;
 	opacity: 1;
-	margin-top: 1.5rem;
-	line-height: 1.5;
+	margin-top: 0.5rem;
+	line-height: 1.25;
 }
 
 a {
@@ -80,7 +79,7 @@ h3:hover {
 
   background: linear-gradient(#0d004c, #210d7f);
 
-  font-family: 'Press Start 2P', sans-serif;
+  font-family: "hydrophilia-iced",sans-serif;
 
 }
 
@@ -102,7 +101,7 @@ h3:hover {
 	width: auto;
 	background-color: transparent;
 	border: none;
-	font-family: "Press Start 2P";
+	font-family: "hydrophilia-iced",sans-serif;
 	//border-bottom: 2px solid $sky;
 	margin: 0 auto;
 	font-size: 2rem;
