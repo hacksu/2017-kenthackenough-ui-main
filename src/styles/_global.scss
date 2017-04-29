@@ -37,7 +37,7 @@ body {
   position: absolute;
   width: 100%;
   text-align: center;
-  top: 10vw;
+  top: 2vw;
   z-index: 999999999;
   padding: 0 10px;
   font-size: 2rem;
@@ -50,6 +50,10 @@ h1 {
   line-height: 1.5;
   font-size: 5rem;
   padding: 0 10px;
+}
+
+h2 {
+  color: $white;
 }
 
 h3 {
@@ -325,4 +329,9 @@ h3:hover {
   opacity: 1;
     border: 4px solid darkred;
 
+}
+
+.combined-logo {
+  width: 50vw;
+  height: auto; 
 }
