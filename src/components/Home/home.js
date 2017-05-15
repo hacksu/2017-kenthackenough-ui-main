@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
-//import { emailResource } from 'src/util/resources';
+
 import template from './home.html';
 
 // Import styles
