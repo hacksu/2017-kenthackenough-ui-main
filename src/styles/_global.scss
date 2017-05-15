@@ -27,18 +27,52 @@ img {
   width: 100%;
   height: 100%;
 
-  overflow-x: hidden;
+  overflow: hidden;
 }
 
-nav {
+#main-container {
+  transform-origin: 50% 200%;
+}
+
+#nav-container {
   position: absolute;
   top: 100%;
   left: 0;
 
   width: 100%;
-  height: 192px;
+  height: auto;
 
-  background-color: $black;
+  background-color: $midnight;
+  border-top: 2px solid $white;
+}
+
+.navbar-nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  width: 100%;
+  height: 100%;
+
+  .nav-item {
+    height: auto;
+    font-size: 33pt;
+    color: $white;
+    text-decoration: none;
+
+    padding: 20px 20px 0;
+    margin-bottom: 30px;
+
+    &.active {
+      color: $spring-bud;
+      border-bottom: 3px solid $spring-bud;
+    }
+
+    &:hover:not(.active) {
+      border-bottom: 3px solid $white;
+    }
+  }
+    
 }
 
 .menu {
@@ -53,7 +87,7 @@ nav {
 }
 
 h1 {
-  color: $spring-bud;;
+  color: $spring-bud;
   opacity: 1;
   margin-bottom: 2rem;
   line-height: 1.5;

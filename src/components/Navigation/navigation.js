@@ -3,4 +3,5 @@ import template from './navigation.html';
 
 export default Vue.extend({
   template,
+  
 });

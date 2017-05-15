@@ -1,5 +1,11 @@
 @import "~styles/_variables.scss"; // Import variables to use colors
 
+main {
+	background-color: $sky;
+	width: 100%;
+	height: 100%;
+}
+
 #scaling-container {
 	position: relative;
 

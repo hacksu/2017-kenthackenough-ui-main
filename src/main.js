@@ -24,15 +24,47 @@ new Vue({
     Loader
   },
 
-  data(){
+  data() {
     return {
-      isLoading: false
+      isLoading: false,
+      navigationScroll: null,
+      mainContentStyle: {},
+      navigationStyle: {}
     };
   },
 
-  created(){
+  created() {
     LoadingState.$on('toggle', (isLoading) => {
       this.isLoading = isLoading;
     });
+    window.addEventListener('scroll', this.handleScroll); // Bind croll listener
+    this.initStyles(); // Set our default styles for the navigation and main content.
+  },
+
+  destroyed() {
+    window.removeEventListener('scroll', this.handleScroll);
+  },
+
+  methods: {
+    // Handle scroll for showing navigation
+    handleScroll() {
+      this.navigationScroll = window.scrollY;
+
+      var percentage = this.navigationScroll / this.$refs.navContainer.clientHeight;
+
+      this.mainContentStyle = {
+        opacity: 1.0 - percentage / 2,
+        transform: 'scale(' + (1 - percentage / 8) + ')'
+      };
+
+    },
+
+    initStyles() {
+      this.mainContentStyle = {
+        opacity: 1.0,
+        transform: 'scale(1)'
+      };
+    }
   }
+
 }).$mount('#app');

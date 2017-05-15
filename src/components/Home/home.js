@@ -45,15 +45,15 @@ export default Vue.extend({
 
       // Use Math.min if you want to scale so that the width fills the screen.
       // Math.max fills the height
-      scale = wrapperHeight / this.$el.clientHeight;
+      scale = wrapperHeight / this.$refs.scalingContainer.clientHeight;
       // scale = Math.max(
       //   wrapperWidth / this.$el.clientWidth,
       //   wrapperHeight / this.$el.clientHeight
       // );
-      console.log('scale:' + scale, 'elWidth', this.$el.clientWidth, '$wrapper.width()' + wrapperWidth);
+      console.log('scale:' + scale, 'elWidth', this.$refs.scalingContainer.clientWidth, '$wrapper.width()' + wrapperWidth);
       this.scalingObject = {
         //Keeps container centered
-        transform: 'translateX(' + (-(scale * this.$el.clientWidth) / 2 + (wrapperWidth / 2)) + 'px) ' + 'scale(' + scale + ')'
+        transform: 'translateX(' + (-(scale * this.$refs.scalingContainer.clientWidth) / 2 + (wrapperWidth / 2)) + 'px) ' + 'scale(' + scale + ')'
       };
 
     }

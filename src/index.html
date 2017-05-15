@@ -15,10 +15,12 @@
 
   <!-- <loader v-show="isLoading"></loader> -->
 
-  <div id="main-container">
+  <div id="main-container" v-bind:style="mainContentStyle" >
     <router-view></router-view>
   </div>
-  <navigation></navigation>
+  <div id="nav-container" ref="navContainer">
+    <navigation></navigation>
+  </div>
 </div>
 
 </body>
