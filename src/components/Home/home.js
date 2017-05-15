@@ -3,6 +3,9 @@ import VeeValidate from 'vee-validate';
 //import { emailResource } from 'src/util/resources';
 import template from './home.html';
 
+// Import styles
+import './home.scss';
+
 Vue.use(VeeValidate);
 
 export default Vue.extend({
@@ -10,85 +13,50 @@ export default Vue.extend({
 
   data() {
     return {
-      email: null,
-      message: null
+      //Object for handling main scaling transform
+      scalingObject: {
+        transform: ''
+      }
     };
   },
 
+  // bind event handlers to the `doResize` method (defined below)
+  mounted: function() {
+    console.log('ready');
+    window.addEventListener('resize', this.doResize);
+    this.doResize();
+  },
+  beforeDestroy: function() {
+    window.removeEventListener('resize', this.doResize);
+  },
+
   methods: {
-    inputFocus() {
-      console.log('Hello');
+
+    /* This method scales the main #scaling-container
+     * to fill the full height of the viewport
+     * and also translates the container to the center
+     */
+    doResize() {
+      console.log('doREsize called');
+      var scale;
+
+      var wrapperWidth = document.documentElement.clientWidth;
+      var wrapperHeight = document.documentElement.clientHeight;
+
+      // Use Math.min if you want to scale so that the width fills the screen.
+      // Math.max fills the height
+      scale = wrapperHeight / this.$el.clientHeight;
+      // scale = Math.max(
+      //   wrapperWidth / this.$el.clientWidth,
+      //   wrapperHeight / this.$el.clientHeight
+      // );
+      console.log('scale:' + scale, 'elWidth', this.$el.clientWidth, '$wrapper.width()' + wrapperWidth);
+      this.scalingObject = {
+        //Keeps container centered
+        transform: 'translateX(' + (-(scale * this.$el.clientWidth) / 2 + (wrapperWidth / 2)) + 'px) ' + 'scale(' + scale + ')'
+      };
+
     }
   }
 
-  // methods: {
-  //   handleSubmit(){
-  //     this.$validator.validateAll().then((success) => {
-  //       if (success) {
-  //         return this.savePost();
-  //       }
-
-  //       return this;
-  //     });
-  //   },
-
-  //   showMessage(message = {}, timeout = 3000){
-  //     this.message = message;
-  //     setTimeout(() => {
-  //       this.message = null;
-  //     }, timeout);
-  //   },
-
-  //   savePost(){
-  //     return emailResource.post('/', this.email)
-  //       .then((response) => {
-  //         this.email = response.data;
-
-  //         this.showMessage({
-  //           type: 'success',
-  //           text: 'We got your email! Stay tuned for the party :)'
-  //         });
-
-  //         // We need to reset the fields after successfull request
-  //         this.fields.reset();
-  //       })
-  //       .catch((errorResponse) => {
-  //         // Handle error...
-  //         this.showMessage({
-  //           type: 'danger',
-  //           text: errorResponse
-  //         });
-  //         console.log('API responded with:', errorResponse);
-  //       });
-  //   }
-  // }
 });
-// $(function () {
-//  +           let newsletter = $("#newsletter-sign-up");
-//  +           newsletter.keyup(function (e) {
-//  +               if (e.keyCode == 13) {
-//  +                   $.post({
-//  +                       url: "https://api.khe.io/v1.0/news",
-//  +                       data: JSON.stringify({email: newsletter.val()}),
-//  +                       contentType: "application/json; charset=utf-8",
-//  +                       dataType: "json",
-//  +                       success: function(data) {
-//  +                           newsletter.attr("placeholder", "See you soon");
-//  +                           newsletter.attr("disabled", true);
-//  +                           newsletter.css("background-color","#008000");
-//  +                           console.log("it worked")
-//  +                       },
-//  +                       error: function(data) {
-//  +                           newsletter.attr("placeholder", "Try that again?");
-//  +                           newsletter.css("background-color","#990000");
-//  +                           console.log("it failed");
-//  +                           newsletter.keyup(function (e) {
-//  +                               newsletter.css("background-color","#111");
-//  +                           })
-//  +                       }
-//  +                   });
-//  +                   console.log(newsletter.val());
-//  +                   newsletter.val("");
-//  +               }
-//  +           });
-//  +       });

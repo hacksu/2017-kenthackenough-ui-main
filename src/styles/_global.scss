@@ -1,39 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   height: 100%;
-}
 
-* {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+  background-color: $black;
 }
 
 body {
-  //padding-top: 5em;
+  height: 100%;
+  width: 100vw;
 
   font-family: "hydrophilia-iced", sans-serif;
-}
-
-h1 {
-  font-family: "hydrophilia-iced",sans-serif;
 }
 
 img {
 	image-rendering: pixelated;
 }
 
-html {
+#app, #main-container {
+  width: 100%;
   height: 100%;
+
+  overflow-x: hidden;
 }
 
-body {
-  height: 100%;
-  width: 100vw;
+nav {
+  position: absolute;
+  top: 100%;
+  left: 0;
+
+  width: 100%;
+  height: 192px;
+
+  background-color: $black;
 }
 
 .menu {
+  display: none; // REMOVE
   position: absolute;
   width: 100%;
   text-align: center;
@@ -48,12 +57,13 @@ h1 {
   opacity: 1;
   margin-bottom: 2rem;
   line-height: 1.5;
-  font-size: 5rem;
+  font-size: 5em;
   padding: 0 10px;
 }
 
 h2 {
   color: $white;
+  font-size: 11pt;
 }
 
 h3 {
@@ -75,6 +85,7 @@ h3:hover {
 }
 
 .content {
+  display: none;
   position: absolute;
   z-index: 0;
   padding: 0;
@@ -85,19 +96,6 @@ h3:hover {
 
   font-family: "hydrophilia-iced",sans-serif;
 
-}
-
-.moon {
-  position: absolute;
-  margin-top: 10%;
-  margin-left: 80%;
-}
-
-.table {
-  position: absolute;
-  z-index: 150;
-  bottom: 18vh;
-  margin-left: 60%;
 }
 
 .input-field {
@@ -121,217 +119,4 @@ h3:hover {
 }
 .input-field:hover::-webkit-input-placeholder {
     color: $sky;
-}
-
-/* Firefox < 19 */
-.input-field:-moz-placeholder {
-    color: $water;
-}
-.input-field:hover:-moz-placeholder {
-    color: $sky;
-}
-
-/* Firefox > 19 */
-.input-field::-moz-placeholder {
-    color: $water;
-}
-.input-field:hover::-moz-placeholder {
-    color: $sky;
-}
-
-/* Internet Explorer 10 */
-.input-field:-ms-input-placeholder {
-    color: $water;
-}
-.input-field:hover:-ms-input-placeholder {
-    color: $sky;
-}
-
-
-
-.table.overlay {
-    background-color: SlateGray;
-    position:relative;
-    width: 100%;
-    height: 100%;
-    opacity: 1;
-}
-
-.cloud1 {
-  position: fixed;
-    margin-top: 15%;
-    animation: cloudDrift;
-    animation-duration: 300s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-delay: -60s;
-  opacity: 1;
-}
-
-.cloud2 {
-  position: fixed;
-    margin-top: 10%;
-    animation: cloudDrift;
-    animation-duration: 500s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-delay: -220s;
-  opacity: 1;
-}
-
-@-webkit-keyframes cloudDrift {
-  0%   { margin-left: -10%; }
-  100% { margin-left: 110%; }
-}
-
-.wire {
-  position: absolute;
-  z-index: 50;
-  width: 100%;
-  background: url('http://thedrawingblanks.com/khe/wire.png') repeat-x;
-
-  bottom: 22vh;
-  // border: solid white 3px;
-  height: 110px;
-
-}
-
-.wireBG {
-  position: absolute;
-  z-index: 25;
-  width: 100%;
-  background: url('http://thedrawingblanks.com/khe/wire.png') repeat-x;
-  bottom: 20vh;
-  margin-left: -10%;
-  // border: solid white 3px;
-  height: 110px;
-  opacity: 0.5;
-
-}
-
-.ground {
-  position: absolute;
-  z-index: 100;
-
-  bottom: 0;
-
-  background-color: #090034;
-  // margin-left: -20px;
-
-  width: 100%;
-  height: 20vh;
-}
-
-.groundTile {
-  position: absolute;
-  background: url('http://thedrawingblanks.com/khe/floor.png') repeat-x;
-  top: -25px;
-  //background-size: 1000px 1000px;
-
-
-  height: 110px;
-  width: 100vw;
-}
-
-.underground {
-  // background-color: #340400;
-  background-color: #0F2F2F;
-  background-clip: padding-box;
-  color: lightblue;
-  text-align: center;
-
-
-    border-width: 16px;
-    border-style: solid;
-    //border-image: url(http://thedrawingblanks.com/khe/undergroundDiv.png) 14% round;
-  position: absolute;
-  width: 70%;
-  margin-left: 15%;
-  margin-right:15%;
-  margin-top: 20%;
-
-  // height: 600px;
-
-}
-.underground h2 {
-  color: lightblue;
-  margin: 60px;
-}
-.underground p {
-  margin-left: 20%;
-  margin-right: 20%;
-  line-height: 20px;
-}
-
-.uLamp {
-  position: absolute;
-  height: 40px;
-  width: 40px;
-  //background: url('http://thedrawingblanks.com/khe/lamp.png') no-repeat;
-  animation: colorChange;
-    animation-duration: 40s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-}
-
-@-webkit-keyframes flicker {
-  0%   { opacity: 1; }
-  50% { opacity: .9; }
-  100% { opacity: 1; }
-}
-
-.post {
-    position: absolute;
-  background: url('http://thedrawingblanks.com/khe/lamppost.png') repeat-y;
-  background-position: center top;
-
-    width: 38px;
-  opacity: .8;
-}
-
-#uLamp1{
-  margin-left: 5%;
-  margin-top: 25px;
-  animation-delay: -10s;
-
-}
-#post1{
-    height: 50px;
-    margin-left: 5%;
-}
-#uLamp2{
-  margin-left: 10%;
-  margin-top: 35px;
-}
-#post2{
-    height: 50px;
-    margin-left: 10%;
-}
-
-@-webkit-keyframes colorChange {
-  0%   {
-    -webkit-filter: hue-rotate(0deg);
-    filter: hue-rotate(0deg); }
-
-  100% { -webkit-filter: hue-rotate(360deg); filter: hue-rotate(3600deg); }
-}
-
-#rank {
-  padding-left: 30px;
-  padding-right: 30px;
-  background-color: #340400;
-  border: 4px solid white;
-  height: 150px;
-  opacity: .9;
-}
-
-#rank:hover {
-  opacity: 1;
-    border: 4px solid darkred;
-
-}
-
-.combined-logo {
-  width: 50vw;
-  height: auto; 
 }
