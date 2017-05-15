@@ -3,6 +3,8 @@ import VeeValidate from 'vee-validate';
 
 import template from './home.html';
 
+import CustomizePerson from 'components/CustomizePerson/customizePerson';
+
 // Import styles
 import './home.scss';
 
@@ -10,6 +12,10 @@ Vue.use(VeeValidate);
 
 export default Vue.extend({
   template,
+
+  components: {
+    CustomizePerson
+  },
 
   data() {
     return {
