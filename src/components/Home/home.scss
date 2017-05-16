@@ -16,6 +16,15 @@ main {
 	transform-origin: top left; // Scale from the top left of the image
 }
 
+.text {
+	font-size: 22pt;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
+
 .foreground-grass {
 	position: absolute;
 	bottom: 0;
@@ -42,6 +51,6 @@ main {
 	@media only screen 
 	and (min-width : 320px) {
 
-		transform: scale(0.375) translateX(-50%);
+		transform: scale(0.5) translateX(-50%);
 	}
 }
