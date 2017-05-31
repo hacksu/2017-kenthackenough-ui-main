@@ -18,7 +18,7 @@ export const router = new VueRouter({
   linkActiveClass: 'active'
 });
 
-new Vue({
+var app1 = new Vue({
   router,
   components: {
     Navigation,
@@ -66,7 +66,11 @@ new Vue({
         opacity: 1.0,
         transform: 'scale(1)'
       };
+    },
+    testtest() {
+      console.log('test success!');
     }
   }
 
-}).$mount('#app');
+});
+app1.$mount('#app');

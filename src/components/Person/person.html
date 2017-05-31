@@ -1,8 +1,33 @@
-<div class="person">
-	<img id="skin" v-bind:src="skin" >
-	<img id="shirt" v-bind:src="shirt">
+<div class="person" 
+     v-bind:style="{ 
+                   top: yTop + 'px', 
+                   left: xLHS + 'px',
+                   transform: facing
+                   }"
+     v-on:mouseover="showName = true"
+     v-on:mouseout="showName = false"
+     >
+    <div class="title" v-if="showName"
+         v-bind:style="{transform: facing}">{{ name }}</div>
+	<img id="skin" v-bind:src="skin"         
+         v-bind:style="{ 
+                   filter: 'brightness(' + skinTone/5 + ')' 
+                   }"
+         
+         >
+	<img id="shirt" 
+         v-bind:src="shirt"
+         v-bind:style="{
+                       filter: 'hue-rotate(' + shirtHue + 'deg)'}">
 	<img id="pants" v-bind:src="pants">
-	<img id="hair" v-bind:src="hair">
+	<img id="hair" v-bind:src="hair" 
+         v-bind:style="{ 
+                   filter: 'brightness(' + hairTone + ')' 
+                   }">
 	<img id="shoes" v-bind:src="shoes">
-	<img id="eyes" v-bind:src="eyes">
+	<img id="eyes" v-bind:src="eyes"
+         v-bind:style="{ 
+                   filter: 'brightness(' + eyesTone/2 + ')' 
+                   }">
 </div>
+

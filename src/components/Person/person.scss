@@ -1,3 +1,25 @@
 .person img {
+    z-index: 1000;
 	position: absolute;
+    min-width: 40px;
+    min-height: 40px;
+}
+
+.person {
+    position: absolute;
+}
+
+.reverse {
+    scale: (-1, 1);
+}
+
+.title {
+    position: absolute;
+    height: 20px;
+    width: 80px;
+    left: 0;
+    top: -15px;
+    background-color: rgba(0,0,0,.5);
+    color: white;
+//    transform: scale(.5,.5);
 }

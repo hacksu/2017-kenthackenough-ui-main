@@ -4,17 +4,34 @@ import VeeValidate from 'vee-validate';
 import template from './home.html';
 
 import CustomizePerson from 'components/CustomizePerson/customizePerson';
+import Person from 'components/Person/person';
 
 // Import styles
 import './home.scss';
+import 'components/Person/person.scss';
 
 Vue.use(VeeValidate);
+
+// CONTROLS
+var keys = {
+  UP: 38,
+  LEFT: 37,
+  RIGHT: 39,
+  DOWN: 40,
+  SPACE: 32,
+  P: 80,
+  ESC: 27,
+  ENTER: 13
+};
+
+var paused = false;
 
 export default Vue.extend({
   template,
 
   components: {
-    CustomizePerson
+    CustomizePerson,
+    Person
   },
 
   data() {
@@ -22,7 +39,8 @@ export default Vue.extend({
       //Object for handling main scaling transform
       scalingObject: {
         transform: ''
-      }
+      },
+      paused: false
     };
   },
 
@@ -31,6 +49,21 @@ export default Vue.extend({
     console.log('ready');
     window.addEventListener('resize', this.doResize);
     this.doResize();
+      
+    // Movement detection
+    window.addEventListener('keydown', function(e){
+      keys[e.keyCode || e.which] = true;
+      if (e.keyCode === Number(keys.ESC)) {
+        paused = !paused;
+      }
+    }, true);
+
+    window.addEventListener('keyup', function(e){
+      keys[e.keyCode || e.which] = false;
+    }, true);
+      
+    setInterval(this.move, 10);
+
   },
   beforeDestroy: function() {
     window.removeEventListener('resize', this.doResize);
@@ -62,6 +95,32 @@ export default Vue.extend({
         transform: 'translateX(' + (-(scale * this.$refs.scalingContainer.clientWidth) / 2 + (wrapperWidth / 2)) + 'px) ' + 'scale(' + scale + ')'
       };
 
+    },
+      
+    move(){
+        
+      this.$refs.you.animate();
+        
+      if (paused) {
+        this.paused = true;
+        return;
+      }
+      this.paused = false;
+        
+      if (keys[keys.LEFT]) {
+        this.$refs.you.moveLeft();
+      }
+      if (keys[keys.RIGHT]) {
+        this.$refs.you.moveRight();
+      }
+      if (keys[keys.UP]) {
+        if (this.$refs.you.isGrounded()) {
+          this.$refs.you.jumpUp();
+        }
+      }
+      if (keys[keys.DOWN]) {
+        return;
+      }
     }
   }
 

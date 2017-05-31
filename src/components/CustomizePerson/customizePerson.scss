@@ -1,0 +1,56 @@
+#blackout {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: rgba(0,0,0,.7);
+    z-index: 50;
+}
+
+#settings {
+//  display: block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 150px;
+  height: 100%;
+  background-color: rgba(0, 150, 200, 1);
+  font-size: 8px;
+  z-index: 100;
+    
+//  transform: scale(.5, .5);
+  
+  text-align: center;
+    display:table-cell;
+    
+}
+
+button, input {
+    transform: scale(.5,.5);
+    margin: -10px;
+    padding: 0;
+}
+
+.itemMenu {
+    position: absolute;
+    min-width: 100px;
+    min-height: 50px;
+    border: solid black 1px;
+    background-color: blue;
+    top: 50px;
+    left: 0;
+    right: 0;
+    margin: 0;
+}
+
+.itemRow {
+    display: flex;
+}
+
+.item {
+    border: solid black 1px;
+    background-color: aliceblue;
+    cursor: pointer;
+}
+.item:hover {
+    border: solid gray 1px;
+}
