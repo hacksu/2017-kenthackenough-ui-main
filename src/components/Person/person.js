@@ -16,7 +16,7 @@ export default Vue.extend({
 
   data() {
     return {
-      name: 'Larry',
+      name: 'Apply',
       showName: false,
         
         // Physics variables
@@ -54,7 +54,7 @@ export default Vue.extend({
 
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
-    this.randomize();
+    //this.randomize();
   },
 
   beforeDestroy: function() {

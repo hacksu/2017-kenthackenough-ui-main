@@ -4,18 +4,22 @@
   box-sizing: border-box;
 }
 
+html,body {
+        margin: 0 0;
+        height: 100%;
+        width: 100%;
+        overflow: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
 html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  height: 100%;
 
   background-color: $black;
 }
 
 body {
-  height: 100%;
-  width: 100vw;
-
   font-family: "hydrophilia-iced", sans-serif;
 }
 
