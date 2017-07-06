@@ -1,9 +1,12 @@
 #blackout {
-    position: absolute;
-    height: 100%;
-    width: 100%;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+
     background: rgba(0,0,0,.7);
     z-index: 50;
+    top: 0;
+    left: 0;
 }
 
 #settings {

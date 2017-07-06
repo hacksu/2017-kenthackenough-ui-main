@@ -1,80 +1,78 @@
 <div id="blackout" >
-    <person ref="youClone" style="transform:scale(4,4)"></person>
-    
-<div id="settings">
-    
-    <br><br><br><br>
-  <button @click="$parent.$refs.you.randomize()">Randomize Person</button><br>
+  <person ref="youClone" style="transform:scale(4,4)"></person>
+  
+  <div id="settings">
+    <button @click="$parent.$refs.you.randomize()">Randomize Person</button><br>
 <!--   <button onclick="newPerson()">New Person</button><br>
   <button onclick="changeId(-1)">Prev. Person</button><br>
   
-<!--   <button onclick="debug()">debug</button> -->
+  <!--   <button onclick="debug()">debug</button> -->
   
-    
+  
   <input type="text" id="name" placeholder="Name" v-model="$parent.$refs.you.name">
   <br>
-   Skin Tone<div id="skinToneID"><input type="range" name="skinTone" id="skinToneI" min="1" max="6" 
-        v-model="$parent.$refs.you.skinTone"
-                                        
-                                        ></div>
+  Skin Tone<div id="skinToneID"><input type="range" name="skinTone" id="skinToneI" min="1" max="6" 
+  v-model="$parent.$refs.you.skinTone"
+  
+  ></div>
   
   Hair Shade<div id="hairToneID"><input type="range" name="hairTone" id="hairToneI" min="0" max="12"
-        v-model="$parent.$refs.you.hairTone"
-                                        ></div>
+  v-model="$parent.$refs.you.hairTone"
+  ></div>
   <button @click="menu = 'hair'">Change Hairstyle </button><br>
-    
+  
   Eye Shade<div id="eyeToneID"><input type="range" name="eyeTone" id="eyeToneI" min="1" max="5"
-        v-model="$parent.$refs.you.eyesTone"></div>
+  v-model="$parent.$refs.you.eyesTone"></div>
   <button onclick="changeEyes()">Change Eye Color</button><br>
   
   
   
   <button @click="menu = 'shirt'">Change Shirt</button>
-    
-    
-<!--    SHIRT MENU-->
-    <div class="itemMenu" v-if="menu == 'shirt'">
-        
-        <div class="itemRow">
-    <div v-for="shirt in shirts">
-        <img 
-             v-bind:src="imgURL + shirt.url" 
-             class="item"
-             @click="updateShirt(imgURL + shirt.url)">
-    
-        </div>
-        </div>
-        <div class="itemRow">
-    <div v-for="n in 5">
-        <img 
-             v-bind:src="$parent.$refs.you.shirt" 
-             class="item"
-             v-bind:style="{
-            filter: 'hue-rotate(' + (360 * (n/5)) + 'deg)'
-            }"
-             @click=" $parent.$refs.you.shirtHue = (360 * (n/5))">
-    
-        </div>
-        </div>
-    <button @click="menu = 'none'">Close</button>
-    </div>
-    
-<!--    HAIR MENU-->
-    <div class="itemMenu" v-if="menu == 'hair'">
-        
-        <div class="itemRow">
-    <div v-for="style in hair">
-        <img 
-             v-bind:src="imgURL + style.url" 
-             class="item"
-             @click="$parent.$refs.you.hair = imgURL + style.url">
-    
-        </div>
-        </div>
-        
-    <button @click="menu = 'none'">Close</button>
-    </div>
-    
   
+  
+  <!--    SHIRT MENU-->
+  <div class="itemMenu" v-if="menu == 'shirt'">
+    
+    <div class="itemRow">
+      <div v-for="shirt in shirts">
+        <img 
+        v-bind:src="imgURL + shirt.url" 
+        class="item"
+        @click="updateShirt(imgURL + shirt.url)">
+        
+      </div>
+    </div>
+    <div class="itemRow">
+      <div v-for="n in 5">
+        <img 
+        v-bind:src="$parent.$refs.you.shirt" 
+        class="item"
+        v-bind:style="{
+        filter: 'hue-rotate(' + (360 * (n/5)) + 'deg)'
+      }"
+      @click=" $parent.$refs.you.shirtHue = (360 * (n/5))">
+      
+    </div>
   </div>
+  <button @click="menu = 'none'">Close</button>
+</div>
+
+<!--    HAIR MENU-->
+<div class="itemMenu" v-if="menu == 'hair'">
+  
+  <div class="itemRow">
+    <div v-for="style in hair">
+      <img 
+      v-bind:src="imgURL + style.url" 
+      class="item"
+      @click="$parent.$refs.you.hair = imgURL + style.url">
+      
+    </div>
+  </div>
+  
+  <button @click="menu = 'none'">Close</button>
+</div>
+
+
+</div>
 </div>

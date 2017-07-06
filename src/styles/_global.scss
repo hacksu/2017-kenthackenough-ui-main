@@ -1,3 +1,8 @@
+@font-face {
+    font-family: hydrophilia-iced;
+    src: url(~assets/fonts/Hydrophilia_Iced.ttf);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,12 +10,12 @@
 }
 
 html,body {
-        margin: 0 0;
-        height: 100%;
-        width: 100%;
-        overflow: auto;
-        -webkit-overflow-scrolling: touch;
-    }
+  margin: 0 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
 
 html {
   -webkit-font-smoothing: antialiased;
@@ -54,18 +59,22 @@ img {
   display: flex;
   justify-content: space-around;
   align-items: center;
+  flex-wrap: wrap;
 
   width: 100%;
   height: 100%;
+  padding-bottom: 10px;
 
+  overflow-x: hidden;
   .nav-item {
     height: auto;
     font-size: 33pt;
+    line-height: 1.2;
     color: $white;
     text-decoration: none;
 
     padding: 20px 20px 0;
-    margin-bottom: 30px;
+    margin: 0 5px 15px;
 
     &.active {
       color: $spring-bud;

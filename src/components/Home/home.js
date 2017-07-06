@@ -98,7 +98,6 @@ export default Vue.extend({
     },
       
     move(){
-        
       this.$refs.you.animate();
         
       if (this.paused) {
