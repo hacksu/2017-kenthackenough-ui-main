@@ -47,3 +47,13 @@ main {
 		transform: scale(0.375) translateX(-50%);
 	}
 }
+
+.date {
+	position: absolute;
+	top: 0; left: 50%;
+	margin-top: calc(80px + 2vw);
+	
+	transform: translateX(-50%);
+	color: $white;
+	text-shadow: -1px 1px 0px $midnight-dark;
+}

@@ -43,7 +43,7 @@ export default Vue.extend({
       facing: 'scale(1,1)',
         // Coordinates
       yTop: 0,
-      xLHS: 100,
+      xLHS: 200,
       yBottom: 30,
       xRHS: 22,
         // Velocity

@@ -1,30 +1,25 @@
-#blackout {
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
+@import "~styles/_variables.scss"; // Import variables to use colors
 
+#blackout {
+    position: absolute;
+    height: 100%;
+    width: 100%;
     background: rgba(0,0,0,.7);
     z-index: 50;
-    top: 0;
-    left: 0;
 }
 
 #settings {
-//  display: block;
   position: absolute;
-  top: 0;
-  right: 0;
+  top: 50%;
+  left: 50%;
   width: 150px;
-  height: 100%;
-  background-color: rgba(0, 150, 200, 1);
+  background-color: $midnight;
   font-size: 8px;
   z-index: 100;
-    
-//  transform: scale(.5, .5);
+
+  transform: translate(-50%, -50%);
   
   text-align: center;
-    display:table-cell;
-    
 }
 
 button, input {
