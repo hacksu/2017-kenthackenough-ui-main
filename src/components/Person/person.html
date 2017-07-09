@@ -2,19 +2,22 @@
      v-bind:style="{ 
                    top: yTop + 'px', 
                    left: xLHS + 'px',
-                   transform: facing
+                   transform: facing,
+                   width: '40px'
                    }"
      v-on:mouseover="showName = true"
      v-on:mouseout="showName = false"
      >
     <div class="title" v-if="showName"
          v-bind:style="{transform: facing}">{{ name }}</div>
-	<img id="skin" v-bind:src="skin"         
-         v-bind:style="{ 
-                   filter: 'brightness(' + skinTone/5 + ')' 
+    
+    <canvas id="skin" width="22px" height="40px"
+            v-bind:style="{ 
+                   filter: 'brightness(' + skinTone/5 + ')'
                    }"
-         
-         >
+            >
+    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/skin.png">
+    </canvas>
 	<img id="shirt" 
          v-bind:src="shirt"
          v-bind:style="{

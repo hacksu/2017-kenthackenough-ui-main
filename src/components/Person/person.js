@@ -48,13 +48,34 @@ export default Vue.extend({
       xRHS: 22,
         // Velocity
       yVel: 0,
-      xVel: 0
+      xVel: 0,
+        
+      status: 'idle', // 'idle', 'walk', 'jump'
+        
+      // Sprite Animation variables
+      shift: 0, // Used to log shift in pixels thru anim frames
+      frameWidth: 21, // CONST
+      frameHeight: 50, // CONST
+      delay: 5, // CONST
+      delayI: 0, // Delay iterator, starts at 0
+      totalFrames: 4,
+      currentFrame: 0, // Frame iterator, starts at 0
+      context: {}, // Will hold different canvas locations
+        
+      // Stores all current sprites
+      myImage: document.createElement('img')
     };
   },
 
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
     this.randomize();
+    var canvas = document.getElementById('skin');
+    this.context.skin = canvas.getContext('2d');
+    this.context.imageSmoothingEnabled = false;
+    
+    this.myImage.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/skin.png';
+    this.myImage.addEventListener('load', this.animLoop, false);
   },
 
   beforeDestroy: function() {
@@ -75,12 +96,48 @@ export default Vue.extend({
       this.fall();
       this.slow(); //Causes friction
         
+      if (this.yVel !== 0) {
+        this.status = 'jump';
+      } else if (this.xVel !== 0) {
+        this.status = 'walk';
+          
+      } else {
+        this.status = 'idle';
+      }
+        
       return;
     },
       
+    animLoop: function() {
+      this.delayI++;
+      if (this.delayI === this.delay) {
+        this.context.skin.clearRect(0, 0, 300, 300);
+ 
+        //draw each frame + place them in the middle
+        this.context.skin.drawImage(this.myImage, this.shift, 0, this.frameWidth, this.frameHeight, 0, 0, this.frameWidth, this.frameHeight);
+ 
+        this.shift += this.frameWidth + 1;
+ 
+        /*
+        Start at the beginning once you've reached the
+        end of your sprite!
+        */
+        if (this.currentFrame === this.totalFrames) {
+          this.shift = 0;
+          this.currentFrame = 0;
+            
+        }
+ 
+        this.currentFrame++;
+        this.delayI = 0;
+        
+      }
+      window.requestAnimationFrame(this.animLoop);
+    },
+      
     move: function() {
-      this.yTop += this.yVel;
-      this.xLHS += this.xVel;
+      this.yTop += Math.floor(this.yVel);
+      this.xLHS += Math.floor(this.xVel);
       this.yBottom = this.yTop + 30;
       this.xRHS = this.xLHS + 22;
     },
