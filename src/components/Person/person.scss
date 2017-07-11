@@ -1,12 +1,6 @@
-.person img {
-    z-index: 1000;
-	position: absolute;
-    min-width: 40px;
-    min-height: 40px;
-}
-
 .person {
     position: absolute;
+    //outline: solid green 1px;
 }
 
 .reverse {
@@ -25,7 +19,9 @@
 }
 
 canvas {
-  transform: scale(2,2);
+  //outline: solid red 1px;
+  position: absolute;
+  transform: scale(1,1);
   -ms-interpolation-mode: nearest-neighbor; 
   image-rendering: -webkit-optimize-contrast; 
   image-rendering: -webkit-crisp-edges; 

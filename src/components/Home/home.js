@@ -5,6 +5,7 @@ import template from './home.html';
 
 import CustomizePerson from 'components/CustomizePerson/customizePerson';
 import Person from 'components/Person/person';
+import Grid from 'components/grid/grid';
 
 // Import styles
 import './home.scss';
@@ -31,7 +32,8 @@ export default Vue.extend({
 
   components: {
     CustomizePerson,
-    Person
+    Person,
+    Grid
   },
 
   data() {
@@ -114,9 +116,7 @@ export default Vue.extend({
         this.$refs.you.moveRight();
       }
       if (keys[keys.UP]) {
-        if (this.$refs.you.isGrounded()) {
-          this.$refs.you.jumpUp();
-        }
+        this.$refs.you.jumpUp();
       }
       if (keys[keys.DOWN]) {
         return;
