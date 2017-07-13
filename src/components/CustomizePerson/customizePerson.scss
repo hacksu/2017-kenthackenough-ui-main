@@ -51,7 +51,7 @@ input {
   font-family: 'hydrophilia-iced', sans-serif;
 }
 
-input[type=text] {
+input[type=text], input[type=email], input[type=password] {
   background: transparent;
   border: none;
   border-bottom: 1px solid $white;

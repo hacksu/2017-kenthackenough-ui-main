@@ -12,7 +12,7 @@
 .title {
     position: absolute;
     left: 0;
-    top: -15px;
+    top: -20px;
 
     height: 20px;
     width: auto;
@@ -28,7 +28,7 @@
 canvas {
   //outline: solid red 1px;
   position: absolute;
-  transform: scale(1,1);
+  transform: scale(1.5);
   -ms-interpolation-mode: nearest-neighbor; 
   image-rendering: -webkit-optimize-contrast; 
   image-rendering: -webkit-crisp-edges; 
