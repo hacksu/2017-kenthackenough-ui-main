@@ -1,33 +1,49 @@
 <div class="person" 
      v-bind:style="{ 
-                   top: yTop + 'px', 
-                   left: xLHS + 'px',
-                   transform: facing
+                   top: (yTop + 1) + 'px', 
+                   left: (xLHS - 25) + 'px',
+                   transform: facing,
+                   width: '25px'
                    }"
      v-on:mouseover="showName = true"
      v-on:mouseout="showName = false"
      >
     <div class="title" v-if="showName"
          v-bind:style="{transform: facing}">{{ name || 'Apply/Login' }}</div>
-	<img id="skin" v-bind:src="skin"         
-         v-bind:style="{ 
-                   filter: 'brightness(' + skinTone/5 + ')' 
+    
+    <canvas id="skin" width="22px" height="30px"
+            v-bind:style="{ 
+                   filter: 'brightness(' + skinTone/5 + ')'
                    }"
-         
-         >
-	<img id="shirt" 
-         v-bind:src="shirt"
-         v-bind:style="{
-                       filter: 'hue-rotate(' + shirtHue + 'deg)'}">
-	<img id="pants" v-bind:src="pants">
-	<img id="hair" v-bind:src="hair" 
-         v-bind:style="{ 
+            >
+    </canvas>
+    
+    <canvas id="shirt" width="22px" height="30px"
+            v-bind:style="{
+                       filter: 'hue-rotate(' + shirtHue + 'deg)'
+                       }"
+            >
+    </canvas>
+    
+	
+	<canvas id="pants" width="22px" height="30px"
+            >
+    </canvas>
+    
+    <canvas id="hair" width="22px" height="30px"
+            v-bind:style="{ 
                    filter: 'brightness(' + hairTone + ')' 
-                   }">
-	<img id="shoes" v-bind:src="shoes">
-	<img id="eyes" v-bind:src="eyes"
-         v-bind:style="{ 
+                   }"
+            >
+    </canvas>
+	
+	<canvas id="shoes" width="22px" height="30px"
+            >
+    </canvas>
+    <canvas id="eyes" width="22px" height="30px"
+            v-bind:style="{ 
                    filter: 'brightness(' + eyesTone/2 + ')' 
                    }">
+    </canvas>
 </div>
 
