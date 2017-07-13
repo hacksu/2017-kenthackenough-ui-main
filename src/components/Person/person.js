@@ -14,11 +14,15 @@ var shoesSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShoes1
 export default Vue.extend({
   template,
 
+  props: ['paused'],
+
   data() {
     return {
-      name: 'Apply Here!',
+      name: '',
       showName: false,
-        
+      email: '',
+      password: '',
+      
         // Physics variables
       weight: 0.1,
       friction: 0.1,

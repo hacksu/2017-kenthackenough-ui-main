@@ -12,10 +12,18 @@ main {
 	position: relative;
 
 	/*** 480px by 270px == 16:9 ratio ***/
-	width: 480px; // This should be the width (in pixels) of the background image
+	width: 100%; //480px; // This should be the width (in pixels) of the background image
 	height: 270px; // This is the height should equal the same height as the image being used for the background
 	
 	transform-origin: top left; // Scale from the top left of the image
+}
+
+#mlh-trust-badge {
+	display: none;
+
+	@media screen and (min-width: 768px) {
+		display: block;
+	}
 }
 
 .foreground-grass {
@@ -48,12 +56,40 @@ main {
 	}
 }
 
-.date {
+.date-location-container {
 	position: absolute;
 	top: 0; left: 50%;
+	width: 100%; // Fallback for 
+
+	--screenWidth: 100vw;
+	--screenHeight: 100vh;
+	--containerHeight: 270px;
+	--containerScale: calc(var(--containerHeight) / var(--screenHeight));
+	--scaledWidth: calc((1.0) / var(--containerScale));
+	width: calc(100vw * var(--scaledWidth));
+
 	margin-top: calc(80px + 2vw);
-	
+	padding: 0 5px;
+	text-align: center;
 	transform: translateX(-50%);
 	color: $white;
 	text-shadow: -1px 1px 0px $midnight-dark;
+}
+
+.modal-slideIn-enter-active {
+  animation: bounce-in .5s;
+}
+.modal-slideIn-leave-active {
+  animation: bounce-in .5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: translate(-50%, -150%);
+  }
+  75% {
+    transform: translate(-50%, -40%);
+  }
+  100% {
+    transform: translate(-50%, -50%);
+  }
 }

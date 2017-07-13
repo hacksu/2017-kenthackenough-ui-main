@@ -8,7 +8,7 @@
      v-on:mouseout="showName = false"
      >
     <div class="title" v-if="showName"
-         v-bind:style="{transform: facing}">{{ name }}</div>
+         v-bind:style="{transform: facing}">{{ name || 'Apply/Login' }}</div>
 	<img id="skin" v-bind:src="skin"         
          v-bind:style="{ 
                    filter: 'brightness(' + skinTone/5 + ')' 

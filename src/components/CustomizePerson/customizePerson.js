@@ -57,14 +57,13 @@ export default Vue.extend({
       pantsIndex: 0,
       hairIndex: 0,
     
-      menu: 'none'
+      menu: 'apply'
       
     };
   },
 
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
-    setInterval(this.updateClone, 100);
     
   },
 
@@ -73,14 +72,6 @@ export default Vue.extend({
   },
 
   methods: {
-    updateClone() {
-      this.$refs.youClone.skinTone = this.$parent.$refs.you.skinTone;
-      this.$refs.youClone.eyesTone = this.$parent.$refs.you.eyesTone;
-      this.$refs.youClone.hairTone = this.$parent.$refs.you.hairTone;
-      this.$refs.youClone.shirt = this.$parent.$refs.you.shirt;
-      this.$refs.youClone.shirtHue = this.$parent.$refs.you.shirtHue;
-      this.$refs.youClone.hair = this.$parent.$refs.you.hair;
-    },
     
     updateShirt(shirtURL) {
       this.$parent.$refs.you.shirt = shirtURL;
