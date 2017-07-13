@@ -1,6 +1,8 @@
 .person {
     position: absolute;
-    //outline: solid green 1px;
+    width: 40px;
+
+    cursor: pointer;
 }
 
 .reverse {
@@ -9,12 +11,17 @@
 
 .title {
     position: absolute;
-    height: 20px;
-    width: 80px;
     left: 0;
     top: -15px;
+
+    height: 20px;
+    width: auto;
+    max-width: 120px;
+
+    padding: 1px 5px;
     background-color: rgba(0,0,0,.5);
     color: white;
+    text-align: center;
 //    transform: scale(.5,.5);
 }
 

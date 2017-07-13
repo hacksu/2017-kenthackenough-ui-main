@@ -1,56 +1,100 @@
-#blackout {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background: rgba(0,0,0,.7);
-    z-index: 50;
-}
+@import "~styles/_variables.scss"; // Import variables to use colors
 
 #settings {
-//  display: block;
   position: absolute;
-  top: 0;
-  right: 0;
-  width: 150px;
-  height: 100%;
-  background-color: rgba(0, 150, 200, 1);
-  font-size: 8px;
+  top: 50%;
+  left: 50%;
+  padding: 60px 12px 12px;
+  border-radius: 3px;
+  background-color: $midnight;
+  font-size: 1rem;
   z-index: 100;
-    
-//  transform: scale(.5, .5);
-  
+
+  transform: translate(-50%, -50%);
+  text-align: left;
+
+  --screenWidth: 100vw;
+  --screenHeight: 100vh;
+  --containerHeight: 270px;
+  --containerScale: calc(var(--containerHeight) / var(--screenHeight));
+  --scaledWidth: calc((1.0) / var(--containerScale));
+
+  width: calc(100% * var(--scaledWidth));
+  height: calc(10 * var(--scaledWidth));
+  max-width: 200px;
+  max-height: calc(10 * var(--scaledWidth));
+
+  @media screen and (orientation:landscape) { 
+   
+  }
+
+  overflow-y: scroll;
+}
+
+.close-button {
+  position: absolute;
+  top: 2px;
+  left: 5px;
+
+  color: white;
+  text-shadow: -1px 1px 0px $midnight-dark;
+
+  cursor: pointer;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+input {
+  width: 100%;
+  font-family: 'hydrophilia-iced', sans-serif;
+}
+
+input[type=text] {
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid $white;
+  border-radius: 0;
+  outline: 0;
+  color: white;
+  font-size: 1rem;
   text-align: center;
-    display:table-cell;
-    
+  margin-bottom: 6px;
+
+  &::placeholder {
+    color: $white;
+    font-size: 1rem;
+  }
 }
 
-button, input {
-    transform: scale(.5,.5);
-    margin: -10px;
-    padding: 0;
+input[type=range] {
+  margin-bottom: 10px;
 }
 
-.itemMenu {
-    position: absolute;
-    min-width: 100px;
-    min-height: 50px;
-    border: solid black 1px;
-    background-color: blue;
-    top: 50px;
-    left: 0;
-    right: 0;
-    margin: 0;
+label {
+  font-size: 0.75rem;
+  color: $white;
+  line-height: 0.75rem;
 }
 
-.itemRow {
-    display: flex;
+.carousel {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  background: transparent;
+  margin: 0;
+}
+
+.carousel-item {
+  width: 40px;
 }
 
 .item {
-    border: solid black 1px;
-    background-color: aliceblue;
-    cursor: pointer;
+  border: solid black 1px;
+  background-color: aliceblue;
+  cursor: pointer;
 }
 .item:hover {
-    border: solid gray 1px;
+  border: solid gray 1px;
 }

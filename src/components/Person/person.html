@@ -9,7 +9,7 @@
      v-on:mouseout="showName = false"
      >
     <div class="title" v-if="showName"
-         v-bind:style="{transform: facing}">{{ name }}</div>
+         v-bind:style="{transform: facing}">{{ name || 'Apply/Login' }}</div>
     
     <canvas id="skin" width="22px" height="30px"
             v-bind:style="{ 

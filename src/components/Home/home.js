@@ -25,8 +25,6 @@ var keys = {
   ENTER: 13
 };
 
-var paused = false;
-
 export default Vue.extend({
   template,
 
@@ -53,10 +51,11 @@ export default Vue.extend({
     this.doResize();
       
     // Movement detection
+    var self = this;
     window.addEventListener('keydown', function(e){
       keys[e.keyCode || e.which] = true;
       if (e.keyCode === Number(keys.ESC)) {
-        paused = !paused;
+        self.togglePaused();
       }
     }, true);
 
@@ -67,6 +66,7 @@ export default Vue.extend({
     setInterval(this.move, 10);
 
   },
+  
   beforeDestroy: function() {
     window.removeEventListener('resize', this.doResize);
   },
@@ -100,10 +100,9 @@ export default Vue.extend({
     },
       
     move(){
-        
       this.$refs.you.animate();
         
-      if (paused) {
+      if (this.paused) {
         this.paused = true;
         return;
       }
@@ -121,6 +120,11 @@ export default Vue.extend({
       if (keys[keys.DOWN]) {
         return;
       }
+    },
+
+    togglePaused() {
+      console.log('togglePaused');
+      this.paused = !this.paused;
     }
   }
 
