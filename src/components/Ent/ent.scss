@@ -5,11 +5,16 @@
     cursor: pointer;
 }
 
+.slash {
+    z-index: 100;
+}
+
 .reverse {
     scale: (-1, 1);
 }
 
 canvas {
+    z-index: 50;
   //outline: solid red 1px;
   position: absolute;
   transform: scale(1.5);

@@ -31,6 +31,8 @@ export default Vue.extend({
         // Sprite sheets loaded
       skin: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/skin.png',
       shirt: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shirt1.png',
+        // SUIT LINK:   https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png
+        // TANK TOP LINK: https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png
       pants: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/pants1.png',
       hair: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png',
       shoes: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shoes1.png',

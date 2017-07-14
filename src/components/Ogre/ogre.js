@@ -20,6 +20,9 @@ export default Vue.extend({
       friction: 0.1,
       jump: 4,
       speed: 0.2,
+      hurtTime: 60,
+      hurtCount: 0,
+      hp: 3,
     
       facing: 'scale(1,1)',
         // Coordinates
@@ -80,30 +83,33 @@ export default Vue.extend({
         //
         // OGRE ANIMATION STANDIN
         //
-      if (this.xLHS < 300) {
-        this.status = 'hurt';
+      if (this.xLHS < 200) {
         this.slow();
       } else {
         this.moveLeft();
       }
         
       if (this.status === 'hurt') {
+        this.hurtCount--;
+        if (this.hurtCount === 0) {
+          this.status = 'idle';
+        }
         this.totalFrames = 1;
         this.shiftStart = 160;
         this.shift = 160;
         this.currentFrame = 0;
         
-      } else if (this.xVel > 1 || this.xVel < -1) {
+      } else if (this.xVel > 0.1 || this.xVel < -0.1) {
         if (this.status !== 'run'){
           this.status = 'run';
-          this.totalFrames = 4;
+          this.totalFrames = 3;
           this.shiftStart = 0;
           this.shift = 0;
           this.currentFrame = 0;
           this.delayI = 0;
         }
           
-      } else if (this.status !== 'idle') {
+      } else {
         this.status = 'idle';
         this.totalFrames = 1;
         this.shiftStart = 0;
@@ -321,6 +327,20 @@ export default Vue.extend({
       // }
       this.xVel = (0 - this.speed);
       this.facing = 'scale(-1,1)';
+    },
+      
+    hurt: function() {
+      if (this.hurtCount > 0 || this.xLHS > 200) {
+        return;
+      }
+        
+      this.hp--;
+      console.log(this.hp);
+      if (this.hp <= 0) {
+        this.$parent.newMonster();
+      }
+      this.status = 'hurt';
+      this.hurtCount = this.hurtTime;
     }
   }
 

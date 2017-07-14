@@ -25,7 +25,9 @@ var keys = {
   SPACE: 32,
   P: 80,
   ESC: 27,
-  ENTER: 13
+  ENTER: 13,
+    
+  H: 72 // HURTS ENEMY
 };
 
 export default Vue.extend({
@@ -45,7 +47,10 @@ export default Vue.extend({
       scalingObject: {
         transform: ''
       },
-      paused: false
+      paused: false,
+      monsters: ['ogre', 'ent'],
+      monster: 'none',
+      slash: [false, false, false] // Dictates which, if any, slash animations are playing
     };
   },
 
@@ -105,9 +110,25 @@ export default Vue.extend({
     },
       
     move(){
+      for (var i = 0; i < this.slash.length; i++) {
+        if (this.slash[i] && i < (this.slash.length - 1)) {
+          this.slash[i] = false;
+          this.slash[i + 1] = true;
+        } else {
+          this.slash[i] = false;
+        }
+      }
+        
+      if (this.monster === 'none') {
+        this.newMonster();
+      }
+        
       this.$refs.you.animate();
-      this.$refs.homeOgre.animate();
-      this.$refs.homeEnt.animate();
+      if (this.monster === 'ogre' && this.$refs.homeOgre !== undefined) {
+        this.$refs.homeOgre.animate();
+      } else if (this.monster === 'ent' && this.$refs.homeEnt !== undefined){
+        this.$refs.homeEnt.animate();
+      }
         
       if (this.paused) {
         this.paused = true;
@@ -127,11 +148,32 @@ export default Vue.extend({
       if (keys[keys.DOWN]) {
         return;
       }
+      if (keys[keys.H]) {
+        this.hurtMonster();
+      }
     },
 
     togglePaused() {
       console.log('togglePaused');
       this.paused = !this.paused;
+    },
+      
+    newMonster() {
+      this.monster = 'none';
+      var i = Math.floor(Math.random() * this.monsters.length);
+      this.monster = this.monsters[i];
+    },
+    
+    hurtMonster() {
+      var i = Math.floor(Math.random() * this.slash.length);
+      this.slash[i] = true;
+        
+      if (this.monster === 'ogre') {
+        this.$refs.homeOgre.hurt();
+      }
+      if (this.monster === 'ent') {
+        this.$refs.homeEnt.hurt();
+      }
     }
   }
 

@@ -15,8 +15,8 @@
         <span v-on:click="togglePaused()"><person ref="you" paused="paused"></person>
         </span>
         
-        <ogre ref="homeOgre"></ogre>
-        <ent ref="homeEnt"></ent>
+        <ogre ref="homeOgre" v-if="monster == 'ogre'"></ogre>
+        <ent ref="homeEnt" v-if="monster == 'ent'"></ent>
         
     </div>
 
