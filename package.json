@@ -19,14 +19,16 @@
     "port": 3000
   },
   "scripts": {
-    "start": "webpack-dashboard -c magenta -t 'Vue.js-Starter-Template' -- webpack-dev-server --config webpack/development.js --progress",    "build": "webpack --config webpack/production.js -p --progress",
+    "start": "webpack-dashboard -c magenta -t 'Vue.js-Starter-Template' -- webpack-dev-server --config webpack/development.js --progress",
+    "build": "webpack --config webpack/production.js -p --progress",
     "lint:js": "./node_modules/.bin/eslint src; exit 0;"
   },
   "dependencies": {
     "axios": "^0.15.3",
     "vee-validate": "^2.0.0-beta.18",
     "vue": "^2.1.8",
-    "vue-router": "^2.0.1"
+    "vue-router": "^2.0.1",
+    "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {
     "babel-core": "^6.18.2",

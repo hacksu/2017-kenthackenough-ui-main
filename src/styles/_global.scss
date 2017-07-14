@@ -103,7 +103,8 @@ h3:hover {
 .input-field {
 	display: block;
 	width: auto;
-	background-color: transparent;
+	background-color: $midnight-dark;
+  border-radius: 0.5em;
 	border: none;
 	font-family: "hydrophilia-iced",sans-serif;
 	//border-bottom: 2px solid $sky;
@@ -335,3 +336,4 @@ h3:hover {
   width: 50vw;
   height: auto; 
 }
+

@@ -11,13 +11,24 @@ export default Vue.extend({
   data() {
     return {
       email: null,
-      message: null
+      message: null,
+      emailMessage: 'News letter signup'
     };
   },
 
   methods: {
-    inputFocus() {
-      console.log('Hello');
+    submitEmail() {
+      fetch('https://api.khe.io/v1.0/news', {
+        method: 'POST',
+        body: JSON.stringify({ email: this.email }),
+        headers: new Headers({ 'Content-Type': 'application/json; charset=utf-8' })
+      }).then(() => {
+        this.email = null;
+        this.emailMessage = 'We\'ll get back to you';
+      }).catch(() => {
+        this.email = null;
+        this.emailMessage = 'Something went wrong';
+      });
     }
   }
 
