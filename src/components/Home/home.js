@@ -7,6 +7,9 @@ import CustomizePerson from 'components/CustomizePerson/customizePerson';
 import Person from 'components/Person/person';
 import Grid from 'components/grid/grid';
 
+import Ogre from 'components/Ogre/ogre';
+import Ent from 'components/Ent/ent';
+
 // Import styles
 import './home.scss';
 import 'components/Person/person.scss';
@@ -31,7 +34,9 @@ export default Vue.extend({
   components: {
     CustomizePerson,
     Person,
-    Grid
+    Grid,
+    Ogre,
+    Ent
   },
 
   data() {
@@ -75,8 +80,8 @@ export default Vue.extend({
 
     /* This method scales the main #scaling-container
      * to fill the full height of the viewport
-     * and also translates the container to the center
-     */
+    * and also translates the container to the center
+    */
     doResize() {
       console.log('doREsize called');
       var scale;
@@ -101,6 +106,8 @@ export default Vue.extend({
       
     move(){
       this.$refs.you.animate();
+      this.$refs.homeOgre.animate();
+      this.$refs.homeEnt.animate();
         
       if (this.paused) {
         this.paused = true;
