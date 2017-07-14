@@ -12,7 +12,7 @@ export default Vue.extend({
     return {
       email: null,
       message: null,
-      emailMessage: 'News letter signup'
+      emailMessage: 'Mailing list signup'
     };
   },
 
