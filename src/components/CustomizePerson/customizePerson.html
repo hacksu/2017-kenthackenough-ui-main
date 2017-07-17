@@ -1,10 +1,9 @@
 <div id="settings">
-  <button @click="$parent.$refs.you.randomize()">Randomize Person</button><br>
 <!--<button onclick="newPerson()">New Person</button><br>
 <button onclick="changeId(-1)">Prev. Person</button><br>
 
 <!--   <button onclick="debug()">debug</button> -->
-
+<div :style="{ 'width': $props.scaledViewportWidth, 'height': $props.scaledViewportHeight }">
   <!-- Apply menu -->
   <div v-if="menu == 'apply'">
     <p class="close-button" @click="$parent.paused = false">X</p>
@@ -16,6 +15,7 @@
   <!-- General Character menu -->
   <div v-if="menu == 'character'">
     <p class="close-button" @click="$parent.paused = false">X</p>
+    <button @click="$parent.$refs.you.randomize()">Randomize</button>
     <input type="text" id="name" placeholder="Your full name..." v-model="$parent.$refs.you.name"/>
 
     <button @click="menu = 'shirts'">Shirts</button>
@@ -36,9 +36,9 @@
       </li>
     </ul>
     
-      <div v-for="n in 5">
-        <img v-bind:src="$parent.$refs.you.shirt" class="item" v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/5)) + 'deg)'}" @click=" $parent.$refs.you.shirtHue = (360 * (n/5))">
-      </div>
+    <div v-for="n in 5">
+      <img v-bind:src="$parent.$refs.you.shirt" class="item" v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/5)) + 'deg)'}" @click=" $parent.$refs.you.shirtHue = (360 * (n/5))">
+    </div>
   </div>
 
   <!-- Pants menu -->
@@ -78,5 +78,5 @@
   <div class="itemMenu" v-if="menu == 'hair'">
 
   </div>
-
+</div>
 </div><!-- /#settings -->

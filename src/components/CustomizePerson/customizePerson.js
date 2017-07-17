@@ -19,6 +19,8 @@ export default Vue.extend({
     Person
   },
 
+  props: ['scaledViewportWidth', 'scaledViewportHeight'],
+
   data() {
     return {
       imgURL: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/',
@@ -57,14 +59,13 @@ export default Vue.extend({
       pantsIndex: 0,
       hairIndex: 0,
     
-      menu: 'apply'
-      
+      menu: 'apply',
     };
   },
 
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
-    
+
   },
 
   beforeDestroy: function() {
@@ -72,7 +73,16 @@ export default Vue.extend({
   },
 
   methods: {
-    
+    /**
+    * Store the user locally
+    * @param me An object representing the logged-in user
+    *           {key: String, token: String, role: String, refresh: String, expires: Date}
+    */
+    setMe() {
+      console.log(this.$refs.you);
+      localStorage.setItem('me', this.$refs.you);
+    },
+
     updateShirt(shirtURL) {
       this.$parent.$refs.you.shirt = shirtURL;
     }

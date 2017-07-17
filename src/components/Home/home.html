@@ -7,16 +7,16 @@
             <h3 class="location">Kent State University Library</h3>
         </div>
         <transition name="modal-slideIn">
-            <customize-person v-if="paused"></customize-person>
+            <customize-person v-if="paused" :scaledViewportWidth="scaledViewportWidth" :scaledViewportHeight="scaledViewportHeight"></customize-person>
         </transition>
         
         <img src="~assets/images/foreground_grass.png" class="foreground-grass">
         
-        <span v-on:click="togglePaused()"><person ref="you" paused="paused"></person>
+        <span v-on:click="togglePaused()"><person ref="you"></person>
         </span>
         
-        <ogre ref="homeOgre" v-if="monster == 'ogre'"></ogre>
-        <ent ref="homeEnt" v-if="monster == 'ent'"></ent>
+       <!--  <ogre ref="homeOgre" v-if="monster == 'ogre'"></ogre>
+        <ent ref="homeEnt" v-if="monster == 'ent'"></ent> -->
         
     </div>
 

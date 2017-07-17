@@ -14,8 +14,6 @@ import './person.scss';
 export default Vue.extend({
   template,
 
-  props: ['paused'],
-
   data() {
     return {
       name: '',
@@ -193,13 +191,6 @@ export default Vue.extend({
     },
       
     move: function() {
-      //Override movement for pause screen.
-      if (this.paused) {
-        // this.yTop =
-        // this.xLHS = (Math.floor(this.xVel * 10) / 10);
-        // this.yBottom = this.yTop + 14;
-        // this.xRHS = this.xLHS + 6;
-      }
 
       // if (this.topCollision() && !this.isGrounded()){
       //   this.yVel = 1;
@@ -229,7 +220,7 @@ export default Vue.extend({
     },
       
     isGrounded: function() {
-      if (this.yBottom < 200) {
+      if (this.yBottom < 220) {
         return false;
       } else {
         return true;

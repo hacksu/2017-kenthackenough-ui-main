@@ -13,21 +13,6 @@
   transform: translate(-50%, -50%);
   text-align: left;
 
-  --screenWidth: 100vw;
-  --screenHeight: 100vh;
-  --containerHeight: 270px;
-  --containerScale: calc(var(--containerHeight) / var(--screenHeight));
-  --scaledWidth: calc((1.0) / var(--containerScale));
-
-  width: calc(100% * var(--scaledWidth));
-  height: calc(10 * var(--scaledWidth));
-  max-width: 200px;
-  max-height: calc(10 * var(--scaledWidth));
-
-  @media screen and (orientation:landscape) { 
-   
-  }
-
   overflow-y: scroll;
 }
 

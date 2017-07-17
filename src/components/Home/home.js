@@ -47,6 +47,8 @@ export default Vue.extend({
       scalingObject: {
         transform: ''
       },
+      scaledViewportWidth: 0,
+      scaledViewportHeight: 0,
       paused: false,
       monsters: ['ogre', 'ent'],
       monster: 'none',
@@ -107,6 +109,9 @@ export default Vue.extend({
         transform: 'translateX(' + (-(scale * this.$refs.scalingContainer.clientWidth) / 2 + (wrapperWidth / 2)) + 'px) ' + 'scale(' + scale + ')'
       };
 
+      this.scaledViewportWidth = wrapperWidth / scale;
+      this.scaledViewportHeight = wrapperHeight / scale;
+
     },
       
     move(){
@@ -123,9 +128,13 @@ export default Vue.extend({
         this.newMonster();
       }
         
-      this.$refs.you.animate();
+      if (this.$refs.you) {
+        this.$refs.you.animate();
+      }
       if (this.monster === 'ogre' && this.$refs.homeOgre !== undefined) {
-        this.$refs.homeOgre.animate();
+        if (this.$refs.homeOgre) {
+          this.$refs.homeOgre.animate();
+        }
       } else if (this.monster === 'ent' && this.$refs.homeEnt !== undefined){
         this.$refs.homeEnt.animate();
       }
