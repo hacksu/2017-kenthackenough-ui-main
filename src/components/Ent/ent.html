@@ -1,18 +1,18 @@
 <div class="ent" 
      v-bind:style="{ 
-                   top: (yTop - 16) + 'px', 
+                   top: (yTop + 2) + 'px', 
                    left: (xLHS) + 'px',
                    transform: facing,
                    width: '40px'
                    }"
      >
     
+    <div style="transform: scale(1,1); z-index: 10;">
     <canvas id="ent" width="32px" height="40px">
     </canvas>
-    <img class="slash"
-         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/slash1.png" v-if="$parent.slash[0]">
-    <img class="slash"
-         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/slash2.png" v-if="$parent.slash[1]">
-    <img class="slash"
-         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/slash3.png" v-if="$parent.slash[2]">
+        </div>
+    <div style="transform: scale(-1,1); z-index: 100;">
+    <canvas id="slash" v-if="$parent.slash" class="reverse">
+    </canvas>
+        </div>
 </div>

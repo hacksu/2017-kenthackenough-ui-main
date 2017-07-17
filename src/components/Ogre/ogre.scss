@@ -1,8 +1,6 @@
 .ogre {
     position: absolute;
     width: 40px;
-
-    cursor: pointer;
 }
 
 .reverse {
@@ -21,6 +19,11 @@ canvas {
   image-rendering: pixelated; 
 }
 
-.slash {
+#slash {
+    width: 300px ;
     z-index: 100;
+    top: 40px;
+    left: 50px;
+    position: absolute;
+
 }

@@ -220,7 +220,7 @@ export default Vue.extend({
     },
       
     isGrounded: function() {
-      if (this.yBottom < 220) {
+      if (this.yBottom < 213) {
         return false;
       } else {
         return true;

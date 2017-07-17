@@ -1,1 +1,19 @@
 @import "~styles/_variables.scss"; // Import variables to use colors
+
+main {
+	background-color: $sky;
+	width: 100%;
+	height: 100%;
+
+	overflow: hidden;
+}
+
+#scaling-container {
+	position: relative;
+
+	/*** 480px by 270px == 16:9 ratio ***/
+	width: 480px; //480px; // This should be the width (in pixels) of the background image
+	height: 270px; // This is the height should equal the same height as the image being used for the background
+	
+	transform-origin: top left; // Scale from the top left of the image
+}
