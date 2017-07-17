@@ -7,24 +7,30 @@
   <!-- Apply menu -->
   <div v-if="menu == 'apply'">
     <p class="close-button" @click="$parent.paused = false">X</p>
+    <h2>Apply for Kent Hack Enough</h2>
     <input type="email" id="name" placeholder="Email..." v-model="$parent.$refs.you.email"/>
     <input type="password" id="name" placeholder="Password..." v-model="$parent.$refs.you.password"/>
-    <p>Login or <button @click="menu = 'character'">Apply</button></p>
+    <br>
+    <p><span class="login-link">Login</span> or <button @click="menu = 'character'" class="apply-link">Apply</button></p>
   </div>
 
   <!-- General Character menu -->
   <div v-if="menu == 'character'">
     <p class="close-button" @click="$parent.paused = false">X</p>
+    <h3>Customize Your Character!</h3>
     <button @click="$parent.$refs.you.randomize()">Randomize</button>
     <input type="text" id="name" placeholder="Your full name..." v-model="$parent.$refs.you.name"/>
 
-    <button @click="menu = 'shirts'">Shirts</button>
+    <div class="flex-row">
+      <button @click="menu = 'shirts'" class="icon-button">Shirts</button>
 
-    <button @click="menu = 'pants'">Pants</button>
+      <button @click="menu = 'pants'" class="icon-button">Pants</button>
 
-    <button @click="menu = 'face'">Face & Hair</button>
+      <button @click="menu = 'face'" class="icon-button">Face & Hair</button>
 
-    <button @click="menu = 'extra'">Extra</button><br>
+      <button @click="menu = 'extra'" class="icon-button">Extra</button>
+    </div>
+    <p><button class="apply-link">Continue to Application!</button></p>
   </div>
 
   <!-- SHIRT MENU -->
