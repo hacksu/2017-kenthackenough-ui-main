@@ -1,12 +1,6 @@
 .ent {
     position: absolute;
     width: 32px;
-
-    cursor: pointer;
-}
-
-.slash {
-    z-index: 100;
 }
 
 .reverse {
@@ -25,3 +19,5 @@ canvas {
   image-rendering: -o-crisp-edges; 
   image-rendering: pixelated; 
 }
+
+

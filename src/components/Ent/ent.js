@@ -16,18 +16,18 @@ export default Vue.extend({
       password: '',
       
         // Physics variables
-      weight: 0.1,
+      weight: 0.05,
       friction: 0.1,
       jump: 4,
-      speed: 0.3,
-      hurtTime: 100,
+      speed: 0.5,
+      hurtTime: 30,
       hurtCount: 0, // Hurt time is the length he'll stay hurt
       hp: 3,
     
       facing: 'scale(1,1)',
         // Coordinates
       yTop: 200,
-      xLHS: 500,
+      xLHS: 0,
       yBottom: 30,
       xRHS: 22,
         // Velocity
@@ -35,6 +35,7 @@ export default Vue.extend({
       xVel: 0,
         
       status: 'idle', // 'idle', 'run', 'hurt'
+      dead: false,
         
       // Sprite Animation variables
       shift: 0,         // Used to log shift in pixels thru anim frames
@@ -49,8 +50,13 @@ export default Vue.extend({
         
       // Stores all current sprites
       sprite: {
-        ent: document.createElement('img')
-      }
+        ent: document.createElement('img'),
+        slashes: [document.createElement('img'),
+          document.createElement('img'),
+          document.createElement('img')]
+      },
+        
+      slashLoad: false
           
     };
   },
@@ -72,6 +78,10 @@ export default Vue.extend({
   methods: {
     loadSprites() {
       this.sprite.ent.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/ent.png';
+      
+      this.sprite.slashes[0].src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/slash1.png';
+      this.sprite.slashes[1].src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/slash2.png';
+      this.sprite.slashes[2].src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/slash3.png';
     },
       
     animate: function() {
@@ -83,10 +93,32 @@ export default Vue.extend({
         //
         // ENT ANIMATION STANDIN
         //
-      if (this.xLHS < 200) {
+      if (this.xLHS > 200 && !this.dead) {
         this.slow();
+      } else if (this.dead) {
+        this.fall();
+        if (this.yTop > 600) {
+          this.$parent.newMonster();
+        }
       } else {
-        this.moveLeft();
+        this.moveRight();
+      }
+        
+      var slashNode = document.getElementById('slash');
+      if (this.$parent.slash && slashNode !== undefined && !this.slashLoaded) {
+          
+        var context = slashNode.getContext('2d');
+          
+        var slashIndex = Math.floor(Math.random() * 3);
+          
+        context.clearRect(0, 0, 300, 300);
+
+        context.drawImage(this.sprite.slashes[slashIndex], 0, 0, 50, 50, 0, 0, 50, 50);
+          
+        this.slashLoaded = true;
+      }
+      if (!this.$parent.slash) {
+        this.slashLoaded = false;
       }
         
       if (this.status === 'hurt') {
@@ -185,11 +217,12 @@ export default Vue.extend({
     },
       
     isGrounded: function() {
-      if (this.yBottom < 200) {
-        return false;
-      } else {
-        return true;
-      }
+      return false;
+//      if (this.yBottom < 200) {
+//        return false;
+//      } else {
+//        return true;
+//      }
     //   var gridLocY = Math.floor(this.yBottom / 20);
     //   var gridLocX = Math.floor((this.xLHS + 16) / 20) - 3;
     //   var grid = this.$parent.$refs.home.grid;
@@ -331,14 +364,18 @@ export default Vue.extend({
     },
       
     hurt: function() {
-      if (this.hurtCount > 0 && this.xLHS > 200) {
+      if (this.hurtCount > 0 || this.xLHS < 200) {
         return;
       }
+      this.$parent.slash = true;
         
       this.hp--;
-      console.log(this.hp);
+      console.log('Ent HP: ' + this.hp);
       if (this.hp <= 0) {
-        this.$parent.newMonster();
+        this.yVel = -1;
+        this.dead = true;
+        this.status = 'hurt';
+//        this.$parent.newMonster();
       }
       this.status = 'hurt';
       this.hurtCount = this.hurtTime;

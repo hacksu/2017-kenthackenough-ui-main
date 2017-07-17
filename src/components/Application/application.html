@@ -1,3 +1,11 @@
 <main>
-	<h1>Apply for Kent Hack Enough</h1>
+    <div id="scaling-container" v-bind:style="scalingObject" ref="scalingContainer">
+    <grid style="position: absolute;"></grid>
+        
+                	<person ref="you" paused="paused"></person>
+        <ogre ref="appOgre" v-if="monster == 'ogre'"></ogre>
+        <ent ref="appEnt" v-if="monster == 'ent'"></ent>
+
+        
+    </div>
 </main>

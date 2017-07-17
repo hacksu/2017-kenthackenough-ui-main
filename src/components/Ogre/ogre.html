@@ -1,13 +1,18 @@
 <div class="ogre" 
      v-bind:style="{ 
-                   top: (yTop - 18) + 'px', 
+                   top: (yTop - 4) + 'px', 
                    left: (xLHS) + 'px',
                    transform: facing,
                    width: '40px'
                    }"
      >
-    
+    <div style="transform: scale(1,1); z-index: 10;">
     <canvas id="ogre" width="40px" height="40px">
     </canvas>
+        </div>
+    <div style="transform: scale(-1,1); z-index: 100;">
+    <canvas id="slash" v-if="$parent.slash" class="reverse">
+    </canvas>
+        </div>
 </div>
 
