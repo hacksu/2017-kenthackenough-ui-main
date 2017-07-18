@@ -1,8 +1,8 @@
 import { setLoading } from 'src/util/helpers';
-import { postsResource } from 'src/util/resources';
+import { usersResource } from 'src/util/resources';
 
 // Request interceptor
-postsResource.interceptors.request.use((config) => {
+usersResource.interceptors.request.use((config) => {
   setLoading(true);
   return config;
 }, (error) => {
@@ -13,7 +13,7 @@ postsResource.interceptors.request.use((config) => {
 });
 
 // Response interceptor
-postsResource.interceptors.response.use((response) => {
+usersResource.interceptors.response.use((response) => {
   setLoading(false);
   return response;
 }, (error) => {

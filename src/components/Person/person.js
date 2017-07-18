@@ -18,8 +18,6 @@ export default Vue.extend({
     return {
       name: '',
       showName: false,
-      email: '',
-      password: '',
       
         // Physics variables
       weight: 0.1,

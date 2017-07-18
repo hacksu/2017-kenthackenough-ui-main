@@ -5,6 +5,9 @@ import './customizePerson.scss';
 
 import Person from 'components/Person/person';
 
+import { CLIENT_ID } from 'src/config/constants';
+import { usersResource } from 'src/util/resources';
+
 //var skinSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standSkin.png';
 //var eyeSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standEyes.png';
 //var shirtSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt3.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt4.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt5.png'];
@@ -60,6 +63,12 @@ export default Vue.extend({
       hairIndex: 0,
     
       menu: 'apply',
+
+      user: {
+        client: CLIENT_ID,
+        email: '',
+        password: ''
+      }
     };
   },
 
@@ -73,6 +82,54 @@ export default Vue.extend({
   },
 
   methods: {
+    handleSubmit(){
+      console.log('Apply clicked');
+
+      this.$validator.validateAll().then((success) => {
+        if (success) {
+          console.log('Email Valid');
+
+          return this.registerUser();
+        }
+
+        return this;
+      });
+    },
+
+    // showMessage(message = {}, timeout = 2000){
+    //   this.message = message;
+    //   setTimeout(() => {
+    //     this.message = null;
+    //   }, timeout);
+    // },
+
+    registerUser(){
+      return usersResource.post('/', this.user)
+        .then((response) => {
+          console.log('Register successfull', response);
+          // this.post = response.data;
+
+          // this.showMessage({
+          //   type: 'success',
+          //   text: 'Post created!'
+          // });
+
+          // We need to reset the fields after successfull request
+          //this.fields.reset();
+
+          // Go to next menu
+          this.menu = 'character';
+        })
+        .catch((errorResponse) => {
+          // Handle error...
+          // this.showMessage({
+          //   type: 'danger',
+          //   text: errorResponse
+          // });
+          console.log('API responded with:', errorResponse);
+        });
+    },
+
     /**
     * Store the user locally
     * @param me An object representing the logged-in user

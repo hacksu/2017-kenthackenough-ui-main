@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import VeeValidate from 'vee-validate';
 
 import { LoadingState } from 'src/config/loading-state';
 import Navigation from 'components/Navigation/navigation';
@@ -7,6 +8,7 @@ import Loader from 'components/Loader/loader';
 import Person from 'components/Person/person';
 
 Vue.use(VueRouter);
+Vue.use(VeeValidate);
 
 import 'src/config/http';
 import routes from 'src/routes';

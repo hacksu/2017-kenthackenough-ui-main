@@ -8,10 +8,10 @@
   <div v-if="menu == 'apply'">
     <p class="close-button" @click="$parent.paused = false">X</p>
     <h2>Apply for Kent Hack Enough</h2>
-    <input type="email" id="name" placeholder="Email..." v-model="$parent.$refs.you.email"/>
-    <input type="password" id="name" placeholder="Password..." v-model="$parent.$refs.you.password"/>
+    <input type="email" id="name" placeholder="Email..." v-model="user.email" data-vv-rules="required|email" v-validate/>
+    <input type="password" id="name" placeholder="Password..." v-model="user.password"/>
     <br>
-    <p><span class="login-link">Login</span> or <button @click="menu = 'character'" class="apply-link">Apply</button></p>
+    <p><span class="login-link" @click="handleLogin()">Login</span> or <button @click="handleSubmit()" class="apply-link">Apply</button></p>
   </div>
 
   <!-- General Character menu -->

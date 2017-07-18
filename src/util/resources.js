@@ -11,3 +11,7 @@ export const postsResource = axios.create({
 export const emailResource = axios.create({
   baseURL: `${API_BASE}/email/`
 });
+
+export const usersResource = axios.create({
+  baseUrl: `${API_BASE}/users/`
+});
