@@ -72,6 +72,7 @@ main {
 	padding: 0 5px;
 	text-align: center;
 	transform: translateX(-50%);
+    z-index: 1000;
 	color: $white;
 	text-shadow: -1px 1px 0px $midnight-dark;
 }
@@ -92,4 +93,27 @@ main {
   100% {
     transform: translate(-50%, -50%);
   }
+}
+
+.links {
+    margin-top: 5px;
+    font-size: 12px;
+    color: $white;
+
+}
+
+a {
+    font-weight: bold;
+    text-decoration: none;
+
+}
+
+a:hover {
+    color: $sunset;
+    cursor: pointer;
+}
+
+.date {
+    margin-top: -10px;
+    text-decoration: underline;
 }

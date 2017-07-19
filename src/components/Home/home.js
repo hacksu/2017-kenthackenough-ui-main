@@ -98,7 +98,13 @@ export default Vue.extend({
 
       // Use Math.min if you want to scale so that the width fills the screen.
       // Math.max fills the height
-      scale = wrapperHeight / this.$refs.scalingContainer.clientHeight;
+      if (wrapperWidth > 480) {
+        scale = wrapperHeight / this.$refs.scalingContainer.clientHeight;
+        this.$parent.mobile = false;
+      } else {
+        scale = wrapperWidth / this.$refs.scalingContainer.clientWidth;
+        this.$parent.mobile = true;
+      }
       // scale = Math.max(
       //   wrapperWidth / this.$el.clientWidth,
       //   wrapperHeight / this.$el.clientHeight

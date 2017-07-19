@@ -4,13 +4,30 @@
         <img src="~assets/images/combined_logo_4x_color_17.png" title="Kent Hack Enough Logo" class="combined-logo">
         <div class="date-location-container">
             <h2 class="date">October 6 - 8th, 2017</h2>
-            <h3 class="location">Kent State University Library</h3>
+<!--            <h3 class="location">@ the Kent State University Library</h3>-->
+            <div class="links">
+
+            
+            <!--  <input type="email" placeholder="Email Updates" class="input-field" id="newsletter-sign-up" spellcheck="false" v-on:click="inputFocus"/> -->
+
+            <router-link class="nav-item" to="/sponsors" exact>
+		      <a class="nav-link">Sponsor Info</a>
+	        </router-link> | <a href="mailto:staff@khe.io">Contact Us</a>
+            <br>
+            <a href="https://www.facebook.com/kenthackenough/" target="_blank">Facebook</a> | 
+            <a href="https://twitter.com/KentHackEnough" target="_blank">Twitter</a> | 
+            <a href="https://www.instagram.com/kenthackenough/" target="_blank">Instagram</a>
+            <br>
+            <a href="http://2016.khe.io" target="_blank">Last Year's Site</a>
         </div>
+            
+        </div>
+        <grid style="position: absolute; z-index: 100;" ref="home"></grid>
+
         <transition name="modal-slideIn">
             <customize-person v-if="paused" :scaledViewportWidth="scaledViewportWidth" :scaledViewportHeight="scaledViewportHeight"></customize-person>
         </transition>
         
-        <img src="~assets/images/foreground_grass.png" class="foreground-grass">
         
         <span v-on:click="togglePaused()"><person ref="you"></person>
         </span>

@@ -17,7 +17,11 @@ import 'src/style.scss';
 export const router = new VueRouter({
   routes,
   mode: 'history',
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
+    
+  scrollBehavior: function() {
+    return { x: 0, y: 0 };
+  }
 });
 
 var app1 = new Vue({
@@ -33,7 +37,11 @@ var app1 = new Vue({
       isLoading: false,
       navigationScroll: null,
       mainContentStyle: {},
-      navigationStyle: {}
+      navigationStyle: {},
+        
+      mobile: false,
+      viewH: 0,
+      navH: 0
     };
   },
 
@@ -43,6 +51,15 @@ var app1 = new Vue({
     });
     window.addEventListener('scroll', this.handleScroll); // Bind croll listener
     this.initStyles(); // Set our default styles for the navigation and main content.
+    console.log('created');
+  },
+
+  mounted: function() {
+    var scale = 270 / 480;          // Height/width
+    var width = window.innerWidth;
+      
+    this.viewH = scale * width;
+    this.navH = window.innerHeight - this.viewH;
   },
 
   destroyed() {
@@ -52,6 +69,9 @@ var app1 = new Vue({
   methods: {
     // Handle scroll for showing navigation
     handleScroll() {
+      if (this.mobile) {
+        return;
+      }
       this.navigationScroll = window.scrollY;
 
       var percentage = this.navigationScroll / this.$refs.navContainer.clientHeight;

@@ -55,11 +55,54 @@ img {
   border-top: 2px solid $white;
 }
 
+#mobile-nav-container {
+  position: absolute;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+    
+  background-color: $midnight;
+  border-top: 2px solid $white;
+}
+
 .navbar-nav {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-around;   
   align-items: center;
   flex-wrap: wrap;
+
+  width: 100%;
+  height: 100%;
+  padding-bottom: 10px;
+
+  overflow-x: hidden;
+  .nav-item {
+    height: auto;
+    font-size: 33pt;
+    line-height: 1.2;
+    color: $white;
+    text-decoration: none;
+
+    padding: 20px 20px 0;
+    margin: 0 5px 15px;
+
+    &.active {
+      color: $spring-bud;
+      border-bottom: 3px solid $spring-bud;
+    }
+
+    &:hover:not(.active) {
+      border-bottom: 3px solid $white;
+    }
+  }
+    
+}
+
+.mobile-navbar-nav {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
   width: 100%;
   height: 100%;

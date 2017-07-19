@@ -23,9 +23,29 @@
       </router-view>
       
   </div>
-  <div id="nav-container" ref="navContainer">
+  <div id="nav-container" ref="navContainer" v-if="!mobile">
     <navigation></navigation>
   </div>
+    
+  <div id="mobile-nav-container" ref="mobileNavContainer" v-if="mobile"
+       v-bind:style="{
+                     top: viewH + 'px',
+                     height: navH + 'px'
+                     }">
+      <nav class="mobile-navbar-nav">
+	<router-link class="nav-item" to="/about" exact>
+		<a class="nav-link">Event Info</a>
+	</router-link>
+	<router-link class="nav-item" to="/" exact>
+		<a class="nav-link">Home</a>
+	</router-link>
+	<router-link class="nav-item" to="/sponsors" exact>
+		<a class="nav-link">Sponsors</a>
+	</router-link>
+</nav>
+
+    
+    </div>
 </div>
 
 </body>
