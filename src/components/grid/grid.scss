@@ -1,0 +1,43 @@
+#grid {
+    z-index: -1000;
+    position: absolute;
+    -ms-interpolation-mode: nearest-neighbor; 
+    image-rendering: -webkit-optimize-contrast; 
+    image-rendering: -webkit-crisp-edges; 
+    image-rendering: -moz-crisp-edges; 
+    image-rendering: -o-crisp-edges; 
+    image-rendering: pixelated; 
+}
+
+.gridSpace {
+    z-index: 0;
+    position: absolute;
+    width: 20px;
+    height: 20px;
+}
+
+.deco2x1 {
+    position: absolute;
+    width: 20px;
+    height: 40px;
+}
+
+.outline {
+    outline: 1px solid gray;
+}
+
+.topDirt {
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheSoilMid.png');
+}
+
+.grass1 {
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheSoilTop1.png');
+}
+
+.grass2 {
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheSoilTop2.png');
+}
+
+.bottomDirt {
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheSoilBottoms.png');
+}

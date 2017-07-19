@@ -1,0 +1,23 @@
+.ent {
+    position: absolute;
+    width: 32px;
+}
+
+.reverse {
+    scale: (-1, 1);
+}
+
+canvas {
+    z-index: 50;
+  //outline: solid red 1px;
+  position: absolute;
+  transform: scale(1.5);
+  -ms-interpolation-mode: nearest-neighbor; 
+  image-rendering: -webkit-optimize-contrast; 
+  image-rendering: -webkit-crisp-edges; 
+  image-rendering: -moz-crisp-edges; 
+  image-rendering: -o-crisp-edges; 
+  image-rendering: pixelated; 
+}
+
+

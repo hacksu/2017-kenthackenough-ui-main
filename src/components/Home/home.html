@@ -1,38 +1,65 @@
-<!--ref sheet: http://thedrawingblanks.com/khe/khepixelsSheet.png -->
-<div>
+<main>
+    <div id="scaling-container" v-bind:style="scalingObject" ref="scalingContainer">
+        <img src="~assets/images/mockups.png" class="test">
+        <img src="~assets/images/combined_logo_4x_color_17.png" title="Kent Hack Enough Logo" class="combined-logo">
+        <div class="date-location-container">
+            <h2 class="date">October 6 - 8th, 2017</h2>
+<!--            <h3 class="location">@ the Kent State University Library</h3>-->
+            <div class="links">
+
+            
+            <!--  <input type="email" placeholder="Email Updates" class="input-field" id="newsletter-sign-up" spellcheck="false" v-on:click="inputFocus"/> -->
+
+            <router-link class="nav-item" to="/sponsors" exact>
+		      <a class="nav-link">Sponsor Info</a>
+	        </router-link> | <a href="mailto:staff@khe.io">Contact Us</a>
+            <br>
+            <a href="https://www.facebook.com/kenthackenough/" target="_blank">Facebook</a> | 
+            <a href="https://twitter.com/KentHackEnough" target="_blank">Twitter</a> | 
+            <a href="https://www.instagram.com/kenthackenough/" target="_blank">Instagram</a>
+            <br>
+            <a href="http://2016.khe.io" target="_blank">Last Year's Site</a>
+        </div>
+            
+        </div>
+        <grid style="position: absolute; z-index: 100;" ref="home"></grid>
+
+        <transition name="modal-slideIn">
+            <customize-person v-if="paused" :scaledViewportWidth="scaledViewportWidth" :scaledViewportHeight="scaledViewportHeight"></customize-person>
+        </transition>
+        
+        
+        <span v-on:click="togglePaused()"><person ref="you"></person>
+        </span>
+        
+       <!--  <ogre ref="homeOgre" v-if="monster == 'ogre'"></ogre>
+        <ent ref="homeEnt" v-if="monster == 'ent'"></ent> -->
+        
+    </div>
+
     <a id="mlh-trust-badge" style="max-width:80px;min-width:60px;position:fixed;right: 50px;top:0;width:10%;z-index:50" href="https://mlh.io/seasons/na-2018/events?utm_source=na-2018&utm_medium=TrustBadge&utm_campaign=na-2018&utm_content=white" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2018/white.svg" alt="Major League Hacking 2017 Hackathon Season" style="width:100%"></a>
 
-  <div class="content">
-    <div class="menu">
-        <img src="~assets/images/combined_logo_4x_color_17.png" title="Kent Hack Enough Logo" class="combined-logo">
-        <h2>October 6 - 8th, 2017</h2>
-        <br>
-        <input type="email" size="30" :placeholder="emailMessage" class="input-field" id="newsletter-sign-up" spellcheck="false" v-model='email' v-on:keyup.enter="submitEmail"/>
-        <a href="/SponsorshipPacket2017.pdf" target="_blank"><h3>Sponsor Information</h3></a> | <a href="mailto:staff@khe.io"><h3>Contact Us</h3></a>
-        <br>
-        <a href="https://www.facebook.com/kenthackenough/" target="_blank"><h3>Facebook</h3></a> | 
-        <a href="https://twitter.com/KentHackEnough" target="_blank"><h3>Twitter</h3></a> | 
-        <a href="https://www.instagram.com/kenthackenough/" target="_blank"><h3>Instagram</h3></a>
-        <br>
-        <a href="http://2016.khe.io" target="_blank"><h3>Last Year's Site</h3></a>
+
+    <div class="content">
+        <div class="menu">
+
+            
+            <!--  <input type="email" placeholder="Email Updates" class="input-field" id="newsletter-sign-up" spellcheck="false" v-on:click="inputFocus"/> -->
+
+
+            <br>
+            <a href="/SponsorshipPacket2017.pdf" target="_blank"><h3>Sponsor Information</h3></a> | <a href="mailto:staff@khe.io"><h3>Contact Us</h3></a>
+            <br>
+            <a href="https://www.facebook.com/kenthackenough/" target="_blank"><h3>Facebook</h3></a> | 
+            <a href="https://twitter.com/KentHackEnough" target="_blank"><h3>Twitter</h3></a> | 
+            <a href="https://www.instagram.com/kenthackenough/" target="_blank"><h3>Instagram</h3></a>
+            <br>
+            <a href="http://2016.khe.io" target="_blank"><h3>Last Year's Site</h3></a>
+        </div>
+
+
     </div>
-    
-    <img class="moon" src="http://thedrawingblanks.com/khe/moon.png">
-    
-    <img class="cloud1" src="http://thedrawingblanks.com/khe/cloud.png">
-    <img class="cloud2" src="http://thedrawingblanks.com/khe/cloud.png">
-  
-    <img class="table" src="http://thedrawingblanks.com/khe/table.png">
-    
-    
-    <div class="wire">
-    </div>
-    <div class="wireBG">
-    </div>
-  
-  <div class="ground">
-    <div class="groundTile"></div>
-  </div>
-    
-    </div>
-  </div>
+
+</main>
+
+

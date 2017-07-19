@@ -1,0 +1,49 @@
+<div class="person" 
+     v-bind:style="{ 
+                   top: (yTop - 4) + 'px', 
+                   left: (xLHS - 25) + 'px',
+                   transform: facing,
+                   width: '25px'
+                   }"
+     v-on:mouseover="showName = true"
+     v-on:mouseout="showName = false"
+     >
+    <div class="title" v-if="showName"
+         v-bind:style="{transform: facing}">{{ name || 'Apply!' }}</div>
+    
+    <canvas id="skin" width="22px" height="30px"
+            v-bind:style="{ 
+                   filter: 'brightness(' + skinTone/5 + ')'
+                   }"
+            >
+    </canvas>
+    
+    <canvas id="shirt" width="22px" height="30px"
+            v-bind:style="{
+                       filter: 'hue-rotate(' + shirtHue + 'deg)'
+                       }"
+            >
+    </canvas>
+    
+	
+	<canvas id="pants" width="22px" height="30px"
+            >
+    </canvas>
+    
+    <canvas id="hair" width="22px" height="30px"
+            v-bind:style="{ 
+                   filter: 'brightness(' + hairTone + ')' 
+                   }"
+            >
+    </canvas>
+	
+	<canvas id="shoes" width="22px" height="30px"
+            >
+    </canvas>
+    <canvas id="eyes" width="22px" height="30px"
+            v-bind:style="{ 
+                   filter: 'brightness(' + eyesTone/2 + ')' 
+                   }">
+    </canvas>
+</div>
+
