@@ -58,8 +58,7 @@ export default Vue.extend({
         this.$parent.mobile = false;
       } else {
         scale = wrapperWidth / this.$refs.scalingContainer.clientWidth;
-        scale = wrapperHeight / this.$refs.scalingContainer.clientHeight;
-        this.$parent.mobile = false;
+        this.$parent.mobile = true;
         
       }
       // scale = Math.max(
