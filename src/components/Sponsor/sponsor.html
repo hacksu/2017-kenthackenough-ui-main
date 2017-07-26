@@ -7,12 +7,40 @@
 		<a class="nav-link" style="font-size: 10px; text-decoration: underline;">Back</a>
 	           </router-link>
             <h2 class="date" style="margin-top: 0px;">Sponsor Info</h2>
-            <div class="textBox">
+            <div class="textBox" v-if="!paypal">
             Sponsoring KHE is a great way to find and connect with innovative, creative people, while also leaving a memorable impression on the tech community by giving back. 
                 <br><br><br>
-            Interested in sponsoring KHE 2017? Take a look at our <a href="http://2016.khe.io/SponsorshipPacket.pdf">sponsorship packet</a> and contact us (staff@khe.io).
+            Interested in sponsoring KHE 2017? Take a look at our <a href="http://2016.khe.io/SponsorshipPacket.pdf">sponsorship packet</a> and contact us (staff@khe.io), 
+                <br><br>
+            <span style="text-decoration: underline; cursor: pointer;" @click="paypal = true">Or click here to pay for sponsorship via paypal!
+                </span>
             
             </div>
+            
+<!--            PAYPAL-->
+             <div class="textBox" v-if="paypal">
+                 <h4>Thank you for supporting Kent Hack Enough!</h4>
+                 <span style="text-decoration: underline; cursor: pointer;" @click="paypal = false"> Back to Sponsor Info</span>
+            <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="transform: scale(.7)">
+                <input type="hidden" name="cmd" value="_s-xclick">
+                <input type="hidden" name="hosted_button_id" value="B237WFAJ3PS2Y">
+                <table>
+                    
+                    <tr><td><input type="hidden" name="on0" value="Sponsorship Tiers">Sponsorship Tiers</td></tr><tr><td><select name="os0">
+	                   <option value="Coin">Coin $500.00 USD</option>
+	                   <option value="Gem">Gem $1,000.00 USD</option>
+	                   <option value="Loot">Loot $2,000.00 USD</option>
+	                   <option value="Chest">Chest $3,000.00 USD</option>
+	                   <option value="Prince">Prince $5,000.00 USD</option>
+                    </select> </td></tr>
+                </table>
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="image" src="https://www.paypalobjects.com/en_US/i/btn/btn_buynowCC_LG.gif" border="0" name="submit" alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" width="1" height="1">
+                 </form>
+            
+            </div>
+<!--            END PAYPAL-->
         </div>
         
         

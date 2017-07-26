@@ -23,6 +23,8 @@ export default Vue.extend({
       },
       scaledViewportWidth: 0,
       scaledViewportHeight: 0,
+    
+      paypal: false,
     };
   },
 
