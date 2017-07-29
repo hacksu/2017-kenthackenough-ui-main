@@ -27,6 +27,11 @@
     margin-bottom: 12px;
     font-weight: light;
   }
+
+  .error-message {
+    color: $sunset;
+    text-align: left;
+  }
 }
 
 .close-button {
@@ -42,6 +47,15 @@
   &:hover {
     color: $white;
   }
+}
+
+.align-left {
+  align-self: flex-start;
+
+}
+
+.align-right {
+  align-self: flex-end;
 }
 
 input {

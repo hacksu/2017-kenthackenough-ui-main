@@ -68,7 +68,9 @@ export default Vue.extend({
         client: CLIENT_ID,
         email: '',
         password: ''
-      }
+      },
+      emailValidationRule: 'email',
+      errorMessage: '',
     };
   },
 
@@ -96,15 +98,26 @@ export default Vue.extend({
       });
     },
 
-    // showMessage(message = {}, timeout = 2000){
-    //   this.message = message;
-    //   setTimeout(() => {
-    //     this.message = null;
-    //   }, timeout);
-    // },
-
     registerUser(){
-      return usersResource.post('/', this.user)
+      return usersResource.post('', this.user)
+        .then((response) => {
+          console.log('Register successfull', response);
+
+          // We need to reset the fields after successfull request
+          //this.fields.reset();
+
+          // Go to next menu
+          this.menu = 'character';
+        })
+        .catch((error) => {
+          // Handle error...
+          this.errorMessage = error.response.data.errors[0];
+          console.log('API responded with:', error.response.data);
+        });
+    },
+
+    handleLogin(){
+      return usersResource.post('/token', this.user)
         .then((response) => {
           console.log('Register successfull', response);
           // this.post = response.data;
@@ -120,13 +133,10 @@ export default Vue.extend({
           // Go to next menu
           this.menu = 'character';
         })
-        .catch((errorResponse) => {
+        .catch((error) => {
           // Handle error...
-          // this.showMessage({
-          //   type: 'danger',
-          //   text: errorResponse
-          // });
-          console.log('API responded with:', errorResponse);
+          this.errorMessage = error.response.data.errors[0];
+          console.log('API responded with:', error.response.data);
         });
     },
 
