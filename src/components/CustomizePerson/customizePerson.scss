@@ -19,6 +19,7 @@
     font-size: 11px;
     margin-top: 6px;
     text-align: right;
+    display: inline;
   }
 
   h2, h3 {
@@ -58,7 +59,7 @@
   align-self: flex-end;
 }
 
-input {
+input[type="text"], input[type="email"], input[type="password"], input[type="range"] {
   width: 100%;
   font-family: 'hydrophilia-iced', sans-serif;
 }
@@ -140,8 +141,12 @@ label {
 
 .flex-row {
   display: flex;
-
+  flex-direction: row;
   justify-content: space-between;
+
+  &.align-right {
+    justify-content: flex-end;
+  }
 }
 
 .icon-button {

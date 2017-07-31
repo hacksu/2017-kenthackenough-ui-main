@@ -9,15 +9,16 @@
     <p class="close-button" @click="$parent.paused = false">X</p>
     <h2>Apply for Kent Hack Enough</h2>
     <p class="error-message">{{ errorMessage || errors.first('email') }}</p>
-    <input type="email" id="email" placeholder="Email..." v-model="user.email" v-validate.initial="emailValidationRule"/>
-    <input type="password" id="password" placeholder="Password..." v-model="user.password"/>
+    <input type="email" id="email" placeholder="Email..." v-model="$root.$data.user.email" v-validate.initial="emailValidationRule"/>
+    <input type="password" id="password" placeholder="Password..." v-model="$root.$data.user.password"/>
     <br>
-    <p class="flex-row">
-    <span class="align-right">Forgot password?</span>
-    <span class="align-right">
-      <span class="login-link" @click="handleLogin()">Login</span> or <button @click="handleSubmit()" class="apply-link">Apply</button>
-    </span>
-    </p>
+    <div class="flex-row">
+      <router-link class="login-link" tag="p" to="/reset" exact>Forgot password?</router-link>
+      <p>Remember Me&nbsp;<input type="checkbox" name="Remember Me" v-model="rememberMe"></p>
+    </div>
+    <div class="flex-row align-right">
+      <p class="login-link" @click="handleLogin()">Login</p><p>&nbsp;or&nbsp;</p><button @click="handleSubmit()" class="apply-link">Apply</button>
+    </div>
   </div>
 
   <!-- General Character menu -->

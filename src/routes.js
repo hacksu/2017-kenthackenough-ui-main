@@ -5,7 +5,8 @@ import NotFound from 'components/NotFound/notFound';
 const routes = [
   {
     path: '/',
-    component: Home
+    component: Home,
+    meta: { auth: false }
   },
   {
     path: '/apply',

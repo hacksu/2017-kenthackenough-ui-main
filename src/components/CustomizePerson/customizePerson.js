@@ -5,7 +5,6 @@ import './customizePerson.scss';
 
 import Person from 'components/Person/person';
 
-import { CLIENT_ID } from 'src/config/constants';
 import { usersResource } from 'src/util/resources';
 
 //var skinSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standSkin.png';
@@ -64,19 +63,19 @@ export default Vue.extend({
     
       menu: 'apply',
 
-      user: {
-        client: CLIENT_ID,
-        email: '',
-        password: ''
-      },
       emailValidationRule: 'email',
       errorMessage: '',
+      rememberMe: false,
     };
   },
 
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
-
+    if (this.$root.isLoggedIn()) {
+      this.menu = 'character';
+    } else {
+      this.menu = 'apply';
+    }
   },
 
   beforeDestroy: function() {
@@ -117,27 +116,25 @@ export default Vue.extend({
     },
 
     handleLogin(){
-      return usersResource.post('/token', this.user)
-        .then((response) => {
-          console.log('Register successfull', response);
-          // this.post = response.data;
+      this.$root.loginUser()
+      .then((response) => {
+        console.log('Successfully logged in', response);
+        this.menu = 'character';
+      })
+      .catch((error) => {
+        this.errorMessage = error.response.data.errors[0];
+      });
+    },
 
-          // this.showMessage({
-          //   type: 'success',
-          //   text: 'Post created!'
-          // });
-
-          // We need to reset the fields after successfull request
-          //this.fields.reset();
-
-          // Go to next menu
-          this.menu = 'character';
-        })
-        .catch((error) => {
-          // Handle error...
-          this.errorMessage = error.response.data.errors[0];
-          console.log('API responded with:', error.response.data);
-        });
+    handleLogout() {
+      this.$root.logoutUser()
+      .then(() => {
+        console.log('Successfully logged out');
+        this.menu = 'apply';
+      })
+      .catch((error) => {
+        console.log(error);
+      });
     },
 
     /**
