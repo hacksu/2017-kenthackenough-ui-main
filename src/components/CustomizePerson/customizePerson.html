@@ -26,7 +26,7 @@
     <p class="close-button" @click="$parent.paused = false">X</p>
     <h3>Customize Your Character!</h3>
     <button @click="$parent.$refs.you.randomize()">Randomize</button>
-    <input type="text" id="name" placeholder="Your full name..." v-model="$parent.$refs.you.name"/>
+    <input type="text" id="name" placeholder="Your full name..." v-model="$root.$data.name"/>
 
     <div class="flex-row">
       <button @click="menu = 'shirts'" class="icon-button">Shirts</button>
@@ -37,10 +37,11 @@
 
       <button @click="menu = 'extra'" class="icon-button">Extra</button>
     </div>
-    <p class="flex-row">
-      <span class="login-link align-right" @click="handleLogout()">Logout</span>
-      <button class="apply-link">Continue to Application!</button>
-    </p>
+    <br>
+    <div class="flex-row">
+      <p class="login-link" @click="handleLogout()">Logout</p>
+      <button class="apply-link align-right">Continue to Application!</button>
+    </div>
   </div>
 
   <!-- SHIRT MENU -->

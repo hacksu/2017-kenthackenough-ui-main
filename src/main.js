@@ -58,6 +58,24 @@ var app1 = new Vue({
         email: '',
         password: ''
       },
+      application: {
+        'name': 'John Smith',           // full name
+        'school': 'Kent State',         // name of school
+        'phone': '1234567890',          // phone number
+        'shirt': 'Small',          // t-shirt size
+        'demographic': true,   // allowed to use demographic info?
+        'first': false,         // is this your first hackathon?
+        'dietary': '',        // food restrictions seperated by |
+        'year': 'Senior',           // the year in school
+        'age': 18,            // person's age
+        'gender': 'male',         // gender
+        'major': 'Comp Sci',          // degree
+        'conduct': true,       // agree to MLH code of conduct?
+        'travel': false,        // need travel reimbursement?
+        'waiver': false,        // agreed to waiver?
+        'resume': '',         // the filename of their resume
+        'link': '',            // a github/linkedin link
+      },
     };
   },
 
@@ -149,6 +167,25 @@ var app1 = new Vue({
       });
     },
 
+    registerUser() {
+      return usersResource.post('/', {
+        client: CLIENT_ID,
+        email: this.user.email,
+        password: this.user.password
+      })
+      .then((response) => {
+        console.log('Login successfull', response.data);
+        
+        this.setMe(response.data);
+      })
+      .catch((error) => {
+        // Handle error...
+        console.log('API responded with:', error.response.data);
+
+        throw error;
+      });
+    },
+
     logoutUser() {
       localStorage.removeItem('me');
       return usersResource.delete('/token', {
@@ -164,10 +201,31 @@ var app1 = new Vue({
       }
     },
 
+    recoverPassword() {
+      return usersResource.post('/reset', {
+        email: this.user.email,
+      })
+      .then((response) => {
+        console.log('Reset successfull', response.data);
+      })
+      .catch((error) => {
+        // Handle error...
+        console.log('API responded with:', error.response.data);
+
+        throw error;
+      });
+    },
+
     loadUserApplication() {
       return usersResource.get('/me/application')
       .then((response) => {
         console.log('user application loaded!', response.data);
+
+        if (typeof response.data.application === 'undefined') {
+          console.log('No application created yet.');
+
+          this.createApplication();
+        }
 
         this.user = response.data;
       })
@@ -183,6 +241,18 @@ var app1 = new Vue({
           email: '',
           password: ''
         };
+      });
+    },
+
+    createApplication() {
+      return usersResource.post('/application', this.application)
+      .then((response) => {
+        console.log('user application loaded!', response.data);
+
+        this.user = response.data;
+      })
+      .catch((error) => {
+        throw error;
       });
     },
 
