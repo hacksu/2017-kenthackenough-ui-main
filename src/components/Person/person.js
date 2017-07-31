@@ -16,7 +16,6 @@ export default Vue.extend({
 
   data() {
     return {
-      name: '',
       showName: false,
       
         // Physics variables

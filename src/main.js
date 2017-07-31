@@ -54,27 +54,29 @@ var app1 = new Vue({
       navigationStyle: {},
       token: '',
       user: {
-        client: CLIENT_ID,
+        '_id': '',
         email: '',
-        password: ''
-      },
-      application: {
-        'name': 'John Smith',           // full name
-        'school': 'Kent State',         // name of school
-        'phone': '1234567890',          // phone number
-        'shirt': 'Small',          // t-shirt size
-        'demographic': true,   // allowed to use demographic info?
-        'first': false,         // is this your first hackathon?
-        'dietary': '',        // food restrictions seperated by |
-        'year': 'Senior',           // the year in school
-        'age': 18,            // person's age
-        'gender': 'male',         // gender
-        'major': 'Comp Sci',          // degree
-        'conduct': true,       // agree to MLH code of conduct?
-        'travel': false,        // need travel reimbursement?
-        'waiver': false,        // agreed to waiver?
-        'resume': '',         // the filename of their resume
-        'link': '',            // a github/linkedin link
+        password: '',
+        key: '',
+        role: '',
+        application: {
+          'name': '',           // full name
+          'school': '',         // name of school
+          'phone': '',          // phone number
+          'shirt': '',          // t-shirt size
+          'demographic': false,   // allowed to use demographic info?
+          'first': false,         // is this your first hackathon?
+          'dietary': '',        // food restrictions seperated by |
+          'year': '',           // the year in school
+          'age': 19,            // person's age
+          'gender': '',         // gender
+          'major': '',          // degree
+          'conduct': false,       // agree to MLH code of conduct?
+          'travel': false,        // need travel reimbursement?
+          'waiver': false,        // agreed to waiver?
+          'resume': '',         // the filename of their resume
+          'link': '',            // a github/linkedin link
+        },
       },
     };
   },
@@ -158,6 +160,8 @@ var app1 = new Vue({
         console.log('Login successfull', response.data);
         
         this.setMe(response.data);
+        this.user.key = response.data.key;
+        this.user.role = response.data.role;
       })
       .catch((error) => {
         // Handle error...
@@ -187,9 +191,12 @@ var app1 = new Vue({
     },
 
     logoutUser() {
-      localStorage.removeItem('me');
       return usersResource.delete('/token', {
         client: CLIENT_ID,
+      })
+      .then(() => {
+        localStorage.removeItem('me');
+        this.clearUser();
       });
     },
 
@@ -224,10 +231,11 @@ var app1 = new Vue({
         if (typeof response.data.application === 'undefined') {
           console.log('No application created yet.');
 
-          this.createApplication();
         }
 
-        this.user = response.data;
+        this.user.email = response.data.email;
+        this.user.role = response.data.role;
+        this.user['_id'] = response.data['_id'];
       })
       .catch((error) => {
         if (error.response.status === 401) {
@@ -236,11 +244,7 @@ var app1 = new Vue({
         // Handle error...
         console.log('API responded with:', error.response.data);
 
-        this.user = {
-          client: CLIENT_ID,
-          email: '',
-          password: ''
-        };
+        this.clearUser();
       });
     },
 
@@ -254,6 +258,34 @@ var app1 = new Vue({
       .catch((error) => {
         throw error;
       });
+    },
+
+    clearUser() {
+      this.user = {
+        '_id': '',
+        email: '',
+        password: '',
+        key: '',
+        role: '',
+        application: {
+          'name': '',           // full name
+          'school': '',         // name of school
+          'phone': '',          // phone number
+          'shirt': '',          // t-shirt size
+          'demographic': false,   // allowed to use demographic info?
+          'first': false,         // is this your first hackathon?
+          'dietary': '',        // food restrictions seperated by |
+          'year': '',           // the year in school
+          'age': 19,            // person's age
+          'gender': '',         // gender
+          'major': '',          // degree
+          'conduct': false,       // agree to MLH code of conduct?
+          'travel': false,        // need travel reimbursement?
+          'waiver': false,        // agreed to waiver?
+          'resume': '',         // the filename of their resume
+          'link': '',            // a github/linkedin link
+        },
+      };
     },
 
     base64Encode(data) {
