@@ -131,19 +131,19 @@
 					<button
 					@click="$root.$data.user.application.gender = 'Male'" 
 					@focus="$root.$data.user.application.gender = 'Male'" 
-					@keydown.enter="$root.$data.user.application.year = 'Male'; goToNextField();">
+					@keydown.enter="$root.$data.user.application.gender = 'Male'; goToNextField();">
 					Male</button>
 
 					<button
 					@click="$root.$data.user.application.gender = 'Female' "
 					@focus="$root.$data.user.application.gender = 'Female' "
-					@keydown.enter="$root.$data.user.application.year = 'Female'; goToNextField();">
+					@keydown.enter="$root.$data.user.application.gender = 'Female'; goToNextField();">
 					Female</button>
 
 					<button
 					@click="$root.$data.user.application.gender = 'Other' "
 					@focus="$root.$data.user.application.gender = 'Other' "
-					@keydown.enter="$root.$data.user.application.year = 'Other'; goToNextField();">
+					@keydown.enter="$root.$data.user.application.gender = 'Other'; goToNextField();">
 					Other</button>
 				</div>
 
@@ -168,6 +168,123 @@
 					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
 					<transition name="fade">
 						<button v-show="$root.$data.user.application.phone !== ''" @click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- Shirt Size -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 7">
+				<h1>What size shirt would you like?</h1>
+				<div class="button-group">
+					<button
+					@click="$root.$data.user.application.shirt = 'small'" 
+					@focus="$root.$data.user.application.shirt = 'small'" 
+					@keydown.enter="$root.$data.user.application.shirt = 'small'; goToNextField();">
+					Small</button>
+
+					<button
+					@click="$root.$data.user.application.shirt = 'medium'" 
+					@focus="$root.$data.user.application.shirt = 'medium'" 
+					@keydown.enter="$root.$data.user.application.shirt = 'medium'; goToNextField();">
+					Medium</button>
+
+					<button
+					@click="$root.$data.user.application.shirt = 'large'" 
+					@focus="$root.$data.user.application.shirt = 'large'" 
+					@keydown.enter="$root.$data.user.application.shirt = 'large'; goToNextField();">
+					Large</button>
+
+					<button
+					@click="$root.$data.user.application.shirt = 'x-large'" 
+					@focus="$root.$data.user.application.shirt = 'x-large'" 
+					@keydown.enter="$root.$data.user.application.shirt = 'x-large'; goToNextField();">
+					X-Large</button>
+
+					<button
+					@click="$root.$data.user.application.shirt = 'x-x-large'" 
+					@focus="$root.$data.user.application.shirt = 'x-x-large'" 
+					@keydown.enter="$root.$data.user.application.shirt = 'x-x-large'; goToNextField();">
+					2X-Large</button>
+				</div>
+
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<button v-show="$root.$data.user.application.shirt !== ''" @click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- First? -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 8">
+				<h1>Is this your first hackathon?</h1>
+				<div class="button-group">
+					<button
+					@click="$root.$data.user.application.first = true" 
+					@focus="$root.$data.user.application.first = true" 
+					@keydown.enter="$root.$data.user.application.first = true; goToNextField();">
+					Yes</button>
+
+					<button
+					@click="$root.$data.user.application.first = false "
+					@focus="$root.$data.user.application.first = false "
+					@keydown.enter="$root.$data.user.application.first = false; goToNextField();">
+					No</button>
+				</div>
+
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<button v-show="$root.$data.user.application.first !== null" @click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- Diet -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 8">
+				<h1>Any dietary restrictions?</h1>
+				<div class="button-group">
+					<button
+					@click="$root.$data.user.application.dietary = 'vegetarian'" 
+					@focus="$root.$data.user.application.dietary = 'vegetarian'" 
+					@keydown.enter="$root.$data.user.application.dietary = 'vegetarian'; goToNextField();">
+					Vegetarian</button>
+
+					<button
+					@click="$root.$data.user.application.dietary = 'vegan'" 
+					@focus="$root.$data.user.application.dietary = 'vegan'" 
+					@keydown.enter="$root.$data.user.application.dietary = 'vegan'; goToNextField();">
+					Vegan</button>
+
+					<button
+					@click="$root.$data.user.application.dietary = 'kosher'" 
+					@focus="$root.$data.user.application.dietary = 'kosher'" 
+					@keydown.enter="$root.$data.user.application.dietary = 'kosher'; goToNextField();">
+					Kosher</button>
+
+					<button
+					@click="$root.$data.user.application.dietary = 'gluten'" 
+					@focus="$root.$data.user.application.dietary = 'gluten'" 
+					@keydown.enter="$root.$data.user.application.dietary = 'gluten'; goToNextField();">
+					Gluten Free</button>
+
+					<button
+					@click="$root.$data.user.application.dietary = 'other'" 
+					@focus="$root.$data.user.application.dietary = 'other'" 
+					@keydown.enter="$root.$data.user.application.dietary = 'other'; goToNextField();">
+					Other</button>
+				</div>
+
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<button v-show="$root.$data.user.application.dietary !== ''" @click="goToNextField">Next</button>
 					</transition>
 				</div>
 			</div>
