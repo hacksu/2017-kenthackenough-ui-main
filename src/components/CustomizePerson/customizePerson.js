@@ -79,7 +79,7 @@ export default Vue.extend({
   },
 
   beforeDestroy: function() {
-    this.$parent.$refs.you.customize = false;
+    this.$parent.$refs.you.customize = 'none';
   },
 
   methods: {
@@ -99,11 +99,8 @@ export default Vue.extend({
       
     changeMenu(menuOpt) {
       this.menu = menuOpt;
-      if (menuOpt === 'character') {
-        this.$parent.$refs.you.customize = true;
-      } else {
-        this.$parent.$refs.you.customize = false;
-      }
+      this.$parent.$refs.you.customize = menuOpt;
+      
     },
 
     registerUser(){

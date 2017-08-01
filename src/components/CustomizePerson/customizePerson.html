@@ -39,7 +39,9 @@
       <button @click="changeMenu('shirts')" class="icon-button">Shirts</button>
             </div>
         
-        <div id="personSpace"></div>
+        <div class="personSpace">
+        You:
+        </div>
 
         <div class="characterOptions">
       <button @click="changeMenu('pants')" class="icon-button">Pants</button>
@@ -70,7 +72,7 @@
 
   <!-- Pants menu -->
   <div v-if="menu == 'pants'">
-    <p class="close-button" @click="menu = 'character'"></p>
+    <p class="close-button" @click="changeMenu('character')"></p>
   </div>
 
   <!-- Face Menu -->
@@ -79,20 +81,25 @@
     <label for="skinTone">Skin Tone</label>
     <input type="range" name="skinTone" id="skinTone" min="1" max="6" v-model="$parent.$refs.you.skinTone"/>
 
-    <label>Eye Color</label><button onclick="changeEyes()">Change Eye Color</button>
-    <input type="range" name="eyeTone" id="eyeTone" min="1" max="5" v-model="$parent.$refs.you.eyesTone">
+    <label>Eye Color</label><button onclick="changeEyes()">Change Eye Color</button><br>
+      
+<!--    <input type="range" name="eyeTone" id="eyeTone" min="1" max="5" v-model="$parent.$refs.you.eyesTone">-->
 
-    <label for="hairTone">Hair Color</label>
+    <label for="hairTone">Hair Color</label><br>
     <input type="range" name="hairTone" id="hairTone" min="0" max="12" v-model="$parent.$refs.you.hairTone"/>
 
-    <ul class="carousel">
-      <li class="carousel-item" v-for="style in hair">
-        <img 
-        v-bind:src="imgURL + style.url" 
-        class="carousel-item"
-        @click="$parent.$refs.you.hair = imgURL + style.url">
-      </li>
-    </ul>
+      <div class="flex-row carousel">
+      <div class="navArrow"
+           @click="$parent.$refs.you.changeHair(-1)"
+           >&#60;</div>
+
+          <div style="width: 50px; height: 60px; color: white; font-size: 10px;">
+              Hair Style:
+          </div>
+          
+          <div class="navArrow"
+               @click="$parent.$refs.you.changeHair(-1)"
+               >&#62;</div>
   </div>
 
   <!-- Extra Menu (Accessories) -->

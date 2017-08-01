@@ -7,7 +7,7 @@ import './person.scss';
 //var skinSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standSkin.png';
 //var eyeSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standEyes.png';
 //var shirtSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt3.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt4.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt5.png'];
-//var hairSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standHair1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standHair2.png'];
+var hairSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair2.png'];
 //var pantsSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standPants1.png'];
 //var shoesSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShoes1.png'];
 
@@ -29,11 +29,12 @@ export default Vue.extend({
         // SUIT LINK:   https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png
         // TANK TOP LINK: https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png
       pants: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/pants1.png',
-      hair: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png',
+      hair: 0,
       shoes: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shoes1.png',
       eyes: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/eyes1.png',
         
-      customize: false, // Indicates if the customize menu is loaded
+      customize: 'none', // Indicates which customize menu is loaded
+      inFront: false,
         
         // Image stats
       skinTone: 0,  // 0 - 8
@@ -81,14 +82,21 @@ export default Vue.extend({
     
   computed: {
     topCoord: function() {
-      if (this.customize) {
+      if (this.customize === 'character') {
+        this.inFront = true;
         return '140px';
+      } else if (this.customize === 'face') {
+        this.inFront = true;
+        return '190px';
       } else {
+        this.inFront = false;
         return (this.yTop + 1) + 'px';
       }
     },
     leftCoord: function() {
-      if (this.customize) {
+      if (this.customize === 'character') {
+        return '230px';
+      } else if (this.customize === 'face') {
         return '230px';
       } else {
         return (this.xLHS - 25) + 'px';
@@ -98,7 +106,7 @@ export default Vue.extend({
 
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
-    this.randomize();  // Randomizing character
+//    this.randomize();  // Randomizing character
       
     // Setting up canvas vars for animation
     var canvas = document.getElementById('skin');
@@ -131,7 +139,7 @@ export default Vue.extend({
     loadSprites() {
       this.sprite.skin.src = this.skin;
       this.sprite.shirt.src = this.shirt;
-      this.sprite.hair.src = this.hair;
+      this.sprite.hair.src = hairSrc[this.hair];
       this.sprite.pants.src = this.pants;
       this.sprite.shoes.src = this.shoes;
       this.sprite.eyes.src = this.eyes;
@@ -142,6 +150,19 @@ export default Vue.extend({
       this.hairTone = Math.floor(Math.random() * 13);
       this.eyesTone = Math.floor(Math.random() * 5);
 //      this.shirt = shirtSrc[Math.floor(Math.random() * shirtSrc.length)];
+      this.hair = Math.floor(Math.random() * hairSrc.length);
+      this.sprite.hair.src = hairSrc[this.hair];
+    },
+      
+    changeHair(dir) {
+      this.hair += dir;
+      if (this.hair > (hairSrc.length - 1)) {
+        this.hair = 0;
+      }
+      if (this.hair < 0) {
+        this.hair = (hairSrc.length - 1);
+      }
+      this.sprite.hair.src = hairSrc[this.hair];
     },
       
     animate: function() {
