@@ -7,7 +7,10 @@
             <h3 class="location">Kent State University Library</h3>
         </div>
         <transition name="modal-slideIn">
-            <customize-person v-if="paused" :scaledViewportWidth="scaledViewportWidth" :scaledViewportHeight="scaledViewportHeight"></customize-person>
+            <customize-person v-if="paused" 
+            ref="youMenu"
+            :scaledViewportWidth="scaledViewportWidth" 
+            :scaledViewportHeight="scaledViewportHeight"></customize-person>
         </transition>
         
         <img src="~assets/images/foreground_grass.png" class="foreground-grass">

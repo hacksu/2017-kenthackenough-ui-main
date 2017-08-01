@@ -1,14 +1,15 @@
 <div class="person" 
      v-bind:style="{ 
-                   top: (yTop + 1) + 'px', 
-                   left: (xLHS - 25) + 'px',
+                   top: topCoord, 
+                   left: leftCoord,
                    transform: facing,
                    width: '25px'
                    }"
+     v-bind:class="{ inFront: customize }"
      v-on:mouseover="showName = true"
      v-on:mouseout="showName = false"
      >
-    <div class="title" v-if="showName"
+    <div class="title" v-if="showName && !customize"
          v-bind:style="{transform: facing}">{{ $root.$data.user.application.name || 'Apply!' }}</div>
     
     <canvas id="skin" width="22px" height="30px"

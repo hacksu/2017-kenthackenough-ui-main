@@ -1,9 +1,10 @@
 <div id="settings">
+    
 <!--<button onclick="newPerson()">New Person</button><br>
 <button onclick="changeId(-1)">Prev. Person</button><br>
 
 <!--   <button onclick="debug()">debug</button> -->
-<div :style="{ 'width': $props.scaledViewportWidth, 'height': $props.scaledViewportHeight }">
+<div :style="{ 'width': scaledViewportWidth, 'height': scaledViewportHeight }">
   <!-- Apply menu -->
   <div v-if="menu == 'apply'">
     <p class="close-button" @click="$parent.paused = false">X</p>
@@ -25,28 +26,37 @@
   <div v-if="menu == 'character'">
     <p class="close-button" @click="$parent.paused = false">X</p>
     <h3>Customize Your Character!</h3>
-    <button @click="$parent.$refs.you.randomize()">Randomize</button>
+    
     <input type="text" id="name" placeholder="Your full name..." v-model="$root.$data.user.application.name"/>
+      
+      <button @click="$parent.$refs.you.randomize()">Randomize</button>
 
     <div class="flex-row">
-      <button @click="menu = 'shirts'" class="icon-button">Shirts</button>
+      
+        <div class="characterOptions">
+      <button @click="changeMenu('face')" class="icon-button">Face & Hair</button>
+        
+      <button @click="changeMenu('shirts')" class="icon-button">Shirts</button>
+            </div>
+        
+        <div id="personSpace"></div>
 
-      <button @click="menu = 'pants'" class="icon-button">Pants</button>
+        <div class="characterOptions">
+      <button @click="changeMenu('pants')" class="icon-button">Pants</button>
 
-      <button @click="menu = 'face'" class="icon-button">Face & Hair</button>
-
-      <button @click="menu = 'extra'" class="icon-button">Extra</button>
+      <button @click="changeMenu('extra')" class="icon-button">Extra</button>
+        </div>
     </div>
     <br>
     <div class="flex-row">
       <p class="login-link" @click="handleLogout()">Logout</p>
-      <router-link to="/apply" tag="button" class="apply-link align-right">Continue to Application!</router-Link>
+      <router-link to="/apply" tag="button" class="apply-link align-right">Continue to Application!</router-link>
     </div>
   </div>
 
   <!-- SHIRT MENU -->
   <div v-if="menu == 'shirts'">
-    <p class="close-button" @click="menu = 'character'"><</p>
+    <p class="close-button" @click="      changeMenu('character')"></p>
     <ul class="carousel">
       <li class="carousel-item" v-for="shirt in shirts">
         <img v-bind:src="imgURL + shirt.url" class="item" @click="updateShirt(imgURL + shirt.url)">
@@ -60,12 +70,12 @@
 
   <!-- Pants menu -->
   <div v-if="menu == 'pants'">
-    <p class="close-button" @click="menu = 'character'"><</p>
+    <p class="close-button" @click="menu = 'character'"></p>
   </div>
 
   <!-- Face Menu -->
   <div v-if="menu == 'face'">
-    <p class="close-button" @click="menu = 'character'"><</p>
+    <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
     <label for="skinTone">Skin Tone</label>
     <input type="range" name="skinTone" id="skinTone" min="1" max="6" v-model="$parent.$refs.you.skinTone"/>
 
@@ -87,7 +97,7 @@
 
   <!-- Extra Menu (Accessories) -->
   <div v-if="menu == 'extra'">
-    <p class="close-button" @click="menu = 'character'"><</p>
+    <p class="close-button" @click="changeMenu('character')"></p>
 
   </div>
 

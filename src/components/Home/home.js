@@ -165,6 +165,10 @@ export default Vue.extend({
     togglePaused() {
       console.log('togglePaused');
       this.paused = !this.paused;
+      if (this.$refs.youMenu !== undefined) {
+        console.log(this.$refs.youMenu.menu);
+      }
+    
     },
       
     newMonster() {

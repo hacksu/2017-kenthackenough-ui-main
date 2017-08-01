@@ -1,8 +1,12 @@
 .person {
   position: absolute;
   width: 40px;
-
   cursor: pointer;
+}
+
+.inFront {
+      z-index: 1000;
+
 }
 
 .reverse {

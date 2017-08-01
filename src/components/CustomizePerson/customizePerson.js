@@ -72,14 +72,14 @@ export default Vue.extend({
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
     if (this.$root.isLoggedIn()) {
-      this.menu = 'character';
+      this.changeMenu('character');
     } else {
-      this.menu = 'apply';
+      this.changeMenu('apply');
     }
   },
 
   beforeDestroy: function() {
-
+    this.$parent.$refs.you.customize = false;
   },
 
   methods: {
@@ -90,11 +90,20 @@ export default Vue.extend({
         if (success) {
           console.log('Email Valid');
 
-          return this.registerUser();
+          return this.$root.registerUser();
         }
 
         return this;
       });
+    },
+      
+    changeMenu(menuOpt) {
+      this.menu = menuOpt;
+      if (menuOpt === 'character') {
+        this.$parent.$refs.you.customize = true;
+      } else {
+        this.$parent.$refs.you.customize = false;
+      }
     },
 
     registerUser(){
@@ -106,7 +115,7 @@ export default Vue.extend({
           //this.fields.reset();
 
           // Go to next menu
-          this.menu = 'character';
+          this.changeMenu('character');
         })
         .catch((error) => {
           // Handle error...
@@ -119,7 +128,8 @@ export default Vue.extend({
       this.$root.loginUser()
       .then((response) => {
         console.log('Successfully logged in', response);
-        this.menu = 'character';
+        this.changeMenu('character');
+
       })
       .catch((error) => {
         this.errorMessage = error.response.data.errors[0];
@@ -130,7 +140,7 @@ export default Vue.extend({
       this.$root.logoutUser()
       .then(() => {
         console.log('Successfully logged out');
-        this.menu = 'apply';
+        this.changeMenu('apply');
       })
       .catch((error) => {
         console.log(error);

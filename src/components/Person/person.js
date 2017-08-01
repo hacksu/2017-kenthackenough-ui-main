@@ -33,6 +33,8 @@ export default Vue.extend({
       shoes: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shoes1.png',
       eyes: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/eyes1.png',
         
+      customize: false, // Indicates if the customize menu is loaded
+        
         // Image stats
       skinTone: 0,  // 0 - 8
       shirtHue: 0,  // 0 - 360
@@ -75,6 +77,23 @@ export default Vue.extend({
       }
           
     };
+  },
+    
+  computed: {
+    topCoord: function() {
+      if (this.customize) {
+        return '140px';
+      } else {
+        return (this.yTop + 1) + 'px';
+      }
+    },
+    leftCoord: function() {
+      if (this.customize) {
+        return '230px';
+      } else {
+        return (this.xLHS - 25) + 'px';
+      }
+    }
   },
 
   // bind event handlers to the `doResize` method (defined below)

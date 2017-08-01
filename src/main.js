@@ -172,6 +172,7 @@ var app1 = new Vue({
     },
 
     registerUser() {
+      console.log('this.user.email:' + this.user.email);
       return usersResource.post('/', {
         client: CLIENT_ID,
         email: this.user.email,
@@ -184,6 +185,7 @@ var app1 = new Vue({
       })
       .catch((error) => {
         // Handle error...
+        console.log('Registration failed!');
         console.log('API responded with:', error.response.data);
 
         throw error;
