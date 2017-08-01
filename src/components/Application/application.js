@@ -40,30 +40,14 @@ export default Vue.extend({
       slash: false,
       slashTime: 10,
       slashCount: 0,
-        
+      
+      schools: ['Kent', 'Akron', 'Case'],
+
       scalingObject: {
         transform: ''
       },
-        
-      appData: {
-        name: 'Nick Crawfprd',
-        email: 'ncrawfo7@kent.edu',
-        school: 'Kent State University',
-        shirt: 'shirt-large', // Could also be 'hoodie-small' etc.
-        age: 20,
-        year: 'Senior', // High School, Freshman, Soph, Jun, Senior, Grad Student, Mentor
-        travel: {
-          required: true,
-          fromWhere: 'Garrettsville, OH'
-        },
-        dietary: 'Vegetarian',
-        major: 'Comp Sci',
-        gender: 'Male',
-        resume: null,
-        link: 'github.com/NickCrawford',
-        rsvp: 'going',
-        status: 'rejected'
-      }
+
+      currentFieldIndex: -1,
     };
   },
 
@@ -148,6 +132,37 @@ export default Vue.extend({
 
     },
 
+    sourceChanged() {
+      // console.log('source = ' + this.$root.$data.user.application.school + ' new value = ' + e.target.value);
+      // var newSource = e.target.value;
+
+      // only action if value is different from current deepSource
+      // if (newSource!= this.deepSchool) {
+      //   for (var i=0; i<this.schools.length; i++) {
+      //     if (this.schools[i] == newSource) {
+      //       this.deepSchool = this.schools[i];
+      //       this.school = this.deepSchool;
+      //     }
+      //   }
+      // }
+    },
+
+    goToNextField() {
+      this.currentFieldIndex += 1;
+
+      // BEN EDIT THIS HERE
+      // Maybe something like this.killMonster
+    },
+
+    handleKeypress(e) {
+      if (e.keyCode === keys.ENTER) {
+        this.goToNextField();
+      } else if ((e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 48 && e.keyCode < 57)) { // Letter keys
+        this.hurtMonster();
+        // Shake screen todo
+      }
+    },
+
   },
 
   mounted: function() {
@@ -172,6 +187,14 @@ export default Vue.extend({
     }, true);
       
     setInterval(this.move, 10);
+
+    var self = this;
+    setTimeout(() => {
+      self.currentFieldIndex = 0;
+    }, 100);
+    setTimeout(() => {
+      self.currentFieldIndex += 1;
+    }, 3000);
   }
 
 });

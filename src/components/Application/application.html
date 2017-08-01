@@ -8,12 +8,113 @@
 	</div>
 
 	<div class="application-form">
-		<h1>Time to begin your quest, {{ $root.$data.user.application.name.split(' ')[0] }}!</h1>
-		<div class="application-field">
+		<!-- Intro -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 0">
+				<h1>Time to begin your quest, {{ $root.$data.user.application.name.split(' ')[0] }}!</h1>
+			</div>
+		</transition>
 
-		</div>
-		<div class="application-field">
-			
-		</div>
+		<!-- School -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 1">
+				<h1>What school do you go to?</h1>
+				<input v-focus type="text" v-model="$root.$data.user.application.school" list="school-list" v-on:input="sourceChanged" v-on:keydown="handleKeypress"
+				name="school-selection" id="school-selection"
+				placeholder="Enter your school..."/>
+				<datalist id="school-list">
+					<option v-for="school in schools" v-bind:value="school"  v-bind:label="school"></option>
+				</datalist>
+
+				<div class="button-container">
+					<transition name="fade">
+						<button v-show="$root.$data.user.application.school !== ''" @click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- Year -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 2">
+				<h1>What's your class standing?</h1>
+				<div class="button-group">
+					<button
+					@click="$root.$data.user.application.year = 'High Schooler'" 
+					@keydown.enter="$root.$data.user.application.year = 'High Schooler'; goToNextField();">
+					High Schooler</button>
+
+					<button
+					@click="$root.$data.user.application.year = 'Freshman' "
+					@keydown.enter="$root.$data.user.application.year = 'Freshman'; goToNextField();">
+					Freshman</button>
+
+					<button
+					@click="$root.$data.user.application.year = 'Sophomore' "
+					@keydown.enter="$root.$data.user.application.year = 'Sophomore'; goToNextField();">
+					Sophomore</button>
+
+					<button
+					@click="$root.$data.user.application.year = 'Junior' "
+					@keydown.enter="$root.$data.user.application.year = 'Junior'; goToNextField();">
+					Junior</button>
+
+					<button
+					@click="$root.$data.user.application.year = 'Senior' "
+					@keydown.enter="$root.$data.user.application.year = 'Senior'; goToNextField();">
+					Senior</button>
+
+					<button
+					@click="$root.$data.user.application.year = 'Graduate Student' "
+					@keydown.enter="$root.$data.user.application.year = 'Graduate Student'; goToNextField();">
+					Graduate Student</button>
+
+					<button
+					@click="$root.$data.user.application.year = 'Other' "
+					@keydown.enter="$root.$data.user.application.year = 'Other'; goToNextField();">
+					Other</button>
+				</div>
+
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<button v-show="$root.$data.user.application.year !== ''" @click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- Major -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 3">
+				<h1>What's your major/field of study?</h1>
+				<input v-focus type="text" v-model="$root.$data.user.application.major" v-on:keydown="handleKeypress" id="major-selection"
+				placeholder="Enter your major..."/>
+
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<button v-show="$root.$data.user.application.major !== ''" @click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- Phone -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 4">
+				<h1>What's your phone number?</h1>
+				<input v-focus type="tel" v-model="$root.$data.user.application.phone" v-on:keydown="handleKeypress" id="phone-selection"
+				placeholder="111-222-3333"/>
+
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<button v-show="$root.$data.user.application.phone !== ''" @click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
 	</div>
 </main>

@@ -325,4 +325,20 @@ var app1 = new Vue({
   }
 
 });
+
+// Vue.filter('phone', (phone) => {
+//   return phone.replace(/[^0-9]/g, '')
+//   .replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+// });
+
+// Directives
+Vue.directive('focus', {
+  /* eslint-disable no-unused-vars */
+  inserted: function(el, binding, vnode) {
+    Vue.nextTick(function() {
+      el.focus();
+    });
+  },
+});
+
 app1.$mount('#app');

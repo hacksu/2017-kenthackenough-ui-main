@@ -16,3 +16,172 @@ main {
 	
 	transform-origin: top left; // Scale from the top left of the image
 }
+
+.application-form {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+}
+
+.application-field {
+	position: absolute;
+	top: 3vw;
+	left: 10px;
+
+	width: calc(100% - 20px);
+	max-height: calc(100vh - 3vw);
+	overflow-y: scroll;
+	text-align: center;
+
+	h1 {
+		font-size: 4rem;
+		color: white;
+		text-shadow: -4px 4px 0px $midnight-dark;
+
+		@media screen and (max-width: 768px) {
+			font-size: 3rem;
+			line-height: 3.5rem;
+		}
+
+		@media screen and (max-width: 420px) {
+			font-size: 2rem;
+			line-height: 2.5rem;
+		}
+	}
+
+	input[type=text], input[type=email], input[type=password], input[type=tel] {
+		display: inline-block;
+		width: auto;
+		max-width: calc(100vw - 20px);
+		background: transparent;
+		border: none;
+		border-bottom: 4px solid $white;
+		text-shadow: -2px 2px 0px $midnight-dark;
+		border-radius: 0;
+		outline: 0;
+		color: white;
+		font-family: 'hydrophilia-iced', sans-serif;
+		font-size: 3rem;
+		line-height: 3.5rem;
+		text-align: center;
+		margin-bottom: 6px;
+
+		&::placeholder {
+			opacity: 0.8;
+			color: $white;
+			font-size: 3rem;
+		}
+
+		@media screen and (max-width: 768px) {
+			font-size: 2rem;
+			line-height: 2.5rem;
+
+			&::placeholder {
+				font-size: 2rem;
+				line-height: 2.5rem;
+			}
+		}
+	}
+
+	.button-container {
+		display: block;
+		margin: 40px auto 0;
+	}
+
+	.button-group {
+		display: flex;
+
+		flex-direction: column;
+		align-items: stretch;
+
+		max-width: 500px;
+		margin: 0 auto;
+
+		button {
+			flex-shrink: 0;
+			display: block;
+			background: rgba($white, 0.3);
+			border-color: $white;
+
+			color: $black;
+			text-shadow: none;
+
+			&:focus, &:active {
+				background-color: $shamrock;
+				border-color: $shamrock-dark;
+
+				color: white;
+				text-shadow: -4px 4px 0px $midnight-dark;
+			}
+
+			@media screen and (max-width: 768px) {
+				font-size: 1.5rem;
+				line-height: 1.5rem;
+			}
+		}
+	}
+
+	.login-link {
+		display: inline-block;
+		font-size: 2rem;
+		line-height: 2.5rem;
+
+		margin: 0 40px;
+
+		@media screen and (max-width: 420px) {
+			font-size: 1.5rem;
+			line-height: 1.5rem;
+		}
+	}
+
+	button {
+		display: inline-block;
+		margin: 0 40px;
+		color: white;
+		text-shadow: -4px 4px 0px $midnight-dark;
+
+		background: $shamrock;
+		border-radius: 0;
+
+		border: 4px solid $shamrock-dark;
+
+		padding: 6px 12px;
+
+		font-size: 2rem;
+		line-height: 2.5rem;
+
+		cursor: pointer;
+
+		&:hover {
+			box-shadow: -4px 4px 0px $midnight-dark;
+		}
+
+		@media screen and (max-width: 420px) {
+			font-size: 1.5rem;
+			line-height: 1.5rem;
+		}
+	}
+}
+
+// Float
+.floatIn-enter-active, .floatIn-leave-active {
+	transition: transform 0.5s ease, opacity 0.3s ease;
+	transform: translateY(0px);
+	opacity: 1;
+}
+.floatIn-enter, .floatIn-leave-to /* .fade-leave-active in <2.1.8 */ {
+	transform: translateY(-100px);
+	opacity: 0;
+}
+
+// Fade
+.fade-enter-active, .fade-leave-active {
+	transition-delay: 0.5s;
+	transition: opacity 0.5s ease;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
+	opacity: 0;
+	transition-delay: 0s;
+}
