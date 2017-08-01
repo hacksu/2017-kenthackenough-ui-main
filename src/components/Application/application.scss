@@ -51,7 +51,13 @@ main {
 		}
 	}
 
-	input[type=text], input[type=email], input[type=password], input[type=tel], input[type=number] {
+	h2 {
+		display: inline;
+		font-size: 1.5rem;
+		line-height: 1.5rem;
+	}
+
+	input[type=text], input[type=email], input[type=password], input[type=tel], input[type=number], input[type=url] {
 		display: inline-block;
 		width: auto;
 		max-width: calc(100vw - 20px);
@@ -83,6 +89,14 @@ main {
 				line-height: 2.5rem;
 			}
 		}
+	}
+
+	input[type=checkbox] {
+		display: inline;
+		width: 1.5rem;
+		height: 1.5rem;
+
+		margin: 10px;
 	}
 
 	.button-container {

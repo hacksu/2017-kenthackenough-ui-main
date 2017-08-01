@@ -247,7 +247,7 @@
 
 		<!-- Diet -->
 		<transition name="floatIn">
-			<div class="application-field" v-if="currentFieldIndex === 8">
+			<div class="application-field" v-if="currentFieldIndex === 9">
 				<h1>Any dietary restrictions?</h1>
 				<div class="button-group">
 					<button
@@ -284,7 +284,116 @@
 				<div class="button-container">
 					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
 					<transition name="fade">
-						<button v-show="$root.$data.user.application.dietary !== ''" @click="goToNextField">Next</button>
+						<button v-if="$root.$data.user.application.dietary !== ''" @click="goToNextField">Next</button>
+						<button v-else @click="goToNextField">Nope!</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- Travel -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 10">
+				<h1>Will you require travel reimbursement?</h1>
+				<div class="button-group">
+					<button
+					@click="$root.$data.user.application.travel = true" 
+					@focus="$root.$data.user.application.travel = true" 
+					@keydown.enter="$root.$data.user.application.travel = true; goToNextField();">
+					Yes</button>
+
+					<button
+					@click="$root.$data.user.application.travel = false "
+					@focus="$root.$data.user.application.travel = false "
+					@keydown.enter="$root.$data.user.application.travel = false; goToNextField();">
+					No</button>
+				</div>
+
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<button v-show="$root.$data.user.application.travel !== null" @click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- Link -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 11">
+				<h1>Any link(s) you'd like to share? (Optional)</h1>
+				<input v-focus type="url" v-model="$root.$data.user.application.link" v-on:keydown="handleKeypress" id="link-selection"
+				placeholder="GitHub/LinkedIn/Personal"/>
+
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<p v-if="$root.$data.user.application.link === ''" class="login-link" @click="$root.$data.user.application.link = ''; goToNextField();">Skip</p>
+						<button v-else @click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- Resume -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 12">
+				<h1>Can you share your resume with us? :) (Optional)</h1>
+				<input type="file" v-on:change="$root.$data.user.application.resume" id="resume-selection"/>
+
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<p v-if="$root.$data.user.application.resume === ''" class="login-link" @click="$root.$data.user.application.resume = ''; goToNextField();">Skip</p>
+						<button v-else @click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- Agree -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 13">
+				<h1>I agree to...</h1>
+				<input v-focus type="checkbox" v-model="$root.$data.user.application.demographic" id="demographic-selection"/>
+				<h2>the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct.</a></h2>
+				<br>
+				<input v-focus type="checkbox" v-model="$root.$data.user.application.conduct" id="conduct-selection"/>
+				<h2>share my <a href="https://mlh.io/privacy" target="_blank">demographic information </a>with MLH administration.</h2>
+				
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<button 
+						v-show="($root.$data.user.application.demographic !== null && $root.$data.user.application.demographic) && ($root.$data.user.application.conduct !== null && $root.$data.user.application.conduct)" 
+						@click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- Summary -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 14">
+				<h1>Summary</h1>
+				<p>Name: <span class="login-link">{{ $root.$data.user.application.name || '[name]' }}</span></p>
+				<p>Gender (optional): <span class="login-link" @click="currentFieldIndex = 5">{{ $root.$data.user.application.gender || '[gender]' }}</span></p>
+				<p>School: <span class="login-link" @click="currentFieldIndex = 1">{{ $root.$data.user.application.school || '[school]' }}</span></p>
+				<p>Major: <span class="login-link" @click="currentFieldIndex = 3">{{ $root.$data.user.application.major || '[major]' }}</span></p>
+				<p>Phone: <span class="login-link" @click="currentFieldIndex = 6">{{ $root.$data.user.application.phone || '[phone]' }}</span></p>
+				<p>Shirt size: <span class="login-link" @click="currentFieldIndex = 7">{{ $root.$data.user.application.shirt || '[shirt]' }}</span></p>
+				<p>Age: <span class="login-link" @click="currentFieldIndex = 4">{{ $root.$data.user.application.age || '[age]' }}</span></p>
+				<p>Class: <span class="login-link" @click="currentFieldIndex = 2">{{ $root.$data.user.application.year || '[class]' }}</span></p>
+				<p>First hackathon?: <span class="login-link" @click="currentFieldIndex = 8">{{ ($root.$data.user.application.first ? 'Yes' : 'No') || '[first]' }}</span></p>
+				<p>Dietary restrictions: <span class="login-link" @click="currentFieldIndex = 9">{{ $root.$data.user.application.dietary || '[diet]' }}</span></p>
+				<p>Travel reimbursement: <span class="login-link" @click="currentFieldIndex = 10">{{ ($root.$data.user.application.travel ? 'Yes' : 'No') || '[travel]' }}</span></p>
+				<p>Resume (optional): <span class="login-link" @click="currentFieldIndex = 12">{{ $root.$data.user.application.resume || '[resume]' }}</span></p>
+				<p>Link (optional): <span class="login-link" @click="currentFieldIndex = 11">{{ $root.$data.user.application.link || '[link]' }}</span></p>
+
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<button @click="submitApplication">Finish!</button>
 					</transition>
 				</div>
 			</div>
