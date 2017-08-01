@@ -51,7 +51,7 @@ main {
 		}
 	}
 
-	input[type=text], input[type=email], input[type=password], input[type=tel] {
+	input[type=text], input[type=email], input[type=password], input[type=tel], input[type=number] {
 		display: inline-block;
 		width: auto;
 		max-width: calc(100vw - 20px);

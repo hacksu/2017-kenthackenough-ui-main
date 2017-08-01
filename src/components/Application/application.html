@@ -41,36 +41,43 @@
 				<div class="button-group">
 					<button
 					@click="$root.$data.user.application.year = 'High Schooler'" 
+					@focus="$root.$data.user.application.year = 'High Schooler'" 
 					@keydown.enter="$root.$data.user.application.year = 'High Schooler'; goToNextField();">
 					High Schooler</button>
 
 					<button
 					@click="$root.$data.user.application.year = 'Freshman' "
+					@focus="$root.$data.user.application.year = 'Freshman' "
 					@keydown.enter="$root.$data.user.application.year = 'Freshman'; goToNextField();">
 					Freshman</button>
 
 					<button
 					@click="$root.$data.user.application.year = 'Sophomore' "
+					@focus="$root.$data.user.application.year = 'Sophomore' "
 					@keydown.enter="$root.$data.user.application.year = 'Sophomore'; goToNextField();">
 					Sophomore</button>
 
 					<button
 					@click="$root.$data.user.application.year = 'Junior' "
+					@focus="$root.$data.user.application.year = 'Junior' "
 					@keydown.enter="$root.$data.user.application.year = 'Junior'; goToNextField();">
 					Junior</button>
 
 					<button
 					@click="$root.$data.user.application.year = 'Senior' "
+					@focus="$root.$data.user.application.year = 'Senior' "
 					@keydown.enter="$root.$data.user.application.year = 'Senior'; goToNextField();">
 					Senior</button>
 
 					<button
 					@click="$root.$data.user.application.year = 'Graduate Student' "
+					@focus="$root.$data.user.application.year = 'Graduate Student' "
 					@keydown.enter="$root.$data.user.application.year = 'Graduate Student'; goToNextField();">
 					Graduate Student</button>
 
 					<button
 					@click="$root.$data.user.application.year = 'Other' "
+					@focus="$root.$data.user.application.year = 'Other' "
 					@keydown.enter="$root.$data.user.application.year = 'Other'; goToNextField();">
 					Other</button>
 				</div>
@@ -100,9 +107,59 @@
 			</div>
 		</transition>
 
-		<!-- Phone -->
+		<!-- Age -->
 		<transition name="floatIn">
 			<div class="application-field" v-if="currentFieldIndex === 4">
+				<h1>How young are you?</h1>
+				<input v-focus type="number" min="1" max="110" v-model="$root.$data.user.application.age" v-on:keydown="handleKeypress" id="age-selection"
+				placeholder="Age..."/>
+
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<button v-show="$root.$data.user.application.age !== ''" @click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- Gender -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 5">
+				<h1>What's your gender? (Optional)</h1>
+				<div class="button-group">
+					<button
+					@click="$root.$data.user.application.gender = 'Male'" 
+					@focus="$root.$data.user.application.gender = 'Male'" 
+					@keydown.enter="$root.$data.user.application.year = 'Male'; goToNextField();">
+					Male</button>
+
+					<button
+					@click="$root.$data.user.application.gender = 'Female' "
+					@focus="$root.$data.user.application.gender = 'Female' "
+					@keydown.enter="$root.$data.user.application.year = 'Female'; goToNextField();">
+					Female</button>
+
+					<button
+					@click="$root.$data.user.application.gender = 'Other' "
+					@focus="$root.$data.user.application.gender = 'Other' "
+					@keydown.enter="$root.$data.user.application.year = 'Other'; goToNextField();">
+					Other</button>
+				</div>
+
+				<div class="button-container">
+					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<transition name="fade">
+						<p v-if="$root.$data.user.application.gender === ''" class="login-link" @click="$root.$data.user.application.gender = 'Prefer Not To Say'; goToNextField();">Skip</p>
+						<button v-else @click="goToNextField">Next</button>
+					</transition>
+				</div>
+			</div>
+		</transition>
+
+		<!-- Phone -->
+		<transition name="floatIn">
+			<div class="application-field" v-if="currentFieldIndex === 6">
 				<h1>What's your phone number?</h1>
 				<input v-focus type="tel" v-model="$root.$data.user.application.phone" v-on:keydown="handleKeypress" id="phone-selection"
 				placeholder="111-222-3333"/>
