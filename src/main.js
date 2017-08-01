@@ -274,16 +274,16 @@ var app1 = new Vue({
           'school': '',         // name of school
           'phone': '',          // phone number
           'shirt': '',          // t-shirt size
-          'demographic': false,   // allowed to use demographic info?
-          'first': false,         // is this your first hackathon?
+          'demographic': null,   // allowed to use demographic info?
+          'first': null,         // is this your first hackathon?
           'dietary': '',        // food restrictions seperated by |
           'year': '',           // the year in school
           'age': 19,            // person's age
           'gender': '',         // gender
           'major': '',          // degree
           'conduct': false,       // agree to MLH code of conduct?
-          'travel': false,        // need travel reimbursement?
-          'waiver': false,        // agreed to waiver?
+          'travel': null,        // need travel reimbursement?
+          'waiver': null,        // agreed to waiver?
           'resume': '',         // the filename of their resume
           'link': '',            // a github/linkedin link
         },
@@ -327,4 +327,20 @@ var app1 = new Vue({
   }
 
 });
+
+// Vue.filter('phone', (phone) => {
+//   return phone.replace(/[^0-9]/g, '')
+//   .replace(/(\d{3})(\d{3})(\d{4})/, '($1) $2-$3');
+// });
+
+// Directives
+Vue.directive('focus', {
+  /* eslint-disable no-unused-vars */
+  inserted: function(el, binding, vnode) {
+    Vue.nextTick(function() {
+      el.focus();
+    });
+  },
+});
+
 app1.$mount('#app');
