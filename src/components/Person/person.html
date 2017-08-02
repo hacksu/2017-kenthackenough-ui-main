@@ -29,6 +29,10 @@
     
 	
 	<canvas id="pants" width="22px" height="30px"
+            v-bind:style="{
+                       filter: 'hue-rotate(' + pantsHue + 'deg)' +
+                       'brightness(' + pantsTone + ')'
+                       }"
             >
     </canvas>
     
@@ -44,7 +48,7 @@
     </canvas>
     <canvas id="eyes" width="22px" height="30px"
             v-bind:style="{ 
-                   filter: 'brightness(' + eyesTone/2 + ')' 
+                   filter: 'brightness(' + eyesTone/2 + ') hue-rotate(' + eyesHue + 'deg)' 
                    }">
     </canvas>
 </div>

@@ -63,9 +63,10 @@ export default Vue.extend({
       shirtHue: 0,  // 0 - 360
       shirtTone: 1, // 1-2
       pantsHue: 0,
+      pantsTone: 1,
       hairTone: 0,  // 0 - 12
       eyesHue: 0,
-      eyesTone: 0,  // 1 - 5
+      eyesTone: 2,  // 1 - 5
     
       facing: 'scale(1,1)',
         // Coordinates
@@ -107,11 +108,11 @@ export default Vue.extend({
     topCoord: function() {
       if (this.customize === 'character') {
         this.inFront = true;
-        return '140px';
+        return '160px';
       } else if (this.customize === 'face') {
         this.inFront = true;
         return '190px';
-      } else if (this.customize === 'shirts') {
+      } else if (this.customize === 'shirts' || this.customize === 'pants') {
         this.inFront = true;
         return '120px';
       } else {
@@ -124,7 +125,7 @@ export default Vue.extend({
         return '230px';
       } else if (this.customize === 'face') {
         return '230px';
-      } else if (this.customize === 'shirts') {
+      } else if (this.customize === 'shirts' || this.customize === 'pants') {
         return '225px';
       } else {
         return (this.xLHS - 25) + 'px';

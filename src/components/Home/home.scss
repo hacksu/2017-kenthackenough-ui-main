@@ -97,8 +97,9 @@ main {
 
 .darken {
     position: absolute;
-    width: 100%;
+    width: 1000%;
     height: 100%;
+    left: -400%;
     opacity: .5;
     background-color: black;
     z-index: 20;

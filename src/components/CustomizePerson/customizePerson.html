@@ -97,10 +97,48 @@
 
     </div>
   </div>
+    </div>
 
   <!-- Pants menu -->
   <div v-if="menu == 'pants'">
-    <p class="close-button" @click="changeMenu('character')"></p>
+    <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
+    <p class="close-button" @click="      changeMenu('character')"></p>
+
+    <div class="flex-row carousel">
+      <div class="navArrow"
+      @click="$parent.$refs.you.changePants(-1)"
+      >&#60;</div>
+
+      <div style="width: 50px; height: 60px; color: white; font-size: 10px;">
+        Pants:
+      </div>
+
+      <div class="navArrow"
+      @click="$parent.$refs.you.changePants(1)"
+      >&#62;</div>
+    </div>
+
+    <p style="color:white">Color:</p>
+      <div class="flex-row">
+    <div v-for="n in 10">
+        <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg) brightness(' + 2 + ')'}">
+        <div class="colorSample"
+             @click="changeColor('pantsHue', (360 * (n/10)), 'pantsTone', 2)"
+             ></div>
+            </div>
+    </div>
+      </div>
+      <div class="flex-row">
+
+    <div v-for="n in 10">
+        <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg) brightness(1)'}">
+        <div class="colorSample"
+             @click="changeColor('pantsHue', (360 * (n/10)), 'pantsTone', 1)"
+             ></div>
+            </div>
+
+    </div>
+  </div>
   </div>
 
   <!-- Face Menu -->
@@ -109,14 +147,27 @@
     <label for="skinTone">Skin Tone</label>
     <input type="range" name="skinTone" id="skinTone" min="1" max="6" v-model="$parent.$refs.you.skinTone"/>
 
-    <label>Eye Color</label><button onclick="changeEyes()">Change Eye Color</button><br>
+      <div class="flex-row">
+    <label>Eye Color: </label>
+      
+    <div v-for="n in 10">
+        <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg)'}">
+        <div class="eyeSample"
+             @click="$parent.$refs.you.eyesHue = (360 * (n/10))"
+             ></div>
+            </div>
+    </div>
+      </div>
+<!--      //1F7934-->
+      
+      <br>
 
     
 
     <!--    <input type="range" name="eyeTone" id="eyeTone" min="1" max="5" v-model="$parent.$refs.you.eyesTone">-->
 
     <label for="hairTone">Hair Color</label><br>
-    <input type="range" name="hairTone" id="hairTone" min="0" max="12" v-model="$parent.$refs.you.hairTone"/>
+    <input type="range" name="hairTone" id="hairTone" min="0" max="10" v-model="$parent.$refs.you.hairTone"/>
 
     <div class="flex-row carousel">
       <div class="navArrow"
@@ -131,10 +182,12 @@
       @click="$parent.$refs.you.changeHair(1)"
       >&#62;</div>
     </div>
+    </div>
 
     <!-- Extra Menu (Accessories) -->
-    <div v-if="menu == 'extra'">
-      <p class="close-button" @click="changeMenu('character')">back</p>
+    <div class="itemMenu" v-if="menu == 'extra'">
+      <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
+    <label for="extras">Coming soon!</label>
 
     </div>
 
