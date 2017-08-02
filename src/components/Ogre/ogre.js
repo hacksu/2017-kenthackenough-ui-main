@@ -20,9 +20,9 @@ export default Vue.extend({
       friction: 0.1,
       jump: 4,
       speed: 0.4,
-      hurtTime: 60,
+      hurtTime: 10,
       hurtCount: 0,
-      hp: 3,
+      hp: 300,
         
       dead: false,
     
@@ -373,13 +373,16 @@ export default Vue.extend({
       }
     },
       
-    hurt: function() {
+    hurt: function(amt) {
+      if (typeof amt === 'undefined') {
+        amt = 1;
+      }
       if (this.hurtCount > 0 || this.xLHS < 200) {
         return;
       }
       this.$parent.slash = true;
         
-      this.hp--;
+      this.hp -= amt;
       console.log('ogre hp: ' + this.hp);
       if (this.hp <= 0) {
         this.yVel = -1;

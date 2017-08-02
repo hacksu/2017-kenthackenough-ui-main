@@ -107,8 +107,9 @@ label {
   display: flex;
   width: 80px;
 //  height: 40px;
+//    border: solid red 1px;
   background: transparent;
-  margin-left: 32%;
+  margin: auto;
 }
 
 .carousel-item {
@@ -200,4 +201,11 @@ label {
     color: $white;
     cursor: pointer;
   }
+}
+
+.colorSample {
+    background-color: #76199A;
+    width: 10px;
+    height: 10px;
+    border: solid black 1px;
 }

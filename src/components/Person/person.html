@@ -9,7 +9,7 @@
      v-on:mouseover="showName = true"
      v-on:mouseout="showName = false"
      >
-    <div class="title" v-if="showName && !customize"
+    <div class="title" v-if="showName && customize == 'none'"
          v-bind:style="{transform: facing}">{{ $root.$data.user.application.name || 'Apply!' }}</div>
     
     <canvas id="skin" width="22px" height="30px"
