@@ -385,13 +385,13 @@
 				<p>Age: <span class="login-link" @click="currentFieldIndex = 4">{{ $root.$data.user.application.age || '[age]' }}</span></p>
 				<p>Class: <span class="login-link" @click="currentFieldIndex = 2">{{ $root.$data.user.application.year || '[class]' }}</span></p>
 				<p>First hackathon?: <span class="login-link" @click="currentFieldIndex = 8">{{ ($root.$data.user.application.first ? 'Yes' : 'No') || '[first]' }}</span></p>
-				<p>Dietary restrictions: <span class="login-link" @click="currentFieldIndex = 9">{{ $root.$data.user.application.dietary || '[diet]' }}</span></p>
+				<p>Dietary restrictions: <span class="login-link" @click="currentFieldIndex = 9">{{ $root.$data.user.application.dietary || 'None' }}</span></p>
 				<p>Travel reimbursement: <span class="login-link" @click="currentFieldIndex = 10">{{ ($root.$data.user.application.travel ? 'Yes' : 'No') || '[travel]' }}</span></p>
 				<p>Link (optional): <span class="login-link" @click="currentFieldIndex = 11">{{ $root.$data.user.application.link || '[link]' }}</span></p>
 				<p>Resume (optional): <span class="login-link" @click="currentFieldIndex = 12">{{ $root.$data.user.application.resume || '[resume]' }}</span></p>
 
 				<div class="button-container">
-					<p @click="currentFieldIndex -= 1; ">Back</p>
+					<p style="width: auto;" @click="currentFieldIndex -= 1; ">Back</p>
 					<transition name="fade">
 						<button @click="submitApplication">Finish!</button>
 					</transition>

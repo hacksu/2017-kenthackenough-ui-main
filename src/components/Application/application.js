@@ -101,12 +101,12 @@ export default Vue.extend({
       this.monster = this.monsters[i];
     },
       
-    hurtMonster() {
+    hurtMonster(amount) {
       if (this.monster === 'ogre' && this.$refs.appOgre !== undefined) {
-        this.$refs.appOgre.hurt();
+        this.$refs.appOgre.hurt(amount);
       }
       if (this.monster === 'ent' && this.$refs.appEnt !== undefined) {
-        this.$refs.appEnt.hurt();
+        this.$refs.appEnt.hurt(amount);
       }
     },
       
@@ -150,8 +150,7 @@ export default Vue.extend({
     goToNextField() {
       this.currentFieldIndex += 1;
 
-      // BEN EDIT THIS HERE
-      // Maybe something like this.killMonster
+      this.hurtMonster(2000);
     },
 
     handleKeypress(e) {

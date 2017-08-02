@@ -205,6 +205,11 @@ main {
 		@media screen and (max-width: 768px) {
 			max-width: 100%;
 		}
+
+		@media screen and (max-width: 420px) {
+			font-size: 1.5rem;
+			line-height: 1.75rem;
+		}
 	}
 
 	.login-link {
@@ -212,6 +217,13 @@ main {
 		font-size: 2rem;
 		line-height: 2.5rem;
 		text-shadow: -4px 4px 0px $midnight-dark;
+		margin: 0;
+		margin-left: 8px;
+
+		@media screen and (max-width: 420px) {
+			font-size: 1.5rem;
+			line-height: 1.75rem;
+		}
 	}
 }
 

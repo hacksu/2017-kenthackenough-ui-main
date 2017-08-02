@@ -29,6 +29,14 @@
     font-weight: light;
   }
 
+  .optional-hint {
+    margin-top: -12px;
+    margin-bottom: 12px;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
   .error-message {
     color: $sunset;
     text-align: left;
