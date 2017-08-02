@@ -8,6 +8,28 @@ import './person.scss';
 //var eyeSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standEyes.png';
 //var shirtSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt3.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt4.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt5.png'];
 var hairSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair2.png'];
+var shirtSrc = [
+  {
+    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shirt1.png',
+    name: 'Classic'
+  },
+  {
+    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png',
+    name: 'hoodie'
+  },
+  {
+    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+    name: 'sweater'
+  },
+  {
+    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+    name: 'suit'
+  },
+  {
+    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+    name: 'tank'
+  }
+];
 //var pantsSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standPants1.png'];
 //var shoesSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShoes1.png'];
 
@@ -25,7 +47,7 @@ export default Vue.extend({
       speed: 1.2,
         // Sprite sheets loaded
       skin: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/skin.png',
-      shirt: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shirt1.png',
+      shirt: 0,
         // SUIT LINK:   https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png
         // TANK TOP LINK: https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png
       pants: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/pants1.png',
@@ -88,6 +110,9 @@ export default Vue.extend({
       } else if (this.customize === 'face') {
         this.inFront = true;
         return '190px';
+      } else if (this.customize === 'shirts') {
+        this.inFront = true;
+        return '120px';
       } else {
         this.inFront = false;
         return (this.yTop + 1) + 'px';
@@ -98,6 +123,8 @@ export default Vue.extend({
         return '230px';
       } else if (this.customize === 'face') {
         return '230px';
+      } else if (this.customize === 'shirts') {
+        return '225px';
       } else {
         return (this.xLHS - 25) + 'px';
       }
@@ -106,7 +133,12 @@ export default Vue.extend({
 
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
-//    this.randomize();  // Randomizing character
+    this.randomize();  // Randomizing character
+      
+    // Randomizes hair - for gender equality, etc
+    // Only necessary if you disable randomize() on mount
+    this.hair = Math.floor(Math.random() * hairSrc.length);
+    this.sprite.hair.src = hairSrc[this.hair];
       
     // Setting up canvas vars for animation
     var canvas = document.getElementById('skin');
@@ -138,7 +170,7 @@ export default Vue.extend({
   methods: {
     loadSprites() {
       this.sprite.skin.src = this.skin;
-      this.sprite.shirt.src = this.shirt;
+      this.sprite.shirt.src = shirtSrc[this.shirt].url;
       this.sprite.hair.src = hairSrc[this.hair];
       this.sprite.pants.src = this.pants;
       this.sprite.shoes.src = this.shoes;
@@ -148,7 +180,7 @@ export default Vue.extend({
     randomize: function() {
       this.skinTone = Math.floor(Math.random() * 8);
       this.hairTone = Math.floor(Math.random() * 13);
-      this.eyesTone = Math.floor(Math.random() * 5);
+      //this.eyesTone = Math.floor(Math.random() * 5);
 //      this.shirt = shirtSrc[Math.floor(Math.random() * shirtSrc.length)];
       this.hair = Math.floor(Math.random() * hairSrc.length);
       this.sprite.hair.src = hairSrc[this.hair];
@@ -163,6 +195,17 @@ export default Vue.extend({
         this.hair = (hairSrc.length - 1);
       }
       this.sprite.hair.src = hairSrc[this.hair];
+    },
+      
+    changeShirt(dir) {
+      this.shirt += dir;
+      if (this.shirt > (shirtSrc.length - 1)) {
+        this.shirt = 0;
+      }
+      if (this.shirt < 0) {
+        this.shirt = (shirtSrc.length - 1);
+      }
+      this.sprite.shirt.src = shirtSrc[this.shirt].url;
     },
       
     animate: function() {
