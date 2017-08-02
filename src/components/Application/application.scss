@@ -126,8 +126,16 @@ main {
 				background-color: $shamrock;
 				border-color: $shamrock-dark;
 
+				z-index: 10;
+				transform: translateY(-4px);
+
 				color: white;
 				text-shadow: -4px 4px 0px $midnight-dark;
+			}
+
+			&:hover {
+				z-index: 10;
+				transform: translateY(-4px);
 			}
 
 			@media screen and (max-width: 768px) {
@@ -175,6 +183,46 @@ main {
 		@media screen and (max-width: 420px) {
 			font-size: 1.5rem;
 			line-height: 1.5rem;
+		}
+	}
+}
+
+#summary-page {
+	max-width: 1040px;
+	left: 50%;
+	transform: translateX(-50%);
+	p {
+		text-align: left;
+		font-size: 2rem;
+		line-height: 2.5rem;
+
+		color: white;
+		text-shadow: -4px 4px 0px $midnight-dark;
+		width: 100%;
+		max-width: calc(50% - 10px);
+		display: inline-block;
+
+		@media screen and (max-width: 768px) {
+			max-width: 100%;
+		}
+
+		@media screen and (max-width: 420px) {
+			font-size: 1.5rem;
+			line-height: 1.75rem;
+		}
+	}
+
+	.login-link {
+		color: $spring-bud;
+		font-size: 2rem;
+		line-height: 2.5rem;
+		text-shadow: -4px 4px 0px $midnight-dark;
+		margin: 0;
+		margin-left: 8px;
+
+		@media screen and (max-width: 420px) {
+			font-size: 1.5rem;
+			line-height: 1.75rem;
 		}
 	}
 }

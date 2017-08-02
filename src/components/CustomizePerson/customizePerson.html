@@ -1,5 +1,5 @@
 <div id="settings">
-    
+
 <!--<button onclick="newPerson()">New Person</button><br>
 <button onclick="changeId(-1)">Prev. Person</button><br>
 
@@ -26,28 +26,29 @@
   <div v-if="menu == 'character'">
     <p class="close-button" @click="$parent.paused = false">X</p>
     <h3>Customize Your Character!</h3>
+    <p class="optional-hint">(Optional)</p>
     
     <input type="text" id="name" placeholder="Your full name..." v-model="$root.$data.user.application.name"/>
-      
-      <button @click="$parent.$refs.you.randomize()">Randomize</button>
+
+    <button @click="$parent.$refs.you.randomize()">Randomize</button>
 
     <div class="flex-row">
-      
-        <div class="characterOptions">
-      <button @click="changeMenu('face')" class="icon-button">Face & Hair</button>
+
+      <div class="characterOptions">
+        <button @click="changeMenu('face')" class="icon-button">Face & Hair</button>
         
-      <button @click="changeMenu('shirts')" class="icon-button">Shirts</button>
-            </div>
-        
-        <div class="personSpace">
+        <button @click="changeMenu('shirts')" class="icon-button">Shirts</button>
+      </div>
+
+      <div class="personSpace">
         You:
-        </div>
+      </div>
 
-        <div class="characterOptions">
-      <button @click="changeMenu('pants')" class="icon-button">Pants</button>
+      <div class="characterOptions">
+        <button @click="changeMenu('pants')" class="icon-button">Pants</button>
 
-      <button @click="changeMenu('extra')" class="icon-button">Extra</button>
-        </div>
+        <button @click="changeMenu('extra')" class="icon-button">Extra</button>
+      </div>
     </div>
     <br>
     <div class="flex-row">
@@ -58,23 +59,23 @@
 
   <!-- SHIRT MENU -->
   <div v-if="menu == 'shirts'">
-      <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
+    <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
     <p class="close-button" @click="      changeMenu('character')"></p>
-      
+
     <div class="flex-row carousel">
       <div class="navArrow"
-           @click="$parent.$refs.you.changeShirt(-1)"
-           >&#60;</div>
+      @click="$parent.$refs.you.changeShirt(-1)"
+      >&#60;</div>
 
-          <div style="width: 50px; height: 60px; color: white; font-size: 10px;">
-              Shirt:
-          </div>
-          
-          <div class="navArrow"
-               @click="$parent.$refs.you.changeShirt(1)"
-               >&#62;</div>
-  </div>
-      
+      <div style="width: 50px; height: 60px; color: white; font-size: 10px;">
+        Shirt:
+      </div>
+
+      <div class="navArrow"
+      @click="$parent.$refs.you.changeShirt(1)"
+      >&#62;</div>
+    </div>
+
     <p style="color:white">Color:</p>
       <div class="flex-row">
     <div v-for="n in 10">
@@ -93,8 +94,8 @@
              @click="changeColor('shirtHue', (360 * (n/10)), 'shirtTone', 1)"
              ></div>
             </div>
+
     </div>
-          </div>
   </div>
 
   <!-- Pants menu -->
@@ -109,37 +110,37 @@
     <input type="range" name="skinTone" id="skinTone" min="1" max="6" v-model="$parent.$refs.you.skinTone"/>
 
     <label>Eye Color</label><button onclick="changeEyes()">Change Eye Color</button><br>
-      
+
     
-      
-<!--    <input type="range" name="eyeTone" id="eyeTone" min="1" max="5" v-model="$parent.$refs.you.eyesTone">-->
+
+    <!--    <input type="range" name="eyeTone" id="eyeTone" min="1" max="5" v-model="$parent.$refs.you.eyesTone">-->
 
     <label for="hairTone">Hair Color</label><br>
     <input type="range" name="hairTone" id="hairTone" min="0" max="12" v-model="$parent.$refs.you.hairTone"/>
 
-      <div class="flex-row carousel">
+    <div class="flex-row carousel">
       <div class="navArrow"
-           @click="$parent.$refs.you.changeHair(-1)"
-           >&#60;</div>
+      @click="$parent.$refs.you.changeHair(-1)"
+      >&#60;</div>
 
-          <div style="width: 50px; height: 60px; color: white; font-size: 10px;">
-              Hair Style:
-          </div>
-          
-          <div class="navArrow"
-               @click="$parent.$refs.you.changeHair(1)"
-               >&#62;</div>
+      <div style="width: 50px; height: 60px; color: white; font-size: 10px;">
+        Hair Style:
+      </div>
+
+      <div class="navArrow"
+      @click="$parent.$refs.you.changeHair(1)"
+      >&#62;</div>
+    </div>
+
+    <!-- Extra Menu (Accessories) -->
+    <div v-if="menu == 'extra'">
+      <p class="close-button" @click="changeMenu('character')">back</p>
+
+    </div>
+
+    <!--    HAIR MENU-->
+    <div class="itemMenu" v-if="menu == 'hair'">
+
+    </div>
   </div>
-
-  <!-- Extra Menu (Accessories) -->
-  <div v-if="menu == 'extra'">
-    <p class="close-button" @click="changeMenu('character')">back</p>
-
-  </div>
-
-  <!--    HAIR MENU-->
-  <div class="itemMenu" v-if="menu == 'hair'">
-
-  </div>
-</div>
 </div><!-- /#settings -->

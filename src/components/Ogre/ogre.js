@@ -19,7 +19,7 @@ export default Vue.extend({
       weight: 0.05,
       friction: 0.1,
       jump: 4,
-      speed: 0.4,
+      speed: 0.8,
       hurtTime: 10,
       hurtCount: 0,
       hp: 300,
