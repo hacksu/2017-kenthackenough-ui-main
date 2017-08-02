@@ -61,6 +61,7 @@ export default Vue.extend({
         // Image stats
       skinTone: 0,  // 0 - 8
       shirtHue: 0,  // 0 - 360
+      shirtTone: 1, // 1-2
       pantsHue: 0,
       hairTone: 0,  // 0 - 12
       eyesHue: 0,

@@ -21,7 +21,8 @@
     
     <canvas id="shirt" width="22px" height="30px"
             v-bind:style="{
-                       filter: 'hue-rotate(' + shirtHue + 'deg)'
+                       filter: 'hue-rotate(' + shirtHue + 'deg)' +
+                       'brightness(' + shirtTone + ')'
                        }"
             >
     </canvas>

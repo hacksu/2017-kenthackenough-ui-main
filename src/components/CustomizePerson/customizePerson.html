@@ -78,9 +78,19 @@
     <p style="color:white">Color:</p>
       <div class="flex-row">
     <div v-for="n in 10">
-        <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg)'}">
+        <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg) brightness(' + 2 + ')'}">
         <div class="colorSample"
-             @click=" $parent.$refs.you.shirtHue = (360 * (n/10))"
+             @click="changeColor('shirtHue', (360 * (n/10)), 'shirtTone', 2)"
+             ></div>
+            </div>
+    </div>
+      </div>
+      <div class="flex-row">
+
+    <div v-for="n in 10">
+        <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg) brightness(1)'}">
+        <div class="colorSample"
+             @click="changeColor('shirtHue', (360 * (n/10)), 'shirtTone', 1)"
              ></div>
             </div>
     </div>

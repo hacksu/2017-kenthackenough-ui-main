@@ -21,7 +21,7 @@ export default Vue.extend({
       jump: 4,
       speed: 0.5,
       hurtTime: 10,
-      hurtCount: 0, // Hurt time is the length he'll stay hurt
+      hurtCount: 2000, // Hurt time is the length he'll stay hurt
       hp: 3,
     
       facing: 'scale(1,1)',

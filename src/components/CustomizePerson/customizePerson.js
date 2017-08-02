@@ -156,6 +156,11 @@ export default Vue.extend({
 
     updateShirt(shirtURL) {
       this.$parent.$refs.you.shirt = shirtURL;
+    },
+      
+    changeColor(itemHue, hueVal, itemTone, toneVal) {
+      this.$parent.$refs.you[itemHue] = hueVal;
+      this.$parent.$refs.you[itemTone] = toneVal;
     }
   }
 

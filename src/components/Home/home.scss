@@ -30,6 +30,7 @@ main {
 	position: absolute;
 	bottom: 0;
 	left: -30%;
+    z-index: 10;
 }
 
 .test {
@@ -91,5 +92,17 @@ main {
   }
   100% {
     transform: translate(-50%, -50%);
+  }
+}
+
+.darken {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: .5;
+    background-color: black;
+    z-index: 20;
+    &:hover {
+     cursor: pointer;
   }
 }
