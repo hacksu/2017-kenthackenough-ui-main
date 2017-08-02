@@ -18,7 +18,7 @@
 		<!-- School -->
 		<transition name="floatIn">
 			<div class="application-field" v-if="currentFieldIndex === 1">
-				<h1>What school do you go to?</h1>
+				<h1 @click="currentFieldIndex = 14">What school do you go to?</h1>
 				<input v-focus type="text" v-model="$root.$data.user.application.school" list="school-list" v-on:input="sourceChanged" v-on:keydown="handleKeypress"
 				name="school-selection" id="school-selection"
 				placeholder="Enter your school..."/>
@@ -374,9 +374,9 @@
 
 		<!-- Summary -->
 		<transition name="floatIn">
-			<div class="application-field" v-if="currentFieldIndex === 14">
+			<div class="application-field" id="summary-page" v-if="currentFieldIndex === 14">
 				<h1>Summary</h1>
-				<p>Name: <span class="login-link">{{ $root.$data.user.application.name || '[name]' }}</span></p>
+				<p>Name: {{ $root.$data.user.application.name || '[name]' }}</p>
 				<p>Gender (optional): <span class="login-link" @click="currentFieldIndex = 5">{{ $root.$data.user.application.gender || '[gender]' }}</span></p>
 				<p>School: <span class="login-link" @click="currentFieldIndex = 1">{{ $root.$data.user.application.school || '[school]' }}</span></p>
 				<p>Major: <span class="login-link" @click="currentFieldIndex = 3">{{ $root.$data.user.application.major || '[major]' }}</span></p>
@@ -387,11 +387,11 @@
 				<p>First hackathon?: <span class="login-link" @click="currentFieldIndex = 8">{{ ($root.$data.user.application.first ? 'Yes' : 'No') || '[first]' }}</span></p>
 				<p>Dietary restrictions: <span class="login-link" @click="currentFieldIndex = 9">{{ $root.$data.user.application.dietary || '[diet]' }}</span></p>
 				<p>Travel reimbursement: <span class="login-link" @click="currentFieldIndex = 10">{{ ($root.$data.user.application.travel ? 'Yes' : 'No') || '[travel]' }}</span></p>
-				<p>Resume (optional): <span class="login-link" @click="currentFieldIndex = 12">{{ $root.$data.user.application.resume || '[resume]' }}</span></p>
 				<p>Link (optional): <span class="login-link" @click="currentFieldIndex = 11">{{ $root.$data.user.application.link || '[link]' }}</span></p>
+				<p>Resume (optional): <span class="login-link" @click="currentFieldIndex = 12">{{ $root.$data.user.application.resume || '[resume]' }}</span></p>
 
 				<div class="button-container">
-					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<p @click="currentFieldIndex -= 1; ">Back</p>
 					<transition name="fade">
 						<button @click="submitApplication">Finish!</button>
 					</transition>
@@ -399,5 +399,9 @@
 			</div>
 		</transition>
 
-	</div>
+		<div id="progress-bar">
+
+		</div>
+
+	</div> <!-- Application Form -->
 </main>
