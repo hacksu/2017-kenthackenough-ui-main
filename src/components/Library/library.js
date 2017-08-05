@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 
-import template from './home.html';
+import template from './library.html';
 
 import CustomizePerson from 'components/CustomizePerson/customizePerson';
 import Person from 'components/Person/person';
@@ -11,7 +11,7 @@ import Ogre from 'components/Ogre/ogre';
 import Ent from 'components/Ent/ent';
 
 // Import styles
-import './home.scss';
+// import './home.scss';
 import 'components/Person/person.scss';
 
 Vue.use(VeeValidate);
@@ -114,28 +114,9 @@ export default Vue.extend({
     },
       
     move(){
-      for (var i = 0; i < this.slash.length; i++) {
-        if (this.slash[i] && i < (this.slash.length - 1)) {
-          this.slash[i] = false;
-          this.slash[i + 1] = true;
-        } else {
-          this.slash[i] = false;
-        }
-      }
-        
-      if (this.monster === 'none') {
-        this.newMonster();
-      }
-        
+      
       if (this.$refs.you) {
         this.$refs.you.animate();
-      }
-      if (this.monster === 'ogre' && this.$refs.homeOgre !== undefined) {
-        if (this.$refs.homeOgre) {
-          this.$refs.homeOgre.animate();
-        }
-      } else if (this.monster === 'ent' && this.$refs.homeEnt !== undefined){
-        this.$refs.homeEnt.animate();
       }
         
       if (this.paused) {
@@ -169,24 +150,7 @@ export default Vue.extend({
       }
     
     },
-      
-    newMonster() {
-      this.monster = 'none';
-      var i = Math.floor(Math.random() * this.monsters.length);
-      this.monster = this.monsters[i];
-    },
-    
-    hurtMonster() {
-      var i = Math.floor(Math.random() * this.slash.length);
-      this.slash[i] = true;
-        
-      if (this.monster === 'ogre') {
-        this.$refs.homeOgre.hurt();
-      }
-      if (this.monster === 'ent') {
-        this.$refs.homeEnt.hurt();
-      }
-    }
+
   }
 
 });

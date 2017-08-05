@@ -144,7 +144,7 @@ export default Vue.extend({
         return '120px';
       } else {
         this.inFront = false;
-        return (this.yTop + 1) + 'px';
+        return (this.yTop) + 'px';
       }
     },
     leftCoord: function() {
@@ -315,9 +315,9 @@ export default Vue.extend({
       
     move: function() {
 
-      // if (this.topCollision() && !this.isGrounded()){
-      //   this.yVel = 1;
-      // }
+      if (this.topCollision() && !this.isGrounded()){
+        this.yVel = 1;
+      }
       this.yTop += (Math.floor(this.yVel * 10) / 10);
       this.xLHS += (Math.floor(this.xVel * 10) / 10);
       this.yBottom = this.yTop + 14;
@@ -343,48 +343,48 @@ export default Vue.extend({
     },
       
     isGrounded: function() {
-      if (this.yBottom < 213) {
-        return false;
+//      if (this.yBottom < 213) {
+//        return false;
+//      } else {
+//        return true;
+//      }
+      var gridLocY = Math.floor(this.yBottom / 20);
+      var gridLocX = Math.floor((this.xLHS + 16) / 20) - 3;
+      var grid = this.$parent.$refs.home.grid;
+      var tilesToCheck = [];
+      if (grid[gridLocY + 1] !== undefined) {
+        if (grid[gridLocY + 1][gridLocX] !== undefined) {
+          tilesToCheck.push(grid[gridLocY + 1][gridLocX]);
+        }
+        
       } else {
-        return true;
+        return false;
       }
-    //   var gridLocY = Math.floor(this.yBottom / 20);
-    //   var gridLocX = Math.floor((this.xLHS + 16) / 20) - 3;
-    //   var grid = this.$parent.$refs.home.grid;
-    //   var tilesToCheck = [];
-    //   if (grid[gridLocY + 1] !== undefined) {
-    //     if (grid[gridLocY + 1][gridLocX] !== undefined) {
-    //       tilesToCheck.push(grid[gridLocY + 1][gridLocX]);
-    //     }
-        
-    //   } else {
-    //     return false;
-    //   }
     
-    //   for (var tile in tilesToCheck) {
-    //     if (tilesToCheck[tile] === 'f') {
-    //       return true;
-    //     }
-    //   }
+      for (var tile in tilesToCheck) {
+        if (tilesToCheck[tile] === 'f') {
+          return true;
+        }
+      }
 
-    //   gridLocX = Math.floor((this.xRHS - 5) / 20) - 3;
-    //   tilesToCheck = [];
-    //   if (grid[gridLocY + 1] !== undefined) {
-    //     if (grid[gridLocY + 1][gridLocX] !== undefined) {
-    //       tilesToCheck.push(grid[gridLocY + 1][gridLocX]);
-    //     }
+      gridLocX = Math.floor((this.xRHS - 5) / 20) - 3;
+      tilesToCheck = [];
+      if (grid[gridLocY + 1] !== undefined) {
+        if (grid[gridLocY + 1][gridLocX] !== undefined) {
+          tilesToCheck.push(grid[gridLocY + 1][gridLocX]);
+        }
         
-    //   } else {
-    //     return false;
-    //   }
+      } else {
+        return false;
+      }
     
-    //   for (tile in tilesToCheck) {
-    //     if (tilesToCheck[tile] === 'f') {
-    //       return true;
-    //     }
-    //   }
+      for (tile in tilesToCheck) {
+        if (tilesToCheck[tile] === 'f') {
+          return true;
+        }
+      }
     
-    //   return false;
+      return false;
     },
       
     topCollision: function() {
@@ -421,34 +421,34 @@ export default Vue.extend({
     },
     
     moveRight: function() {
-      // // BOUNDARY CHECK:
-      // var gridLocY = Math.floor(this.yBottom / 20);
-      // var gridLocX = Math.floor((this.xRHS - 5) / 20) - 3; // Grid rendering is 3 off on the x axis
-      // var grid = this.$parent.$refs.home.grid;
-      // var tilesToCheck = [];
-      // // This first 'if' makes sure we're not looking for data inside an undefined obj
-      // if (grid[gridLocY] !== undefined) {
-      //   if (grid[gridLocY][gridLocX + 1] !== undefined) {
-      //     tilesToCheck.push(grid[gridLocY][gridLocX + 1]);
-      //   } else {
-      //     return;
-      //   }
-      // } else {
-      //   return;
-      // }
-      // if (grid[gridLocY - 1] !== undefined){
-      //   if (grid[gridLocY - 1][gridLocX + 1] !== undefined) {
-      //     tilesToCheck.push(grid[gridLocY - 1][gridLocX + 1]);
-      //   } else {
-      //     return;
-      //   }
-      // }
+       // BOUNDARY CHECK:
+      var gridLocY = Math.floor(this.yBottom / 20);
+      var gridLocX = Math.floor((this.xRHS - 5) / 20) - 3; // Grid rendering is 3 off on the x axis
+      var grid = this.$parent.$refs.home.grid;
+      var tilesToCheck = [];
+       // This first 'if' makes sure we're not looking for data inside an undefined obj
+      if (grid[gridLocY] !== undefined) {
+        if (grid[gridLocY][gridLocX + 1] !== undefined) {
+          tilesToCheck.push(grid[gridLocY][gridLocX + 1]);
+        } else {
+          return;
+        }
+      } else {
+        return;
+      }
+      if (grid[gridLocY - 1] !== undefined){
+        if (grid[gridLocY - 1][gridLocX + 1] !== undefined){
+          tilesToCheck.push(grid[gridLocY - 1][gridLocX + 1]);
+        } else {
+          return;
+        }
+      }
       
-      // for (var tile in tilesToCheck) {
-      //   if (tilesToCheck[tile] === 'f') {
-      //     return;
-      //   }
-      // }
+      for (var tile in tilesToCheck) {
+        if (tilesToCheck[tile] === 'f') {
+          return;
+        }
+      }
       
       this.xVel = this.speed;
       this.facing = 'scale(1,1)';
@@ -457,33 +457,33 @@ export default Vue.extend({
     moveLeft: function() {
       // BOUNDARY CHECK:
 
-      // var gridLocY = Math.floor((this.yBottom + 10) / 20);
-      // var gridLocX = Math.floor((this.xLHS + 15) / 20) - 3;
-      // var grid = this.$parent.$refs.home.grid;
-      // var tilesToCheck = [];
-      // // This first 'if' makes sure we're not looking for data inside an undefined obj
-      // if (grid[gridLocY] !== undefined) {
-      //   if (grid[gridLocY][gridLocX - 1] !== undefined) {
-      //     tilesToCheck.push(grid[gridLocY][gridLocX - 1]);
-      //   } else {
-      //     return;
-      //   }
-      // } else {
-      //   return;
-      // }
-      // if (grid[gridLocY - 1] !== undefined){
-      //   if (grid[gridLocY - 1][gridLocX - 1] !== undefined) {
-      //     tilesToCheck.push(grid[gridLocY - 1][gridLocX - 1]);
-      //   } else {
-      //     return;
-      //   }
-      // }
+      var gridLocY = Math.floor((this.yBottom + 10) / 20);
+      var gridLocX = Math.floor((this.xLHS + 15) / 20) - 3;
+      var grid = this.$parent.$refs.home.grid;
+      var tilesToCheck = [];
+      // This first 'if' makes sure we're not looking for data inside an undefined obj
+      if (grid[gridLocY] !== undefined) {
+        if (grid[gridLocY][gridLocX - 1] !== undefined) {
+          tilesToCheck.push(grid[gridLocY][gridLocX - 1]);
+        } else {
+          return;
+        }
+      } else {
+        return;
+      }
+      if (grid[gridLocY - 1] !== undefined){
+        if (grid[gridLocY - 1][gridLocX - 1] !== undefined){
+          tilesToCheck.push(grid[gridLocY - 1][gridLocX - 1]);
+        } else {
+          return;
+        }
+      }
       
-      // for (var tile in tilesToCheck) {
-      //   if (tilesToCheck[tile] === 'f') {
-      //     return;
-      //   }
-      // }
+      for (var tile in tilesToCheck) {
+        if (tilesToCheck[tile] === 'f') {
+          return;
+        }
+      }
       this.xVel = (0 - this.speed);
       this.facing = 'scale(-1,1)';
     }

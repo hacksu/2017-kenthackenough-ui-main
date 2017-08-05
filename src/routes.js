@@ -2,6 +2,7 @@ import Home from 'components/Home/home';
 import Application from 'components/Application/application';
 import NotFound from 'components/NotFound/notFound';
 import EventInfo from 'components/EventInfo/eventInfo';
+import Library from 'components/Library/library';
 
 const routes = [
   {
@@ -16,6 +17,10 @@ const routes = [
   {
     path: '/info',
     component: EventInfo
+  },
+  {
+    path: '/library',
+    component: Library
   },
   // {
   //   path: '/oauth/callback',
