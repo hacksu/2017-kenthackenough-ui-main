@@ -107,3 +107,17 @@ main {
      cursor: pointer;
   }
 }
+
+#apply {
+    animation: flash 1s infinite;
+    &:hover {
+    cursor: pointer;
+    }
+}
+
+@keyframes flash {
+  0%   { opacity: 0; }
+  50%  { opacity: 0; }
+  51%  { opacity: 1; }
+  100% { opacity: 1; }
+}

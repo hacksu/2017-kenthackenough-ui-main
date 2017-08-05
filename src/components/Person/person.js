@@ -8,28 +8,28 @@ import './person.scss';
 //var eyeSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standEyes.png';
 //var shirtSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt3.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt4.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt5.png'];
 var hairSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair2.png'];
-var shirtSrc = [
-  {
-    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shirt1.png',
-    name: 'Classic'
-  },
-  {
-    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png',
-    name: 'hoodie'
-  },
-  {
-    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
-    name: 'sweater'
-  },
-  {
-    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
-    name: 'suit'
-  },
-  {
-    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
-    name: 'tank'
-  }
-];
+//var shirtSrc = [
+//  {
+//    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shirt1.png',
+//    name: 'Classic'
+//  },
+//  {
+//    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png',
+//    name: 'hoodie'
+//  },
+//  {
+//    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+//    name: 'sweater'
+//  },
+//  {
+//    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+//    name: 'suit'
+//  },
+//  {
+//    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+//    name: 'tank'
+//  }
+//];
 //var pantsSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standPants1.png'];
 //var shoesSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShoes1.png'];
 
@@ -48,14 +48,40 @@ export default Vue.extend({
         // Sprite sheets loaded
       skin: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/skin.png',
       shirt: 0,
-        // SUIT LINK:   https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png
-        // TANK TOP LINK: https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png
+      shirtSrc: [
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shirt1.png',
+          name: 'Classic',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png',
+          name: 'hoodie',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+          name: 'sweater',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+          name: 'suit',
+          lock: true
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+          name: 'tank',
+          lock: true
+        }
+      ],
       pants: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/pants1.png',
       hair: 0,
       shoes: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shoes1.png',
       eyes: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/eyes1.png',
         
       customize: 'none', // Indicates which customize menu is loaded
+      locked: false,
       inFront: false,
         
         // Image stats
@@ -108,6 +134,7 @@ export default Vue.extend({
     topCoord: function() {
       if (this.customize === 'character') {
         this.inFront = true;
+        this.locked = false;
         return '160px';
       } else if (this.customize === 'face') {
         this.inFront = true;
@@ -172,7 +199,7 @@ export default Vue.extend({
   methods: {
     loadSprites() {
       this.sprite.skin.src = this.skin;
-      this.sprite.shirt.src = shirtSrc[this.shirt].url;
+      this.sprite.shirt.src = this.shirtSrc[this.shirt].url;
       this.sprite.hair.src = hairSrc[this.hair];
       this.sprite.pants.src = this.pants;
       this.sprite.shoes.src = this.shoes;
@@ -182,8 +209,17 @@ export default Vue.extend({
     randomize: function() {
       this.skinTone = Math.floor(Math.random() * 8);
       this.hairTone = Math.floor(Math.random() * 13);
+     
+      // This if statement avoids very dark skin with very light hair
+      // I'm worried it looks like blackface
+      if (this.skinTone <= 4){
+        while (this.hairTone >= this.skinTone + 2) {
+          this.hairTone = Math.floor(Math.random() * 13);
+        }
+      }
+        
       //this.eyesTone = Math.floor(Math.random() * 5);
-//      this.shirt = shirtSrc[Math.floor(Math.random() * shirtSrc.length)];
+      //      this.shirt = shirtSrc[Math.floor(Math.random() * shirtSrc.length)];
       this.hair = Math.floor(Math.random() * hairSrc.length);
       this.sprite.hair.src = hairSrc[this.hair];
     },
@@ -201,13 +237,18 @@ export default Vue.extend({
       
     changeShirt(dir) {
       this.shirt += dir;
-      if (this.shirt > (shirtSrc.length - 1)) {
+      if (this.shirt > (this.shirtSrc.length - 1)) {
         this.shirt = 0;
       }
       if (this.shirt < 0) {
-        this.shirt = (shirtSrc.length - 1);
+        this.shirt = (this.shirtSrc.length - 1);
       }
-      this.sprite.shirt.src = shirtSrc[this.shirt].url;
+      if (this.shirtSrc[this.shirt].lock) {
+        this.locked = true;
+        return;
+      }
+      this.locked = false;
+      this.sprite.shirt.src = this.shirtSrc[this.shirt].url;
     },
       
     animate: function() {

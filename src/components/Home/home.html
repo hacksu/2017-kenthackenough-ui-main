@@ -4,8 +4,13 @@
         <img src="~assets/images/combined_logo_4x_color_17.png" title="Kent Hack Enough Logo" class="combined-logo">
         <div class="date-location-container">
             <h2 class="date">October 6 - 8th, 2017</h2>
-            <h3 class="location">Kent State University Library</h3>
+            <h3 class="location">Kent State University Library</h3><br>
+            <h3 id="apply"
+                v-if="$parent.user.application.name == ''"
+                v-on:click="togglePaused()"
+                >Apply Now!!!</h3>
         </div>
+            
         <div class="darken" @click="paused = false" 
              v-if="paused"></div>
         <transition name="modal-slideIn">

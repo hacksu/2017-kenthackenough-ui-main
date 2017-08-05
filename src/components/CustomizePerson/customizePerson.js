@@ -80,6 +80,7 @@ export default Vue.extend({
 
   beforeDestroy: function() {
     this.$parent.$refs.you.customize = 'none';
+    this.$parent.$refs.you.locked = false;
   },
 
   methods: {
