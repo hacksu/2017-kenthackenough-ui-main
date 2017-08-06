@@ -72,7 +72,7 @@ var app1 = new Vue({
           'gender': '',         // gender
           'major': '',          // degree
           'conduct': false,       // agree to MLH code of conduct?
-          'travel': false,        // need travel reimbursement?
+          'travel': null,        // need travel reimbursement?
           'waiver': false,        // agreed to waiver?
           'resume': '',         // the filename of their resume
           'link': '',            // a github/linkedin link
@@ -251,11 +251,14 @@ var app1 = new Vue({
     },
 
     createApplication() {
-      return usersResource.post('/application', this.application)
+      if (this.user.name.application === '') {
+        this.user.name.application = 'Hacker';
+      }
+      return usersResource.post('/application', this.user.application)
       .then((response) => {
-        console.log('user application loaded!', response.data);
+        console.log('user application posted!', response.data);
 
-        this.user = response.data;
+        return response;
       })
       .catch((error) => {
         throw error;

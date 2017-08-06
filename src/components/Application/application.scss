@@ -35,7 +35,10 @@ main {
 	overflow-y: scroll;
 	text-align: center;
 
-	h1 {
+	border: none;
+	box-shadow: none;
+
+	h1, legend {
 		font-size: 4rem;
 		color: white;
 		text-shadow: -4px 4px 0px $midnight-dark;
@@ -113,25 +116,33 @@ main {
 		max-width: 500px;
 		margin: 0 auto;
 
-		button {
+		input[type="radio"] {
+			width: 0;
+			height: 0;
+			opacity: 0;
+
+			margin-bottom: 10px;
+		}
+
+		input[type="radio"] + label {
 			flex-shrink: 0;
 			display: block;
-			background: rgba($white, 0.3);
-			border-color: $white;
+			background-color: rgba($white, 0.3);
 
-			color: $black;
+			border-radius: 0;
+
+			border: 4px solid $white;
+
+			padding: 6px 12px;
+
+			font-size: 2rem;
+			line-height: 2.5rem;
+
+			cursor: pointer;
+
+			color: $white;
 			text-shadow: none;
-
-			&:focus, &:active {
-				background-color: $shamrock;
-				border-color: $shamrock-dark;
-
-				z-index: 10;
-				transform: translateY(-4px);
-
-				color: white;
-				text-shadow: -4px 4px 0px $midnight-dark;
-			}
+			opacity: 1;
 
 			&:hover {
 				z-index: 10;
@@ -142,6 +153,17 @@ main {
 				font-size: 1.5rem;
 				line-height: 1.5rem;
 			}
+		}
+
+		input[type="radio"]:checked + label {
+			background-color: $shamrock;
+			border-color: $shamrock-dark;
+
+			z-index: 10;
+			transform: translateY(-4px);
+
+			color: white;
+			text-shadow: -4px 4px 0px $midnight-dark;
 		}
 	}
 
@@ -242,8 +264,10 @@ main {
 .fade-enter-active, .fade-leave-active {
 	transition-delay: 0.5s;
 	transition: opacity 0.5s ease;
+	position: relative;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
 	opacity: 0;
 	transition-delay: 0s;
+	position: absolute;
 }

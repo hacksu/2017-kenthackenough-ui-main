@@ -1,7 +1,7 @@
 <main>
 	<div id="scaling-container" v-bind:style="scalingObject" ref="scalingContainer">
+		<img src="https://files.slack.com/files-pri/T04229HH8-F6GACRBGR/kheforest.png" class="test">
 		<grid style="position: absolute;"></grid>
-
 		<person ref="you" paused="paused"></person>
 		<ogre ref="appOgre" v-if="monster == 'ogre'"></ogre>
 		<ent ref="appEnt" v-if="monster == 'ent'"></ent>
@@ -293,20 +293,23 @@
 
 		<!-- Travel -->
 		<transition name="floatIn">
-			<div class="application-field" v-if="currentFieldIndex === 10">
-				<h1>Will you require travel reimbursement?</h1>
+			<fieldset class="application-field" v-if="currentFieldIndex === 10">
+				<legend>Will you require travel reimbursement?</legend>
 				<div class="button-group">
-					<button
-					@click="$root.$data.user.application.travel = true" 
-					@focus="$root.$data.user.application.travel = true" 
-					@keydown.enter="$root.$data.user.application.travel = true; goToNextField();">
-					Yes</button>
+					<input 
+					type="radio"
+					id="travel-yes"
+					value="true"
+					v-model="$root.$data.user.application.travel"/>
+					<label for="travel-yes">Yes</label>
 
-					<button
-					@click="$root.$data.user.application.travel = false "
-					@focus="$root.$data.user.application.travel = false "
-					@keydown.enter="$root.$data.user.application.travel = false; goToNextField();">
-					No</button>
+					<input 
+					type="radio"
+					id="travel-no"
+					value="false"
+					v-model="$root.$data.user.application.travel"/>
+					<label for="travel-no">No</label>
+
 				</div>
 
 				<div class="button-container">
@@ -315,7 +318,7 @@
 						<button v-show="$root.$data.user.application.travel !== null" @click="goToNextField">Next</button>
 					</transition>
 				</div>
-			</div>
+			</fieldset>
 		</transition>
 
 		<!-- Link -->

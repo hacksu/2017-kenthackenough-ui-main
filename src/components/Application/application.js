@@ -162,6 +162,16 @@ export default Vue.extend({
       }
     },
 
+    submitApplication() {
+      this.$root.createApplication()
+      .then((response) => {
+        console.log('response', response.data);
+      })
+      .catch((error) => {
+        console.log('Error', error);
+      });
+    },
+
   },
 
   mounted: function() {
