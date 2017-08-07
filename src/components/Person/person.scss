@@ -42,3 +42,18 @@ canvas {
   image-rendering: -o-crisp-edges; 
   image-rendering: pixelated; 
 }
+
+#locked {
+  image-rendering: pixelated;
+    
+    position: absolute;
+    z-index: 10000;
+    transform: scale(1.5);
+    top: -4px;
+    left: -4px;
+}
+
+#lockedPic {
+    position: absolute;
+    z-index: 10000;
+}
