@@ -42,9 +42,14 @@ export default Vue.extend({
       slashCount: 0,
       
       schools: ['Kent', 'Akron', 'Case'],
+      genders: ['Male', 'Female'],
 
       scalingObject: {
         transform: ''
+      },
+
+      other: {
+        year: false,
       },
 
       currentFieldIndex: -1,
@@ -164,6 +169,16 @@ export default Vue.extend({
 
     submitApplication() {
       this.$root.createApplication()
+      .then((response) => {
+        console.log('response', response.data);
+      })
+      .catch((error) => {
+        console.log('Error', error);
+      });
+    },
+
+    updateApplication() {
+      this.$root.updateApplication()
       .then((response) => {
         console.log('response', response.data);
       })

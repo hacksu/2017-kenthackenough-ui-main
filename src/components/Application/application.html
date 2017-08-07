@@ -17,8 +17,8 @@
 
 		<!-- School -->
 		<transition name="floatIn">
-			<div class="application-field" v-if="currentFieldIndex === 1">
-				<h1 @click="currentFieldIndex = 14">What school do you go to?</h1>
+			<fieldset class="application-field" v-if="currentFieldIndex === 1">
+				<legend @click="currentFieldIndex = 14">What school do you go to?</legend>
 				<input v-focus type="text" v-model="$root.$data.user.application.school" list="school-list" v-on:input="sourceChanged" v-on:keydown="handleKeypress"
 				name="school-selection" id="school-selection"
 				placeholder="Enter your school..."/>
@@ -31,55 +31,76 @@
 						<button v-show="$root.$data.user.application.school !== ''" @click="goToNextField">Next</button>
 					</transition>
 				</div>
-			</div>
+			</fieldset>
 		</transition>
 
 		<!-- Year -->
 		<transition name="floatIn">
-			<div class="application-field" v-if="currentFieldIndex === 2">
-				<h1>What's your class standing?</h1>
+			<fieldset class="application-field" v-if="currentFieldIndex === 2">
+				<legend>What's your class standing?</legend>
 				<div class="button-group">
-					<button
-					@click="$root.$data.user.application.year = 'High Schooler'" 
+
+					<input 
+					type="radio"
+					id="year-hs"
+					value="High Schooler"
 					@focus="$root.$data.user.application.year = 'High Schooler'" 
-					@keydown.enter="$root.$data.user.application.year = 'High Schooler'; goToNextField();">
-					High Schooler</button>
+					@keydown.enter="$root.$data.user.application.year = 'm'; goToNextField();"
+					v-model="$root.$data.user.application.year"/>
+					<label for="year-hs">High Schooler</label>
 
-					<button
-					@click="$root.$data.user.application.year = 'Freshman' "
-					@focus="$root.$data.user.application.year = 'Freshman' "
-					@keydown.enter="$root.$data.user.application.year = 'Freshman'; goToNextField();">
-					Freshman</button>
+					<input 
+					type="radio"
+					id="year-freshman"
+					value="Freshman"
+					@focus="$root.$data.user.application.year = 'Freshman'" 
+					@keydown.enter="$root.$data.user.application.year = 'Freshman'; goToNextField();"
+					v-model="$root.$data.user.application.year"/>
+					<label for="year-freshman">Freshman</label>
 
-					<button
-					@click="$root.$data.user.application.year = 'Sophomore' "
-					@focus="$root.$data.user.application.year = 'Sophomore' "
-					@keydown.enter="$root.$data.user.application.year = 'Sophomore'; goToNextField();">
-					Sophomore</button>
+					<input 
+					type="radio"
+					id="year-sophomore"
+					value="Sophomore"
+					@focus="$root.$data.user.application.year = 'Sophomore'" 
+					@keydown.enter="$root.$data.user.application.year = 'Sophomore'; goToNextField();"
+					v-model="$root.$data.user.application.year"/>
+					<label for="year-sophomore">Sophomore</label>
 
-					<button
-					@click="$root.$data.user.application.year = 'Junior' "
-					@focus="$root.$data.user.application.year = 'Junior' "
-					@keydown.enter="$root.$data.user.application.year = 'Junior'; goToNextField();">
-					Junior</button>
+					<input 
+					type="radio"
+					id="year-junior"
+					value="Junior"
+					@focus="$root.$data.user.application.year = 'Junior'" 
+					@keydown.enter="$root.$data.user.application.year = 'Junior'; goToNextField();"
+					v-model="$root.$data.user.application.year"/>
+					<label for="year-junior">Junior</label>
 
-					<button
-					@click="$root.$data.user.application.year = 'Senior' "
-					@focus="$root.$data.user.application.year = 'Senior' "
-					@keydown.enter="$root.$data.user.application.year = 'Senior'; goToNextField();">
-					Senior</button>
+					<input 
+					type="radio"
+					id="year-senior"
+					value="Senior"
+					@focus="$root.$data.user.application.year = 'Senior'" 
+					@keydown.enter="$root.$data.user.application.year = 'Senior'; goToNextField();"
+					v-model="$root.$data.user.application.year"/>
+					<label for="year-senior">Senior</label>
 
-					<button
-					@click="$root.$data.user.application.year = 'Graduate Student' "
-					@focus="$root.$data.user.application.year = 'Graduate Student' "
-					@keydown.enter="$root.$data.user.application.year = 'Graduate Student'; goToNextField();">
-					Graduate Student</button>
+					<input 
+					type="radio"
+					id="year-grad"
+					value="Graduate Student"
+					@focus="$root.$data.user.application.year = 'Graduate Student'" 
+					@keydown.enter="$root.$data.user.application.year = 'Graduate Student'; goToNextField();"
+					v-model="$root.$data.user.application.year"/>
+					<label for="year-grad">Graduate Student</label>
 
-					<button
-					@click="$root.$data.user.application.year = 'Other' "
-					@focus="$root.$data.user.application.year = 'Other' "
-					@keydown.enter="$root.$data.user.application.year = 'Other'; goToNextField();">
-					Other</button>
+					<input 
+					type="radio"
+					id="year-other"
+					value="Other"
+					@focus="$root.$data.user.application.year = 'Other'" 
+					v-model="$root.$data.user.application.year"/>
+					<label for="year-other">Other</label>
 				</div>
 
 				<div class="button-container">
@@ -88,13 +109,13 @@
 						<button v-show="$root.$data.user.application.year !== ''" @click="goToNextField">Next</button>
 					</transition>
 				</div>
-			</div>
+			</fieldset>
 		</transition>
 
 		<!-- Major -->
 		<transition name="floatIn">
-			<div class="application-field" v-if="currentFieldIndex === 3">
-				<h1>What's your major/field of study?</h1>
+			<fieldset class="application-field" v-if="currentFieldIndex === 3">
+				<legend>What's your major/field of study?</legend>
 				<input v-focus type="text" v-model="$root.$data.user.application.major" v-on:keydown="handleKeypress" id="major-selection"
 				placeholder="Enter your major..."/>
 
@@ -104,13 +125,13 @@
 						<button v-show="$root.$data.user.application.major !== ''" @click="goToNextField">Next</button>
 					</transition>
 				</div>
-			</div>
+			</fieldset>
 		</transition>
 
 		<!-- Age -->
 		<transition name="floatIn">
-			<div class="application-field" v-if="currentFieldIndex === 4">
-				<h1>How young are you?</h1>
+			<fieldset class="application-field" v-if="currentFieldIndex === 4">
+				<legend>How young are you?</legend>
 				<input v-focus type="number" min="1" max="110" v-model="$root.$data.user.application.age" v-on:keydown="handleKeypress" id="age-selection"
 				placeholder="Age..."/>
 
@@ -120,7 +141,7 @@
 						<button v-show="$root.$data.user.application.age !== ''" @click="goToNextField">Next</button>
 					</transition>
 				</div>
-			</div>
+			</fieldset>
 		</transition>
 
 		<!-- Gender -->
@@ -128,7 +149,15 @@
 			<div class="application-field" v-if="currentFieldIndex === 5">
 				<h1>What's your gender? (Optional)</h1>
 				<div class="button-group">
-					<button
+
+					<input v-focus type="text" v-model="$root.$data.user.application.gender" list="gender-list" v-on:keydown="handleKeypress"
+					name="gender-selection" id="gender-selection"
+					placeholder="Enter your gender..."/>
+					<datalist id="gender-list">
+						<option v-for="gender in genders" v-bind:value="gender"  v-bind:label="gender"></option>
+					</datalist>
+
+					<!-- <button
 					@click="$root.$data.user.application.gender = 'Male'" 
 					@focus="$root.$data.user.application.gender = 'Male'" 
 					@keydown.enter="$root.$data.user.application.gender = 'Male'; goToNextField();">
@@ -144,7 +173,7 @@
 					@click="$root.$data.user.application.gender = 'Other' "
 					@focus="$root.$data.user.application.gender = 'Other' "
 					@keydown.enter="$root.$data.user.application.gender = 'Other'; goToNextField();">
-					Other</button>
+					Other</button> -->
 				</div>
 
 				<div class="button-container">
@@ -175,38 +204,53 @@
 
 		<!-- Shirt Size -->
 		<transition name="floatIn">
-			<div class="application-field" v-if="currentFieldIndex === 7">
-				<h1>What size shirt would you like?</h1>
+			<fieldset class="application-field" v-if="currentFieldIndex === 7">
+				<legend>What size shirt would you like?</legend>
 				<div class="button-group">
-					<button
-					@click="$root.$data.user.application.shirt = 'small'" 
-					@focus="$root.$data.user.application.shirt = 'small'" 
-					@keydown.enter="$root.$data.user.application.shirt = 'small'; goToNextField();">
-					Small</button>
+					<input 
+					type="radio"
+					id="shirt-s"
+					value="S"
+					@focus="$root.$data.user.application.shirt = 'S'" 
+					@keydown.enter="$root.$data.user.application.shirt = 'S'; goToNextField();"
+					v-model="$root.$data.user.application.shirt"/>
+					<label for="shirt-s">Small</label>
 
-					<button
-					@click="$root.$data.user.application.shirt = 'medium'" 
-					@focus="$root.$data.user.application.shirt = 'medium'" 
-					@keydown.enter="$root.$data.user.application.shirt = 'medium'; goToNextField();">
-					Medium</button>
+					<input 
+					type="radio"
+					id="shirt-m"
+					value="M"
+					@focus="$root.$data.user.application.shirt = 'M'" 
+					@keydown.enter="$root.$data.user.application.shirt = 'M'; goToNextField();"
+					v-model="$root.$data.user.application.shirt"/>
+					<label for="shirt-m">Medium</label>
 
-					<button
-					@click="$root.$data.user.application.shirt = 'large'" 
-					@focus="$root.$data.user.application.shirt = 'large'" 
-					@keydown.enter="$root.$data.user.application.shirt = 'large'; goToNextField();">
-					Large</button>
+					<input 
+					type="radio"
+					id="shirt-l"
+					value="L"
+					@focus="$root.$data.user.application.shirt = 'L'" 
+					@keydown.enter="$root.$data.user.application.shirt = 'L'; goToNextField();"
+					v-model="$root.$data.user.application.shirt"/>
+					<label for="shirt-l">Large</label>
 
-					<button
-					@click="$root.$data.user.application.shirt = 'x-large'" 
-					@focus="$root.$data.user.application.shirt = 'x-large'" 
-					@keydown.enter="$root.$data.user.application.shirt = 'x-large'; goToNextField();">
-					X-Large</button>
+					<input 
+					type="radio"
+					id="shirt-xl"
+					value="XL"
+					@focus="$root.$data.user.application.shirt = 'XL'" 
+					@keydown.enter="$root.$data.user.application.shirt = 'XL'; goToNextField();"
+					v-model="$root.$data.user.application.shirt"/>
+					<label for="shirt-xl">X-Large</label>
 
-					<button
-					@click="$root.$data.user.application.shirt = 'x-x-large'" 
-					@focus="$root.$data.user.application.shirt = 'x-x-large'" 
-					@keydown.enter="$root.$data.user.application.shirt = 'x-x-large'; goToNextField();">
-					2X-Large</button>
+					<input 
+					type="radio"
+					id="shirt-xxl"
+					value="XXL"
+					@focus="$root.$data.user.application.shirt = 'XXL'" 
+					@keydown.enter="$root.$data.user.application.shirt = 'XXL'; goToNextField();"
+					v-model="$root.$data.user.application.shirt"/>
+					<label for="shirt-xxl">2X-Large</label>
 				</div>
 
 				<div class="button-container">
@@ -215,25 +259,31 @@
 						<button v-show="$root.$data.user.application.shirt !== ''" @click="goToNextField">Next</button>
 					</transition>
 				</div>
-			</div>
+			</fieldset>
 		</transition>
 
 		<!-- First? -->
 		<transition name="floatIn">
-			<div class="application-field" v-if="currentFieldIndex === 8">
-				<h1>Is this your first hackathon?</h1>
+			<fieldset class="application-field" v-if="currentFieldIndex === 8">
+				<legend>Is this your first hackathon?</legend>
 				<div class="button-group">
-					<button
-					@click="$root.$data.user.application.first = true" 
+					<input 
+					type="radio"
+					id="first-yes"
+					value="true"
 					@focus="$root.$data.user.application.first = true" 
-					@keydown.enter="$root.$data.user.application.first = true; goToNextField();">
-					Yes</button>
+					@keydown.enter="$root.$data.user.application.first = true; goToNextField();"
+					v-model="$root.$data.user.application.first"/>
+					<label for="first-yes">Yes</label>
 
-					<button
-					@click="$root.$data.user.application.first = false "
-					@focus="$root.$data.user.application.first = false "
-					@keydown.enter="$root.$data.user.application.first = false; goToNextField();">
-					No</button>
+					<input 
+					type="radio"
+					id="first-no"
+					value="false"
+					@focus="$root.$data.user.application.first = false" 
+					@keydown.enter="$root.$data.user.application.first = false; goToNextField();"
+					v-model="$root.$data.user.application.first"/>
+					<label for="first-no">No</label>
 				</div>
 
 				<div class="button-container">
@@ -242,7 +292,7 @@
 						<button v-show="$root.$data.user.application.first !== null" @click="goToNextField">Next</button>
 					</transition>
 				</div>
-			</div>
+			</fieldset>>
 		</transition>
 
 		<!-- Diet -->
@@ -250,41 +300,64 @@
 			<div class="application-field" v-if="currentFieldIndex === 9">
 				<h1>Any dietary restrictions?</h1>
 				<div class="button-group">
-					<button
-					@click="$root.$data.user.application.dietary = 'vegetarian'" 
-					@focus="$root.$data.user.application.dietary = 'vegetarian'" 
-					@keydown.enter="$root.$data.user.application.dietary = 'vegetarian'; goToNextField();">
-					Vegetarian</button>
+					<input 
+					class="checkbox-button"
+					type="checkbox"
+					id="diet-vegetarian"
+					value="vegetarian"
+					v-model="$root.$data.user.application.dietary"/>
+					<label for="diet-vegetarian">Vegetarian</label>
 
-					<button
-					@click="$root.$data.user.application.dietary = 'vegan'" 
-					@focus="$root.$data.user.application.dietary = 'vegan'" 
-					@keydown.enter="$root.$data.user.application.dietary = 'vegan'; goToNextField();">
-					Vegan</button>
+					<input 
+					class="checkbox-button"
+					type="checkbox"
+					id="diet-vegan"
+					value="vegan"
+					v-model="$root.$data.user.application.dietary"/>
+					<label for="diet-vegan">Vegan</label>
 
-					<button
-					@click="$root.$data.user.application.dietary = 'kosher'" 
-					@focus="$root.$data.user.application.dietary = 'kosher'" 
-					@keydown.enter="$root.$data.user.application.dietary = 'kosher'; goToNextField();">
-					Kosher</button>
+					<input 
+					class="checkbox-button"
+					type="checkbox"
+					id="diet-kosher"
+					value="kosher"
+					v-model="$root.$data.user.application.dietary"/>
+					<label for="diet-kosher">Kosher</label>
 
-					<button
-					@click="$root.$data.user.application.dietary = 'gluten'" 
-					@focus="$root.$data.user.application.dietary = 'gluten'" 
-					@keydown.enter="$root.$data.user.application.dietary = 'gluten'; goToNextField();">
-					Gluten Free</button>
+					<input 
+					class="checkbox-button"
+					type="checkbox"
+					id="diet-gf"
+					value="gluten free"
+					v-model="$root.$data.user.application.dietary"/>
+					<label for="diet-gf">Gluten Free</label>
 
-					<button
-					@click="$root.$data.user.application.dietary = 'other'" 
-					@focus="$root.$data.user.application.dietary = 'other'" 
-					@keydown.enter="$root.$data.user.application.dietary = 'other'; goToNextField();">
-					Other</button>
+					<input 
+					class="checkbox-button"
+					type="checkbox"
+					id="diet-other"
+					value="other"
+					v-model="$root.$data.user.application.dietary"/>
+					<label for="diet-other">Other</label>
+
+					
+					<input
+					class="checkbox-button"
+					type="checkbox"
+					id="diet-none"
+					value=""
+					v-model="$root.$data.user.application.dietary"
+					@focus="$root.$data.user.application.dietary = []"/>
+					<transition name="fade">
+						<label v-if="$root.$data.user.application.dietary.length > 0 && $root.$data.user.application.dietary[0] !== ''" for="diet-none">None</label>
+					</transition>
+
 				</div>
 
 				<div class="button-container">
 					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
 					<transition name="fade">
-						<button v-if="$root.$data.user.application.dietary !== ''" @click="goToNextField">Next</button>
+						<button v-if="$root.$data.user.application.dietary.length > 0 && $root.$data.user.application.dietary[0] !== ''" @click="goToNextField">Next</button>
 						<button v-else @click="goToNextField">Nope!</button>
 					</transition>
 				</div>
@@ -342,7 +415,7 @@
 		<transition name="floatIn">
 			<div class="application-field" v-if="currentFieldIndex === 12">
 				<h1>Can you share your resume with us? :) (Optional)</h1>
-				<input type="file" v-on:change="$root.$data.user.application.resume" id="resume-selection"/>
+				<input type="file" id="resume-selection"/>
 
 				<div class="button-container">
 					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
@@ -358,11 +431,13 @@
 		<transition name="floatIn">
 			<div class="application-field" v-if="currentFieldIndex === 13">
 				<h1>I agree to...</h1>
-				<input v-focus type="checkbox" v-model="$root.$data.user.application.demographic" id="demographic-selection"/>
-				<h2>the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct.</a></h2>
-				<br>
-				<input v-focus type="checkbox" v-model="$root.$data.user.application.conduct" id="conduct-selection"/>
-				<h2>share my <a href="https://mlh.io/privacy" target="_blank">demographic information </a>with MLH administration.</h2>
+				<div style="text-align: left; max-width: 1040px; margin: 0 auto;">
+					<input v-focus type="checkbox" v-model="$root.$data.user.application.demographic" id="demographic-selection"/>
+					<h2>the <a href="https://static.mlh.io/docs/mlh-code-of-conduct.pdf" target="_blank">MLH Code of Conduct.</a></h2>
+					<br>
+					<input v-focus type="checkbox" v-model="$root.$data.user.application.conduct" id="conduct-selection"/>
+					<h2>share my <a href="https://mlh.io/privacy" target="_blank">demographic information</a> with MLH administration.</h2>
+				</div>
 				
 				<div class="button-container">
 					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
@@ -380,15 +455,15 @@
 			<div class="application-field" id="summary-page" v-if="currentFieldIndex === 14">
 				<h1>Summary</h1>
 				<p>Name: {{ $root.$data.user.application.name || '[name]' }}</p>
-				<p>Gender (optional): <span class="login-link" @click="currentFieldIndex = 5">{{ $root.$data.user.application.gender || '[gender]' }}</span></p>
 				<p>School: <span class="login-link" @click="currentFieldIndex = 1">{{ $root.$data.user.application.school || '[school]' }}</span></p>
+				<p>Class: <span class="login-link" @click="currentFieldIndex = 2">{{ $root.$data.user.application.year || '[class]' }}</span></p>
 				<p>Major: <span class="login-link" @click="currentFieldIndex = 3">{{ $root.$data.user.application.major || '[major]' }}</span></p>
+				<p>Age: <span class="login-link" @click="currentFieldIndex = 4">{{ $root.$data.user.application.age || '[age]' }}</span></p>
+				<p>Gender (optional): <span class="login-link" @click="currentFieldIndex = 5">{{ $root.$data.user.application.gender || '[gender]' }}</span></p>
 				<p>Phone: <span class="login-link" @click="currentFieldIndex = 6">{{ $root.$data.user.application.phone || '[phone]' }}</span></p>
 				<p>Shirt size: <span class="login-link" @click="currentFieldIndex = 7">{{ $root.$data.user.application.shirt || '[shirt]' }}</span></p>
-				<p>Age: <span class="login-link" @click="currentFieldIndex = 4">{{ $root.$data.user.application.age || '[age]' }}</span></p>
-				<p>Class: <span class="login-link" @click="currentFieldIndex = 2">{{ $root.$data.user.application.year || '[class]' }}</span></p>
 				<p>First hackathon?: <span class="login-link" @click="currentFieldIndex = 8">{{ ($root.$data.user.application.first ? 'Yes' : 'No') || '[first]' }}</span></p>
-				<p>Dietary restrictions: <span class="login-link" @click="currentFieldIndex = 9">{{ $root.$data.user.application.dietary || 'None' }}</span></p>
+				<p>Dietary restrictions: <span class="login-link" @click="currentFieldIndex = 9" v-for="diet in $root.$data.user.application.dietary">{{ diet }}</span> <span class="login-link" @click="currentFieldIndex = 9" v-if="$root.$data.user.application.dietary.length === 0">None</span></p>
 				<p>Travel reimbursement: <span class="login-link" @click="currentFieldIndex = 10">{{ ($root.$data.user.application.travel ? 'Yes' : 'No') || '[travel]' }}</span></p>
 				<p>Link (optional): <span class="login-link" @click="currentFieldIndex = 11">{{ $root.$data.user.application.link || '[link]' }}</span></p>
 				<p>Resume (optional): <span class="login-link" @click="currentFieldIndex = 12">{{ $root.$data.user.application.resume || '[resume]' }}</span></p>
@@ -396,11 +471,14 @@
 				<div class="button-container">
 					<p style="width: auto;" @click="currentFieldIndex -= 1; ">Back</p>
 					<transition name="fade">
-						<button @click="submitApplication">Finish!</button>
+						<button v-if="$root.$data.user.application['_id']" @click="updateApplication">Save Changes</button>
+						<button v-else @click="submitApplication">Finish!</button>
 					</transition>
 				</div>
 			</div>
 		</transition>
+
+
 
 		<div id="progress-bar">
 

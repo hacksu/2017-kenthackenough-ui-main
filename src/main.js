@@ -65,10 +65,10 @@ var app1 = new Vue({
           'phone': '',          // phone number
           'shirt': '',          // t-shirt size
           'demographic': false,   // allowed to use demographic info?
-          'first': false,         // is this your first hackathon?
+          'first': null,         // is this your first hackathon?
           'dietary': '',        // food restrictions seperated by |
           'year': '',           // the year in school
-          'age': 19,            // person's age
+          'age': '',            // person's age
           'gender': '',         // gender
           'major': '',          // degree
           'conduct': false,       // agree to MLH code of conduct?
@@ -233,6 +233,8 @@ var app1 = new Vue({
         if (typeof response.data.application === 'undefined') {
           console.log('No application created yet.');
 
+        } else {
+          this.user.application = response.data.application;
         }
 
         this.user.email = response.data.email;
@@ -251,9 +253,8 @@ var app1 = new Vue({
     },
 
     createApplication() {
-      if (this.user.name.application === '') {
-        this.user.name.application = 'Hacker';
-      }
+      this.cleanApplication();
+
       return usersResource.post('/application', this.user.application)
       .then((response) => {
         console.log('user application posted!', response.data);
@@ -263,6 +264,30 @@ var app1 = new Vue({
       .catch((error) => {
         throw error;
       });
+    },
+
+    updateApplication() {
+      this.cleanApplication();
+
+      return usersResource.patch('/me/application', this.user.application)
+      .then((response) => {
+        console.log('user application updated!', response.data);
+
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+    },
+
+    cleanApplication() {
+      // Fill in name
+      if (this.user.application.name === '') {
+        this.user.application.name = 'Hacker';
+      }
+
+      // Clean Phone Number
+      this.user.application.phone = this.user.application.phone.replace(/[^\d\+]/g, '');
     },
 
     clearUser() {
