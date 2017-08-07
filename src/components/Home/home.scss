@@ -75,6 +75,12 @@ main {
 	transform: translateX(-50%);
 	color: $white;
 	text-shadow: -1px 1px 0px $midnight-dark;
+
+	h3 {
+		@media screen and (max-width: 460px) {
+			max-width: 120px;
+		}
+	}
 }
 
 .modal-slideIn-enter-active {
