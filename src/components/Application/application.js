@@ -2,6 +2,7 @@ import Vue from 'vue';
 
 import template from './application.html';
 import Grid from 'components/grid/grid';
+import Dropzone from 'vue2-dropzone';
 
 import Person from 'components/Person/person';
 
@@ -9,6 +10,7 @@ import Ogre from 'components/Ogre/ogre';
 import Ent from 'components/Ent/ent';
 
 import './application.scss';
+import { API_BASE } from 'src/config/constants';
 
 var keys = {
   UP: 38,
@@ -30,7 +32,8 @@ export default Vue.extend({
     Grid,
     Person,
     Ogre,
-    Ent
+    Ent,
+    Dropzone
   },
 
   data() {
@@ -43,6 +46,7 @@ export default Vue.extend({
       
       schools: ['Kent', 'Akron', 'Case'],
       genders: ['Male', 'Female'],
+      resumeUrl: '',
 
       scalingObject: {
         transform: ''
@@ -187,6 +191,13 @@ export default Vue.extend({
       });
     },
 
+    resumeSuccess(response) {
+      console.log('Successfully uploaded', response);
+    },
+
+    resumeError(error) {
+      console.log('Error uploading resume', error);
+    },
   },
 
   mounted: function() {
@@ -219,6 +230,8 @@ export default Vue.extend({
     setTimeout(() => {
       self.currentFieldIndex += 1;
     }, 3000);
+
+    this.resumeUrl = `${API_BASE}/users/application/resume`;
   }
 
 });

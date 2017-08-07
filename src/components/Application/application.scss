@@ -25,6 +25,22 @@ main {
 	height: 100vh;
 }
 
+#resume-upload {
+	font-family: 'hydrophilia-iced', sans-serif;
+	font-size: 2rem;
+	color: white;
+
+	background-color: rgba($white, 0.3);
+	border: 4px solid $white;
+
+	max-width: 1040px;
+	margin: 0 auto;
+}
+
+.dropzone .dz-preview.dz-file-preview .dz-image {
+	border-radius: 0 !important;
+}
+
 .application-field {
 	position: absolute;
 	top: 3vw;

@@ -304,7 +304,7 @@
 					class="checkbox-button"
 					type="checkbox"
 					id="diet-vegetarian"
-					value="vegetarian"
+					value="Vegetarian"
 					v-model="$root.$data.user.application.dietary"/>
 					<label for="diet-vegetarian">Vegetarian</label>
 
@@ -312,7 +312,7 @@
 					class="checkbox-button"
 					type="checkbox"
 					id="diet-vegan"
-					value="vegan"
+					value="Vegan"
 					v-model="$root.$data.user.application.dietary"/>
 					<label for="diet-vegan">Vegan</label>
 
@@ -320,7 +320,7 @@
 					class="checkbox-button"
 					type="checkbox"
 					id="diet-kosher"
-					value="kosher"
+					value="Kosher"
 					v-model="$root.$data.user.application.dietary"/>
 					<label for="diet-kosher">Kosher</label>
 
@@ -328,7 +328,7 @@
 					class="checkbox-button"
 					type="checkbox"
 					id="diet-gf"
-					value="gluten free"
+					value="Gluten Free"
 					v-model="$root.$data.user.application.dietary"/>
 					<label for="diet-gf">Gluten Free</label>
 
@@ -336,7 +336,7 @@
 					class="checkbox-button"
 					type="checkbox"
 					id="diet-other"
-					value="other"
+					value="Other"
 					v-model="$root.$data.user.application.dietary"/>
 					<label for="diet-other">Other</label>
 
@@ -414,8 +414,11 @@
 		<!-- Resume -->
 		<transition name="floatIn">
 			<div class="application-field" v-if="currentFieldIndex === 12">
-				<h1>Can you share your resume with us? :) (Optional)</h1>
-				<input type="file" id="resume-selection"/>
+				<h1>Will you share your resume with us?</h1>
+
+
+				<dropzone id="resume-upload" ref="resumeUpload" :url="resumeUrl" paramName="resume" :show-remove-link="false" :max-number-of-files="1" :upload-multiple="false" :create-image-thumbnails="true" acceptedFileTypes="application/docx,application/pdf,text/plain" :use-font-awesome="true" v-on:vdropzone-success="resumeSuccess" v-on:vdropzone-error="resumeError">
+				</dropzone>
 
 				<div class="button-container">
 					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
@@ -465,8 +468,11 @@
 				<p>First hackathon?: <span class="login-link" @click="currentFieldIndex = 8">{{ ($root.$data.user.application.first ? 'Yes' : 'No') || '[first]' }}</span></p>
 				<p>Dietary restrictions: <span class="login-link" @click="currentFieldIndex = 9" v-for="diet in $root.$data.user.application.dietary">{{ diet }}</span> <span class="login-link" @click="currentFieldIndex = 9" v-if="$root.$data.user.application.dietary.length === 0">None</span></p>
 				<p>Travel reimbursement: <span class="login-link" @click="currentFieldIndex = 10">{{ ($root.$data.user.application.travel ? 'Yes' : 'No') || '[travel]' }}</span></p>
-				<p>Link (optional): <span class="login-link" @click="currentFieldIndex = 11">{{ $root.$data.user.application.link || '[link]' }}</span></p>
-				<p>Resume (optional): <span class="login-link" @click="currentFieldIndex = 12">{{ $root.$data.user.application.resume || '[resume]' }}</span></p>
+				<p>Link: <span class="login-link" @click="currentFieldIndex = 11">{{ $root.$data.user.application.link || '[link]' }}</span></p>
+				<p>Resume: 
+					<span v-if="$root.$data.user.application.resume" class="login-link" @click="currentFieldIndex = 12"><i class="fa fa-check white"></i> Uploaded</span>
+					<span v-else class="login-link" @click="currentFieldIndex = 12"><i class="fa fa-times white"></i> None</span>
+				</p>
 
 				<div class="button-container">
 					<p style="width: auto;" @click="currentFieldIndex -= 1; ">Back</p>
