@@ -126,6 +126,7 @@ export default Vue.extend({
       this.$root.loginUser()
       .then((response) => {
         console.log('Successfully logged in', response);
+        this.$root.loadUserApplication();
         this.changeMenu('character');
 
       })
