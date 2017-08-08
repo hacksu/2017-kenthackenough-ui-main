@@ -66,7 +66,7 @@ var app1 = new Vue({
           'shirt': '',          // t-shirt size
           'demographic': false,   // allowed to use demographic info?
           'first': null,         // is this your first hackathon?
-          'dietary': '',        // food restrictions seperated by |
+          'dietary': [],        // food restrictions seperated by |
           'year': '',           // the year in school
           'age': '',            // person's age
           'gender': '',         // gender
@@ -304,9 +304,9 @@ var app1 = new Vue({
           'shirt': '',          // t-shirt size
           'demographic': null,   // allowed to use demographic info?
           'first': null,         // is this your first hackathon?
-          'dietary': '',        // food restrictions seperated by |
+          'dietary': [],        // food restrictions seperated by |
           'year': '',           // the year in school
-          'age': 19,            // person's age
+          'age': '',            // person's age
           'gender': '',         // gender
           'major': '',          // degree
           'conduct': false,       // agree to MLH code of conduct?
