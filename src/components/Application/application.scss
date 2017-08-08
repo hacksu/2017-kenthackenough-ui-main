@@ -58,7 +58,6 @@ main {
 		font-size: 4rem;
 		color: white;
 		text-shadow: -4px 4px 0px $midnight-dark;
-		margin-bottom: 30px;
 		@media screen and (max-width: 768px) {
 			font-size: 2rem;
 			line-height: 2.5rem;
@@ -68,6 +67,10 @@ main {
 			font-size: 2rem;
 			line-height: 2.5rem;
 		}
+	}
+
+	legend {
+		margin-bottom: 30px;
 	}
 
 	h2 {

@@ -146,8 +146,8 @@
 
 		<!-- Gender -->
 		<transition name="floatIn">
-			<div class="application-field" v-if="currentFieldIndex === 5">
-				<h1>What's your gender? (Optional)</h1>
+			<fieldset class="application-field" v-if="currentFieldIndex === 5">
+				<legend><h1>What's your gender?<h2>(Optional)</h2></legend>
 				<div class="button-group">
 
 					<input v-focus type="text" v-model="$root.$data.user.application.gender" list="gender-list" v-on:keydown="handleKeypress"
@@ -183,7 +183,7 @@
 						<button v-else @click="goToNextField">Next</button>
 					</transition>
 				</div>
-			</div>
+			</fieldset>
 		</transition>
 
 		<!-- Phone -->

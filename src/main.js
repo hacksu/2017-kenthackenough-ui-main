@@ -87,6 +87,7 @@ var app1 = new Vue({
     window.addEventListener('scroll', this.handleScroll); // Bind croll listener
     this.initStyles(); // Set our default styles for the navigation and main content.
 
+    this.authorize();
     this.loadUserApplication();
   },
 
