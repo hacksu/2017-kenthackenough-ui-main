@@ -15,7 +15,7 @@
 
   overflow-y: scroll;
     
-  @media only screen and (max-width: 520px) {
+  @media only screen and (max-width: 720px) {
       max-width: 150px;
   }
     
@@ -162,6 +162,11 @@ label {
   &:hover {
      box-shadow: -1px 1px 0px $midnight-dark;
   }
+  @media only screen and (max-width: 720px) {
+      max-width: 80px;
+      font-size: 10px;
+      padding: 2px 0px;
+  }
 }
 
 .flex-row {
@@ -244,4 +249,11 @@ label {
 button {
     background: none;
     border: none;
+}
+
+.face-and-hair {
+    white-space: nowrap;
+    @media only screen and (max-width: 720px) {
+      margin-left: -10px;
+  }
 }

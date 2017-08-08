@@ -127,3 +127,32 @@ main {
   51%  { opacity: 1; }
   100% { opacity: 1; }
 }
+
+#shadow {
+    width: 20px;
+    height: 2px;
+    background-color: black;
+    opacity: .2;
+    position: absolute;
+    top: 235px;
+    left: 173px;
+    z-index: 15;
+}
+
+#apply-now-link {
+    color: white;
+  text-shadow: -1px 1px 0px $midnight-dark;
+
+  background: $shamrock;
+  border-radius: 0;
+
+  border: 1px solid $shamrock-dark;
+
+  padding: 4px 12px;
+  padding-top: -5px;
+  margin-top: 10px;
+
+  &:hover {
+     box-shadow: -1px 1px 0px $midnight-dark;
+  }
+}
