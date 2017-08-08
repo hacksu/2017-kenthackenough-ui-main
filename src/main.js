@@ -75,6 +75,7 @@ var app1 = new Vue({
           'waiver': false,        // agreed to waiver?
           'resume': '',         // the filename of their resume
           'link': '',            // a github/linkedin link
+          'extraData': '',
         },
       },
     };

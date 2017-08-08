@@ -157,13 +157,28 @@ export default Vue.extend({
       } else {
         return (this.xLHS - 25) + 'px';
       }
-    }
+    },
+
+    characterData: function() {
+      return {
+        skinTone: this.skinTone,
+        shirtHue: this.shirtHue,
+        shirtTone: this.shirtTone,
+        pantsHue: this.pantsHue,
+        pantsTone: this.pantsTone,
+        hairTone: this.hairTone,
+        eyesHue: this.eyesHue,
+        eyesTone: this.eyesTone,
+        hair: this.hair,
+        shirt: this.shirt,
+      };
+    },
   },
 
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
     this.randomize();  // Randomizing character
-      
+    this.loadCharacter();
     // Randomizes hair - for gender equality, etc
     // Only necessary if you disable randomize() on mount
     this.hair = Math.floor(Math.random() * hairSrc.length);
@@ -193,10 +208,32 @@ export default Vue.extend({
   },
 
   beforeDestroy: function() {
-      
+    this.saveCharacter();
   },
 
   methods: {
+    saveCharacter() {
+      localStorage.setItem('character', JSON.stringify(this.$parent.$refs.you.characterData));
+    },
+
+    loadCharacter() {
+      var characterData = JSON.parse(localStorage.getItem('character'));
+
+      if (characterData) {
+        console.log(characterData);
+        this.skinTone = characterData.skinTone;
+        this.shirtHue = characterData.shirtHue;
+        this.shirtTone = characterData.shirtTone;
+        this.pantsHue = characterData.pantsHue;
+        this.pantsTone = characterData.pantsTone;
+        this.hairTone = characterData.hairTone;
+        this.eyesHue = characterData.eyesHue;
+        this.eyesTone = characterData.eyesTone;
+        this.hair = characterData.hair;
+        this.shirt = characterData.shirt;
+      }
+    },
+
     loadSprites() {
       this.sprite.skin.src = this.skin;
       this.sprite.shirt.src = this.shirtSrc[this.shirt].url;

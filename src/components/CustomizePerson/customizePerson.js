@@ -76,11 +76,13 @@ export default Vue.extend({
     } else {
       this.changeMenu('apply');
     }
+    this.$parent.$refs.you.loadCharacter();
   },
 
   beforeDestroy: function() {
     this.$parent.$refs.you.customize = 'none';
     this.$parent.$refs.you.locked = false;
+    this.$parent.$refs.you.saveCharacter();
   },
 
   methods: {
