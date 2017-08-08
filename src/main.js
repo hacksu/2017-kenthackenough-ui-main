@@ -52,7 +52,6 @@ var app1 = new Vue({
       navigationScroll: null,
       mainContentStyle: {},
       navigationStyle: {},
-      token: '',
       user: {
         '_id': '',
         email: '',
@@ -88,8 +87,6 @@ var app1 = new Vue({
     window.addEventListener('scroll', this.handleScroll); // Bind croll listener
     this.initStyles(); // Set our default styles for the navigation and main content.
 
-    this.token = this.getMe().token;
-    this.authorize();
     this.loadUserApplication();
   },
 
@@ -162,6 +159,10 @@ var app1 = new Vue({
         this.setMe(response.data);
         this.user.key = response.data.key;
         this.user.role = response.data.role;
+
+        this.authorize();
+
+        return response;
       })
       .catch((error) => {
         // Handle error...
@@ -179,7 +180,7 @@ var app1 = new Vue({
         password: this.user.password
       })
       .then((response) => {
-        console.log('Login successfull', response.data);
+        console.log('Register successfull', response.data);
         
         this.setMe(response.data);
       })
@@ -203,7 +204,7 @@ var app1 = new Vue({
     },
 
     isLoggedIn() {
-      if (this.token !== '') {
+      if (this.user['_id'] !== '') {
         return true;
       } else {
         return false;
