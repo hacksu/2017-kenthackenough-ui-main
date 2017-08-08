@@ -96,7 +96,7 @@ export default Vue.extend({
     
       facing: 'scale(1,1)',
         // Coordinates
-      yTop: 0,
+      yTop: 150,
       xLHS: 200,
       yBottom: 30,
       xRHS: 22,

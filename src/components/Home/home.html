@@ -5,10 +5,17 @@
         <div class="date-location-container">
             <h2 class="date">October 6 - 8th, 2017</h2>
             <h3 class="location">Kent State University Library</h3><br>
-            <h3 id="apply"
-                v-if="$parent.user.application.name == ''"
-                v-on:click="togglePaused()"
-                >Apply Now!!!</h3>
+            
+            <button
+                id="apply-now-link"
+                v-on:click="togglePaused()">
+            <span id="apply"
+                v-if="!$root.isLoggedIn()"
+                >Apply Now!!!</span>
+            <span 
+                v-if="$root.isLoggedIn()"
+                >Go To Your Profile!</span>
+                </button>
         </div>
             
         <div class="darken" @click="paused = false" 
@@ -21,10 +28,11 @@
             :scaledViewportHeight="scaledViewportHeight"></customize-person>
         </transition>
         
-<!--        <img src="~assets/images/foreground_grass.png" class="foreground-grass">-->
+        <img src="~assets/images/foreground_grass.png" class="foreground-grass">
         
-        <span v-on:click="togglePaused()"><person ref="you"></person>
+        <span v-on:click="togglePaused()" style="cursor: pointer;"><person ref="you"></person>
         </span>
+        <span id="shadow"></span>
         
        <!--  <ogre ref="homeOgre" v-if="monster == 'ogre'"></ogre>
         <ent ref="homeEnt" v-if="monster == 'ent'"></ent> -->
