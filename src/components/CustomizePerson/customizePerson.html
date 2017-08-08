@@ -6,7 +6,7 @@
 <!--   <button onclick="debug()">debug</button> -->
 <div :style="{ 'width': scaledViewportWidth, 'height': scaledViewportHeight }">
   <!-- Apply menu -->
-  <div v-if="menu == 'apply'">
+  <div class="menuWindow" v-if="menu == 'apply'">
     <p class="close-button" @click="$parent.paused = false">X</p>
     <h2>Apply for Kent Hack Enough</h2>
     <p class="error-message">{{ errorMessage || errors.first('email') }}</p>
@@ -23,14 +23,16 @@
   </div>
 
   <!-- General Character menu -->
-  <div v-if="menu == 'character'">
+  <div class="menuWindow" v-if="menu == 'character'">
     <p class="close-button" @click="$parent.paused = false">X</p>
     <h3>Customize Your Character!</h3>
     <p class="optional-hint">(Optional)</p>
     
     <input type="text" id="name" placeholder="Your full name..." v-model="$root.$data.user.application.name"/>
 
-    <button @click="$parent.$refs.you.randomize()">Randomize</button>
+    <button @click="$parent.$refs.you.randomize()">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/random.png">
+      </button>
 
     <div class="flex-row">
 
@@ -58,7 +60,7 @@
   </div>
 
   <!-- SHIRT MENU -->
-  <div v-if="menu == 'shirts'">
+  <div class="menuWindow" v-if="menu == 'shirts'">
     <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
     <p class="close-button" @click="      changeMenu('character')"></p>
 
@@ -100,7 +102,7 @@
     </div>
 
   <!-- Pants menu -->
-  <div v-if="menu == 'pants'">
+  <div class="menuWindow" v-if="menu == 'pants'">
     <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
     <p class="close-button" @click="      changeMenu('character')"></p>
 
@@ -142,7 +144,7 @@
   </div>
 
   <!-- Face Menu -->
-  <div v-if="menu == 'face'">
+  <div class="menuWindow" v-if="menu == 'face'">
     <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
     <label for="skinTone">Skin Tone</label>
     <input type="range" name="skinTone" id="skinTone" min="1" max="6" v-model="$parent.$refs.you.skinTone"/>
@@ -185,14 +187,14 @@
     </div>
 
     <!-- Extra Menu (Accessories) -->
-    <div class="itemMenu" v-if="menu == 'extra'">
+    <div class="itemMenu menuWindow" v-if="menu == 'extra'">
       <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
     <label for="extras">Coming soon!</label>
 
     </div>
 
     <!--    HAIR MENU-->
-    <div class="itemMenu" v-if="menu == 'hair'">
+    <div class="itemMenu menuWindow" v-if="menu == 'hair'">
 
     </div>
   </div>

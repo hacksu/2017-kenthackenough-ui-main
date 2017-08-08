@@ -14,7 +14,11 @@
   text-align: left;
 
   overflow-y: scroll;
-
+    
+  @media only screen and (max-width: 520px) {
+      max-width: 150px;
+  }
+    
   p {
     font-size: 11px;
     margin-top: 6px;
@@ -231,4 +235,13 @@ label {
     &:hover {
     cursor: pointer;
     }
+}
+
+.menuWindow {
+    max-width: 400px;
+}
+
+button {
+    background: none;
+    border: none;
 }
