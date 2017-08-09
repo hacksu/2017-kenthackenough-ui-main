@@ -179,9 +179,7 @@ export default Vue.extend({
   mounted: function() {
     this.randomize();  // Randomizing character
     this.loadCharacter();
-    // Randomizes hair - for gender equality, etc
-    // Only necessary if you disable randomize() on mount
-    this.hair = Math.floor(Math.random() * hairSrc.length);
+    
     this.sprite.hair.src = hairSrc[this.hair];
       
     // Setting up canvas vars for animation
