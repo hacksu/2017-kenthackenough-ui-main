@@ -319,3 +319,68 @@ main {
 	padding: 0;
 	margin: 0;
 }
+
+#powerPuff {
+//    display: none;
+    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/New%20Piskel.gif');
+    position: absolute;
+    height: 68px;
+    width: 68px;
+    left: 46.5%;
+    top: 100px;
+    transform: scale(12);
+    z-index: 1;
+    position: absolute;
+    -ms-interpolation-mode: nearest-neighbor; 
+    image-rendering: -webkit-optimize-contrast; 
+    image-rendering: -webkit-crisp-edges; 
+    image-rendering: -moz-crisp-edges; 
+    image-rendering: -o-crisp-edges; 
+    image-rendering: pixelated; 
+}
+
+.winTextBlock {
+//    background: $shamrock;
+//    border-radius: 0;
+//    border: 1px solid $shamrock-dark;
+//    padding-top: 6px;
+//    padding-bottom: 6px;
+    
+    position: absolute;
+    z-index: 10;
+    text-align: center;
+    left: 0;
+    right: 0;
+    margin-top: 50px;
+//    border: solid black 1px;
+
+
+}
+
+.winText {
+    color: white;
+    text-shadow: -1px 1px 0px $midnight-dark;
+        z-index: 10;
+    padding-left: 20px;
+
+    
+//    text-align: center;
+}
+
+.pixelIcon {
+    background-color: white;
+    width: 20px;
+    height: 20px;
+}
+
+#shareIcons {
+    max-width: 100px;
+    margin-left: 41%;
+}
+
+#sharable {
+    position: absolute;
+    left: 100px;
+    top: 100px;
+//    border: solid red 1px;
+}

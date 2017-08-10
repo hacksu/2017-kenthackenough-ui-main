@@ -5,6 +5,31 @@
 		<person ref="you" paused="paused"></person>
 		<ogre ref="appOgre" v-if="monster == 'ogre'"></ogre>
 		<ent ref="appEnt" v-if="monster == 'ent'"></ent>
+        
+        <!-- Finish -->
+		<transition name="floatIn">
+            
+            <div class="application-finish" v-if="currentFieldIndex === 15">
+			<div id="powerPuff"></div>
+                <div class="winTextBlock">
+                <h2 class="winText">YOU DID IT!</h2>
+            <h3 class="winText">Application complete!</h3>
+                    </div>
+                <div class="winTextBlock" style="top: 120px;">
+                <h2 class="winText">Share Your Character:</h2>
+                    <span id="shareIcons" class="flex-row">
+                    <img src="http://iconizer.net/files/iconizer_pixelated/thumb/128/facebook.png"
+                         class="pixelIcon">
+                    <img src="http://iconizer.net/files/iconizer_pixelated/thumb/128/twitter.png"
+                         class="pixelIcon">
+                    <img src="http://iconizer.net/files/iconizer_pixelated/thumb/128/gmail.png"
+                         class="pixelIcon">
+                        
+                    </span>
+            <h2 class="winText">Or Click Here To Go Back To The Homepage</h2>
+                    </div>
+                </div>
+		</transition>
 	</div>
 
 	<div class="application-form">
@@ -13,6 +38,8 @@
 			<div class="application-field" v-if="currentFieldIndex === 0">
 				<h1>Time to begin your quest, {{ $root.$data.user.application.name.split(' ')[0] }}!</h1>
 			</div>
+            
+            
 		</transition>
 
 		<!-- School -->
@@ -483,6 +510,13 @@
 				</div>
 			</div>
 		</transition>
+        
+        
+            <canvas id="sharable"
+                    height="300"
+                    width="1000"></canvas>
+        
+        
 
 
 

@@ -83,6 +83,7 @@ export default Vue.extend({
       customize: 'none', // Indicates which customize menu is loaded
       locked: false,
       inFront: false,
+      win: false,
         
         // Image stats
       skinTone: 0,  // 0 - 8
@@ -104,7 +105,7 @@ export default Vue.extend({
       yVel: 0,
       xVel: 0,
         
-      status: 'idle', // 'idle', 'run', 'jump'
+      status: 'idle', // 'idle', 'run', 'jump', 'win'
         
       // Sprite Animation variables
       shift: 0,         // Used to log shift in pixels thru anim frames
@@ -178,11 +179,8 @@ export default Vue.extend({
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
     this.randomize();  // Randomizing character
-    // Randomizes hair - for gender equality, etc
-    // Only necessary if you disable randomize() on mount
-    this.hair = Math.floor(Math.random() * hairSrc.length);
-
     this.loadCharacter();
+    
     this.sprite.hair.src = hairSrc[this.hair];
       
     // Setting up canvas vars for animation
@@ -305,7 +303,7 @@ export default Vue.extend({
       this.fall();
       this.slow(); //Causes friction
         
-      if (this.yVel !== 0) {
+      if (this.yVel !== 0 || this.win) {
         if (this.status !== 'jump') {
           this.status = 'jump';
           this.totalFrames = 1;
@@ -373,8 +371,12 @@ export default Vue.extend({
     },
     
     fall: function() {
-      if (!this.isGrounded()) {
+      if (!this.isGrounded() && !this.win) {
         this.yVel += this.weight;
+          // handles player height at win
+      } else if (this.win) {
+        this.yVel = 0;
+        this.yTop = 120;    // How high character is when win is triggered
       } else {
         this.yVel = 0;
       }

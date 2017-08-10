@@ -105,6 +105,9 @@ export default Vue.extend({
     },
       
     newMonster() {
+      if (this.$refs.you.win) {
+        return;
+      }
       this.monster = 'none';
       var i = Math.floor(Math.random() * this.monsters.length);
       this.monster = this.monsters[i];
@@ -158,6 +161,28 @@ export default Vue.extend({
 
     goToNextField() {
       this.currentFieldIndex += 1;
+      console.log('index: ' + this.currentFieldIndex);
+      if (this.currentFieldIndex === 15) {
+        this.$refs.you.win = true;
+        console.log('win status: ' + this.$refs.you.win);
+          
+        var canvas = document.getElementById('sharable');
+        var context = canvas.getContext('2d');
+
+        // load image from data url
+        var imageObj = document.createElement('img');
+        imageObj.crossOrigin = 'anonymous';
+          
+        var imgLink;
+        imageObj.onload = function() {
+          context.drawImage(this, 100, 0);
+            
+          imgLink = canvas.toDataURL('image/png');
+          console.log('img: ' + imgLink);
+          document.write('<img id="newImageYo" src="' + imgLink + '"/>');
+        };
+        imageObj.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/mockups.png';
+      }
 
       this.hurtMonster(2000);
     },
@@ -175,8 +200,10 @@ export default Vue.extend({
       this.$root.createApplication()
       .then((response) => {
         console.log('response', response.data);
+        this.goToNextField();
       })
       .catch((error) => {
+        this.goToNextField();
         console.log('Error', error);
       });
     },
@@ -225,7 +252,7 @@ export default Vue.extend({
 
     var self = this;
     setTimeout(() => {
-      self.currentFieldIndex = 0;
+      self.currentFieldIndex = 13;
     }, 100);
     setTimeout(() => {
       self.currentFieldIndex += 1;
