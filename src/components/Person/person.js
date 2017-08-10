@@ -7,7 +7,7 @@ import './person.scss';
 //var skinSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standSkin.png';
 //var eyeSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standEyes.png';
 //var shirtSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt3.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt4.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt5.png'];
-var hairSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair2.png'];
+var hairSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/pigtails.png'];
 //var shirtSrc = [
 //  {
 //    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shirt1.png',
