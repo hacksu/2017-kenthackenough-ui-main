@@ -165,7 +165,23 @@ export default Vue.extend({
       if (this.currentFieldIndex === 15) {
         this.$refs.you.win = true;
         console.log('win status: ' + this.$refs.you.win);
-        
+          
+        var canvas = document.getElementById('sharable');
+        var context = canvas.getContext('2d');
+
+        // load image from data url
+        var imageObj = document.createElement('img');
+        imageObj.crossOrigin = 'anonymous';
+          
+        var imgLink;
+        imageObj.onload = function() {
+          context.drawImage(this, 100, 0);
+            
+          imgLink = canvas.toDataURL('image/png');
+          console.log('img: ' + imgLink);
+          document.write('<img id="newImageYo" src="' + imgLink + '"/>');
+        };
+        imageObj.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/mockups.png';
       }
 
       this.hurtMonster(2000);
