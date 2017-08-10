@@ -211,6 +211,7 @@ export default Vue.extend({
     updateApplication() {
       this.$root.updateApplication()
       .then((response) => {
+        this.goToNextField();
         console.log('response', response.data);
       })
       .catch((error) => {
