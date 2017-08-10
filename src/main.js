@@ -75,7 +75,7 @@ var app1 = new Vue({
           'waiver': false,        // agreed to waiver?
           'resume': '',         // the filename of their resume
           'link': '',            // a github/linkedin link
-          'extraData': '',
+          'extra': '',
         },
       },
     };
@@ -235,9 +235,10 @@ var app1 = new Vue({
 
         if (typeof response.data.application === 'undefined') {
           console.log('No application created yet.');
-
         } else {
           this.user.application = response.data.application;
+
+          this.setCharacter(response.data.application.extra);
         }
 
         this.user.email = response.data.email;
@@ -245,11 +246,11 @@ var app1 = new Vue({
         this.user['_id'] = response.data['_id'];
       })
       .catch((error) => {
-        if (error.response.status === 401) {
+        if (error.response && error.response.status === 401) {
           console.log('user not logged in yet');
         }
         // Handle error...
-        console.log('API responded with:', error.response.data);
+        console.log('API responded with:', error);
 
         this.clearUser();
       });
@@ -317,6 +318,7 @@ var app1 = new Vue({
           'waiver': null,        // agreed to waiver?
           'resume': '',         // the filename of their resume
           'link': '',            // a github/linkedin link
+          'extra': '',
         },
       };
     },
@@ -355,6 +357,20 @@ var app1 = new Vue({
       var r = data.length % 3;
       return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3);
     },
+
+    setCharacter(characterData) {
+      this.user.application.extra = characterData;
+
+      console.log('Saved character', characterData);
+    },
+
+    getCharacter() {
+      return this.user.application.extra;
+    },
+
+    clearCharacter() {
+      this.user.application.extra = '';
+    }
   }
 
 });

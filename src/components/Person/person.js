@@ -214,13 +214,23 @@ export default Vue.extend({
 
   methods: {
     saveCharacter() {
-      localStorage.setItem('character', JSON.stringify(this.$parent.$refs.you.characterData));
+      var characterData = JSON.stringify(this.$parent.$refs.you.characterData);
+      this.$root.setCharacter(characterData);
     },
 
     loadCharacter() {
-      var characterData = JSON.parse(localStorage.getItem('character'));
-
-      if (characterData) {
+      var characterData = '';
+      try {
+        var characterDataString = this.$root.getCharacter();
+        
+        if (typeof characterDataString !== 'undefined') {
+          characterData = JSON.parse(characterDataString);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      console.log('characterData', characterData);
+      if (characterData && characterData !== '') {
         console.log(characterData);
         this.skinTone = characterData.skinTone;
         this.shirtHue = characterData.shirtHue;
