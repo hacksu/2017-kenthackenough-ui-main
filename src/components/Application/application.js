@@ -105,6 +105,9 @@ export default Vue.extend({
     },
       
     newMonster() {
+      if (this.$refs.you.win) {
+        return;
+      }
       this.monster = 'none';
       var i = Math.floor(Math.random() * this.monsters.length);
       this.monster = this.monsters[i];
@@ -158,6 +161,12 @@ export default Vue.extend({
 
     goToNextField() {
       this.currentFieldIndex += 1;
+      console.log('index: ' + this.currentFieldIndex);
+      if (this.currentFieldIndex === 15) {
+        this.$refs.you.win = true;
+        console.log('win status: ' + this.$refs.you.win);
+        
+      }
 
       this.hurtMonster(2000);
     },
@@ -175,8 +184,10 @@ export default Vue.extend({
       this.$root.createApplication()
       .then((response) => {
         console.log('response', response.data);
+        this.goToNextField();
       })
       .catch((error) => {
+        this.goToNextField();
         console.log('Error', error);
       });
     },
@@ -225,7 +236,7 @@ export default Vue.extend({
 
     var self = this;
     setTimeout(() => {
-      self.currentFieldIndex = 0;
+      self.currentFieldIndex = 13;
     }, 100);
     setTimeout(() => {
       self.currentFieldIndex += 1;
