@@ -14,11 +14,16 @@
   text-align: left;
 
   overflow-y: scroll;
-
+    
+  @media only screen and (max-width: 720px) {
+      max-width: 150px;
+  }
+    
   p {
     font-size: 11px;
     margin-top: 6px;
     text-align: right;
+    display: inline;
   }
 
   h2, h3 {
@@ -26,6 +31,19 @@
     text-align: center;
     margin-bottom: 12px;
     font-weight: light;
+  }
+
+  .optional-hint {
+    margin-top: -12px;
+    margin-bottom: 12px;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+
+  .error-message {
+    color: $sunset;
+    text-align: left;
   }
 }
 
@@ -44,7 +62,28 @@
   }
 }
 
-input {
+.back-button {
+
+  color: white;
+  text-shadow: -1px 1px 0px $midnight-dark;
+
+  cursor: pointer;
+
+  &:hover {
+    color: $white;
+  }
+}
+
+.align-left {
+  align-self: flex-start;
+
+}
+
+.align-right {
+  align-self: flex-end;
+}
+
+input[type="text"], input[type="email"], input[type="password"], input[type="range"] {
   width: 100%;
   font-family: 'hydrophilia-iced', sans-serif;
 }
@@ -78,10 +117,11 @@ label {
 
 .carousel {
   display: flex;
-  width: 100%;
-  height: 40px;
+  width: 80px;
+//  height: 40px;
+//    border: solid red 1px;
   background: transparent;
-  margin: 0;
+  margin: auto;
 }
 
 .carousel-item {
@@ -122,23 +162,32 @@ label {
   &:hover {
      box-shadow: -1px 1px 0px $midnight-dark;
   }
+  @media only screen and (max-width: 720px) {
+      max-width: 80px;
+      font-size: 10px;
+      padding: 2px 0px;
+  }
 }
 
 .flex-row {
   display: flex;
-
+  flex-direction: row;
   justify-content: space-between;
+
+  &.align-right {
+    justify-content: flex-end;
+  }
 }
 
 .icon-button {
   background: transparent;
   border: none;
-  padding: 2px 6px;
+  padding: 2px 2px;
   height: 40px;
   cursor: pointer;
   color: white;
   
-  margin-top: 1px;
+  margin-top: -10px;
 
   text-decoration: none;
 
@@ -148,7 +197,63 @@ label {
 
   &:hover:not(.active) {
     color: $white;
-    margin-top: 0px;
+    margin-top: -11px;
     border-bottom: 1px solid $white;
+  }
+}
+
+.personSpace {
+    font-size: 10px;
+    color: white;
+//    border: 1px solid red;
+    width: 40px;
+    height: 60px;
+}
+
+.navArrow {
+    color: white;
+    text-shadow: -1px 1px 0px $midnight-dark;
+    padding-top: 25px;
+  &:hover:not(.active) {
+    color: $white;
+    cursor: pointer;
+  }
+}
+
+.colorSample {
+    background-color: #76199A;
+    width: 10px;
+    height: 10px;
+    border: solid black 1px;
+    
+    &:hover {
+    cursor: pointer;
+    }
+}
+
+.eyeSample {
+    background-color: #1F7934;
+    width: 10px;
+    height: 10px;
+    border: solid black 1px;
+    
+    &:hover {
+    cursor: pointer;
+    }
+}
+
+.menuWindow {
+    max-width: 400px;
+}
+
+button {
+    background: none;
+    border: none;
+}
+
+.face-and-hair {
+    white-space: nowrap;
+    @media only screen and (max-width: 720px) {
+      margin-left: -10px;
   }
 }

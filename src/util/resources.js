@@ -13,5 +13,7 @@ export const emailResource = axios.create({
 });
 
 export const usersResource = axios.create({
-  baseUrl: `${API_BASE}/users/`
+  baseURL: `${API_BASE}/users`,
+  timeout: 8000,
+  //headers: {'X-Custom-Header': 'foobar'}
 });

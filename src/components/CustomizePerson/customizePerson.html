@@ -1,89 +1,206 @@
 <div id="settings">
+
 <!--<button onclick="newPerson()">New Person</button><br>
 <button onclick="changeId(-1)">Prev. Person</button><br>
 
 <!--   <button onclick="debug()">debug</button> -->
-<div :style="{ 'width': $props.scaledViewportWidth, 'height': $props.scaledViewportHeight }">
+<div :style="{ 'width': scaledViewportWidth, 'height': scaledViewportHeight }">
   <!-- Apply menu -->
-  <div v-if="menu == 'apply'">
+  <div class="menuWindow" v-if="menu == 'apply'">
     <p class="close-button" @click="$parent.paused = false">X</p>
     <h2>Apply for Kent Hack Enough</h2>
-    <input type="email" id="name" placeholder="Email..." v-model="user.email" data-vv-rules="required|email" v-validate/>
-    <input type="password" id="name" placeholder="Password..." v-model="user.password"/>
+    <p class="error-message">{{ errorMessage || errors.first('email') }}</p>
+    <input type="email" id="email" placeholder="Email..." v-model="$root.$data.user.email" v-validate.initial="emailValidationRule"/>
+    <input type="password" id="password" placeholder="Password..." v-model="$root.$data.user.password"/>
     <br>
-    <p><span class="login-link" @click="handleLogin()">Login</span> or <button @click="handleSubmit()" class="apply-link">Apply</button></p>
+    <div class="flex-row">
+      <router-link class="login-link" tag="p" to="/reset" exact>Forgot password?</router-link>
+      <!-- <p>Remember Me&nbsp;<input type="checkbox" name="Remember Me" v-model="rememberMe"></p> -->
+    </div>
+    <div class="flex-row align-right">
+      <p class="login-link" @click="handleLogin()">Login</p><p>&nbsp;or&nbsp;</p><button @click="handleSubmit()" class="apply-link">Apply</button>
+    </div>
   </div>
 
   <!-- General Character menu -->
-  <div v-if="menu == 'character'">
+  <div class="menuWindow" v-if="menu == 'character'">
     <p class="close-button" @click="$parent.paused = false">X</p>
     <h3>Customize Your Character!</h3>
-    <button @click="$parent.$refs.you.randomize()">Randomize</button>
-    <input type="text" id="name" placeholder="Your full name..." v-model="$parent.$refs.you.name"/>
+    <p class="optional-hint">(Optional)</p>
+    
+    <input type="text" id="name" placeholder="Your full name..." v-model="$root.$data.user.application.name"/>
+
+    <button @click="$parent.$refs.you.randomize()">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/random.png">
+      </button>
 
     <div class="flex-row">
-      <button @click="menu = 'shirts'" class="icon-button">Shirts</button>
 
-      <button @click="menu = 'pants'" class="icon-button">Pants</button>
+      <div class="characterOptions">
+        <button @click="changeMenu('face')" class="icon-button face-and-hair">Face & Hair</button>
+        
+        <button @click="changeMenu('shirts')" class="icon-button">Shirts</button>
+      </div>
 
-      <button @click="menu = 'face'" class="icon-button">Face & Hair</button>
+      <div class="personSpace">
+        
+      </div>
 
-      <button @click="menu = 'extra'" class="icon-button">Extra</button>
+      <div class="characterOptions">
+        <button @click="changeMenu('pants')" class="icon-button">Pants</button>
+
+        <button @click="changeMenu('extra')" class="icon-button">Extra</button>
+      </div>
     </div>
-    <p><button class="apply-link">Continue to Application!</button></p>
+    <br>
+    <div class="flex-row">
+      <p class="login-link" @click="handleLogout()">Logout</p>
+      <router-link to="/apply" tag="button" class="apply-link align-right">
+        <span v-if="$root.user.application.school == ''">Continue to Application!</span> <!-- Dummy check for if application has been sent. -->
+        <span v-else>Edit Application</span>
+      </router-link>
+    </div>
   </div>
 
   <!-- SHIRT MENU -->
-    <!--
-  <div v-if="menu == 'shirts'">
-    <p class="close-button" @click="menu = 'character'"><</p>
-    <ul class="carousel">
-      <li class="carousel-item" v-for="shirt in shirts">
-        <img v-bind:src="imgURL + shirt.url" class="item" @click="updateShirt(imgURL + shirt.url)">
-      </li>
-    </ul>
-    
-    <div v-for="n in 5">
-      <img v-bind:src="$parent.$refs.you.shirt" class="item" v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/5)) + 'deg)'}" @click=" $parent.$refs.you.shirtHue = (360 * (n/5))">
+
+  <div class="menuWindow" v-if="menu == 'shirts'">
+    <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
+    <p class="close-button" @click="      changeMenu('character')"></p>
+
+    <div class="flex-row carousel">
+      <div class="navArrow"
+      @click="$parent.$refs.you.changeShirt(-1)"
+      >&#60;</div>
+
+      <div style="width: 50px; height: 60px; color: white; font-size: 10px;">
+        Shirt:
+      </div>
+
+      <div class="navArrow"
+      @click="$parent.$refs.you.changeShirt(1)"
+      >&#62;</div>
+    </div>
+
+    <p style="color:white">Color:</p>
+      <div class="flex-row">
+    <div v-for="n in 10">
+        <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg) brightness(' + 2 + ')'}">
+        <div class="colorSample"
+             @click="changeColor('shirtHue', (360 * (n/10)), 'shirtTone', 2)"
+             ></div>
+            </div>
+    </div>
+      </div>
+      <div class="flex-row">
+
+    <div v-for="n in 10">
+        <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg) brightness(1)'}">
+        <div class="colorSample"
+             @click="changeColor('shirtHue', (360 * (n/10)), 'shirtTone', 1)"
+             ></div>
+            </div>
+
     </div>
   </div>
-            -->
+    </div>
+
   <!-- Pants menu -->
-  <div v-if="menu == 'pants'">
-    <p class="close-button" @click="menu = 'character'"></p>
+  <div class="menuWindow" v-if="menu == 'pants'">
+    <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
+    <p class="close-button" @click="      changeMenu('character')"></p>
+
+    <div class="flex-row carousel">
+      <div class="navArrow"
+      @click="$parent.$refs.you.changePants(-1)"
+      >&#60;</div>
+
+      <div style="width: 50px; height: 60px; color: white; font-size: 10px;">
+        Pants:
+      </div>
+
+      <div class="navArrow"
+      @click="$parent.$refs.you.changePants(1)"
+      >&#62;</div>
+    </div>
+
+    <p style="color:white">Color:</p>
+      <div class="flex-row">
+    <div v-for="n in 10">
+        <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg) brightness(' + 2 + ')'}">
+        <div class="colorSample"
+             @click="changeColor('pantsHue', (360 * (n/10)), 'pantsTone', 2)"
+             ></div>
+            </div>
+    </div>
+      </div>
+      <div class="flex-row">
+
+    <div v-for="n in 10">
+        <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg) brightness(1)'}">
+        <div class="colorSample"
+             @click="changeColor('pantsHue', (360 * (n/10)), 'pantsTone', 1)"
+             ></div>
+            </div>
+
+    </div>
+  </div>
   </div>
 
   <!-- Face Menu -->
-  <div v-if="menu == 'face'">
-    <p class="close-button" @click="menu = 'character'"></p>
+  <div class="menuWindow" v-if="menu == 'face'">
+    <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
     <label for="skinTone">Skin Tone</label>
     <input type="range" name="skinTone" id="skinTone" min="1" max="6" v-model="$parent.$refs.you.skinTone"/>
 
-    <label>Eye Color</label><button onclick="changeEyes()">Change Eye Color</button>
-    <input type="range" name="eyeTone" id="eyeTone" min="1" max="5" v-model="$parent.$refs.you.eyesTone">
+      <div class="flex-row">
+    <label>Eye Color: </label>
+      
+    <div v-for="n in 10">
+        <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg)'}">
+        <div class="eyeSample"
+             @click="$parent.$refs.you.eyesHue = (360 * (n/10))"
+             ></div>
+            </div>
+    </div>
+      </div>
+<!--      //1F7934-->
+      
+      <br>
 
-    <label for="hairTone">Hair Color</label>
-    <input type="range" name="hairTone" id="hairTone" min="0" max="12" v-model="$parent.$refs.you.hairTone"/>
+    
 
-    <ul class="carousel">
-      <li class="carousel-item" v-for="style in hair">
-        <img 
-        v-bind:src="imgURL + style.url" 
-        class="carousel-item"
-        @click="$parent.$refs.you.hair = imgURL + style.url">
-      </li>
-    </ul>
+    <!--    <input type="range" name="eyeTone" id="eyeTone" min="1" max="5" v-model="$parent.$refs.you.eyesTone">-->
+
+
+    <label for="hairTone">Hair Color</label><br>
+    <input type="range" name="hairTone" id="hairTone" min="0" max="10" v-model="$parent.$refs.you.hairTone"/>
+
+    <div class="flex-row carousel">
+      <div class="navArrow"
+      @click="$parent.$refs.you.changeHair(-1)"
+      >&#60;</div>
+
+      <div style="width: 50px; height: 60px; color: white; font-size: 10px;">
+        Hair Style:
+      </div>
+
+      <div class="navArrow"
+      @click="$parent.$refs.you.changeHair(1)"
+      >&#62;</div>
+    </div>
+    </div>
+
+    <!-- Extra Menu (Accessories) -->
+    <div class="itemMenu menuWindow" v-if="menu == 'extra'">
+      <p class="back-button" @click="changeMenu('character')">&#60;&#60; BACK<br></p>
+    <label for="extras">Coming soon!</label>
+
+    </div>
+
+    <!--    HAIR MENU-->
+    <div class="itemMenu menuWindow" v-if="menu == 'hair'">
+
+    </div>
   </div>
-
-  <!-- Extra Menu (Accessories) -->
-  <div v-if="menu == 'extra'">
-    <p class="close-button" @click="menu = 'character'"></p>
-
-  </div>
-
-  <!--    HAIR MENU-->
-  <div class="itemMenu" v-if="menu == 'hair'">
-
-  </div>
-</div>
 </div><!-- /#settings -->

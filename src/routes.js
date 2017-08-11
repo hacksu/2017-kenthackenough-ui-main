@@ -7,7 +7,8 @@ import About from 'components/About/about';
 const routes = [
   {
     path: '/',
-    component: Home
+    component: Home,
+    meta: { auth: false }
   },
   {
     path: '/apply',

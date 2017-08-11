@@ -1,28 +1,34 @@
 .person {
-    position: absolute;
-    width: 40px;
+  position: absolute;
+  width: 40px;
+  cursor: pointer;
+  z-index: 15;
+}
 
-    cursor: pointer;
+.inFront {
+      z-index: 1000;
+
 }
 
 .reverse {
-    scale: (-1, 1);
+  scale: (-1, 1);
 }
 
 .title {
-    position: absolute;
-    left: 0;
-    top: -25px;
+  position: absolute;
+  left: -35px;
+  top: -25px;
 
-    height: 20px;
-    width: auto;
-    max-width: 120px;
+  height: 20px;
+  min-width: 100px;
+//  max-width: 120px;
 
-    padding: 1px 5px;
-    background-color: rgba(0,0,0,.5);
-    color: white;
-    text-align: center;
-//    transform: scale(.5,.5);
+  padding: 1px 0px;
+  background-color: rgba(0,0,0,.5);
+  color: white;
+    font-size: 10px;
+    white-space: nowrap; 
+  text-align: center;
 }
 
 canvas {
@@ -35,4 +41,19 @@ canvas {
   image-rendering: -moz-crisp-edges; 
   image-rendering: -o-crisp-edges; 
   image-rendering: pixelated; 
+}
+
+#locked {
+  image-rendering: pixelated;
+    
+    position: absolute;
+    z-index: 10000;
+    transform: scale(1.5);
+    top: -4px;
+    left: -4px;
+}
+
+#lockedPic {
+    position: absolute;
+    z-index: 10000;
 }

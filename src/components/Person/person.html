@@ -1,15 +1,20 @@
 <div class="person" 
      v-bind:style="{ 
-                   top: (yTop - 4) + 'px', 
-                   left: (xLHS - 25) + 'px',
+                   top: topCoord, 
+                   left: leftCoord,
                    transform: facing,
                    width: '25px'
                    }"
+     v-bind:class="{ inFront: inFront }"
      v-on:mouseover="showName = true"
      v-on:mouseout="showName = false"
      >
-    <div class="title" v-if="showName"
-         v-bind:style="{transform: facing}">{{ name || 'Apply!' }}</div>
+    <div id="locked">
+    <img v-if="locked && customize != 'none'" 
+         src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/lock.png" id="lockedPic">
+        </div>
+    <div class="title" v-if="showName && customize == 'none'"
+         v-bind:style="{transform: facing}">{{ $root.$data.user.application.name || 'Apply!' }}</div>
     
     <canvas id="skin" width="22px" height="30px"
             v-bind:style="{ 
@@ -20,13 +25,18 @@
     
     <canvas id="shirt" width="22px" height="30px"
             v-bind:style="{
-                       filter: 'hue-rotate(' + shirtHue + 'deg)'
+                       filter: 'hue-rotate(' + shirtHue + 'deg)' +
+                       'brightness(' + shirtTone + ')'
                        }"
             >
     </canvas>
     
 	
 	<canvas id="pants" width="22px" height="30px"
+            v-bind:style="{
+                       filter: 'hue-rotate(' + pantsHue + 'deg)' +
+                       'brightness(' + pantsTone + ')'
+                       }"
             >
     </canvas>
     
@@ -42,7 +52,7 @@
     </canvas>
     <canvas id="eyes" width="22px" height="30px"
             v-bind:style="{ 
-                   filter: 'brightness(' + eyesTone/2 + ')' 
+                   filter: 'brightness(' + eyesTone/2 + ') hue-rotate(' + eyesHue + 'deg)' 
                    }">
     </canvas>
 </div>

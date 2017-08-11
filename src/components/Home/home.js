@@ -152,26 +152,30 @@ export default Vue.extend({
       }
       this.paused = false;
         
-      if (keys[keys.LEFT]) {
-        this.$refs.you.moveLeft();
-      }
-      if (keys[keys.RIGHT]) {
-        this.$refs.you.moveRight();
-      }
-      if (keys[keys.UP]) {
-        this.$refs.you.jumpUp();
-      }
-      if (keys[keys.DOWN]) {
-        return;
-      }
-      if (keys[keys.H]) {
-        this.hurtMonster();
-      }
+//      if (keys[keys.LEFT]) {
+//        this.$refs.you.moveLeft();
+//      }
+//      if (keys[keys.RIGHT]) {
+//        this.$refs.you.moveRight();
+//      }
+//      if (keys[keys.UP]) {
+//        this.$refs.you.jumpUp();
+//      }
+//      if (keys[keys.DOWN]) {
+//        return;
+//      }
+//      if (keys[keys.H]) {
+//        this.hurtMonster();
+//      }
     },
 
     togglePaused() {
       console.log('togglePaused');
       this.paused = !this.paused;
+      if (this.$refs.youMenu !== undefined) {
+        console.log(this.$refs.youMenu.menu);
+      }
+    
     },
       
     newMonster() {

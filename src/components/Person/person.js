@@ -7,7 +7,30 @@ import './person.scss';
 //var skinSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standSkin.png';
 //var eyeSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standEyes.png';
 //var shirtSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt3.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt4.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt5.png'];
-var hairSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair2.png'];
+
+var hairSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/pigtails.png'];
+//var shirtSrc = [
+//  {
+//    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shirt1.png',
+//    name: 'Classic'
+//  },
+//  {
+//    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png',
+//    name: 'hoodie'
+//  },
+//  {
+//    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+//    name: 'sweater'
+//  },
+//  {
+//    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+//    name: 'suit'
+//  },
+//  {
+//    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+//    name: 'tank'
+//  }
+//];
 //var pantsSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standPants1.png'];
 //var shoesSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShoes1.png'];
 
@@ -16,9 +39,7 @@ export default Vue.extend({
 
   data() {
     return {
-      name: '',
       showName: false,
-      grid: true,
       
         // Physics variables
       weight: 0.1,
@@ -27,25 +48,60 @@ export default Vue.extend({
       speed: 1.2,
         // Sprite sheets loaded
       skin: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/skin.png',
-      shirt: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shirt1.png',
-        // SUIT LINK:   https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png
-        // TANK TOP LINK: https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png
+      shirt: 0,
+      shirtSrc: [
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shirt1.png',
+          name: 'Classic',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png',
+          name: 'tank top',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+          name: 'suit',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+          name: 'suit',
+          lock: true
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
+          name: 'tank',
+          lock: true
+        }
+      ],
       pants: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/pants1.png',
-      hair: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png',
+      hair: 0,
       shoes: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shoes1.png',
       eyes: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/eyes1.png',
+        
+      customize: 'none', // Indicates which customize menu is loaded
+      locked: false,
+      inFront: false,
+      win: false,
+        
+      gridPhysics: false,
         
         // Image stats
       skinTone: 0,  // 0 - 8
       shirtHue: 0,  // 0 - 360
+      shirtTone: 1, // 1-2
       pantsHue: 0,
+      pantsTone: 1,
       hairTone: 0,  // 0 - 12
       eyesHue: 0,
-      eyesTone: 0,  // 1 - 5
+      eyesTone: 2,  // 1 - 5
     
       facing: 'scale(1,1)',
         // Coordinates
-      yTop: 100,
+
+      yTop: 150,
       xLHS: 200,
       yBottom: 30,
       xRHS: 22,
@@ -53,7 +109,7 @@ export default Vue.extend({
       yVel: 0,
       xVel: 0,
         
-      status: 'idle', // 'idle', 'run', 'jump'
+      status: 'idle', // 'idle', 'run', 'jump', 'win'
         
       // Sprite Animation variables
       shift: 0,         // Used to log shift in pixels thru anim frames
@@ -78,10 +134,58 @@ export default Vue.extend({
           
     };
   },
+    
+  computed: {
+    topCoord: function() {
+      if (this.customize === 'character') {
+        this.inFront = true;
+        this.locked = false;
+        return '160px';
+      } else if (this.customize === 'face') {
+        this.inFront = true;
+        return '190px';
+      } else if (this.customize === 'shirts' || this.customize === 'pants') {
+        this.inFront = true;
+        return '120px';
+      } else {
+        this.inFront = false;
+        return (this.yTop + 1) + 'px';
+      }
+    },
+    leftCoord: function() {
+      if (this.customize === 'character') {
+        return '230px';
+      } else if (this.customize === 'face') {
+        return '230px';
+      } else if (this.customize === 'shirts' || this.customize === 'pants') {
+        return '225px';
+      } else {
+        return (this.xLHS - 25) + 'px';
+      }
+    },
+
+    characterData: function() {
+      return {
+        skinTone: this.skinTone,
+        shirtHue: this.shirtHue,
+        shirtTone: this.shirtTone,
+        pantsHue: this.pantsHue,
+        pantsTone: this.pantsTone,
+        hairTone: this.hairTone,
+        eyesHue: this.eyesHue,
+        eyesTone: this.eyesTone,
+        hair: this.hair,
+        shirt: this.shirt,
+      };
+    },
+  },
 
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
     this.randomize();  // Randomizing character
+    this.loadCharacter();
+    
+    this.sprite.hair.src = hairSrc[this.hair];
       
     // Setting up canvas vars for animation
     var canvas = document.getElementById('skin');
@@ -107,14 +211,46 @@ export default Vue.extend({
   },
 
   beforeDestroy: function() {
-      
+    this.saveCharacter();
   },
 
   methods: {
+    saveCharacter() {
+      var characterData = JSON.stringify(this.$parent.$refs.you.characterData);
+      this.$root.setCharacter(characterData);
+    },
+
+    loadCharacter() {
+      var characterData = '';
+      try {
+        var characterDataString = this.$root.getCharacter();
+        
+        if (typeof characterDataString !== 'undefined') {
+          characterData = JSON.parse(characterDataString);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      console.log('characterData', characterData);
+      if (characterData && characterData !== '') {
+        console.log(characterData);
+        this.skinTone = characterData.skinTone;
+        this.shirtHue = characterData.shirtHue;
+        this.shirtTone = characterData.shirtTone;
+        this.pantsHue = characterData.pantsHue;
+        this.pantsTone = characterData.pantsTone;
+        this.hairTone = characterData.hairTone;
+        this.eyesHue = characterData.eyesHue;
+        this.eyesTone = characterData.eyesTone;
+        this.hair = characterData.hair;
+        this.shirt = characterData.shirt;
+      }
+    },
+
     loadSprites() {
       this.sprite.skin.src = this.skin;
-      this.sprite.shirt.src = this.shirt;
-      this.sprite.hair.src = this.hair;
+      this.sprite.shirt.src = this.shirtSrc[this.shirt].url;
+      this.sprite.hair.src = hairSrc[this.hair];
       this.sprite.pants.src = this.pants;
       this.sprite.shoes.src = this.shoes;
       this.sprite.eyes.src = this.eyes;
@@ -123,9 +259,63 @@ export default Vue.extend({
     randomize: function() {
       this.skinTone = Math.floor(Math.random() * 8);
       this.hairTone = Math.floor(Math.random() * 13);
-      this.eyesTone = Math.floor(Math.random() * 3) + 2;
-//      this.shirt = shirtSrc[Math.floor(Math.random() * shirtSrc.length)];
-      this.hair = hairSrc[Math.floor(Math.random() * hairSrc.length)];
+     
+      // This if statement avoids very dark skin with very light hair
+      // I'm worried it looks like blackface
+      if (this.skinTone <= 4){
+        while (this.hairTone >= this.skinTone + 2) {
+          this.hairTone = Math.floor(Math.random() * 13);
+        }
+      }
+        
+      //this.eyesTone = Math.floor(Math.random() * 5);
+      //      this.shirt = shirtSrc[Math.floor(Math.random() * shirtSrc.length)];
+      this.hair = Math.floor(Math.random() * hairSrc.length);
+      this.sprite.hair.src = hairSrc[this.hair];
+    },
+      
+    changeHair(dir) {
+      this.hair += dir;
+      if (this.hair > (hairSrc.length - 1)) {
+        this.hair = 0;
+      }
+      if (this.hair < 0) {
+        this.hair = (hairSrc.length - 1);
+      }
+      this.sprite.hair.src = hairSrc[this.hair];
+    },
+      
+    changeShirt(dir) {
+      this.shirt += dir;
+      if (this.shirt > (this.shirtSrc.length - 1)) {
+        this.shirt = 0;
+      }
+      if (this.shirt < 0) {
+        this.shirt = (this.shirtSrc.length - 1);
+      }
+      if (this.shirtSrc[this.shirt].lock) {
+        this.locked = true;
+        return;
+      }
+      this.locked = false;
+      this.sprite.shirt.src = this.shirtSrc[this.shirt].url;
+    },
+      
+    changePants(dir) {
+      return dir;
+//      this.shirt += dir;
+//      if (this.shirt > (this.shirtSrc.length - 1)) {
+//        this.shirt = 0;
+//      }
+//      if (this.shirt < 0) {
+//        this.shirt = (this.shirtSrc.length - 1);
+//      }
+//      if (this.shirtSrc[this.shirt].lock) {
+//        this.locked = true;
+//        return;
+//      }
+//      this.locked = false;
+//      this.sprite.shirt.src = this.shirtSrc[this.shirt].url;
     },
       
     animate: function() {
@@ -134,7 +324,7 @@ export default Vue.extend({
       this.fall();
       this.slow(); //Causes friction
         
-      if (this.yVel !== 0) {
+      if (this.yVel !== 0 || this.win) {
         if (this.status !== 'jump') {
           this.status = 'jump';
           this.totalFrames = 1;
@@ -202,8 +392,12 @@ export default Vue.extend({
     },
     
     fall: function() {
-      if (!this.isGrounded()) {
+      if (!this.isGrounded() && !this.win) {
         this.yVel += this.weight;
+          // handles player height at win
+      } else if (this.win) {
+        this.yVel = 0;
+        this.yTop = 120;    // How high character is when win is triggered
       } else {
         this.yVel = 0;
       }
@@ -220,8 +414,8 @@ export default Vue.extend({
     },
       
     isGrounded: function() {
-    
-      if (!this.grid){
+
+      if (!this.gridPhysics){
         if (this.yBottom < 213) {
           return false;
         } else {
@@ -268,6 +462,10 @@ export default Vue.extend({
     },
       
     topCollision: function() {
+        
+      if (!this.gridPhysics) {
+        return false;
+      }
       var gridLocY = Math.floor((this.yTop + 22) / 20);
       var gridLocX = Math.floor(this.xLHS / 20) - 3;
       var grid = this.$parent.$refs.home.grid;
@@ -303,7 +501,7 @@ export default Vue.extend({
     moveRight: function() {
       // // BOUNDARY CHECK:
         
-      if (!this.grid) {
+      if (!this.gridPhysics) {
         this.xVel = this.speed;
         this.facing = 'scale(1,1)';
         return;
@@ -343,7 +541,7 @@ export default Vue.extend({
     moveLeft: function() {
       // BOUNDARY CHECK:
 
-      if (!this.grid) {
+      if (!this.gridPhysics) {
         this.xVel = (0 - this.speed);
         this.facing = 'scale(-1,1)';
         return;

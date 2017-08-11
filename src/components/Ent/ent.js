@@ -19,10 +19,10 @@ export default Vue.extend({
       weight: 0.05,
       friction: 0.1,
       jump: 4,
-      speed: 0.5,
-      hurtTime: 30,
+      speed: 1.4,
+      hurtTime: 10,
       hurtCount: 0, // Hurt time is the length he'll stay hurt
-      hp: 3,
+      hp: 2000,
     
       facing: 'scale(1,1)',
         // Coordinates
@@ -363,13 +363,16 @@ export default Vue.extend({
       this.facing = 'scale(-1,1)';
     },
       
-    hurt: function() {
+    hurt: function(amt) {
+      if (typeof amt === 'undefined') {
+        amt = 1;
+      }
       if (this.hurtCount > 0 || this.xLHS < 200) {
         return;
       }
       this.$parent.slash = true;
         
-      this.hp--;
+      this.hp -= amt;
       console.log('Ent HP: ' + this.hp);
       if (this.hp <= 0) {
         this.yVel = -1;

@@ -24,10 +24,13 @@
     "lint:js": "./node_modules/.bin/eslint src; exit 0;"
   },
   "dependencies": {
+    "@websanova/vue-auth": "^2.13.2-beta",
     "axios": "^0.15.3",
-    "vee-validate": "^2.0.0-beta.18",
+    "vee-validate": "^2.0.0-rc.7",
     "vue": "^2.1.8",
+    "vue-axios": "^2.0.2",
     "vue-router": "^2.0.1",
+    "vue2-dropzone": "^2.3.5",
     "whatwg-fetch": "^2.0.3"
   },
   "devDependencies": {

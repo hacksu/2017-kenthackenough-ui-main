@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@websanova/vue-auth@^2.13.2-beta":
+  version "2.13.2-beta"
+  resolved "https://registry.yarnpkg.com/@websanova/vue-auth/-/vue-auth-2.13.2-beta.tgz#f745bc4417c4ea2bb442467ab31a2bae917e0742"
+
 abbrev@1:
   version "1.0.9"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.0.9.tgz#91b4792588a7738c25f35dd6f63752a2f8776135"
@@ -7101,9 +7105,9 @@ vary@~1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/vary/-/vary-1.1.0.tgz#e1e5affbbd16ae768dd2674394b9ad3022653140"
 
-vee-validate@^2.0.0-beta.18:
-  version "2.0.0-beta.18"
-  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-2.0.0-beta.18.tgz#ce79ae42d69a8fd7ebebde3effdfa2e2d9e112ef"
+vee-validate@^2.0.0-rc.7:
+  version "2.0.0-rc.8"
+  resolved "https://registry.yarnpkg.com/vee-validate/-/vee-validate-2.0.0-rc.8.tgz#2a1f176f0bc1bb9a5758a5d1840b305762f7452b"
 
 vendors@^1.0.0:
   version "1.0.1"
@@ -7176,6 +7180,10 @@ vm-browserify@0.0.4:
   resolved "https://registry.yarnpkg.com/vm-browserify/-/vm-browserify-0.0.4.tgz#5d7ea45bbef9e4a6ff65f95438e0a87c357d5a73"
   dependencies:
     indexof "0.0.1"
+
+vue-axios@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/vue-axios/-/vue-axios-2.0.2.tgz#0fe5a69f1edb09a1cd6c4a7f88c74d2fb7fe1778"
 
 vue-hot-reload-api@^2.0.1:
   version "2.0.8"
