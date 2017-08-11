@@ -293,7 +293,7 @@ var app1 = new Vue({
     cleanApplication() {
       // Fill in name
       if (this.user.application.name === '') {
-        this.user.application.name = 'Hacker';
+        this.user.application.name = '';
       }
 
       // Clean Phone Number

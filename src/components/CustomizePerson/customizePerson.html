@@ -14,7 +14,7 @@
     <input type="password" id="password" placeholder="Password..." v-model="$root.$data.user.password"/>
     <br>
     <div class="flex-row">
-      <router-link class="login-link" tag="p" to="/reset" exact>Forgot password?</router-link>
+<!--      <router-link class="login-link" tag="p" to="/reset" exact>Forgot password?</router-link>-->
       <!-- <p>Remember Me&nbsp;<input type="checkbox" name="Remember Me" v-model="rememberMe"></p> -->
     </div>
     <div class="flex-row align-right">
@@ -30,9 +30,12 @@
     
     <input type="text" id="name" placeholder="Your full name..." v-model="$root.$data.user.application.name"/>
 
+    <div class="flex-row">
     <button @click="$parent.$refs.you.randomize()">
       <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/random.png">
       </button>
+        <p class="error-message">{{ errorMessage || errors.first('email') }}</p>
+    </div>
 
     <div class="flex-row">
 
@@ -55,10 +58,10 @@
     <br>
     <div class="flex-row">
       <p class="login-link" @click="handleLogout()">Logout</p>
-      <router-link to="/apply" tag="button" class="apply-link align-right">
+      <a @click="toApply()" class="apply-link align-right">
         <span v-if="$root.user.application.school == ''">Continue to Application!</span> <!-- Dummy check for if application has been sent. -->
         <span v-else>Edit Application</span>
-      </router-link>
+        </a>
     </div>
   </div>
 
@@ -128,7 +131,7 @@
       <div class="flex-row">
     <div v-for="n in 10">
         <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg) brightness(' + 2 + ')'}">
-        <div class="colorSample"
+        <div class="pantsColorSample"
              @click="changeColor('pantsHue', (360 * (n/10)), 'pantsTone', 2)"
              ></div>
             </div>
@@ -138,7 +141,7 @@
 
     <div v-for="n in 10">
         <div v-bind:style="{ filter: 'hue-rotate(' + (360 * (n/10)) + 'deg) brightness(1)'}">
-        <div class="colorSample"
+        <div class="pantsColorSample"
              @click="changeColor('pantsHue', (360 * (n/10)), 'pantsTone', 1)"
              ></div>
             </div>
@@ -164,7 +167,6 @@
             </div>
     </div>
       </div>
-<!--      //1F7934-->
       
       <br>
 
