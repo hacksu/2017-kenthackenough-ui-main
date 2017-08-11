@@ -7,32 +7,37 @@
 		<ent ref="appEnt" v-if="monster == 'ent'"></ent>
         
         <!-- Finish -->
-		<transition name="floatIn">
-            
-            <div class="application-finish" v-if="currentFieldIndex === 15">
-			<div id="powerPuff"></div>
-                <div class="winTextBlock">
-                <h2 class="winText">YOU DID IT!</h2>
-            <h3 class="winText">Application complete!</h3>
-                    </div>
-                <div class="winTextBlock" style="top: 120px;">
-                <h2 class="winText">Share Your Character:</h2>
-                    <span id="shareIcons" class="flex-row">
-                    <img src="http://iconizer.net/files/iconizer_pixelated/thumb/128/facebook.png"
-                         class="pixelIcon">
-                    <img src="http://iconizer.net/files/iconizer_pixelated/thumb/128/twitter.png"
-                         class="pixelIcon">
-                    <img src="http://iconizer.net/files/iconizer_pixelated/thumb/128/gmail.png"
-                         class="pixelIcon">
-                        
-                    </span>
-            <h2 class="winText">Or Click Here To Go Back To The Homepage</h2>
-                    </div>
-                </div>
-		</transition>
+        <transition name="floatIn">
+        	<div class="application-finish" v-if="currentFieldIndex === 15">
+        		<div id="powerPuff"></div>
+        		<div class="winTextBlock">
+        			<h2 class="winText">YOU DID IT!</h2>
+        			<h3 class="winText">Application complete!</h3>
+        		</div>
+        		<div class="winTextBlock" style="top: 120px;">
+        			<h2 class="winText">Share The News:</h2>
+        			<span id="shareIcons" class="flex-row">
+        				<a href="https://www.facebook.com/sharer/sharer.php?u=http%3A//khe.io">
+        					<img src="http://iconizer.net/files/iconizer_pixelated/thumb/128/facebook.png"
+        					class="pixelIcon">
+        				</a>
+        				<a href="https://twitter.com/home?status=I%20just%20signed%20up%20for%20Kent%20Hack%20Enough,%20KSU's%20party%20themed%20hackathon!%20Sign%20up%20here%3A%20http%3A//khe.io%0A%0A%23partyhackathon">
+        					<img src="http://iconizer.net/files/iconizer_pixelated/thumb/128/twitter.png"
+        					class="pixelIcon">
+        				</a>
+        				<a href="mailto:Yourfriend@gmail.com?&subject=I just applied for Kent Hack Enough!&body=I%20just%20applied%20for%20Kent%20Hack%20Enough,%20KSU's%20party%20themed%20hackathon!%20You%20should%20too%3A%0A%0Ahttp%3A//khe.io">
+
+        					<img src="http://iconizer.net/files/iconizer_pixelated/thumb/128/gmail.png"
+        					class="pixelIcon">
+        				</a>
+        			</span>
+        			<h2 class="winText">Or Click Here To Go Back To The Homepage</h2>
+        		</div>
+        	</div>
+        </transition>
 	</div>
 
-	<div class="application-form">
+	<div class="application-form" v-if="currentFieldIndex != 15">
 		<!-- Intro -->
 		<transition name="floatIn">
 			<div class="application-field" v-if="currentFieldIndex === 0">
@@ -512,9 +517,11 @@
 		</transition>
         
         
+<!--
             <canvas id="sharable"
                     height="300"
                     width="1000"></canvas>
+-->
         
         
 

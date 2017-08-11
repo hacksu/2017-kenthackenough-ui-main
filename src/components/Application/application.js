@@ -12,6 +12,14 @@ import Ent from 'components/Ent/ent';
 import './application.scss';
 import { API_BASE } from 'src/config/constants';
 
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = '//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
 var keys = {
   UP: 38,
   LEFT: 37,
@@ -165,7 +173,7 @@ export default Vue.extend({
       if (this.currentFieldIndex === 15) {
         this.$refs.you.win = true;
         console.log('win status: ' + this.$refs.you.win);
-          
+          /*
         var canvas = document.getElementById('sharable');
         var context = canvas.getContext('2d');
 
@@ -182,6 +190,7 @@ export default Vue.extend({
           document.write('<img id="newImageYo" src="' + imgLink + '"/>');
         };
         imageObj.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/mockups.png';
+        */
       }
 
       this.hurtMonster(2000);
@@ -253,7 +262,7 @@ export default Vue.extend({
 
     var self = this;
     setTimeout(() => {
-      self.currentFieldIndex = 13;
+      self.currentFieldIndex = 0;
     }, 100);
     setTimeout(() => {
       self.currentFieldIndex += 1;
