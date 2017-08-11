@@ -231,6 +231,18 @@ label {
     }
 }
 
+.pantsColorSample {
+    
+    background-color: #384C77;
+    width: 10px;
+    height: 10px;
+    border: solid black 1px;
+    
+    &:hover {
+    cursor: pointer;
+    }
+}
+
 .eyeSample {
     background-color: #1F7934;
     width: 10px;

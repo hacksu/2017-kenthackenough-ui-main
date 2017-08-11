@@ -143,7 +143,7 @@ export default Vue.extend({
         return '160px';
       } else if (this.customize === 'face') {
         this.inFront = true;
-        return '190px';
+        return '200px';
       } else if (this.customize === 'shirts' || this.customize === 'pants') {
         this.inFront = true;
         return '120px';
