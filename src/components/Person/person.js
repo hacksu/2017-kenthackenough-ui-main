@@ -178,7 +178,7 @@ export default Vue.extend({
 
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
-    this.randomize();  // Randomizing character
+//    this.randomize();  // Randomizing character
     this.loadCharacter();
     
     this.sprite.hair.src = hairSrc[this.hair];
