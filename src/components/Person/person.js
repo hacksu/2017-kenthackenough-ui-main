@@ -56,12 +56,12 @@ export default Vue.extend({
         },
         {
           url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png',
-          name: 'hoodie',
+          name: 'tank top',
           lock: false
         },
         {
           url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
-          name: 'sweater',
+          name: 'suit',
           lock: false
         },
         {
@@ -295,6 +295,23 @@ export default Vue.extend({
       }
       this.locked = false;
       this.sprite.shirt.src = this.shirtSrc[this.shirt].url;
+    },
+      
+    changePants(dir) {
+      return dir;
+//      this.shirt += dir;
+//      if (this.shirt > (this.shirtSrc.length - 1)) {
+//        this.shirt = 0;
+//      }
+//      if (this.shirt < 0) {
+//        this.shirt = (this.shirtSrc.length - 1);
+//      }
+//      if (this.shirtSrc[this.shirt].lock) {
+//        this.locked = true;
+//        return;
+//      }
+//      this.locked = false;
+//      this.sprite.shirt.src = this.shirtSrc[this.shirt].url;
     },
       
     animate: function() {
