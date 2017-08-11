@@ -52,8 +52,8 @@ export default Vue.extend({
       slashTime: 10,
       slashCount: 0,
       
-      schools: ['Kent', 'Akron', 'Case'],
-      genders: ['Male', 'Female'],
+      schools: [],
+      genders: ['Male', 'Female', 'Other'],
       resumeUrl: '',
 
       scalingObject: {
