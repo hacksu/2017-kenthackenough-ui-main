@@ -102,7 +102,7 @@ export default Vue.extend({
         // Coordinates
 
       yTop: 150,
-      xLHS: 200,
+      xLHS: 180,
       yBottom: 30,
       xRHS: 22,
         // Velocity

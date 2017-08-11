@@ -58,10 +58,10 @@
     <br>
     <div class="flex-row">
       <p class="login-link" @click="handleLogout()">Logout</p>
-      <router-link to="/apply" tag="button" class="apply-link align-right">
+      <a @click="toApply()" class="apply-link align-right">
         <span v-if="$root.user.application.school == ''">Continue to Application!</span> <!-- Dummy check for if application has been sent. -->
         <span v-else>Edit Application</span>
-      </router-link>
+        </a>
     </div>
   </div>
 

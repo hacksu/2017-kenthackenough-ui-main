@@ -405,6 +405,7 @@
 					type="radio"
 					id="travel-yes"
 					value="true"
+					@focus="$root.$data.user.application.travel = true"
 					v-model="$root.$data.user.application.travel"/>
 					<label for="travel-yes">Yes</label>
 
@@ -412,6 +413,7 @@
 					type="radio"
 					id="travel-no"
 					value="false"
+					@focus="$root.$data.user.application.travel = false"
 					v-model="$root.$data.user.application.travel"/>
 					<label for="travel-no">No</label>
 

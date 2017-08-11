@@ -162,10 +162,13 @@ label {
   &:hover {
      box-shadow: -1px 1px 0px $midnight-dark;
   }
+  width: 130px;
+  font-size: 10px;
   @media only screen and (max-width: 720px) {
       max-width: 80px;
       font-size: 10px;
       padding: 2px 0px;
+      padding-left: 2px;
   }
 }
 
