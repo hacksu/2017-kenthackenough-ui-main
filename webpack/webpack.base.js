@@ -8,7 +8,7 @@ var sourceMapQueryStr = !isProduction ? '+sourceMap' : '-sourceMap';
 
 module.exports = {
   entry: {
-    app: [path.resolve(__dirname, '../src/main.js')]
+    app: ['whatwg-fetch', path.resolve(__dirname, '../src/main.js')]
   },
   output: {
     chunkFilename: '[id].chunk.js',

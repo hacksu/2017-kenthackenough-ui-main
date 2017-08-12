@@ -7,6 +7,7 @@ import './person.scss';
 //var skinSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standSkin.png';
 //var eyeSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standEyes.png';
 //var shirtSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt3.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt4.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt5.png'];
+
 var hairSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/pigtails.png'];
 //var shirtSrc = [
 //  {
@@ -99,8 +100,9 @@ export default Vue.extend({
     
       facing: 'scale(1,1)',
         // Coordinates
+
       yTop: 150,
-      xLHS: 200,
+      xLHS: 180,
       yBottom: 30,
       xRHS: 22,
         // Velocity
@@ -141,7 +143,7 @@ export default Vue.extend({
         return '160px';
       } else if (this.customize === 'face') {
         this.inFront = true;
-        return '190px';
+        return '200px';
       } else if (this.customize === 'shirts' || this.customize === 'pants') {
         this.inFront = true;
         return '120px';
@@ -181,9 +183,11 @@ export default Vue.extend({
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
     this.randomize();  // Randomizing character
-    this.loadCharacter();
     
-    this.sprite.hair.src = hairSrc[this.hair];
+    setTimeout(() => {
+      this.loadCharacter();
+      this.sprite.hair.src = hairSrc[this.hair];
+    }, 300);
       
     // Setting up canvas vars for animation
     var canvas = document.getElementById('skin');
@@ -380,9 +384,9 @@ export default Vue.extend({
       
     move: function() {
 
-      // if (this.topCollision() && !this.isGrounded()){
-      //   this.yVel = 1;
-      // }
+      if (this.topCollision() && !this.isGrounded()){
+        this.yVel = 1;
+      }
       this.yTop += (Math.floor(this.yVel * 10) / 10);
       this.xLHS += (Math.floor(this.xVel * 10) / 10);
       this.yBottom = this.yTop + 14;
@@ -412,6 +416,7 @@ export default Vue.extend({
     },
       
     isGrounded: function() {
+
       if (!this.gridPhysics){
         if (this.yBottom < 213) {
           return false;
@@ -459,6 +464,10 @@ export default Vue.extend({
     },
       
     topCollision: function() {
+        
+      if (!this.gridPhysics) {
+        return false;
+      }
       var gridLocY = Math.floor((this.yTop + 22) / 20);
       var gridLocX = Math.floor(this.xLHS / 20) - 3;
       var grid = this.$parent.$refs.home.grid;

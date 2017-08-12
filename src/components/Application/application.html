@@ -1,6 +1,6 @@
 <main>
 	<div id="scaling-container" v-bind:style="scalingObject" ref="scalingContainer">
-		<img src="https://files.slack.com/files-pri/T04229HH8-F6GACRBGR/kheforest.png" class="test">
+		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheforest.png" class="forestBG">
 		<grid style="position: absolute;"></grid>
 		<person ref="you" paused="paused"></person>
 		<ogre ref="appOgre" v-if="monster == 'ogre'"></ogre>
@@ -404,6 +404,7 @@
 					type="radio"
 					id="travel-yes"
 					value="true"
+					@focus="$root.$data.user.application.travel = true"
 					v-model="$root.$data.user.application.travel"/>
 					<label for="travel-yes">Yes</label>
 
@@ -411,6 +412,7 @@
 					type="radio"
 					id="travel-no"
 					value="false"
+					@focus="$root.$data.user.application.travel = false"
 					v-model="$root.$data.user.application.travel"/>
 					<label for="travel-no">No</label>
 

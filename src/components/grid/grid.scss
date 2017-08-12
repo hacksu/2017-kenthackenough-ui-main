@@ -1,4 +1,5 @@
 #grid {
+    z-index: -1000;
     position: absolute;
     -ms-interpolation-mode: nearest-neighbor; 
     image-rendering: -webkit-optimize-contrast; 
@@ -9,6 +10,7 @@
 }
 
 .gridSpace {
+    z-index: 0;
     position: absolute;
     width: 20px;
     height: 20px;

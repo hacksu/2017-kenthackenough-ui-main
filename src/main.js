@@ -25,7 +25,11 @@ import 'src/style.scss';
 export const router = new VueRouter({
   routes,
   mode: 'history',
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
+    
+  scrollBehavior: function() {
+    return { x: 0, y: 0 };
+  }
 });
 
 Vue.router = router;
@@ -92,7 +96,6 @@ var app1 = new Vue({
   },
 
   methods: {
-
     getMe() {
       var me = JSON.parse(localStorage.getItem('me'));
 
@@ -263,7 +266,7 @@ var app1 = new Vue({
     cleanApplication() {
       // Fill in name
       if (this.user.application.name === '') {
-        this.user.application.name = 'Hacker';
+        this.user.application.name = '';
       }
 
       // Clean Phone Number

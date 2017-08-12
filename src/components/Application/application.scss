@@ -403,3 +403,8 @@ main {
 .application-finish {
     z-index: 100;
 }
+
+.forestBG {
+    z-index: -1000;
+    position: absolute;
+}

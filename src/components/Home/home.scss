@@ -44,6 +44,9 @@ main {
 .combined-logo {
 	position: absolute;
 	top: 0; left: 50%;
+    
+    width: 300px;
+    height: 200px;
 
 	max-width: 100vw;
 
@@ -59,7 +62,7 @@ main {
 
 .date-location-container {
 	position: absolute;
-	top: 0; left: 50%;
+	top: 20; left: 50%;
 	width: 100%; // Fallback for 
 
 	--screenWidth: 100vw;
@@ -73,6 +76,7 @@ main {
 	padding: 0 5px;
 	text-align: center;
 	transform: translateX(-50%);
+    z-index: 10;
 	color: $white;
 	text-shadow: -1px 1px 0px $midnight-dark;
 
@@ -100,6 +104,7 @@ main {
     transform: translate(-50%, -50%);
   }
 }
+
 
 .darken {
     position: absolute;
@@ -135,7 +140,7 @@ main {
     opacity: .2;
     position: absolute;
     top: 235px;
-    left: 173px;
+    left: 153px;
     z-index: 15;
 }
 
