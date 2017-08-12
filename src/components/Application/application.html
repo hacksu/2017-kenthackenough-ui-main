@@ -72,7 +72,18 @@
 				<legend>What's your class standing?</legend>
 				<div class="button-group">
 
-					<input 
+					<select v-model="$root.$data.user.application.year" class="text-input-button">
+						<option disabled value="">Please select one</option>
+						<option>High Schooler</option>
+						<option>Freshman</option>
+						<option>Sophomore</option>
+						<option>Junior</option>
+						<option>Senior</option>
+						<option>Graduate Student</option>
+						<option>Other</option>
+					</select>					
+
+					<!-- <input 
 					type="radio"
 					id="year-hs"
 					value="High Schooler"
@@ -132,7 +143,7 @@
 					value="Other"
 					@focus="$root.$data.user.application.year = 'Other'" 
 					v-model="$root.$data.user.application.year"/>
-					<label for="year-other">Other</label>
+					<label for="year-other">Other</label> -->
 				</div>
 
 				<div class="button-container">
