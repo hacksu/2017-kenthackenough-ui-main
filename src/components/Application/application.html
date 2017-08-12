@@ -372,18 +372,6 @@
 					v-model="$root.$data.user.application.dietary"/>
 					<label for="diet-other">Other</label>
 
-					
-					<input
-					class="checkbox-button"
-					type="checkbox"
-					id="diet-none"
-					value=""
-					v-model="$root.$data.user.application.dietary"
-					@focus="$root.$data.user.application.dietary = []"/>
-					<transition name="fade">
-						<label v-if="$root.$data.user.application.dietary.length > 0 && $root.$data.user.application.dietary[0] !== ''" for="diet-none">None</label>
-					</transition>
-
 				</div>
 
 				<div class="button-container">
