@@ -83,12 +83,12 @@
   align-self: flex-end;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="range"] {
+input[type="text"], input[type="email"], input[type="password"], input[type="range"], textarea {
   width: 100%;
   font-family: 'hydrophilia-iced', sans-serif;
 }
 
-input[type=text], input[type=email], input[type=password] {
+input[type=text], input[type=email], input[type=password], textarea {
   background: transparent;
   border: none;
   border-bottom: 1px solid $white;

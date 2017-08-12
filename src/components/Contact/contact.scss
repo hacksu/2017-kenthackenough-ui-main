@@ -1,391 +1,43 @@
 @import "~styles/_variables.scss"; // Import variables to use colors
 
-main {
-	width: 100%;
-	height: 100%;
+#contact {
+	background-color: $midnight-dark;
 
-	overflow-x: hidden;
-}
-
-#scaling-container {
-	position: relative;
-
-	/*** 480px by 270px == 16:9 ratio ***/
-	width: 480px; //480px; // This should be the width (in pixels) of the background image
-	height: 270px; // This is the height should equal the same height as the image being used for the background
-	
-	transform-origin: top left; // Scale from the top left of the image
-}
-
-.application-form {
-	position: absolute;
-	top: 0;
-	left: 0;
-	width: 100vw;
-	height: 100vh;
-}
-
-#resume-upload {
-	font-family: 'hydrophilia-iced', sans-serif;
-	font-size: 2rem;
-	color: white;
-
-	background-color: rgba($white, 0.3);
-	border: 4px solid $white;
-
-	max-width: 1040px;
-	margin: 0 auto;
-}
-
-.dropzone .dz-preview.dz-file-preview .dz-image {
-	border-radius: 0 !important;
-}
-
-.application-field {
-	position: absolute;
-	top: 3vw;
-	left: 10px;
-
-	width: calc(100% - 20px);
-	max-height: calc(100vh - 3vw);
-	overflow-y: scroll;
-	text-align: center;
-
-	border: none;
-	box-shadow: none;
-
-	h1, legend {
-		font-size: 4rem;
-		color: white;
-		text-shadow: -4px 4px 0px $midnight-dark;
-
-		@media screen and (max-width: 768px) {
-			font-size: 2rem;
-			line-height: 2.5rem;
-		}
-
-		@media screen and (max-width: 420px) {
-			font-size: 2rem;
-			line-height: 2.5rem;
-		}
+	h1 {
+		color: $sunset;
+		font-size: 2rem;
+		text-align: left;
+		margin-bottom: 0.25rem;
+		padding-left: 0;
 	}
 
-	legend {
-		margin-bottom: 30px;
-
-		& h1 {
-			margin-bottom: 0;
-		}
+	p {
+		font-size: 1rem;
+		color: $white;
 	}
 
-	h2 {
-		display: inline;
-		font-size: 1.5rem;
-		line-height: 1.5rem;
+	label {
+		color: $sunset;
+		font-size: 1rem;
 	}
 
-	a {
-		color: $spring-bud;
-		text-shadow: -2px 2px 0px $midnight-dark;
-	}
-
-	input[type=text], input[type=email], input[type=password], input[type=tel], input[type=number], input[type=url] {
-		display: inline-block;
-		width: auto;
-		max-width: calc(100vw - 20px);
-		background: transparent;
-		border: none;
-		border-bottom: 4px solid $white;
-		text-shadow: -2px 2px 0px $midnight-dark;
-		border-radius: 0;
-		outline: 0;
-		color: white;
-		font-family: 'hydrophilia-iced', sans-serif;
-		font-size: 3rem;
-		line-height: 3.5rem;
-		text-align: center;
-		margin-bottom: 6px;
+	input, textarea {
+		font-size: 1.25rem;
+		text-align: left;
+		margin-bottom: 0.75rem;
 
 		&::placeholder {
-			opacity: 0.8;
-			color: $white;
-			font-size: 3rem;
-		}
-
-		@media screen and (max-width: 768px) {
-			font-size: 2rem;
-			line-height: 2.5rem;
-
-			&::placeholder {
-				font-size: 2rem;
-				line-height: 2.5rem;
-			}
-		}
-	}
-
-	input[type=checkbox] {
-		display: inline;
-		width: 1.5rem;
-		height: 1.5rem;
-
-		margin: 10px;
-	}
-
-	.button-container {
-		display: block;
-		margin: 30px auto 0;
-	}
-
-	.button-group {
-		display: flex;
-
-		flex-direction: column;
-		align-items: stretch;
-
-		max-width: 500px;
-		margin: 0 auto;
-
-		input[type="radio"], .checkbox-button {
-			width: 0;
-			height: 0;
-			opacity: 0;
-		}
-
-		.checkbox-button {
-			margin: 0;
-		}
-
-		.text-input-button {
-			&::placeholder {
-				font-size: 1.5rem;
-				line-height: 2rem;
-			}
-		}
-
-		input[type="radio"] + label, .checkbox-button + label, .text-input-button {
-			flex-shrink: 0;
-			display: block;
-			background-color: rgba($white, 0.3);
-
-			border-radius: 0;
-
-			border: 4px solid $white;
-
-			padding: 6px 12px;
-			margin-bottom: 10px;
-
-			font-size: 2rem;
-			line-height: 2.5rem;
-
-			cursor: pointer;
-
-			color: $white;
-			text-shadow: none;
-			opacity: 1;
-
-			&:hover {
-				z-index: 10;
-				transform: translateY(-4px);
-			}
-
-			@media screen and (max-width: 768px) {
-				font-size: 1.5rem;
-				line-height: 1.5rem;
-			}
-		}
-
-		input[type="radio"]:checked + label, .checkbox-button:checked + label, .text-input-button:active, .text-input-button:focus {
-			background-color: $shamrock;
-			border-color: $shamrock-dark;
-
-			z-index: 10;
-			transform: translateY(-4px);
-
-			color: white;
-			text-shadow: -4px 4px 0px $midnight-dark;
-		}
-	}
-
-	.login-link {
-		display: inline-block;
-		font-size: 2rem;
-		line-height: 2.5rem;
-
-		margin: 10px 40px;
-
-		@media screen and (max-width: 420px) {
-			margin-left: 10px;
-			margin-right: 10px;
-			font-size: 1.5rem;
-			line-height: 1.5rem;
+			opacity: 0.6;
+			font-size: 1.25rem;
 		}
 	}
 
 	button {
-		display: inline-block;
-		margin: 0 40px;
+		background-color: $sunset;
 		color: white;
-		text-shadow: -4px 4px 0px $midnight-dark;
-
-		background: $shamrock;
-		border-radius: 0;
-
-		border: 4px solid $shamrock-dark;
-
-		padding: 6px 12px;
-
+		border-color: white;
 		font-size: 2rem;
-		line-height: 2.5rem;
-
-		cursor: pointer;
-
-		&:hover {
-			box-shadow: -4px 4px 0px $midnight-dark;
-		}
-
-		@media screen and (max-width: 420px) {
-			margin-left: 10px;
-			margin-right: 10px;
-			font-size: 1.5rem;
-			line-height: 1.5rem;
-		}
-	}
-}
-
-#summary-page {
-	max-width: 1040px;
-	left: 50%;
-	transform: translateX(-50%);
-	p {
-		text-align: left;
-		font-size: 2rem;
-		line-height: 2.5rem;
-
-		color: white;
-		text-shadow: -4px 4px 0px $midnight-dark;
 		width: 100%;
-		max-width: calc(50% - 10px);
-		display: inline-block;
-
-		@media screen and (max-width: 768px) {
-			max-width: 100%;
-		}
-
-		@media screen and (max-width: 420px) {
-			font-size: 1.5rem;
-			line-height: 1.75rem;
-		}
+		max-width: 440px;
 	}
-
-	.login-link {
-		color: $spring-bud;
-		font-size: 2rem;
-		line-height: 2.5rem;
-		text-shadow: -4px 4px 0px $midnight-dark;
-		margin: 0;
-		margin-left: 8px;
-
-		@media screen and (max-width: 420px) {
-			font-size: 1.5rem;
-			line-height: 1.75rem;
-		}
-	}
-}
-
-// Float
-.floatIn-enter-active, .floatIn-leave-active {
-	transition: transform 0.5s ease, opacity 0.3s ease;
-	transform: translateY(0px);
-	opacity: 1;
-}
-.floatIn-enter, .floatIn-leave-to /* .fade-leave-active in <2.1.8 */ {
-	transform: translateY(-100px);
-	opacity: 0;
-}
-
-// Fade
-.fade-enter-active, .fade-leave-active {
-	transition-delay: 0.5s;
-	transition: opacity 0.5s ease;
-	position: relative;
-
-	width: initial;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active in <2.1.8 */ {
-	opacity: 0;
-	transition-delay: 0s;
-	position: absolute;
-	width: 0px !important;
-	padding: 0;
-	margin: 0;
-}
-
-#powerPuff {
-//    display: none;
-    background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/New%20Piskel.gif');
-    position: absolute;
-    height: 68px;
-    width: 68px;
-    left: 46.5%;
-    top: 100px;
-    transform: scale(12);
-    z-index: 1;
-    position: absolute;
-    -ms-interpolation-mode: nearest-neighbor; 
-    image-rendering: -webkit-optimize-contrast; 
-    image-rendering: -webkit-crisp-edges; 
-    image-rendering: -moz-crisp-edges; 
-    image-rendering: -o-crisp-edges; 
-    image-rendering: pixelated; 
-}
-
-.winTextBlock {
-//    background: $shamrock;
-//    border-radius: 0;
-//    border: 1px solid $shamrock-dark;
-//    padding-top: 6px;
-//    padding-bottom: 6px;
-    
-    position: absolute;
-    z-index: 10;
-    text-align: center;
-    left: 0;
-    right: 0;
-    margin-top: 50px;
-//    border: solid black 1px;
-
-
-}
-
-.winText {
-    color: white;
-    text-shadow: -1px 1px 0px $midnight-dark;
-        z-index: 10;
-    padding-left: 20px;
-    cursor: pointer;
-    
-//    text-align: center;
-}
-
-.pixelIcon {
-    background-color: white;
-    width: 20px;
-    height: 20px;
-}
-
-#shareIcons {
-    max-width: 100px;
-    margin-left: 41%;
-}
-
-#sharable {
-    position: absolute;
-    left: 100px;
-    top: 100px;
-//    border: solid red 1px;
-	pointer-events: none;
-}
-
-.application-finish {
-    z-index: 100;
 }

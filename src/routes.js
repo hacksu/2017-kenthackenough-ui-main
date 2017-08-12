@@ -2,6 +2,7 @@ import Home from 'components/Home/home';
 import Application from 'components/Application/application';
 import NotFound from 'components/NotFound/notFound';
 import EventInfo from 'components/EventInfo/eventInfo';
+import Contact from 'components/Contact/contact';
 
 const routes = [
   {
@@ -16,6 +17,10 @@ const routes = [
   {
     path: '/info',
     component: EventInfo
+  },
+  {
+    path: '/contact',
+    component: Contact
   },
   // {
   //   path: '/oauth/callback',
