@@ -67,6 +67,15 @@ export default Vue.extend({
       currentFieldIndex: -1,
     };
   },
+    
+  computed: {
+    phoneErr: function() {
+      if (this.$root.$data.user.application.phone.length > 14) {
+        return true;
+      }
+      return false;
+    }
+  },
 
   methods: {
     move(){

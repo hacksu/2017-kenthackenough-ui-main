@@ -234,12 +234,16 @@
 			<div class="application-field" v-if="currentFieldIndex === 6">
 				<h1>What's your phone number?</h1>
 				<input v-focus type="tel" v-model="$root.$data.user.application.phone" v-on:keydown="handleKeypress" id="phone-selection"
+                       v-validate.initial="'digits'"
 				placeholder="111-222-3333"/>
+                <p class="error" v-if="phoneErr">Must be a 10 digit phone number!</p>
 
 				<div class="button-container">
 					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
 					<transition name="fade">
-						<button v-show="$root.$data.user.application.phone !== ''" @click="goToNextField">Next</button>
+						<button v-show="$root.$data.user.application.phone !== '' && !phoneErr" 
+                                
+                                @click="goToNextField">Next</button>
 					</transition>
 				</div>
 			</div>
