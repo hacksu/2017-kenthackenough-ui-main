@@ -2107,6 +2107,10 @@ download@^4.0.0, download@^4.1.2:
     vinyl-fs "^2.2.0"
     ware "^1.2.0"
 
+dropzone@^5.1.1:
+  version "5.1.1"
+  resolved "https://registry.yarnpkg.com/dropzone/-/dropzone-5.1.1.tgz#9f5b02fc4aa84e6466e046ba770bc82776ea49de"
+
 duplexer2@0.0.2:
   version "0.0.2"
   resolved "https://registry.yarnpkg.com/duplexer2/-/duplexer2-0.0.2.tgz#c614dcf67e2fb14995a91711e5a617e8a60a31db"
@@ -7226,6 +7230,17 @@ vue-template-compiler@^2.1.10:
 vue-template-es2015-compiler@^1.2.2:
   version "1.5.0"
   resolved "https://registry.yarnpkg.com/vue-template-es2015-compiler/-/vue-template-es2015-compiler-1.5.0.tgz#e4f672ab1718a3abf9171a080daefac31be117e1"
+
+vue2-dropzone@^2.3.5:
+  version "2.3.5"
+  resolved "https://registry.yarnpkg.com/vue2-dropzone/-/vue2-dropzone-2.3.5.tgz#a567c873b42c36e4dfd7e1941bba4c65553a471e"
+  dependencies:
+    dropzone "^5.1.1"
+    vue "^2.0.0"
+
+vue@^2.0.0:
+  version "2.4.2"
+  resolved "https://registry.yarnpkg.com/vue/-/vue-2.4.2.tgz#a9855261f191c978cc0dc1150531b8d08149b58c"
 
 vue@^2.1.8:
   version "2.1.8"
