@@ -3,17 +3,17 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <meta name="apple-mobile-web-app-capable" content="yes">
-    
-<!--    Facebook share stuff -->
+
+  <!--    Facebook share stuff -->
   <meta property="og:url"           content="http://khe.io" />
   <meta property="og:type"          content="website" />
   <meta property="og:title"         content="Kent Hack Enough" />
   <meta property="og:description"   content="Design. Build. Party. Kent State's annual hackathon, October 6-8th 2017." />
   <meta property="og:image"         content="" />
-    
+
   <title>Kent Hack Enough 2017</title>
   <meta name="description" content="Design. Build. Party. Kent State's annual hackathon, October 6-8th 2017.">
 
@@ -23,44 +23,10 @@
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 </head>
 <body>
-<div id="app" ref="app">
-
-  <!-- <loader v-show="isLoading"></loader> -->
-
-  <div id="main-container" v-bind:style="mainContentStyle" >
-   
-      
-    <router-view>
-      
-      </router-view>
-      
-  </div>
-  <div id="nav-container" ref="navContainer" >
+  <div id="app" ref="app">
     <navigation></navigation>
+    
+    <router-view></router-view>
   </div>
-    
-<!--
-  <div id="mobile-nav-container" ref="mobileNavContainer" v-if="mobile"
-       v-bind:style="{
-                     top: viewH + 'px',
-                     height: navH + 'px'
-                     }">
-      <nav class="mobile-navbar-nav">
-	<router-link class="nav-item" to="/about" exact>
-		<a class="nav-link">Event Info</a>
-	</router-link>
-	<router-link class="nav-item" to="/" exact>
-		<a class="nav-link">Home</a>
-	</router-link>
-	<router-link class="nav-item" to="/sponsors" exact>
-		<a class="nav-link">Sponsors</a>
-	</router-link>
-</nav>
-
-    
-    </div>
--->
-</div>
-
 </body>
 </html>

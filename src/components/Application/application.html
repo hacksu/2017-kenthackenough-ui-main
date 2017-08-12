@@ -72,7 +72,18 @@
 				<legend>What's your class standing?</legend>
 				<div class="button-group">
 
-					<input 
+					<select v-model="$root.$data.user.application.year" class="text-input-button">
+						<option disabled value="">Please select one</option>
+						<option>High Schooler</option>
+						<option>Freshman</option>
+						<option>Sophomore</option>
+						<option>Junior</option>
+						<option>Senior</option>
+						<option>Graduate Student</option>
+						<option>Other</option>
+					</select>					
+
+					<!-- <input 
 					type="radio"
 					id="year-hs"
 					value="High Schooler"
@@ -132,7 +143,7 @@
 					value="Other"
 					@focus="$root.$data.user.application.year = 'Other'" 
 					v-model="$root.$data.user.application.year"/>
-					<label for="year-other">Other</label>
+					<label for="year-other">Other</label> -->
 				</div>
 
 				<div class="button-container">
@@ -371,18 +382,6 @@
 					value="Other"
 					v-model="$root.$data.user.application.dietary"/>
 					<label for="diet-other">Other</label>
-
-					
-					<input
-					class="checkbox-button"
-					type="checkbox"
-					id="diet-none"
-					value=""
-					v-model="$root.$data.user.application.dietary"
-					@focus="$root.$data.user.application.dietary = []"/>
-					<transition name="fade">
-						<label v-if="$root.$data.user.application.dietary.length > 0 && $root.$data.user.application.dietary[0] !== ''" for="diet-none">None</label>
-					</transition>
 
 				</div>
 

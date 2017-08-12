@@ -58,10 +58,11 @@
     <br>
     <div class="flex-row">
       <p class="login-link" @click="handleLogout()">Logout</p>
-      <a @click="toApply()" class="apply-link align-right">
+
+      <a @click="toApply()" class="apply-link align-right" v-bind:class="{ disabled: $root.user.application.name === '' }">
         <span v-if="$root.user.application.school == ''">Continue to Application!</span> <!-- Dummy check for if application has been sent. -->
         <span v-else>Edit Application</span>
-        </a>
+      </a>
     </div>
   </div>
 

@@ -1,6 +1,6 @@
 @font-face {
-    font-family: hydrophilia-iced;
-    src: url(~assets/fonts/Hydrophilia_Iced.ttf);
+  font-family: hydrophilia-iced;
+  src: url(~assets/fonts/Hydrophilia_Iced.ttf);
 }
 
 * {
@@ -32,27 +32,64 @@ img {
 	image-rendering: pixelated;
 }
 
-#app, #main-container {
+#app {
   width: 100%;
   height: 100%;
-
-  overflow: hidden;
-}
-
-#main-container {
-  transform-origin: 50% 200%;
 }
 
 #nav-container {
   position: absolute;
-  top: 100%;
+  top: 0;
   left: 0;
 
-  width: 100%;
-  height: auto;
+  &.hidden {
+    left: -100vw;
+  }
+
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
 
   background-color: $midnight;
-  border-top: 2px solid $white;
+  border-right: 2px solid $white;
+
+  z-index: 999999;
+  
+  transition: left 0.3s cubic-bezier(.67,.86,.57,1);
+
+  .fa {
+    position: relative;
+    top: 0;
+    left: 0;
+    color: white;
+    font-size: 2.5rem;
+    padding: 0.75rem;
+
+    cursor: pointer;
+  }
+
+  &.hidden {
+    .fa {
+      position: absolute;
+      top: 0;
+      left: 100%;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 440px;
+    height: 100vh;
+
+    .fa {
+      font-size: 3rem;
+      padding: 1rem;
+    }
+
+    &.hidden {
+      left: -440px;
+    }
+  }
+
 }
 
 #mobile-nav-container {
@@ -61,14 +98,17 @@ img {
 
   width: 100%;
   height: 100%;
-    
+  
   background-color: $midnight;
   border-top: 2px solid $white;
 }
 
 .navbar-nav {
   display: flex;
-  justify-content: space-around;   
+
+  justify-content: flex-start;
+  flex-direction: column;
+
   align-items: center;
   flex-wrap: wrap;
 
@@ -96,7 +136,7 @@ img {
       border-bottom: 3px solid $white;
     }
   }
-    
+
 }
 
 .mobile-navbar-nav {
@@ -128,7 +168,7 @@ img {
       border-bottom: 3px solid $white;
     }
   }
-    
+  
 }
 
 .menu {
@@ -163,7 +203,7 @@ h3 {
 	opacity: 1;
 	margin-top: 0.5rem;
   font-size: 9pt;
-	line-height: 1.25;
+  line-height: 1.25;
 }
 
 a {
@@ -195,8 +235,8 @@ button {
 	width: auto;
 	background-color: $midnight-dark;
   border-radius: 0.5em;
-	border: none;
-	font-family: "hydrophilia-iced",sans-serif;
+  border: none;
+  font-family: "hydrophilia-iced",sans-serif;
 	//border-bottom: 2px solid $sky;
 	margin: 0 auto;
 	font-size: 2rem;
@@ -208,38 +248,38 @@ button {
 }
 
 .input-field::-webkit-input-placeholder {
-    color: $water;
+  color: $water;
 }
 .input-field:hover::-webkit-input-placeholder {
-    color: $sky;
+  color: $sky;
 }
 
-  input[type=range] {
-    -webkit-appearance: none;
-    width: 100%;
-    height: 100%;
-    opacity: 1;
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
 }
 
 .cloud1 {
   position: fixed;
-    margin-top: 15%;
-    animation: cloudDrift;
-    animation-duration: 300s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-delay: -60s;
+  margin-top: 15%;
+  animation: cloudDrift;
+  animation-duration: 300s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-delay: -60s;
   opacity: 1;
 }
 
 .cloud2 {
   position: fixed;
-    margin-top: 10%;
-    animation: cloudDrift;
-    animation-duration: 500s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
-    animation-delay: -220s;
+  margin-top: 10%;
+  animation: cloudDrift;
+  animation-duration: 500s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-delay: -220s;
   opacity: 1;
 }
 
@@ -305,14 +345,14 @@ button {
   text-align: center;
 
 
-    border-width: 16px;
-    border-style: solid;
+  border-width: 16px;
+  border-style: solid;
     //border-image: url(http://thedrawingblanks.com/khe/undergroundDiv.png) 14% round;
-  position: absolute;
-  width: 70%;
-  margin-left: 15%;
-  margin-right:15%;
-  margin-top: 20%;
+    position: absolute;
+    width: 70%;
+    margin-left: 15%;
+    margin-right:15%;
+    margin-top: 20%;
 
   // height: 600px;
 
@@ -333,9 +373,9 @@ button {
   width: 40px;
   //background: url('http://thedrawingblanks.com/khe/lamp.png') no-repeat;
   animation: colorChange;
-    animation-duration: 40s;
-    animation-iteration-count: infinite;
-    animation-timing-function: linear;
+  animation-duration: 40s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
 }
 
 @-webkit-keyframes flicker {
@@ -345,11 +385,11 @@ button {
 }
 
 .post {
-    position: absolute;
+  position: absolute;
   background: url('http://thedrawingblanks.com/khe/lamppost.png') repeat-y;
   background-position: center top;
 
-    width: 38px;
+  width: 38px;
   opacity: .8;
 }
 
@@ -360,16 +400,16 @@ button {
 
 }
 #post1{
-    height: 50px;
-    margin-left: 5%;
+  height: 50px;
+  margin-left: 5%;
 }
 #uLamp2{
   margin-left: 10%;
   margin-top: 35px;
 }
 #post2{
-    height: 50px;
-    margin-left: 10%;
+  height: 50px;
+  margin-left: 10%;
 }
 
 @-webkit-keyframes colorChange {
@@ -377,28 +417,28 @@ button {
     -webkit-filter: hue-rotate(0deg);
     filter: hue-rotate(0deg); }
 
-  100% { -webkit-filter: hue-rotate(360deg); filter: hue-rotate(3600deg); }
-}
+    100% { -webkit-filter: hue-rotate(360deg); filter: hue-rotate(3600deg); }
+  }
 
-#rank {
-  padding-left: 30px;
-  padding-right: 30px;
-  background-color: #340400;
-  border: 4px solid white;
-  height: 150px;
-  opacity: .9;
-}
+  #rank {
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #340400;
+    border: 4px solid white;
+    height: 150px;
+    opacity: .9;
+  }
 
-#rank:hover {
-  opacity: 1;
+  #rank:hover {
+    opacity: 1;
     border: 4px solid darkred;
 
-}
+  }
 
-.combined-logo {
-  width: 50vw;
-  height: auto; 
-}
+  .combined-logo {
+    width: 50vw;
+    height: auto; 
+  }
   input[type=range]:focus {
     outline: none;
   }
@@ -479,4 +519,5 @@ button {
   input[type=range]:focus::-ms-fill-upper {
     background: #333333;
   }
+
 

@@ -4,7 +4,7 @@ main {
 	width: 100%;
 	height: 100%;
 
-	overflow: hidden;
+	overflow-x: hidden;
 }
 
 #scaling-container {
@@ -45,6 +45,8 @@ main {
 	position: absolute;
 	top: 3vw;
 	left: 10px;
+
+	margin-top: 4rem;
 
 	width: calc(100% - 20px);
 	max-height: calc(100vh - 3vw);
@@ -254,8 +256,20 @@ main {
 
 #summary-page {
 	max-width: 1040px;
+	max-height: 100vh;
+
+	overflow-y: auto;
+
 	left: 50%;
+
+	margin-top: 0;
+	padding-bottom: 3rem;
 	transform: translateX(-50%);
+
+	h1 {
+		margin-bottom: 0.25rem;
+	}
+
 	p {
 		text-align: left;
 		font-size: 2rem;
@@ -362,7 +376,7 @@ main {
     text-shadow: -1px 1px 0px $midnight-dark;
         z-index: 10;
     padding-left: 20px;
-
+    cursor: pointer;
     
 //    text-align: center;
 }

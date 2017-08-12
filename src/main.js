@@ -53,10 +53,6 @@ var app1 = new Vue({
   data() {
     return {
       isLoading: false,
-      navigationScroll: null,
-      mainContentStyle: {},
-      navigationStyle: {},
-
       user: {
         '_id': '',
         email: '',
@@ -90,8 +86,6 @@ var app1 = new Vue({
     LoadingState.$on('toggle', (isLoading) => {
       this.isLoading = isLoading;
     });
-    window.addEventListener('scroll', this.handleScroll); // Bind croll listener
-    this.initStyles(); // Set our default styles for the navigation and main content.
 
     this.authorize();
     this.loadUserApplication();
@@ -102,27 +96,6 @@ var app1 = new Vue({
   },
 
   methods: {
-    // Handle scroll for showing navigation
-    handleScroll() {
-      
-      this.navigationScroll = window.scrollY;
-
-      var percentage = this.navigationScroll / this.$refs.navContainer.clientHeight;
-
-      this.mainContentStyle = {
-        opacity: 1.0 - percentage / 2,
-        transform: 'scale(' + (1 - percentage / 8) + ')'
-      };
-
-    },
-
-    initStyles() {
-      this.mainContentStyle = {
-        opacity: 1.0,
-        transform: 'scale(1)'
-      };
-    },
-
     getMe() {
       var me = JSON.parse(localStorage.getItem('me'));
 

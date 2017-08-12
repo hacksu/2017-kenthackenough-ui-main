@@ -5,8 +5,6 @@ import './customizePerson.scss';
 
 import Person from 'components/Person/person';
 
-import { usersResource } from 'src/util/resources';
-
 //var skinSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standSkin.png';
 //var eyeSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standEyes.png';
 //var shirtSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt3.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt4.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt5.png'];
@@ -88,6 +86,7 @@ export default Vue.extend({
   methods: {
     handleSubmit(){
       console.log('Apply clicked');
+
       this.errorMessage = '';
       this.$validator.validateAll().then((success) => {
         if (success) {
@@ -109,7 +108,6 @@ export default Vue.extend({
               this.errorMessage = 'Sorry, an error occurred!';
             }
           });
-          
         }
         return this;
       });
@@ -129,24 +127,6 @@ export default Vue.extend({
         this.$root.$router.push('apply');
       }
       
-    },
-      
-    registerUser(){
-      return usersResource.post('', this.user)
-        .then((response) => {
-          console.log('Register successful', response);
-
-          // We need to reset the fields after successfull request
-          //this.fields.reset();
-
-          // Go to next menu
-          this.changeMenu('character');
-        })
-        .catch((error) => {
-          // Handle error...
-          this.errorMessage = error.response.data.errors[0];
-          console.log('API responded with:', error.response.data);
-        });
     },
 
     handleLogin(){
