@@ -1,11 +1,17 @@
-<nav class="navbar-nav">
-	<router-link class="nav-item" to="/info" exact>
-		<a class="nav-link">Event Info</a>
-	</router-link>
-	<router-link class="nav-item" to="/" exact>
-		<a class="nav-link">Home</a>
-	</router-link>
-	<router-link class="nav-item" to="/sponsors" exact>
-		<a class="nav-link">Sponsors</a>
-	</router-link>
-</nav>
+<div id="nav-container" v-bind:class="{ hidden: hideNav }">
+	<span v-if="hideNav"><i @click="hideNav = false" class="fa fa-bars white"></i></span>
+	<span v-if="!hideNav">
+		<i @click="hideNav = true" class="fa fa-times white"></i>
+	</span>
+	<nav class="navbar-nav">
+		<router-link class="nav-item" to="/" exact>
+			<a @click="hideNav = true" class="nav-link">Home</a>
+		</router-link>
+		<router-link class="nav-item" to="/info" exact>
+			<a @click="hideNav = true" class="nav-link">Event Info</a>
+		</router-link>
+		<router-link class="nav-item" to="/sponsors" exact>
+			<a @click="hideNav = true" class="nav-link">Sponsors</a>
+		</router-link>
+	</nav>
+</div>
