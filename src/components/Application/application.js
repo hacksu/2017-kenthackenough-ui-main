@@ -238,7 +238,17 @@ export default Vue.extend({
   },
 
   mounted: function() {
-      
+    
+    if (!this.$root.isLoggedIn()) {
+      console.log('Attempted to access application page without being logged in. Going to home');
+      this.$root.$router.push('/');
+    }
+
+    if (!this.$root.user.application.name) {
+      console.log('Attempted to access application page without supplying a name. Going to home');
+      this.$root.$router.push('/');
+    }
+
     this.$refs.you.xLHS = 600;
     window.addEventListener('resize', this.doResize);
     this.doResize();
