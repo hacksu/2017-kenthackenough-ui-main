@@ -87,6 +87,8 @@ export default Vue.extend({
     handleSubmit(){
       console.log('Apply clicked');
 
+      var vm = this;
+
       this.errorMessage = '';
       this.$validator.validateAll().then((success) => {
         if (success) {
@@ -95,7 +97,7 @@ export default Vue.extend({
           this.$root.registerUser()
           .then((response) => {
             console.log('Successfully logged in', response);
-            this.$root.loadUserApplication();
+            vm.handleLogin();
             this.changeMenu('character');
 
           })
