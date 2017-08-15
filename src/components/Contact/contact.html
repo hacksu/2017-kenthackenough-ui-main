@@ -15,6 +15,6 @@
 		<label for="body">Body</label>
 		<textarea name="body" placeholder="What's up?" v-model="ticket.body"></textarea>
 		<br><br>
-		<button class="apply-link" id="contactButton" @click="sendMessage()">Send</button>
+		<button class="apply-link" id="contactButton" @click="sendMessage();check();">Send</button>
 	</div>
 </main>
