@@ -15,7 +15,7 @@ const routes = [
     meta: { auth: false }
   },
   {
-    path: '/apply',
+    path: '/apply/:pageId',
     component: Application
   },
   {
