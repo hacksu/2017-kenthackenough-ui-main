@@ -139,7 +139,9 @@ export default Vue.extend({
           this.$refs.homeOgre.animate();
         }
       } else if (this.monster === 'ent' && this.$refs.homeEnt !== undefined){
-        this.$refs.homeEnt.animate();
+        if (this.$refs.homeEnt) {
+          this.$refs.homeEnt.animate();
+        }
       }
         
       if (this.paused) {
