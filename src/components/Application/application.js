@@ -197,6 +197,7 @@ export default Vue.extend({
       }
 
       this.hurtMonster(2000);
+      router.push({ name: 'apply', params: { pageId: this.currentFieldIndex }})
     },
 
     handleKeypress(e) {
@@ -286,8 +287,13 @@ export default Vue.extend({
     setTimeout(() => {
       self.currentFieldIndex = 0;
     }, 100);
+
     setTimeout(() => {
-      self.currentFieldIndex += 1;
+      if (this.$root.$data.user.application.school !== '') { // Go to summary page if application filled out already
+        this.currentFieldIndex = 14;
+      } else {
+        self.currentFieldIndex += 1;
+      }
     }, 3000);
 
     this.resumeUrl = `${API_BASE}/users/application/resume`;
