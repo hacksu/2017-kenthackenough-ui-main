@@ -93,8 +93,11 @@ export default Vue.extend({
         this.newMonster();
         console.log('Monster type:' + this.monster);
       }
-        
-      this.$refs.you.animate();
+      
+      if (typeof this.$refs.you !== 'undefined') {
+        this.$refs.you.animate();
+      }
+
       if (this.monster === 'ogre' && this.$refs.appOgre !== undefined) {
         this.$refs.appOgre.animate();
       } else if (this.monster === 'ent' && this.$refs.appEnt !== undefined){
@@ -107,7 +110,7 @@ export default Vue.extend({
       }
       this.paused = false;
         
-      if (this.$refs.you.xLHS > 275) {
+      if (typeof this.$refs.you !== 'undefined' && this.$refs.you.xLHS > 275) {
         this.$refs.you.moveLeft();
       }
       if (keys[keys.UP]) {
@@ -239,10 +242,19 @@ export default Vue.extend({
 
     resumeSuccess(response) {
       console.log('Successfully uploaded', response);
+      this.$root.$data.user.application.resume = response.name;
     },
 
     resumeError(error) {
       console.log('Error uploading resume', error);
+    },
+
+    resumeSending(file, xhr, formData) {
+      console.log('Resume Sending:');
+      console.log(file, formData);
+      // formData.append('resume');
+      // formData.append('filename', 'filenameLol');
+      // console.log(file, formData);
     },
   },
 

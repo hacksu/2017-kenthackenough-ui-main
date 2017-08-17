@@ -25,16 +25,22 @@ export default Vue.extend({
   },
 
   methods: {
+    check() {
+      //console.log('Checked');
+      if (this.ticket.subject === '' || this.ticket.name === '' || this.ticket.replyTo === '' || this.ticket.body === '') {
+        document.getElementById('contactButton').textContent = 'Ticket Failed to Send :(';
+      } else {
+        document.getElementById('contactButton').textContent = 'Ticket Successfully Sent!';
+      }
+    },
+
     sendMessage() {
       return axios.post(`${API_BASE}/tickets`, this.ticket)
       .then((response) => {
-        document.getElementById('contactButton').textContent = 'Ticket Successfully Sent!';
         console.log('Ticket sent', response.data);
       })
       .catch((error) => {
         // Handle error...
-        //document.getElementById('contactButton').textContent = 'Ticket Failed to Send :(';
-        document.getElementById('contactButton').textContent = 'Ticket Successfully Sent!';
         console.log(error);
         console.log('API responded with:', error.response.data);
 

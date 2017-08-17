@@ -72,7 +72,7 @@
 				<legend>What's your class standing?</legend>
 				<div class="button-group">
 
-					<select v-model="$root.$data.user.application.year" class="text-input-button">
+					<select v-focus v-model="$root.$data.user.application.year" class="text-input-button">
 						<option disabled value="">Please select one</option>
 						<option>High Schooler</option>
 						<option>Freshman</option>
@@ -149,7 +149,7 @@
 				<div class="button-container">
 					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
 					<transition name="fade">
-						<button v-show="$root.$data.user.application.year !== ''" @click="goToNextField">Next</button>
+						<button v-show="$root.$data.user.application.year !== ''" @click="goToNextField" @keydown.enter="goToNextField">Next</button>
 					</transition>
 				</div>
 			</fieldset>
@@ -452,9 +452,9 @@
 		<transition name="floatIn">
 			<div class="application-field" v-if="currentFieldIndex === 12">
 				<h1>Will you share your resume with us?</h1>
-
-
-				<dropzone id="resume-upload" ref="resumeUpload" :url="resumeUrl" paramName="resume" :show-remove-link="false" :max-number-of-files="1" :upload-multiple="false" :create-image-thumbnails="true" acceptedFileTypes="application/docx,application/pdf,text/plain" :use-font-awesome="true" v-on:vdropzone-success="resumeSuccess" v-on:vdropzone-error="resumeError">
+				<h2 v-if="$root.$data.user.application.resume"><i class="fa fa-check white"></i> Resume uploaded. Upload a new one to replace it (optional):</h2>
+				<h2 v-else>Click or drag a file into the area to upload your resume (optional)</h2>
+				<dropzone id="resume-upload" ref="resumeUpload" :url="resumeUrl" param-name="resume" :show-remove-link="false" :max-number-of-files="1" :upload-multiple="false" :create-image-thumbnails="true" acceptedFileTypes="application/docx,application/pdf,text/plain" :use-font-awesome="true" v-on:vdropzone-success="resumeSuccess" v-on:vdropzone-sending="resumeSending" v-on:vdropzone-error="resumeError">
 				</dropzone>
 
 				<div class="button-container">
