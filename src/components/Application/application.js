@@ -206,7 +206,6 @@ export default Vue.extend({
       }
 
       this.hurtMonster(2000);
-      router.push({ name: 'apply', params: { pageId: this.currentFieldIndex }})
     },
 
     handleKeypress(e) {
