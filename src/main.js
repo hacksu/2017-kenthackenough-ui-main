@@ -3,8 +3,6 @@ import VueRouter from 'vue-router';
 import VeeValidate from 'vee-validate';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-import VueAuth from '@websanova/vue-auth';
-import AuthBearer from '@websanova/vue-auth';
 
 import { LoadingState } from 'src/config/loading-state';
 import { CLIENT_ID } from 'src/config/constants';
@@ -35,12 +33,6 @@ export const router = new VueRouter({
 Vue.router = router;
 
 Vue.axios.defaults.baseURL = 'https://api.khe.io/v1.0';
-
-Vue.use(VueAuth, {
-  auth: AuthBearer,
-  http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
-  router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
-});
 
 var app1 = new Vue({
   router,
