@@ -66,9 +66,9 @@ export default Vue.extend({
           lock: false
         },
         {
-          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
-          name: 'suit',
-          lock: true
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hoodie.png',
+          name: 'hoodie',
+          lock: false
         },
         {
           url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
