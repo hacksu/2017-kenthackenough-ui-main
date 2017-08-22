@@ -9,7 +9,7 @@
             <h2 class="date" style="margin-top: 0px;">Sponsor Info</h2>
             <div class="textBox" v-if="!paypal">
             Sponsoring KHE is a great way to find and connect with innovative, creative people, while also leaving a memorable impression on the tech community by giving back. 
-                <br><br><br>
+                <br><br>
             Interested in sponsoring KHE 2017? Take a look at our <a href="../../static/SponsorshipPacket2017.pdf">sponsorship packet</a> and contact us (staff@khe.io), 
                 <br><br>
             <span style="text-decoration: underline; cursor: pointer;" @click="paypal = true">Or click here to pay for sponsorship via paypal!
@@ -19,7 +19,7 @@
             
 <!--            PAYPAL-->
              <div class="textBox" v-if="paypal">
-                 <h4>Thank you for supporting Kent Hack Enough!</h4>
+                 <h4 style="color:white;">Thank you for supporting Kent Hack Enough!</h4>
                  <span style="text-decoration: underline; cursor: pointer;" @click="paypal = false"> Back to Sponsor Info</span>
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="transform: scale(.5)">
                 <input type="hidden" name="cmd" value="_s-xclick">
