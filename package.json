@@ -26,12 +26,6 @@
   "dependencies": {
     "@websanova/vue-auth": "^2.13.2-beta",
     "axios": "^0.15.3",
-    "vee-validate": "^2.0.0-rc.7",
-    "vue": "^2.1.8",
-    "vue-axios": "^2.0.2",
-    "vue-router": "^2.0.1",
-    "vue2-dropzone": "^2.3.5",
-    "whatwg-fetch": "^2.0.3",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",
@@ -69,14 +63,20 @@
     "source-map-loader": "^0.1.5",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
+    "vee-validate": "^2.0.0-rc.7",
+    "vue": "^2.1.8",
+    "vue-axios": "^2.0.2",
     "vue-loader": "^10.0.3",
+    "vue-router": "^2.0.1",
     "vue-template-compiler": "^2.1.10",
+    "vue2-dropzone": "^2.3.5",
     "webpack": "^2.2.0",
     "webpack-cleanup-plugin": "^0.4.1",
     "webpack-dashboard": "^0.2.1",
     "webpack-dev-server": "^1.16.2",
     "webpack-merge": "^0.14.0",
     "webpack-notifier": "^1.5.0",
-    "webpack-validator": "^2.2.9"
+    "webpack-validator": "^2.2.9",
+    "whatwg-fetch": "^2.0.3"
   }
 }
