@@ -52,6 +52,7 @@ export default Vue.extend({
   },
    
   mounted: function() {
+    console.log(this.theme);
     this.height = this.grid.length;
     this.width = this.grid[0].length;
     this.renderGrid();

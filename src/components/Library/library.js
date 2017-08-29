@@ -57,6 +57,8 @@ export default Vue.extend({
   },
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
+    this.$refs.home.theme = 'castle';
+      
     console.log('ready');
     window.addEventListener('resize', this.doResize);
     this.doResize();
