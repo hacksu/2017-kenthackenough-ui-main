@@ -13,7 +13,7 @@ export const emailResource = axios.create({
 });
 
 export const usersResource = axios.create({
-  baseURL: 'https://api.khe.io/v1.0/users',
-  timeout: 1000,
+  baseURL: `${API_BASE}/users`,
+  timeout: 8000,
   //headers: {'X-Custom-Header': 'foobar'}
 });

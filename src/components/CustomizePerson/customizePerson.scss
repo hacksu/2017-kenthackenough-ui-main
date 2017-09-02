@@ -14,7 +14,11 @@
   text-align: left;
 
   overflow-y: scroll;
-
+    
+  @media only screen and (max-width: 720px) {
+      max-width: 150px;
+  }
+    
   p {
     font-size: 11px;
     margin-top: 6px;
@@ -79,12 +83,12 @@
   align-self: flex-end;
 }
 
-input[type="text"], input[type="email"], input[type="password"], input[type="range"] {
+input[type="text"], input[type="email"], input[type="password"], input[type="range"], textarea {
   width: 100%;
   font-family: 'hydrophilia-iced', sans-serif;
 }
 
-input[type=text], input[type=email], input[type=password] {
+input[type=text], input[type=email], input[type=password], textarea {
   background: transparent;
   border: none;
   border-bottom: 1px solid $white;
@@ -158,6 +162,14 @@ label {
   &:hover {
      box-shadow: -1px 1px 0px $midnight-dark;
   }
+  width: 130px;
+  font-size: 10px;
+  @media only screen and (max-width: 720px) {
+      max-width: 80px;
+      font-size: 10px;
+      padding: 2px 0px;
+      padding-left: 2px;
+  }
 }
 
 .flex-row {
@@ -222,6 +234,18 @@ label {
     }
 }
 
+.pantsColorSample {
+    
+    background-color: #384C77;
+    width: 10px;
+    height: 10px;
+    border: solid black 1px;
+    
+    &:hover {
+    cursor: pointer;
+    }
+}
+
 .eyeSample {
     background-color: #1F7934;
     width: 10px;
@@ -231,4 +255,26 @@ label {
     &:hover {
     cursor: pointer;
     }
+}
+
+.menuWindow {
+    max-width: 400px;
+}
+
+button {
+    background: none;
+    border: none;
+
+    &.disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+}
+
+.face-and-hair {
+    white-space: nowrap;
+    @media only screen and (max-width: 720px) {
+      margin-left: -10px;
+  }
 }

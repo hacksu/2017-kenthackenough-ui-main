@@ -14,24 +14,6 @@ export default Vue.extend({
       width: 0, // Height and width calculated at mount based on grid
       height: 0,
       ceiling: false,
-      // 'f' = filled block, 'e' for empty
-      // filled block decoration is applied automatically
-      grid: [['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
-              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
-              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
-              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
-              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
-              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
-              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
-              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
-              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
-              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
-              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
-              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
-              ['f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f']
-      ],
-        
-      theme: 'grass', //'grass', 'castle'
         
       fill: {
         left: {
@@ -49,6 +31,35 @@ export default Vue.extend({
       },
       debug: false
     };
+  },
+    
+  props: {
+    theme: {
+      default: 'grass',
+      type: String
+    },
+      
+    // 'f' = filled block, 'e' for empty
+    // filled block decoration is applied automaticall
+    grid: {
+      default: function() {
+        return [['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f']
+        ];
+      },
+      type: Array
+    }
   },
    
   mounted: function() {
@@ -76,26 +87,7 @@ export default Vue.extend({
           space.style.left = ((x * 20) + 40) + 'px';
           space.style.top = (y * 20) + 'px';
             
-          if (this.grid[y][x] === 'f') {
-            if (this.grid[y - 1][x] === 'f') {
-              space.classList.add('bottomDirt');
-            } else {
-              space.classList.add('topDirt');
-                
-              var deco = document.createElement('div');
-              deco.classList.add('deco2x1');
-            
-              if (Math.floor(Math.random() * 2) === 1) {
-                deco.classList.add('grass1');
-              } else {
-                deco.classList.add('grass1');
-              }
-              deco.style.left = ((x * 20) + 40) + 'px';
-              deco.style.top = ((y - 1) * 20) + 'px';
-              document.getElementById('grid').appendChild(deco);
-            }
-            
-          }
+          this.renderBlock(x, y, space);
 
           if (this.debug) {
             space.classList.add('outline');
@@ -106,6 +98,7 @@ export default Vue.extend({
     },
       
     fillBottom() {
+      /*
       var xSize = this.width;
       var ySize = this.height;
     
@@ -119,11 +112,12 @@ export default Vue.extend({
           space.classList.add('gridSpace');
           space.style.left = ((x * 20) + 40) + 'px';
           space.style.top = (y * 20) + 'px';
+          this.renderSideBlock(x, y, space, 'fTop');
           space.classList.add('bottomDirt');
         
           document.getElementById('grid').appendChild(space);
         }
-      }
+      }*/
     },
       
     fillRight() {
@@ -145,21 +139,22 @@ export default Vue.extend({
             space.style.left = ((x * 20) + 40) + 'px';
             space.style.top = (y * 20) + 'px';
             if (y === 12) {
-              space.classList.add('topDirt');
-            
-              var deco = document.createElement('div');
-              deco.classList.add('deco2x1');
-            
-              if (Math.floor(Math.random() * 2) === 1) {
-                deco.classList.add('grass1');
-              } else {
-                deco.classList.add('grass2');
-              }
-              deco.style.left = ((x * 20) + 40) + 'px';
-              deco.style.top = ((y - 1) * 20) + 'px';
-              document.getElementById('grid').appendChild(deco);
+              this.renderSideBlock(x, y, space, 'fTop');
+//              space.classList.add('topDirt');
+//
+//              var deco = document.createElement('div');
+//              deco.classList.add('deco2x1');
+//
+//              if (Math.floor(Math.random() * 2) === 1) {
+//                deco.classList.add('grass1');
+//              } else {
+//                deco.classList.add('grass2');
+//              }
+//              deco.style.left = ((x * 20) + 40) + 'px';
+//              deco.style.top = ((y - 1) * 20) + 'px';
+//              document.getElementById('grid').appendChild(deco);
             } else {
-              space.classList.add('bottomDirt');
+              this.renderSideBlock(x, y, space, 'f');
             }
         
             document.getElementById('grid').appendChild(space);
@@ -174,7 +169,8 @@ export default Vue.extend({
           space.classList.add('gridSpace');
           space.style.left = ((x * 20) + 40) + 'px';
           space.style.top = (y * 20) + 'px';
-          space.classList.add('bottomDirt');
+          this.renderSideBlock(x, y, space, 'f');
+          //space.classList.add('bottomDirt');
         
           document.getElementById('grid').appendChild(space);
         }
@@ -201,21 +197,9 @@ export default Vue.extend({
             space.style.left = ((x * 20) + 40) + 'px';
             space.style.top = (y * 20) + 'px';
             if (y === 12) {
-              space.classList.add('topDirt');
-            
-              var deco = document.createElement('div');
-              deco.classList.add('deco2x1');
-            
-              if (Math.floor(Math.random() * 2) === 1) {
-                deco.classList.add('grass1');
-              } else {
-                deco.classList.add('grass2');
-              }
-              deco.style.left = ((x * 20) + 40) + 'px';
-              deco.style.top = ((y - 1) * 20) + 'px';
-              document.getElementById('grid').appendChild(deco);
+              this.renderSideBlock(x, y, space, 'fTop');
             } else {
-              space.classList.add('bottomDirt');
+              this.renderSideBlock(x, y, space, 'f');
             }
         
             document.getElementById('grid').appendChild(space);
@@ -230,9 +214,70 @@ export default Vue.extend({
           space.classList.add('gridSpace');
           space.style.left = ((x * 20) + 40) + 'px';
           space.style.top = (y * 20) + 'px';
+            
           space.classList.add('bottomDirt');
         
           document.getElementById('grid').appendChild(space);
+        }
+      }
+    },
+      
+    renderBlock(x, y, space) {
+      if (this.theme === 'grass') {
+        if (this.grid[y][x] === 'f') {
+          if (this.grid[y - 1][x] === 'f') {
+            space.classList.add('bottomDirt');
+          } else {
+            space.classList.add('topDirt');
+                
+            var deco = document.createElement('div');
+            deco.classList.add('deco2x1');
+            
+            if (Math.floor(Math.random() * 2) === 1) {
+              deco.classList.add('grass1');
+            } else {
+              deco.classList.add('grass1');
+            }
+            deco.style.left = ((x * 20) + 40) + 'px';
+            deco.style.top = ((y - 1) * 20) + 'px';
+            document.getElementById('grid').appendChild(deco);
+          }
+        }
+      } else if (this.theme === 'castle') {
+        if (this.grid[y][x] === 'f') {
+          space.classList.add('castleBrick1');
+        } else if (this.grid[y][x] === 'g') {
+          space.classList.add('castleBrick2');
+        } else if (this.grid[y][x] === 'e') {
+          space.classList.add('castleTile1');
+        }
+      }
+      
+    },
+      
+    renderSideBlock(x, y, space, fill) {
+      if (this.theme === 'grass') {
+        if (fill === 'f') {
+          space.classList.add('bottomDirt');
+        } else if (fill === 'fTop') {
+          space.classList.add('topDirt');
+                
+          var deco = document.createElement('div');
+          deco.classList.add('deco2x1');
+            
+          if (Math.floor(Math.random() * 2) === 1) {
+            deco.classList.add('grass1');
+          } else {
+            deco.classList.add('grass1');
+          }
+          deco.style.left = ((x * 20) + 40) + 'px';
+          deco.style.top = ((y - 1) * 20) + 'px';
+          document.getElementById('grid').appendChild(deco);
+        }
+        
+      } else if (this.theme === 'castle') {
+        if (fill === 'f' || fill === 'fTop') {
+          space.classList.add('castleBrick1');
         }
       }
     }

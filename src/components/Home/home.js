@@ -97,7 +97,10 @@ export default Vue.extend({
 
       // Use Math.min if you want to scale so that the width fills the screen.
       // Math.max fills the height
+      
       scale = wrapperHeight / this.$refs.scalingContainer.clientHeight;
+      this.$parent.mobile = false;
+      
       // scale = Math.max(
       //   wrapperWidth / this.$el.clientWidth,
       //   wrapperHeight / this.$el.clientHeight
@@ -135,7 +138,9 @@ export default Vue.extend({
           this.$refs.homeOgre.animate();
         }
       } else if (this.monster === 'ent' && this.$refs.homeEnt !== undefined){
-        this.$refs.homeEnt.animate();
+        if (this.$refs.homeEnt) {
+          this.$refs.homeEnt.animate();
+        }
       }
         
       if (this.paused) {
@@ -144,21 +149,21 @@ export default Vue.extend({
       }
       this.paused = false;
         
-      if (keys[keys.LEFT]) {
-        this.$refs.you.moveLeft();
-      }
-      if (keys[keys.RIGHT]) {
-        this.$refs.you.moveRight();
-      }
-      if (keys[keys.UP]) {
-        this.$refs.you.jumpUp();
-      }
-      if (keys[keys.DOWN]) {
-        return;
-      }
-      if (keys[keys.H]) {
-        this.hurtMonster();
-      }
+//      if (keys[keys.LEFT]) {
+//        this.$refs.you.moveLeft();
+//      }
+//      if (keys[keys.RIGHT]) {
+//        this.$refs.you.moveRight();
+//      }
+//      if (keys[keys.UP]) {
+//        this.$refs.you.jumpUp();
+//      }
+//      if (keys[keys.DOWN]) {
+//        return;
+//      }
+//      if (keys[keys.H]) {
+//        this.hurtMonster();
+//      }
     },
 
     togglePaused() {

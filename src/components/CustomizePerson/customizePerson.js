@@ -5,8 +5,6 @@ import './customizePerson.scss';
 
 import Person from 'components/Person/person';
 
-import { usersResource } from 'src/util/resources';
-
 //var skinSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standSkin.png';
 //var eyeSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standEyes.png';
 //var shirtSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt3.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt4.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt5.png'];
@@ -76,61 +74,80 @@ export default Vue.extend({
     } else {
       this.changeMenu('apply');
     }
+    this.$parent.$refs.you.loadCharacter();
   },
 
   beforeDestroy: function() {
     this.$parent.$refs.you.customize = 'none';
     this.$parent.$refs.you.locked = false;
+    this.$parent.$refs.you.saveCharacter();
   },
 
   methods: {
     handleSubmit(){
       console.log('Apply clicked');
 
+      var vm = this;
+
+      this.errorMessage = '';
       this.$validator.validateAll().then((success) => {
         if (success) {
           console.log('Email Valid');
+          
+          this.$root.registerUser()
+          .then((response) => {
+            console.log('Successfully logged in', response);
+            vm.handleLogin();
+            this.changeMenu('character');
 
-          return this.$root.registerUser();
+          })
+          .catch((error) => {
+            if (error.response.data.errors[0].path === 'email') {
+              this.errorMessage = 'Sorry, that isn`t a valid email!';
+            } else if (error.response.data.errors[0].path === 'password') {
+              this.errorMessage = 'Sorry, that isn`t a valid password!';
+            } else {
+              this.errorMessage = 'Sorry, an error occurred!';
+            }
+          });
         }
-
         return this;
       });
     },
       
     changeMenu(menuOpt) {
+      this.errorMessage = '';
       this.menu = menuOpt;
       this.$parent.$refs.you.customize = menuOpt;
       
     },
 
-    registerUser(){
-      return usersResource.post('', this.user)
-        .then((response) => {
-          console.log('Register successfull', response);
-
-          // We need to reset the fields after successfull request
-          //this.fields.reset();
-
-          // Go to next menu
-          this.changeMenu('character');
-        })
-        .catch((error) => {
-          // Handle error...
-          this.errorMessage = error.response.data.errors[0];
-          console.log('API responded with:', error.response.data);
-        });
+    toApply() {
+      if (this.$root.$data.user.application.name === '') {
+        this.errorMessage = 'Name required!';
+      } else {
+        this.$root.$router.push('apply');
+      }
+      
     },
 
     handleLogin(){
+      this.errorMessage = '';
       this.$root.loginUser()
       .then((response) => {
         console.log('Successfully logged in', response);
+        this.$root.loadUserApplication();
         this.changeMenu('character');
 
       })
       .catch((error) => {
-        this.errorMessage = error.response.data.errors[0];
+        if (error.response.data.errors[0].path === 'email') {
+          this.errorMessage = 'Sorry, that isn`t a valid email!';
+        } else if (error.response.data.errors[0].path === 'password') {
+          this.errorMessage = 'Sorry, that`s an incorrect password!';
+        } else {
+          this.errorMessage = 'Sorry, that isn`t a valid email/password!';
+        }
       });
     },
 

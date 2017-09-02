@@ -29,9 +29,9 @@
     "vee-validate": "^2.0.0-rc.7",
     "vue": "^2.1.8",
     "vue-axios": "^2.0.2",
-    "vue-router": "^2.0.1"
-  },
-  "devDependencies": {
+    "vue-router": "^2.0.1",
+    "vue2-dropzone": "^2.3.5",
+    "whatwg-fetch": "^2.0.3",
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.0",
     "babel-loader": "^6.2.7",

@@ -7,7 +7,8 @@ import './person.scss';
 //var skinSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standSkin.png';
 //var eyeSrc = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standEyes.png';
 //var shirtSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt3.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt4.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/standShirt5.png'];
-var hairSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair2.png'];
+
+var hairSrc = ['https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair1.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/hair2.png', 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/pigtails.png'];
 //var shirtSrc = [
 //  {
 //    url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shirt1.png',
@@ -56,12 +57,12 @@ export default Vue.extend({
         },
         {
           url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/tank_top.png',
-          name: 'hoodie',
+          name: 'tank top',
           lock: false
         },
         {
           url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/suit.png',
-          name: 'sweater',
+          name: 'suit',
           lock: false
         },
         {
@@ -83,6 +84,7 @@ export default Vue.extend({
       customize: 'none', // Indicates which customize menu is loaded
       locked: false,
       inFront: false,
+      win: false,
         
         // Image stats
       skinTone: 0,  // 0 - 8
@@ -96,15 +98,16 @@ export default Vue.extend({
     
       facing: 'scale(1,1)',
         // Coordinates
-      yTop: 0,
-      xLHS: 200,
+
+      yTop: 150,
+      xLHS: 180,
       yBottom: 30,
       xRHS: 22,
         // Velocity
       yVel: 0,
       xVel: 0,
         
-      status: 'idle', // 'idle', 'run', 'jump'
+      status: 'idle', // 'idle', 'run', 'jump', 'win'
         
       // Sprite Animation variables
       shift: 0,         // Used to log shift in pixels thru anim frames
@@ -130,6 +133,12 @@ export default Vue.extend({
     };
   },
     
+  props: {
+    gridPhysics: {
+      default: false,
+    }
+  },
+    
   computed: {
     topCoord: function() {
       if (this.customize === 'character') {
@@ -138,7 +147,7 @@ export default Vue.extend({
         return '160px';
       } else if (this.customize === 'face') {
         this.inFront = true;
-        return '190px';
+        return '200px';
       } else if (this.customize === 'shirts' || this.customize === 'pants') {
         this.inFront = true;
         return '120px';
@@ -157,17 +166,32 @@ export default Vue.extend({
       } else {
         return (this.xLHS - 25) + 'px';
       }
-    }
+    },
+
+    characterData: function() {
+      return {
+        skinTone: this.skinTone,
+        shirtHue: this.shirtHue,
+        shirtTone: this.shirtTone,
+        pantsHue: this.pantsHue,
+        pantsTone: this.pantsTone,
+        hairTone: this.hairTone,
+        eyesHue: this.eyesHue,
+        eyesTone: this.eyesTone,
+        hair: this.hair,
+        shirt: this.shirt,
+      };
+    },
   },
 
   // bind event handlers to the `doResize` method (defined below)
   mounted: function() {
     this.randomize();  // Randomizing character
-      
-    // Randomizes hair - for gender equality, etc
-    // Only necessary if you disable randomize() on mount
-    this.hair = Math.floor(Math.random() * hairSrc.length);
-    this.sprite.hair.src = hairSrc[this.hair];
+    
+    setTimeout(() => {
+      this.loadCharacter();
+      this.sprite.hair.src = hairSrc[this.hair];
+    }, 300);
       
     // Setting up canvas vars for animation
     var canvas = document.getElementById('skin');
@@ -193,10 +217,42 @@ export default Vue.extend({
   },
 
   beforeDestroy: function() {
-      
+    this.saveCharacter();
   },
 
   methods: {
+    saveCharacter() {
+      var characterData = JSON.stringify(this.$parent.$refs.you.characterData);
+      this.$root.setCharacter(characterData);
+    },
+
+    loadCharacter() {
+      var characterData = '';
+      try {
+        var characterDataString = this.$root.getCharacter();
+        
+        if (typeof characterDataString !== 'undefined') {
+          characterData = JSON.parse(characterDataString);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+      console.log('characterData', characterData);
+      if (characterData && characterData !== '') {
+        console.log(characterData);
+        this.skinTone = characterData.skinTone;
+        this.shirtHue = characterData.shirtHue;
+        this.shirtTone = characterData.shirtTone;
+        this.pantsHue = characterData.pantsHue;
+        this.pantsTone = characterData.pantsTone;
+        this.hairTone = characterData.hairTone;
+        this.eyesHue = characterData.eyesHue;
+        this.eyesTone = characterData.eyesTone;
+        this.hair = characterData.hair;
+        this.shirt = characterData.shirt;
+      }
+    },
+
     loadSprites() {
       this.sprite.skin.src = this.skin;
       this.sprite.shirt.src = this.shirtSrc[this.shirt].url;
@@ -251,13 +307,30 @@ export default Vue.extend({
       this.sprite.shirt.src = this.shirtSrc[this.shirt].url;
     },
       
+    changePants(dir) {
+      return dir;
+//      this.shirt += dir;
+//      if (this.shirt > (this.shirtSrc.length - 1)) {
+//        this.shirt = 0;
+//      }
+//      if (this.shirt < 0) {
+//        this.shirt = (this.shirtSrc.length - 1);
+//      }
+//      if (this.shirtSrc[this.shirt].lock) {
+//        this.locked = true;
+//        return;
+//      }
+//      this.locked = false;
+//      this.sprite.shirt.src = this.shirtSrc[this.shirt].url;
+    },
+      
     animate: function() {
       this.move();
         
       this.fall();
       this.slow(); //Causes friction
         
-      if (this.yVel !== 0) {
+      if (this.yVel !== 0 || this.win) {
         if (this.status !== 'jump') {
           this.status = 'jump';
           this.totalFrames = 1;
@@ -325,8 +398,12 @@ export default Vue.extend({
     },
     
     fall: function() {
-      if (!this.isGrounded()) {
+      if (!this.isGrounded() && !this.win) {
         this.yVel += this.weight;
+          // handles player height at win
+      } else if (this.win) {
+        this.yVel = 0;
+        this.yTop = 120;    // How high character is when win is triggered
       } else {
         this.yVel = 0;
       }
@@ -343,11 +420,13 @@ export default Vue.extend({
     },
       
     isGrounded: function() {
-//      if (this.yBottom < 213) {
-//        return false;
-//      } else {
-//        return true;
-//      }
+      if (!this.gridPhysics){
+        if (this.yBottom < 216) {
+          return false;
+        } else {
+          return true;
+        }
+      }
       var gridLocY = Math.floor(this.yBottom / 20);
       var gridLocX = Math.floor((this.xLHS + 16) / 20) - 3;
       var grid = this.$parent.$refs.home.grid;
@@ -388,6 +467,10 @@ export default Vue.extend({
     },
       
     topCollision: function() {
+        
+      if (!this.gridPhysics) {
+        return false;
+      }
       var gridLocY = Math.floor((this.yTop + 22) / 20);
       var gridLocX = Math.floor(this.xLHS / 20) - 3;
       var grid = this.$parent.$refs.home.grid;
@@ -421,12 +504,19 @@ export default Vue.extend({
     },
     
     moveRight: function() {
-       // BOUNDARY CHECK:
+      // // BOUNDARY CHECK:
+        
+      if (!this.gridPhysics) {
+        this.xVel = this.speed;
+        this.facing = 'scale(1,1)';
+        return;
+      }
       var gridLocY = Math.floor(this.yBottom / 20);
       var gridLocX = Math.floor((this.xRHS - 5) / 20) - 3; // Grid rendering is 3 off on the x axis
       var grid = this.$parent.$refs.home.grid;
       var tilesToCheck = [];
-       // This first 'if' makes sure we're not looking for data inside an undefined obj
+
+      // This first 'if' makes sure we're not looking for data inside an undefined obj
       if (grid[gridLocY] !== undefined) {
         if (grid[gridLocY][gridLocX + 1] !== undefined) {
           tilesToCheck.push(grid[gridLocY][gridLocX + 1]);
@@ -437,7 +527,7 @@ export default Vue.extend({
         return;
       }
       if (grid[gridLocY - 1] !== undefined){
-        if (grid[gridLocY - 1][gridLocX + 1] !== undefined){
+        if (grid[gridLocY - 1][gridLocX + 1] !== undefined) {
           tilesToCheck.push(grid[gridLocY - 1][gridLocX + 1]);
         } else {
           return;
@@ -457,6 +547,11 @@ export default Vue.extend({
     moveLeft: function() {
       // BOUNDARY CHECK:
 
+      if (!this.gridPhysics) {
+        this.xVel = (0 - this.speed);
+        this.facing = 'scale(-1,1)';
+        return;
+      }
       var gridLocY = Math.floor((this.yBottom + 10) / 20);
       var gridLocX = Math.floor((this.xLHS + 15) / 20) - 3;
       var grid = this.$parent.$refs.home.grid;
@@ -472,7 +567,7 @@ export default Vue.extend({
         return;
       }
       if (grid[gridLocY - 1] !== undefined){
-        if (grid[gridLocY - 1][gridLocX - 1] !== undefined){
+        if (grid[gridLocY - 1][gridLocX - 1] !== undefined) {
           tilesToCheck.push(grid[gridLocY - 1][gridLocX - 1]);
         } else {
           return;

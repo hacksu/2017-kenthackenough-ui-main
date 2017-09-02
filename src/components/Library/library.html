@@ -13,8 +13,23 @@
         </transition>
         
 <!--        <img src="~assets/images/foreground_grass.png" class="foreground-grass">-->
-        <grid ref="home" v-bind:theme="'castle'"></grid>
-        <span v-on:click="togglePaused()"><person ref="you"></person>
+        <grid ref="home" theme='castle'
+              v-bind:grid="[['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'f', 'g', 'g', 'f', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'g', 'g', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'f', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'f', 'f', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['e', 'e', 'e', 'e', 'e', 'f', 'f', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
+              ['f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f']
+      ]"
+              ></grid>
+        <span v-on:click="togglePaused()"><person ref="you" v-bind:gridPhysics="true"></person>
         </span>
         
        <!--  <ogre ref="homeOgre" v-if="monster == 'ogre'"></ogre>

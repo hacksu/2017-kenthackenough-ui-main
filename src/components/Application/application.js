@@ -2,6 +2,7 @@ import Vue from 'vue';
 
 import template from './application.html';
 import Grid from 'components/grid/grid';
+import Dropzone from 'vue2-dropzone';
 
 import Person from 'components/Person/person';
 
@@ -9,6 +10,15 @@ import Ogre from 'components/Ogre/ogre';
 import Ent from 'components/Ent/ent';
 
 import './application.scss';
+import { API_BASE } from 'src/config/constants';
+
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = '//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10';
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
 var keys = {
   UP: 38,
@@ -30,7 +40,8 @@ export default Vue.extend({
     Grid,
     Person,
     Ogre,
-    Ent
+    Ent,
+    Dropzone
   },
 
   data() {
@@ -41,14 +52,29 @@ export default Vue.extend({
       slashTime: 10,
       slashCount: 0,
       
-      schools: ['Kent', 'Akron', 'Case'],
+      schools: [],
+      genders: ['Male', 'Female', 'Other'],
+      resumeUrl: '',
 
       scalingObject: {
         transform: ''
       },
 
+      other: {
+        year: false,
+      },
+
       currentFieldIndex: -1,
     };
+  },
+    
+  computed: {
+    phoneErr: function() {
+      if (this.$root.$data.user.application.phone.length > 14) {
+        return true;
+      }
+      return false;
+    }
   },
 
   methods: {
@@ -67,8 +93,11 @@ export default Vue.extend({
         this.newMonster();
         console.log('Monster type:' + this.monster);
       }
-        
-      this.$refs.you.animate();
+      
+      if (typeof this.$refs.you !== 'undefined') {
+        this.$refs.you.animate();
+      }
+
       if (this.monster === 'ogre' && this.$refs.appOgre !== undefined) {
         this.$refs.appOgre.animate();
       } else if (this.monster === 'ent' && this.$refs.appEnt !== undefined){
@@ -81,7 +110,7 @@ export default Vue.extend({
       }
       this.paused = false;
         
-      if (this.$refs.you.xLHS > 275) {
+      if (typeof this.$refs.you !== 'undefined' && this.$refs.you.xLHS > 275) {
         this.$refs.you.moveLeft();
       }
       if (keys[keys.UP]) {
@@ -96,6 +125,9 @@ export default Vue.extend({
     },
       
     newMonster() {
+      if (this.$refs.you.win) {
+        return;
+      }
       this.monster = 'none';
       var i = Math.floor(Math.random() * this.monsters.length);
       this.monster = this.monsters[i];
@@ -149,6 +181,29 @@ export default Vue.extend({
 
     goToNextField() {
       this.currentFieldIndex += 1;
+      console.log('index: ' + this.currentFieldIndex);
+      if (this.currentFieldIndex === 15) {
+        this.$refs.you.win = true;
+        console.log('win status: ' + this.$refs.you.win);
+          /*
+        var canvas = document.getElementById('sharable');
+        var context = canvas.getContext('2d');
+
+        // load image from data url
+        var imageObj = document.createElement('img');
+        imageObj.crossOrigin = 'anonymous';
+          
+        var imgLink;
+        imageObj.onload = function() {
+          context.drawImage(this, 100, 0);
+            
+          imgLink = canvas.toDataURL('image/png');
+          console.log('img: ' + imgLink);
+          document.write('<img id="newImageYo" src="' + imgLink + '"/>');
+        };
+        imageObj.src = 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/mockups.png';
+        */
+      }
 
       this.hurtMonster(2000);
     },
@@ -162,10 +217,59 @@ export default Vue.extend({
       }
     },
 
+    submitApplication() {
+      this.$root.createApplication()
+      .then((response) => {
+        console.log('response', response.data);
+        this.goToNextField();
+      })
+      .catch((error) => {
+        this.goToNextField();
+        console.log('Error', error);
+      });
+    },
+
+    updateApplication() {
+      this.$root.updateApplication()
+      .then((response) => {
+        this.goToNextField();
+        console.log('response', response.data);
+      })
+      .catch((error) => {
+        console.log('Error', error);
+      });
+    },
+
+    resumeSuccess(response) {
+      console.log('Successfully uploaded', response);
+      this.$root.$data.user.application.resume = response.name;
+    },
+
+    resumeError(error) {
+      console.log('Error uploading resume', error);
+    },
+
+    resumeSending(file, xhr, formData) {
+      console.log('Resume Sending:');
+      console.log(file, formData);
+      // formData.append('resume');
+      // formData.append('filename', 'filenameLol');
+      // console.log(file, formData);
+    },
   },
 
   mounted: function() {
-      
+    
+    if (!this.$root.isLoggedIn()) {
+      console.log('Attempted to access application page without being logged in. Going to home');
+      this.$root.$router.push('/');
+    }
+
+    if (!this.$root.user.application.name) {
+      console.log('Attempted to access application page without supplying a name. Going to home');
+      this.$root.$router.push('/');
+    }
+
     this.$refs.you.xLHS = 600;
     window.addEventListener('resize', this.doResize);
     this.doResize();
@@ -191,9 +295,16 @@ export default Vue.extend({
     setTimeout(() => {
       self.currentFieldIndex = 0;
     }, 100);
+
     setTimeout(() => {
-      self.currentFieldIndex += 1;
+      if (this.$root.$data.user.application.school !== '') { // Go to summary page if application filled out already
+        this.currentFieldIndex = 14;
+      } else {
+        self.currentFieldIndex += 1;
+      }
     }, 3000);
+
+    this.resumeUrl = `${API_BASE}/users/application/resume`;
   }
 
 });

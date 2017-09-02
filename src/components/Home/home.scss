@@ -44,6 +44,9 @@ main {
 .combined-logo {
 	position: absolute;
 	top: 0; left: 50%;
+    
+    width: 300px;
+    height: 200px;
 
 	max-width: 100vw;
 
@@ -59,7 +62,7 @@ main {
 
 .date-location-container {
 	position: absolute;
-	top: 0; left: 50%;
+	top: 20; left: 50%;
 	width: 100%; // Fallback for 
 
 	--screenWidth: 100vw;
@@ -73,8 +76,15 @@ main {
 	padding: 0 5px;
 	text-align: center;
 	transform: translateX(-50%);
+    z-index: 10;
 	color: $white;
 	text-shadow: -1px 1px 0px $midnight-dark;
+
+	h3 {
+		@media screen and (max-width: 460px) {
+			max-width: 120px;
+		}
+	}
 }
 
 .modal-slideIn-enter-active {
@@ -94,6 +104,7 @@ main {
     transform: translate(-50%, -50%);
   }
 }
+
 
 .darken {
     position: absolute;
@@ -120,4 +131,33 @@ main {
   50%  { opacity: 0; }
   51%  { opacity: 1; }
   100% { opacity: 1; }
+}
+
+#shadow {
+    width: 20px;
+    height: 2px;
+    background-color: black;
+    opacity: .2;
+    position: absolute;
+    top: 238px;
+    left: 153px;
+    z-index: 15;
+}
+
+#apply-now-link {
+    color: white;
+  text-shadow: -1px 1px 0px $midnight-dark;
+
+  background: $shamrock;
+  border-radius: 0;
+
+  border: 1px solid $shamrock-dark;
+
+  padding: 4px 12px;
+  padding-top: -5px;
+  margin-top: 10px;
+
+  &:hover {
+     box-shadow: -1px 1px 0px $midnight-dark;
+  }
 }

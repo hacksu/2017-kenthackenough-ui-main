@@ -3,8 +3,6 @@ import VueRouter from 'vue-router';
 import VeeValidate from 'vee-validate';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
-import VueAuth from '@websanova/vue-auth';
-import AuthBearer from '@websanova/vue-auth';
 
 import { LoadingState } from 'src/config/loading-state';
 import { CLIENT_ID } from 'src/config/constants';
@@ -25,18 +23,16 @@ import 'src/style.scss';
 export const router = new VueRouter({
   routes,
   mode: 'history',
-  linkActiveClass: 'active'
+  linkActiveClass: 'active',
+    
+  scrollBehavior: function() {
+    return { x: 0, y: 0 };
+  }
 });
 
 Vue.router = router;
 
 Vue.axios.defaults.baseURL = 'https://api.khe.io/v1.0';
-
-Vue.use(VueAuth, {
-  auth: AuthBearer,
-  http: require('@websanova/vue-auth/drivers/http/axios.1.x.js'),
-  router: require('@websanova/vue-auth/drivers/router/vue-router.2.x.js'),
-});
 
 var app1 = new Vue({
   router,
@@ -49,10 +45,6 @@ var app1 = new Vue({
   data() {
     return {
       isLoading: false,
-      navigationScroll: null,
-      mainContentStyle: {},
-      navigationStyle: {},
-      token: '',
       user: {
         '_id': '',
         email: '',
@@ -65,17 +57,18 @@ var app1 = new Vue({
           'phone': '',          // phone number
           'shirt': '',          // t-shirt size
           'demographic': false,   // allowed to use demographic info?
-          'first': false,         // is this your first hackathon?
-          'dietary': '',        // food restrictions seperated by |
+          'first': null,         // is this your first hackathon?
+          'dietary': [],        // food restrictions seperated by |
           'year': '',           // the year in school
-          'age': 19,            // person's age
+          'age': '',            // person's age
           'gender': '',         // gender
           'major': '',          // degree
           'conduct': false,       // agree to MLH code of conduct?
-          'travel': false,        // need travel reimbursement?
+          'travel': null,        // need travel reimbursement?
           'waiver': false,        // agreed to waiver?
           'resume': '',         // the filename of their resume
           'link': '',            // a github/linkedin link
+          'extra': '',
         },
       },
     };
@@ -85,10 +78,7 @@ var app1 = new Vue({
     LoadingState.$on('toggle', (isLoading) => {
       this.isLoading = isLoading;
     });
-    window.addEventListener('scroll', this.handleScroll); // Bind croll listener
-    this.initStyles(); // Set our default styles for the navigation and main content.
 
-    this.token = this.getMe().token;
     this.authorize();
     this.loadUserApplication();
   },
@@ -98,26 +88,6 @@ var app1 = new Vue({
   },
 
   methods: {
-    // Handle scroll for showing navigation
-    handleScroll() {
-      this.navigationScroll = window.scrollY;
-
-      var percentage = this.navigationScroll / this.$refs.navContainer.clientHeight;
-
-      this.mainContentStyle = {
-        opacity: 1.0 - percentage / 2,
-        transform: 'scale(' + (1 - percentage / 8) + ')'
-      };
-
-    },
-
-    initStyles() {
-      this.mainContentStyle = {
-        opacity: 1.0,
-        transform: 'scale(1)'
-      };
-    },
-
     getMe() {
       var me = JSON.parse(localStorage.getItem('me'));
 
@@ -162,6 +132,10 @@ var app1 = new Vue({
         this.setMe(response.data);
         this.user.key = response.data.key;
         this.user.role = response.data.role;
+
+        this.authorize();
+
+        return response;
       })
       .catch((error) => {
         // Handle error...
@@ -179,7 +153,7 @@ var app1 = new Vue({
         password: this.user.password
       })
       .then((response) => {
-        console.log('Login successfull', response.data);
+        console.log('Register successfull', response.data);
         
         this.setMe(response.data);
       })
@@ -203,7 +177,7 @@ var app1 = new Vue({
     },
 
     isLoggedIn() {
-      if (this.token !== '') {
+      if (this.user['_id'] !== '') {
         return true;
       } else {
         return false;
@@ -232,7 +206,10 @@ var app1 = new Vue({
 
         if (typeof response.data.application === 'undefined') {
           console.log('No application created yet.');
+        } else {
+          this.user.application = response.data.application;
 
+          this.setCharacter(response.data.application.extra);
         }
 
         this.user.email = response.data.email;
@@ -240,26 +217,52 @@ var app1 = new Vue({
         this.user['_id'] = response.data['_id'];
       })
       .catch((error) => {
-        if (error.response.status === 401) {
+        if (error.response && error.response.status === 401) {
           console.log('user not logged in yet');
         }
         // Handle error...
-        console.log('API responded with:', error.response.data);
+        console.log('API responded with:', error);
 
         this.clearUser();
       });
     },
 
     createApplication() {
-      return usersResource.post('/application', this.application)
-      .then((response) => {
-        console.log('user application loaded!', response.data);
+      this.cleanApplication();
 
-        this.user = response.data;
+      return usersResource.post('/application', this.user.application)
+      .then((response) => {
+        console.log('user application posted!', response.data);
+
+        return response;
       })
       .catch((error) => {
         throw error;
       });
+    },
+
+    updateApplication() {
+      this.cleanApplication();
+
+      return usersResource.patch('/me/application', this.user.application)
+      .then((response) => {
+        console.log('user application updated!', response.data);
+
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+    },
+
+    cleanApplication() {
+      // Fill in name
+      if (this.user.application.name === '') {
+        this.user.application.name = '';
+      }
+
+      // Clean Phone Number
+      this.user.application.phone = this.user.application.phone.replace(/[^\d\+]/g, '');
     },
 
     clearUser() {
@@ -276,9 +279,9 @@ var app1 = new Vue({
           'shirt': '',          // t-shirt size
           'demographic': null,   // allowed to use demographic info?
           'first': null,         // is this your first hackathon?
-          'dietary': '',        // food restrictions seperated by |
+          'dietary': [],        // food restrictions seperated by |
           'year': '',           // the year in school
-          'age': 19,            // person's age
+          'age': '',            // person's age
           'gender': '',         // gender
           'major': '',          // degree
           'conduct': false,       // agree to MLH code of conduct?
@@ -286,6 +289,7 @@ var app1 = new Vue({
           'waiver': null,        // agreed to waiver?
           'resume': '',         // the filename of their resume
           'link': '',            // a github/linkedin link
+          'extra': '',
         },
       };
     },
@@ -324,6 +328,20 @@ var app1 = new Vue({
       var r = data.length % 3;
       return (r ? enc.slice(0, r - 3) : enc) + '==='.slice(r || 3);
     },
+
+    setCharacter(characterData) {
+      this.user.application.extra = characterData;
+
+      console.log('Saved character', characterData);
+    },
+
+    getCharacter() {
+      return this.user.application.extra;
+    },
+
+    clearCharacter() {
+      this.user.application.extra = '';
+    }
   }
 
 });
