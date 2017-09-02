@@ -1,4 +1,4 @@
-<main>
+<main class="blackBg">
     <div id="scaling-container" v-bind:style="scalingObject" ref="scalingContainer">
         
             
@@ -28,6 +28,20 @@
               ['e', 'e', 'e', 'e', 'e', 'f', 'f', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e', 'e'],
               ['f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f', 'f']
       ]"
+              v-bind:fill="{
+                left: {
+                  material: 'f',
+                  depth: 10
+                },
+                right: {
+                  material: 'f',
+                  depth: 10
+                },
+                bottom: {
+                  material: 'f',
+                  depth: 5
+                }
+                           }"    
               ></grid>
         <span v-on:click="togglePaused()"><person ref="you" v-bind:gridPhysics="true"></person>
         </span>

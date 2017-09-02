@@ -15,20 +15,6 @@ export default Vue.extend({
       height: 0,
       ceiling: false,
         
-      fill: {
-        left: {
-          material: 'f',
-          depth: -1
-        },
-        right: {
-          material: 'f',
-          depth: -1
-        },
-        bottom: {
-          material: 'f',
-          depth: 5
-        }
-      },
       debug: false
     };
   },
@@ -59,7 +45,27 @@ export default Vue.extend({
         ];
       },
       type: Array
-    }
+    },
+    fill: {
+      type: Object,
+      default: function() {
+        return {
+          left: {
+            material: 'f',
+            depth: -1
+          },
+          right: {
+            material: 'f',
+            depth: -1
+          },
+          bottom: {
+            material: 'f',
+            depth: 5
+          }
+        };
+      }
+    },
+      
   },
    
   mounted: function() {
@@ -98,7 +104,6 @@ export default Vue.extend({
     },
       
     fillBottom() {
-      /*
       var xSize = this.width;
       var ySize = this.height;
     
@@ -117,7 +122,7 @@ export default Vue.extend({
         
           document.getElementById('grid').appendChild(space);
         }
-      }*/
+      }
     },
       
     fillRight() {
@@ -214,8 +219,7 @@ export default Vue.extend({
           space.classList.add('gridSpace');
           space.style.left = ((x * 20) + 40) + 'px';
           space.style.top = (y * 20) + 'px';
-            
-          space.classList.add('bottomDirt');
+          this.renderSideBlock(x, y, space, 'f');
         
           document.getElementById('grid').appendChild(space);
         }
@@ -249,7 +253,7 @@ export default Vue.extend({
         } else if (this.grid[y][x] === 'g') {
           space.classList.add('castleBrick2');
         } else if (this.grid[y][x] === 'e') {
-          space.classList.add('castleTile1');
+          space.classList.add('castleBgBrick1');
         }
       }
       

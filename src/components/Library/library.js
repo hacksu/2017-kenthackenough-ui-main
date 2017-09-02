@@ -11,7 +11,7 @@ import Ogre from 'components/Ogre/ogre';
 import Ent from 'components/Ent/ent';
 
 // Import styles
-// import './home.scss';
+import './library.scss';
 import 'components/Person/person.scss';
 
 Vue.use(VeeValidate);

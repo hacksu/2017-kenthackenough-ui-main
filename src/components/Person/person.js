@@ -427,7 +427,7 @@ export default Vue.extend({
           return true;
         }
       }
-      var gridLocY = Math.floor(this.yBottom / 20);
+      var gridLocY = Math.floor((this.yBottom + 3) / 20);
       var gridLocX = Math.floor((this.xLHS + 16) / 20) - 3;
       var grid = this.$parent.$refs.home.grid;
       var tilesToCheck = [];
@@ -441,7 +441,7 @@ export default Vue.extend({
       }
     
       for (var tile in tilesToCheck) {
-        if (tilesToCheck[tile] === 'f') {
+        if (this.collCheck(tilesToCheck[tile])) {
           return true;
         }
       }
@@ -458,7 +458,7 @@ export default Vue.extend({
       }
     
       for (tile in tilesToCheck) {
-        if (tilesToCheck[tile] === 'f') {
+        if (this.collCheck(tilesToCheck[tile])) {
           return true;
         }
       }
@@ -490,7 +490,7 @@ export default Vue.extend({
       }
     
       for (var tile in tilesToCheck) {
-        if (tilesToCheck[tile] === 'f') {
+        if (this.collCheck(tilesToCheck[tile])) {
           return true;
         }
       }
@@ -575,12 +575,21 @@ export default Vue.extend({
       }
       
       for (var tile in tilesToCheck) {
-        if (tilesToCheck[tile] === 'f') {
+        if (this.collCheck(tilesToCheck[tile])) {
           return;
         }
       }
       this.xVel = (0 - this.speed);
       this.facing = 'scale(-1,1)';
+    },
+      
+    collCheck(tile) {
+    // Add all tiles from the Grid component you want to collide.
+      if (tile === 'f' || tile === 'g') {
+        return true;
+      } else {
+        return false;
+      }
     }
   }
 
