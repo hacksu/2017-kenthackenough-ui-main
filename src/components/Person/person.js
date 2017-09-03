@@ -193,6 +193,11 @@ export default Vue.extend({
       this.sprite.hair.src = hairSrc[this.hair];
     }, 300);
       
+    if (this.$parent.$refs.home !== undefined) {
+      this.gridPhysics = true;
+    }
+    this.gridPhysics = true;
+      
     // Setting up canvas vars for animation
     var canvas = document.getElementById('skin');
     this.context.skin = canvas.getContext('2d');
