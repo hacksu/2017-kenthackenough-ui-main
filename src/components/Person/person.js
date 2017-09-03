@@ -196,7 +196,6 @@ export default Vue.extend({
     if (this.$parent.$refs.home !== undefined) {
       this.gridPhysics = true;
     }
-    this.gridPhysics = true;
       
     // Setting up canvas vars for animation
     var canvas = document.getElementById('skin');
