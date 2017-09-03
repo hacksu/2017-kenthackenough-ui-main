@@ -239,7 +239,6 @@ export default Vue.extend({
       }
       console.log('characterData', characterData);
       if (characterData && characterData !== '') {
-        console.log(characterData);
         this.skinTone = characterData.skinTone;
         this.shirtHue = characterData.shirtHue;
         this.shirtTone = characterData.shirtTone;
@@ -428,7 +427,10 @@ export default Vue.extend({
         }
       }
       var gridLocY = Math.floor((this.yBottom + 3) / 20);
-      var gridLocX = Math.floor((this.xLHS + 16) / 20) - 3;
+        // Checking any bricks under LHS of character
+        // The amount added to this.xLHS defines where the boundary check starts
+        // from the left of the character
+      var gridLocX = Math.floor((this.xLHS + 10) / 20) - 3;
       var grid = this.$parent.$refs.home.grid;
       var tilesToCheck = [];
       if (grid[gridLocY + 1] !== undefined) {
@@ -446,7 +448,9 @@ export default Vue.extend({
         }
       }
 
-      gridLocX = Math.floor((this.xRHS - 5) / 20) - 3;
+        // Checking any bricks under RHS of character
+        
+      gridLocX = Math.floor((this.xRHS) / 20) - 3;
       tilesToCheck = [];
       if (grid[gridLocY + 1] !== undefined) {
         if (grid[gridLocY + 1][gridLocX] !== undefined) {
@@ -498,6 +502,7 @@ export default Vue.extend({
     },
       // Actions
     jumpUp: function() {
+      
       if (this.isGrounded() && this.yVel === 0) {
         this.yVel = -this.jump;
       }
@@ -511,7 +516,7 @@ export default Vue.extend({
         this.facing = 'scale(1,1)';
         return;
       }
-      var gridLocY = Math.floor(this.yBottom / 20);
+      var gridLocY = Math.floor((this.yBottom + 10) / 20);
       var gridLocX = Math.floor((this.xRHS - 5) / 20) - 3; // Grid rendering is 3 off on the x axis
       var grid = this.$parent.$refs.home.grid;
       var tilesToCheck = [];
@@ -535,7 +540,7 @@ export default Vue.extend({
       }
       
       for (var tile in tilesToCheck) {
-        if (tilesToCheck[tile] === 'f') {
+        if (this.collCheck(tilesToCheck[tile])) {
           return;
         }
       }
@@ -585,7 +590,8 @@ export default Vue.extend({
       
     collCheck(tile) {
     // Add all tiles from the Grid component you want to collide.
-      if (tile === 'f' || tile === 'g') {
+    // Equivelant to: tile === 'f' || tile === 'g' || tile === 'r' || tile === 'p' || tile === 'w'
+      if (tile !== 'e') {
         return true;
       } else {
         return false;

@@ -252,8 +252,15 @@ export default Vue.extend({
           space.classList.add('castleBrick1');
         } else if (this.grid[y][x] === 'g') {
           space.classList.add('castleBrick2');
+        } else if (this.grid[y][x] === 'p') {
+          space.classList.add('castleTile1');
+        } else if (this.grid[y][x] === 'w') {
+          space.classList.add('castleTile2');
         } else if (this.grid[y][x] === 'e') {
           space.classList.add('castleBgBrick1');
+        } else if (this.grid[y][x] === 'r') {
+          space.classList.add('castleBrick2');
+          space.style.filter = 'hue-rotate(' + (Math.floor(Math.random() * 360)) + 'deg)';
         }
       }
       

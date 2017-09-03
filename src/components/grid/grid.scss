@@ -26,39 +26,43 @@
     outline: 1px solid gray;
 }
 
-.topDirt {
+// GRASS THEME:
+
+.topDirt { // 'f', assuming there no block on top of it
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheSoilMid.png');
 }
 
-.grass1 {
+.grass1 { // decoration for 'f'
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheSoilTop1.png');
 }
 
-.grass2 {
+.grass2 { // decoration for 'f'
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheSoilTop2.png');
 }
 
-.bottomDirt {
+.bottomDirt { // 'f', assuming there's a block above it
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheSoilBottoms.png');
 }
 
-.castleBrick1 {
+// CASTLE THEME:
+
+.castleBrick1 { // 'f'
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheBrickv1.png');
 }
 
-.castleBrick2 {
+.castleBrick2 { // 'g' or 'r' for random hue-rotation
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheBrickv2%202.png');
 }
 
-.castleTile1 {
+.castleTile1 { // 'p'
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheCastleTilev1.png');
 }
 
-.castleTile2 {
+.castleTile2 { // 'w'
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheCastleTilev2.png');
 }
 
-.castleBgBrick1 {
+.castleBgBrick1 { // 'e'
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheBrickv1.png');
     filter: hue-rotate(200deg) brightness(.5);
 }
