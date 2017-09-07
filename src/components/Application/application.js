@@ -70,15 +70,14 @@ export default Vue.extend({
     
   computed: {
     phoneErr: function() {
-        const phoneRegex = /(\d{3})[^\d]*(\d{3})[^\d]*(\d{4})/;
-        var phoneText = this.$root.$data.user.application.phone;
-        var phoneMatches = phoneRegex.exec(phoneText);
-        if (phoneMatches === null || phoneText.length > 14) {
-          return true;
-        }
-        this.$root.$data.user.application.phone = phoneMatches[1] + '-' + phoneMatches[2] + '-' + phoneMatches[3];
-        return false;
+      const phoneRegex = /(\d{3})[^\d]*(\d{3})[^\d]*(\d{4})/;
+      var phoneText = this.$root.$data.user.application.phone;
+      var phoneMatches = phoneRegex.exec(phoneText);
+      if (phoneMatches === null || phoneText.length > 14) {
+        return true;
       }
+      this.$root.$data.user.application.phone = phoneMatches[1] + '-' + phoneMatches[2] + '-' + phoneMatches[3];
+      return false;
     }
   },
 
