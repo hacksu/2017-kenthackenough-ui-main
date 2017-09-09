@@ -48,6 +48,7 @@
 
 .castleBrick1 { // 'f'
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheBrickv1.png');
+    filter: brightness(.9);
 }
 
 .castleBrick2 { // 'g' or 'r' for random hue-rotation
