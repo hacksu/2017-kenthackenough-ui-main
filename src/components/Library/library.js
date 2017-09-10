@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VeeValidate from 'vee-validate';
 
-import template from './home.html';
+import template from './library.html';
 
 import CustomizePerson from 'components/CustomizePerson/customizePerson';
 import Person from 'components/Person/person';
@@ -11,7 +11,7 @@ import Ogre from 'components/Ogre/ogre';
 import Ent from 'components/Ent/ent';
 
 // Import styles
-import './home.scss';
+import './library.scss';
 import 'components/Person/person.scss';
 
 Vue.use(VeeValidate);
@@ -56,6 +56,7 @@ export default Vue.extend({
     };
   },
   // bind event handlers to the `doResize` method (defined below)
+    
   mounted: function() {
     console.log('ready');
     window.addEventListener('resize', this.doResize);
@@ -97,10 +98,7 @@ export default Vue.extend({
 
       // Use Math.min if you want to scale so that the width fills the screen.
       // Math.max fills the height
-      
       scale = wrapperHeight / this.$refs.scalingContainer.clientHeight;
-      this.$parent.mobile = false;
-      
       // scale = Math.max(
       //   wrapperWidth / this.$el.clientWidth,
       //   wrapperHeight / this.$el.clientHeight
@@ -117,30 +115,9 @@ export default Vue.extend({
     },
       
     move(){
-      for (var i = 0; i < this.slash.length; i++) {
-        if (this.slash[i] && i < (this.slash.length - 1)) {
-          this.slash[i] = false;
-          this.slash[i + 1] = true;
-        } else {
-          this.slash[i] = false;
-        }
-      }
-        
-      if (this.monster === 'none') {
-        this.newMonster();
-      }
-        
+      
       if (this.$refs.you) {
         this.$refs.you.animate();
-      }
-      if (this.monster === 'ogre' && this.$refs.homeOgre !== undefined) {
-        if (this.$refs.homeOgre) {
-          this.$refs.homeOgre.animate();
-        }
-      } else if (this.monster === 'ent' && this.$refs.homeEnt !== undefined){
-        if (this.$refs.homeEnt) {
-          this.$refs.homeEnt.animate();
-        }
       }
         
       if (this.paused) {
@@ -149,21 +126,21 @@ export default Vue.extend({
       }
       this.paused = false;
         
-//      if (keys[keys.LEFT]) {
-//        this.$refs.you.moveLeft();
-//      }
-//      if (keys[keys.RIGHT]) {
-//        this.$refs.you.moveRight();
-//      }
-//      if (keys[keys.UP]) {
-//        this.$refs.you.jumpUp();
-//      }
-//      if (keys[keys.DOWN]) {
-//        return;
-//      }
-//      if (keys[keys.H]) {
-//        this.hurtMonster();
-//      }
+      if (keys[keys.LEFT]) {
+        this.$refs.you.moveLeft();
+      }
+      if (keys[keys.RIGHT]) {
+        this.$refs.you.moveRight();
+      }
+      if (keys[keys.UP]) {
+        this.$refs.you.jumpUp();
+      }
+      if (keys[keys.DOWN]) {
+        return;
+      }
+      if (keys[keys.H]) {
+        this.hurtMonster();
+      }
     },
 
     togglePaused() {
@@ -174,24 +151,7 @@ export default Vue.extend({
       }
     
     },
-      
-    newMonster() {
-      this.monster = 'none';
-      var i = Math.floor(Math.random() * this.monsters.length);
-      this.monster = this.monsters[i];
-    },
-    
-    hurtMonster() {
-      var i = Math.floor(Math.random() * this.slash.length);
-      this.slash[i] = true;
-        
-      if (this.monster === 'ogre') {
-        this.$refs.homeOgre.hurt();
-      }
-      if (this.monster === 'ent') {
-        this.$refs.homeEnt.hurt();
-      }
-    }
+
   }
 
 });

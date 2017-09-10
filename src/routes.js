@@ -6,6 +6,7 @@ import Sponsor from 'components/Sponsor/sponsor';
 import About from 'components/About/about';
 
 import EventInfo from 'components/EventInfo/eventInfo';
+import Library from 'components/Library/library';
 import Contact from 'components/Contact/contact';
 
 const routes = [
@@ -29,6 +30,10 @@ const routes = [
   {
     path: '/info',
     component: EventInfo
+  },
+  {
+    path: '/library',
+    component: Library
   },
   {
     path: '/contact',

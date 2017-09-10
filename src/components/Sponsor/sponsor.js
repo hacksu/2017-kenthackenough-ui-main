@@ -10,9 +10,7 @@ Vue.use(VeeValidate);
 
 export default Vue.extend({
   template,
-
   components: {
-      
   },
 
   data() {
