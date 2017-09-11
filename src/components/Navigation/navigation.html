@@ -1,9 +1,9 @@
-<div id="nav-container" v-bind:class="{ hidden: hideNav }">
+<div id="nav-container" v-bind:class="{ hidden: hideNav }" >
 	<span v-if="hideNav"><i @click="hideNav = false" class="fa fa-bars white"></i></span>
 	<span v-if="!hideNav">
 		<i @click="hideNav = true" class="fa fa-times white"></i>
 	</span>
-	<nav class="navbar-nav">
+	<nav class="navbar-nav" style="max-height: 90%;">
 		<router-link class="nav-item" to="/" exact>
 			<a @click="hideNav = true" class="nav-link">Home</a>
 		</router-link>
@@ -17,12 +17,16 @@
 			<a @click="hideNav = true" class="nav-link">Contact Us</a>
 		</router-link>
 
-		<div id="poweredBy" style="position:absolute;bottom:0;background:rgba(17, 17, 17, 1);padding:10px;min-height: 30px;width: 100%;">
+		<div id="poweredBy" style="position:absolute;bottom:0;background:rgba(17, 17, 17, 1);padding:10px;min-height: 30px;width: 100%; ">
 			<p style="color:rgba(87, 70, 123, 1);width: 100%;text-align: center;">Powered By
 				<br>
 				<div style="display: flex; flex-direction: row;width: 100%; min-height: 50px;">
-				<a id="small_hacksu_logo" href="http://hacksu.cs.kent.edu"><img src="http://2016.khe.io/img/Hacksu_Color.svg" style="filter:hue-rotate(30deg);width: 85%;height:65px;"></a>
-				<a id="small_mlh_logo" href="https://mlh.io" ><img src="http://2016.khe.io/img/mlh-logo.svg" style="filter:hue-rotate(30deg);width: 85%;height: 65px;"></a>
+				<a id="small_hacksu_logo" href="http://hacksu.cs.kent.edu">
+                    <img src="http://2016.khe.io/img/Hacksu_Color.svg" style="filter:hue-rotate(30deg);width: 85%;height:65px;">
+                </a>
+				<a id="small_mlh_logo" href="https://mlh.io" >
+                    <img src="http://2016.khe.io/img/mlh-logo.svg" style="filter:hue-rotate(30deg);width: 85%;height: 65px;">
+                </a>
 				</div>
 			</p>
 		</div>

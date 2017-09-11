@@ -408,7 +408,7 @@
 					type="radio"
 					id="travel-yes"
 					value="true"
-					@focus="$root.$data.user.application.travel = true"
+					@focus="changeBool('travel', 'true')"
 					v-model="$root.$data.user.application.travel"/>
 					<label for="travel-yes">Yes</label>
 
@@ -458,9 +458,9 @@
 				</dropzone>
 
 				<div class="button-container">
-					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<p class="login-link" @click="currentFieldIndex -= 1; " style="z-index: 1">Back</p>
 					<transition name="fade">
-						<p v-if="$root.$data.user.application.resume === ''" class="login-link" @click="$root.$data.user.application.resume = ''; goToNextField();">Skip</p>
+						<p v-if="$root.$data.user.application.resume === ''" class="login-link" @click="$root.$data.user.application.resume = ''; goToNextField();" style="z-index: 1">Skip</p>
 						<button v-else @click="goToNextField">Next</button>
 					</transition>
 				</div>
@@ -532,10 +532,10 @@
 
 
 
-		<div id="progress-bar">
+		<div id="progress-bar" style="z-index: 0">
 			<div id="progress" v-bind:style="{
 				width: progress + '%'
-			}">
+			}" style="z-index: 0">
 
 			</div>
 		</div>

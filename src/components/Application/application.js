@@ -268,6 +268,15 @@ export default Vue.extend({
       // formData.append('filename', 'filenameLol');
       // console.log(file, formData);
     },
+      
+    changeBool(feild, bool) {
+      if (bool === 'true'){
+        this.$root.$data.user.application[feild] = true;
+      } else {
+        this.$root.$data.user.application[feild] = false;
+      }
+      
+    }
   },
 
   mounted: function() {
