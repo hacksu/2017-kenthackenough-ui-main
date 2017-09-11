@@ -29,7 +29,7 @@ var keys = {
   P: 80,
   ESC: 27,
   ENTER: 13,
-    
+
   H: 72 // HURTS ENEMY
 };
 
@@ -51,7 +51,7 @@ export default Vue.extend({
       slash: false,
       slashTime: 10,
       slashCount: 0,
-      
+
       schools: [],
       genders: ['Male', 'Female', 'Other'],
       resumeUrl: '',
@@ -64,10 +64,12 @@ export default Vue.extend({
         year: false,
       },
 
+      progress: 0,
+
       currentFieldIndex: -1,
     };
   },
-    
+
   computed: {
     phoneErr: function() {
       const phoneRegex = /(\d{3})[^\d]*(\d{3})[^\d]*(\d{4})/;
@@ -78,6 +80,12 @@ export default Vue.extend({
       }
       this.$root.$data.user.application.phone = phoneMatches[1] + '-' + phoneMatches[2] + '-' + phoneMatches[3];
       return false;
+    },
+
+    progress: function() {
+      var progress = this.currentFieldIndex / 14;
+      progress = progress * 100;
+      return progress;
     }
   },
 
@@ -92,12 +100,12 @@ export default Vue.extend({
       } else {
         this.slashCount = 0;
       }
-        
+
       if (this.monster === 'none') {
         this.newMonster();
         console.log('Monster type:' + this.monster);
       }
-      
+
       if (typeof this.$refs.you !== 'undefined') {
         this.$refs.you.animate();
       }
@@ -107,13 +115,13 @@ export default Vue.extend({
       } else if (this.monster === 'ent' && this.$refs.appEnt !== undefined){
         this.$refs.appEnt.animate();
       }
-        
+
       if (this.paused) {
         this.paused = true;
         return;
       }
       this.paused = false;
-        
+
       if (typeof this.$refs.you !== 'undefined' && this.$refs.you.xLHS > 275) {
         this.$refs.you.moveLeft();
       }
@@ -127,7 +135,7 @@ export default Vue.extend({
         this.hurtMonster();
       }
     },
-      
+
     newMonster() {
       if (this.$refs.you.win) {
         return;
@@ -136,7 +144,7 @@ export default Vue.extend({
       var i = Math.floor(Math.random() * this.monsters.length);
       this.monster = this.monsters[i];
     },
-      
+
     hurtMonster(amount) {
       if (this.monster === 'ogre' && this.$refs.appOgre !== undefined) {
         this.$refs.appOgre.hurt(amount);
@@ -145,7 +153,7 @@ export default Vue.extend({
         this.$refs.appEnt.hurt(amount);
       }
     },
-      
+
     doResize() {
       console.log('doREsize called');
       var scale;
@@ -196,11 +204,11 @@ export default Vue.extend({
         // load image from data url
         var imageObj = document.createElement('img');
         imageObj.crossOrigin = 'anonymous';
-          
+
         var imgLink;
         imageObj.onload = function() {
           context.drawImage(this, 100, 0);
-            
+
           imgLink = canvas.toDataURL('image/png');
           console.log('img: ' + imgLink);
           document.write('<img id="newImageYo" src="' + imgLink + '"/>');
@@ -260,10 +268,21 @@ export default Vue.extend({
       // formData.append('filename', 'filenameLol');
       // console.log(file, formData);
     },
+      
+    isBool: function(str) {
+      if (typeof str === 'boolean') {
+        return str;
+      }
+      if (str === 'true') {
+        return true;
+      }
+      return false;
+    }
+    
   },
 
   mounted: function() {
-    
+
     if (!this.$root.isLoggedIn()) {
       console.log('Attempted to access application page without being logged in. Going to home');
       this.$root.$router.push('/');
@@ -277,9 +296,9 @@ export default Vue.extend({
     this.$refs.you.xLHS = 600;
     window.addEventListener('resize', this.doResize);
     this.doResize();
-      
+
     this.newMonster();
-      
+
     // Movement detection
     //var self = this;
     window.addEventListener('keydown', function(e){
@@ -292,7 +311,7 @@ export default Vue.extend({
     window.addEventListener('keyup', function(e){
       keys[e.keyCode || e.which] = false;
     }, true);
-      
+
     setInterval(this.move, 10);
 
     var self = this;
