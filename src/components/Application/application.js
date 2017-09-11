@@ -269,14 +269,16 @@ export default Vue.extend({
       // console.log(file, formData);
     },
       
-    changeBool(feild, bool) {
-      if (bool === 'true'){
-        this.$root.$data.user.application[feild] = true;
-      } else {
-        this.$root.$data.user.application[feild] = false;
+    isBool: function(str) {
+      if (typeof str === 'boolean') {
+        return str;
       }
-      
+      if (str === 'true') {
+        return true;
+      }
+      return false;
     }
+    
   },
 
   mounted: function() {
