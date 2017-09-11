@@ -1,0 +1,62 @@
+:root {
+    // Only modify these size variables, the page will resize accordingly.
+    --margin-size: 15px;    
+    --event-width: 50%;
+    --social-height: 30%;
+    
+    // Calcuate the widths of the side bars.
+    --update-width:     calc((100% - var(--event-width) - (4 * var(--margin-size))) / 2);
+    --right-col-width:  calc((100% - var(--event-width) - (4 * var(--margin-size))) / 2);
+
+    // Calculate the heights 
+    --sponsorer-height: calc(100% - ((3 * var(--margin-size)) + var(--social-height))); 
+    --full-height: calc(100% - (2 * var(--margin-size)));
+
+    // Calculate the starting positions of each column
+    --event-left: calc(2 * var(--margin-size) + var(--update-width));
+    --right-col-left: calc(3 * var(--margin-size) + var(--update-width) + var(--event-width));
+    --sponsorer-top: calc(2 * var(--margin-size) + var(--social-height));
+    
+}
+
+.livebox {
+    border-color: white;
+    border-width: 5px;  
+    border-style: solid;  
+}
+
+#events {
+    position: absolute;
+    left: var(--event-left);
+    top: var(--margin-size);
+    width: var(--event-width);
+    height: var(--full-height);
+    //background-color: pink;
+}
+
+#updates {
+    position: absolute;
+    left: var(--margin-size);
+    top: var(--margin-size);
+    width: var(--update-width);
+    height: var(--full-height);
+    //background-color: green;
+}
+
+#social {
+    position: absolute;
+    left: var(--right-col-left);
+    top: var(--margin-size);
+    width: var(--right-col-width);
+    height: var(--social-height);
+    //background-color: blue;
+}
+
+#sponsorers {
+    position: absolute;
+    left: var(--right-col-left);
+    top: var(--sponsorer-top);
+    width: var(--right-col-width);
+    height: var(--sponsorer-height);
+    //background-color: gray;
+}
