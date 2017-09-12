@@ -64,8 +64,6 @@ export default Vue.extend({
         year: false,
       },
 
-      progress: 0,
-
       currentFieldIndex: -1,
     };
   },
