@@ -4,6 +4,7 @@
 .textBox {
     z-index: 100;
     
+    position: static;
     font-size: 8px;
     background: $midnight;
     padding: 10px;
@@ -18,4 +19,39 @@
 
 a {
     color: white;
+}
+
+#spaceInvadersBackground {
+    //clear: both;
+    width: 113%;
+    height: 100%;
+    min-height: 264px;
+    position: absolute;
+    top: 100%;
+    margin-top: -18px;
+    margin-left: -33px;
+    background-color: black;
+    outline: 1px solid red;
+}
+
+#spaceInvadersIcons {
+    position: center;
+    width: 90%;
+    height: auto;
+    min-height: 170px;
+    margin: 0 auto;
+    padding: 3px;
+    position: relative;
+    outline: 1px solid blue;
+}
+
+#logo {
+    height: 25px;
+    width: 25px;
+}
+
+#remesh {
+    height: 18px;
+    width: 28px;
+    image-rendering: pixelated;
 }
