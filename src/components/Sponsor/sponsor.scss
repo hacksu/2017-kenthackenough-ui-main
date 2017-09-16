@@ -45,13 +45,29 @@ a {
     outline: 1px solid blue;
 }
 
-#logo {
-    height: 25px;
-    width: 25px;
+#invader {
+    height: 30px;
+    width: 30px;
 }
 
 #remesh {
-    height: 18px;
-    width: 28px;
-    image-rendering: pixelated;
+    height: 15px;
+    width: 35px;
+    //left: -6px;
+}
+
+#sponsor {
+    height: 16px;
+    width: 32px;
+    //filter: url(#pixelate);
+
+    //image-rendering: -webkit-optimize-contrast; 
+    //image-rendering: -webkit-crisp-edges; 
+    //image-rendering: -moz-crisp-edges; 
+    //image-rendering: -o-crisp-edges; 
+    //image-rendering: pixelated; 
+
+    &:hover {
+
+    }
 }
