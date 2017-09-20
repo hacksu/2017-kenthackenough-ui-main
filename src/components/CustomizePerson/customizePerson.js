@@ -123,7 +123,7 @@ export default Vue.extend({
     },
 
     toApply() {
-      if (this.$root.$data.user.application.name === '') {
+      if (this.$root.$data.user.application.name.length < 2) {
         this.errorMessage = 'Name required!';
       } else {
         this.$root.$router.push('apply');
