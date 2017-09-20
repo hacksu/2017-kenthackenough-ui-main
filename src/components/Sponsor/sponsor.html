@@ -1,5 +1,60 @@
 <main>
     <div id="scaling-container" v-bind:style="scalingObject" ref="scalingContainer">
+        
+        
+        <div v-if="!paypal" id="spaceInvadersBackground">
+            <p style="color:white;top:1px;left:4px;text-align:center;padding: 25px;">Our Sponsors</p>
+            <div id="spaceInvadersIcons">
+                <!--<h3>Testing</h3>-->
+                    
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <a href="https://www.hyland.com/"><img src="../../assets/images/sponsors/hyland.png" class="logo" title="Hyland"></a>
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <a href="https://www.progressive.com/"><img src="../../assets/images/sponsors/progressive.png" class="logo" title="Progressive"></a>
+                        <a href="https://www.drund.com/"><img src="../../assets/images/sponsors/DrundCut.png" class="logo" title="Drund"></a>
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <a href="http://www.kent.edu/cs"><img src="../../assets/images/sponsors/cs.png" class="logo" title="Kent State University Department of Computer Science"></a>
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                    
+                    
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <a href="https://www.ibm.com/watson/health/explorys/"><img src="../../assets/images/sponsors/explorys.png" class="logo" title="Explorys"></a>
+                        
+                        <a href="http://www.rovisys.com/"><img src="../../assets/images/sponsors/rovisys.png" class="logo" title="Rovisys"></a>
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <a href="https://devpost.com/software/deephire"><img src="../../assets/images/sponsors/DeepHire_Logo_Color.png" class="logo" title="DeepHire"></a>
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <a href="https://www.kent.edu/launchnet"><img src="../../assets/images/sponsors/LaunchNET_KSU.png" class="logo" title="LaunchNET"></a>
+                        
+                        
+                    
+                    
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <a href="https://remesh.ai/"><img src="../../assets/images/sponsors/Remesh.png" class="logo"></a>
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <a href="http://www.library.kent.edu/"><img src="../../assets/images/sponsors/university-library.png" class="logo" title="Kent State University Library"></a>
+                        
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                    
+                    
+                        <a href="https://www.nationwide.com/"><img src="../../assets/images/sponsors/Nationwide.png" class="logo" title="Nationwide"></a>
+                        <a href="https://www.mrisoftware.com/"><img src="../../assets/images/sponsors/2017_MRI_Logo.png" class="logo" title="MRI Software"></a>
+                        
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                        <a href="https://www.americangreetings.com/"><img src="../../assets/images/sponsors/americangreetings.png" class="logo" title="American Greetings"></a>
+                        
+                        <img src="../../assets/images/SpaceInvaderbig.gif" class="invader">
+                    
+                
+            </div>
+        </div>
         <!--<svg>
             <defs>
                 <filter id="pixelate" x="0" y="0">
@@ -19,14 +74,10 @@
                 </filter>
             </defs>
         </svg> -->
-        <img src="~assets/images/mockups.png" class="test">
-        <img src="~assets/images/combined_logo_4x_color_17.png" title="Kent Hack Enough Logo" class="combined-logo" style="height: 200px; width: 400px;">
-        <div class="date-location-container" style="margin-top: 60px;">
-            <router-link class="nav-item" to="/" exact>
-		<a class="nav-link" style="font-size: 10px; text-decoration: underline;">Back</a>
-	           </router-link>
-            <h2 class="date" style="margin-top: 0px;">Sponsor Info</h2>
-            <div class="textBox" v-if="!paypal">
+        <div id="gradientSky"></div>
+            
+            <h2 class="date" style="margin-top: 30px;text-align: center; text-shadow: -1px 1px 0px black;">Sponsor Info</h2>
+            <div class="textBox sponsorInfo" v-if="!paypal">
             Sponsoring KHE is a great way to find and connect with innovative, creative people, while also leaving a memorable impression on the tech community by giving back. 
                 <br><br>
             Interested in sponsoring KHE 2017? Take a look at our <a href="https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/SponsorshipPacket2017.pdf" target="_blank">sponsorship packet</a> and contact us (staff@khe.io), 
@@ -37,8 +88,8 @@
             </div>
             
 <!--            PAYPAL-->
-             <div class="textBox" v-if="paypal">
-                 <h4 style="color:white;">Thank you for supporting Kent Hack Enough!</h4>
+             <div class="textBox sponsorInfo" v-if="paypal">
+                 <p style="color:white;">Thank you for supporting Kent Hack Enough!</p>
                  <span style="text-decoration: underline; cursor: pointer;" @click="paypal = false"> Back to Sponsor Info</span>
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_top" style="transform: scale(.5)">
                 <input type="hidden" name="cmd" value="_s-xclick">
@@ -59,67 +110,13 @@
                  </form>
             
             </div>
+         
 <!--            END PAYPAL-->
         </div>
 
-        <div v-if="!paypal" id="spaceInvadersBackground">
-            <p style="color:white;top:1px;left:4px;text-align:center;">Our Sponsors</p>
-            <div id="spaceInvadersIcons">
-                <!--<h3>Testing</h3>-->
-                <table style="width:100%;">
-                    <tr>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><a href="https://www.hyland.com/"><img src="../../assets/images/sponsors/hyland.png" id="hyland" title="Hyland"></a></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><a href="https://www.progressive.com/"><img src="../../assets/images/sponsors/progressive.png" id="progressive" title="Progressive"></a></td>
-                        <td><a href="https://www.drund.com/"><img src="../../assets/images/sponsors/DrundCut.png" id="drund" title="Drund"></a></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><a href="http://www.kent.edu/cs"><img src="../../assets/images/sponsors/cs.png" id="cs" title="Kent State University Department of Computer Science"></a></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                    </tr>
-                    <tr>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><a href="https://www.ibm.com/watson/health/explorys/"><img src="../../assets/images/sponsors/explorys.png" id="explorys" title="Explorys"></a></td>
-                        <td></td>
-                        <td><a href="http://www.rovisys.com/"><img src="../../assets/images/sponsors/rovisys.png" id="rovisys" title="Rovisys"></a></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><a href="https://devpost.com/software/deephire"><img src="../../assets/images/sponsors/DeepHire_Logo_Color.png" id="deephire" title="DeepHire"></a></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><a href="https://www.kent.edu/launchnet"><img src="../../assets/images/sponsors/LaunchNET_KSU.png" id="launchnet" title="LaunchNET"></a></td>
-                        <td></td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><a href="https://remesh.ai/"><img src="../../assets/images/sponsors/Remesh.png" id="remesh"></a></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td colspan="2"><a href="http://www.library.kent.edu/"><img src="../../assets/images/sponsors/university-library.png" id="library" title="Kent State University Library"></a></td>
-                        
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2"><a href="https://www.nationwide.com/"><img src="../../assets/images/sponsors/Nationwide.png" id="nationwide" title="Nationwide"></a></td>
-                        <td><a href="https://www.mrisoftware.com/"><img src="../../assets/images/sponsors/2017_MRI_Logo.png" id="mri" title="MRI Software"></a></td>
-                        <td></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                        <td colspan="2"><a href="https://www.americangreetings.com/"><img src="../../assets/images/sponsors/americangreetings.png" id="americangreetings" title="American Greetings"></a></td>
-                        <td></td>
-                        <td><img src="../../assets/images/SpaceInvaderbig.gif" id="invader"></td>
-                    </tr>
-                </table>
-                
-            </div>
-        </div>
         
         
-    </div>
+        
 
     <a id="mlh-trust-badge" style="max-width:80px;min-width:60px;position:fixed;right: 50px;top:0;width:10%;z-index:50" href="https://mlh.io/seasons/na-2018/events?utm_source=na-2018&utm_medium=TrustBadge&utm_campaign=na-2018&utm_content=white" target="_blank"><img src="https://s3.amazonaws.com/logged-assets/trust-badge/2018/white.svg" alt="Major League Hacking 2017 Hackathon Season" style="width:100%"></a>
 </main>

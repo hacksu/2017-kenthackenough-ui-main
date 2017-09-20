@@ -24,30 +24,50 @@ a {
 #spaceInvadersBackground {
     //clear: both;
     width: 113%;
-    height: 100%;
+    padding: 20px;
     min-height: 264px;
-    position: absolute;
-    top: 100%;
-    margin-top: -18px;
     margin-left: -33px;
     background-color: black;
-    outline: 1px solid red;
 }
 
 #spaceInvadersIcons {
+    display: flex;
+    flex-flow: row wrap;
     position: center;
-    width: 90%;
-    height: auto;
+    justify-content: center;
+    width: 30vw;
     min-height: 170px;
     margin: 0 auto;
     padding: 3px;
     position: relative;
-    outline: 1px solid blue;
 }
 
-#invader {
-    height: 30px;
-    width: 30px;
+.invader {
+    height: 20px;
+    margin: 10px;
+}
+.invader:hover {
+    animation: invaderColor 3s linear infinite;
+}
+
+@keyframes invaderColor {
+    from {
+        filter: sepia(1000%) saturate(8) hue-rotate(0deg);
+    } to {
+        filter: sepia(1000%) saturate(8) hue-rotate(360deg);
+    }
+}
+
+.logo {
+    max-height: 30px;
+    max-width: 70px;
+    margin: 10px;
+    cursor: pointer;
+    filter: brightness(0%) invert(1);
+}
+
+.logo:hover {
+    filter: none;
 }
 
 #remesh {
@@ -125,4 +145,22 @@ a {
 #library {
     height: 25px;
     width: 53px;   
+}
+
+#sponsorBox {
+    display: flex;
+}
+
+.sponsorInfo {
+    width: 30vw;
+    margin: auto;
+    margin-bottom: 50px;
+    color: white;
+    text-shadow: -1px 1px 0px black;
+}
+
+#gradientSky {
+    width: 100%;
+    height: 50px;
+    background: linear-gradient(to bottom, black, #33CCFF);
 }
