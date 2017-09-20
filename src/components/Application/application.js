@@ -64,8 +64,6 @@ export default Vue.extend({
         year: false,
       },
 
-      progress: 0,
-
       currentFieldIndex: -1,
     };
   },
@@ -268,6 +266,17 @@ export default Vue.extend({
       // formData.append('filename', 'filenameLol');
       // console.log(file, formData);
     },
+      
+    isBool: function(str) {
+      if (typeof str === 'boolean') {
+        return str;
+      }
+      if (str === 'true') {
+        return true;
+      }
+      return false;
+    }
+    
   },
 
   mounted: function() {

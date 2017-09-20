@@ -1,7 +1,7 @@
 <main class="blackBg">
 	<div id="scaling-container" v-bind:style="scalingObject" ref="scalingContainer">
 		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheforest.png" class="forestBG">
-		<grid style="position: absolute;"></grid>
+		<grid style="position: absolute; z-index: -100;"></grid>
 		<person ref="you" paused="paused"></person>
 		<ogre ref="appOgre" v-if="monster == 'ogre'"></ogre>
 		<ent ref="appEnt" v-if="monster == 'ent'"></ent>
@@ -37,7 +37,7 @@
         </transition>
 	</div>
 
-	<div class="application-form" v-if="currentFieldIndex != 15">
+	<div class="application-form" v-if="currentFieldIndex != 15" style="z-index: 1000">
 		<!-- Intro -->
 		<transition name="floatIn">
 			<div class="application-field" v-if="currentFieldIndex === 0">
@@ -389,7 +389,7 @@
 
 				</div>
 
-				<div class="button-container">
+				<div class="button-container" style="z-index: 1000">
 					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
 					<transition name="fade">
 						<button v-if="$root.$data.user.application.dietary.length > 0 && $root.$data.user.application.dietary[0] !== ''" @click="goToNextField">Next</button>
@@ -408,7 +408,6 @@
 					type="radio"
 					id="travel-yes"
 					value="true"
-					@focus="$root.$data.user.application.travel = true"
 					v-model="$root.$data.user.application.travel"/>
 					<label for="travel-yes">Yes</label>
 
@@ -458,9 +457,9 @@
 				</dropzone>
 
 				<div class="button-container">
-					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
+					<p class="login-link" @click="currentFieldIndex -= 1; " style="z-index: 1">Back</p>
 					<transition name="fade">
-						<p v-if="$root.$data.user.application.resume === ''" class="login-link" @click="$root.$data.user.application.resume = ''; goToNextField();">Skip</p>
+						<p v-if="$root.$data.user.application.resume === ''" class="login-link" @click="$root.$data.user.application.resume = ''; goToNextField();" style="z-index: 1">Skip</p>
 						<button v-else @click="goToNextField">Next</button>
 					</transition>
 				</div>
@@ -502,9 +501,9 @@
 				<p>Gender (optional): <span class="login-link" @click="currentFieldIndex = 5">{{ $root.$data.user.application.gender || '[gender]' }}</span></p>
 				<p>Phone: <span class="login-link" @click="currentFieldIndex = 6">{{ $root.$data.user.application.phone || '[phone]' }}</span></p>
 				<p>Shirt size: <span class="login-link" @click="currentFieldIndex = 7">{{ $root.$data.user.application.shirt || '[shirt]' }}</span></p>
-				<p>First hackathon?: <span class="login-link" @click="currentFieldIndex = 8">{{ ($root.$data.user.application.first ? 'Yes' : 'No') || '[first]' }}</span></p>
+				<p>First hackathon?: <span class="login-link" @click="currentFieldIndex = 8">{{ (isBool($root.$data.user.application.first) ? 'Yes' : 'No') || '[first]' }}</span></p>
 				<p>Dietary restrictions: <span class="login-link" @click="currentFieldIndex = 9" v-for="diet in $root.$data.user.application.dietary">{{ diet }}</span> <span class="login-link" @click="currentFieldIndex = 9" v-if="$root.$data.user.application.dietary.length === 0">None</span></p>
-				<p>Travel reimbursement: <span class="login-link" @click="currentFieldIndex = 10">{{ ($root.$data.user.application.travel ? 'Yes' : 'No') || '[travel]' }}</span></p>
+				<p>Travel reimbursement: <span class="login-link" @click="currentFieldIndex = 10">{{ (isBool($root.$data.user.application.travel) ? 'Yes' : 'No') || '[travel]' }}</span></p>
 				<p>Link: <span class="login-link" @click="currentFieldIndex = 11">{{ $root.$data.user.application.link || '[link]' }}</span></p>
 				<p>Resume:
 					<span v-if="$root.$data.user.application.resume" class="login-link" @click="currentFieldIndex = 12"><i class="fa fa-check white"></i> Uploaded</span>
@@ -532,13 +531,14 @@
 
 
 
-		<div id="progress-bar">
+		
+
+	</div> <!-- Application Form -->
+    <div id="progress-bar" style="z-index: 0;">
 			<div id="progress" v-bind:style="{
 				width: progress + '%'
-			}">
+			}" style="z-index: 0">
 
 			</div>
 		</div>
-
-	</div> <!-- Application Form -->
 </main>
