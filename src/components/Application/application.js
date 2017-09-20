@@ -236,7 +236,7 @@ export default Vue.extend({
         this.goToNextField();
       })
       .catch((error) => {
-        this.goToNextField();
+        alert('We\'re sorry! Your application couldn\'t be processed! Here\'s the error:' + error);
         console.log('Error', error);
       });
     },
