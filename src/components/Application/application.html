@@ -516,6 +516,7 @@
 						<button v-if="$root.$data.user.application['_id']" @click="updateApplication">Save Changes</button>
 						<button v-else @click="submitApplication">Finish!</button>
 					</transition>
+                    <div id="errors" v-if="error != ''">{{error}}</div>
 				</div>
 			</div>
 		</transition>

@@ -432,3 +432,9 @@ main {
 	background: $shamrock;
 	transition-duration: 3s;
 }
+
+#errors {
+    color: red;
+    padding: 20px;
+    background: black;
+}

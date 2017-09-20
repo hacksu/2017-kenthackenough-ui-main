@@ -67,6 +67,8 @@ export default Vue.extend({
       progress: 0,
 
       currentFieldIndex: -1,
+        
+      error: ''
     };
   },
 
@@ -230,13 +232,14 @@ export default Vue.extend({
     },
 
     submitApplication() {
+      var vm = this;
       this.$root.createApplication()
       .then((response) => {
         console.log('response', response.data);
         this.goToNextField();
       })
       .catch((error) => {
-        alert('We\'re sorry! Your application couldn\'t be processed! Here\'s the error:' + error);
+        vm.error = 'We\'re sorry! Your application couldn\'t be processed! Here\'s the error:' + error;
         console.log('Error', error);
       });
     },
