@@ -10,7 +10,6 @@
 }
 
 .gridSpace {
-    z-index: 0;
     position: absolute;
     width: 20px;
     height: 20px;
@@ -42,6 +41,7 @@
 
 .bottomDirt { // 'f', assuming there's a block above it
     background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheSoilBottoms.png');
+    
 }
 
 // CASTLE THEME:

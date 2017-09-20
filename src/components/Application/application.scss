@@ -137,7 +137,9 @@ main {
 
 	.button-container {
 		display: block;
+        z-index: 1000;
 		margin: 30px auto 0;
+        transform: translateZ(10px);
 	}
 
 	.button-group {
@@ -424,6 +426,8 @@ main {
 	bottom: 20px;
 	left: 5%;
 	background: $midnight;
+    z-index: -1;
+    overflow: hidden;
 }
 
 #progress {
@@ -431,6 +435,7 @@ main {
 	height: 100%;
 	background: $shamrock;
 	transition-duration: 3s;
+    z-index: -1;
 }
 
 #errors {

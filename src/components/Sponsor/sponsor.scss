@@ -23,10 +23,10 @@ a {
 
 #spaceInvadersBackground {
     //clear: both;
-    width: 113vw;
+    width: 200%;
     padding: 20px;
     min-height: 264px;
-    margin-left: -6vw;
+    margin-left: -50%;
     background-color: black;
 }
 
@@ -160,7 +160,8 @@ a {
 }
 
 #gradientSky {
-    width: 100%;
+    width: 200%;
+    margin-left: -50%;
     height: 50px;
     background: linear-gradient(to bottom, black, #33CCFF);
 }

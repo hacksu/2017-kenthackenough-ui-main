@@ -1,7 +1,7 @@
 <main class="blackBg">
 	<div id="scaling-container" v-bind:style="scalingObject" ref="scalingContainer">
 		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/kheforest.png" class="forestBG">
-		<grid style="position: absolute;"></grid>
+		<grid style="position: absolute; z-index: -100;"></grid>
 		<person ref="you" paused="paused"></person>
 		<ogre ref="appOgre" v-if="monster == 'ogre'"></ogre>
 		<ent ref="appEnt" v-if="monster == 'ent'"></ent>
@@ -37,7 +37,7 @@
         </transition>
 	</div>
 
-	<div class="application-form" v-if="currentFieldIndex != 15">
+	<div class="application-form" v-if="currentFieldIndex != 15" style="z-index: 1000">
 		<!-- Intro -->
 		<transition name="floatIn">
 			<div class="application-field" v-if="currentFieldIndex === 0">
@@ -390,7 +390,7 @@
 
 				</div>
 
-				<div class="button-container">
+				<div class="button-container" style="z-index: 1000">
 					<p class="login-link" @click="currentFieldIndex -= 1; ">Back</p>
 					<transition name="fade">
 						<button v-if="$root.$data.user.application.dietary.length > 0 && $root.$data.user.application.dietary[0] !== ''" @click="goToNextField">Next</button>
@@ -533,13 +533,14 @@
 
 
 
-		<div id="progress-bar" style="z-index: 0">
+		
+
+	</div> <!-- Application Form -->
+    <div id="progress-bar" style="z-index: 0;">
 			<div id="progress" v-bind:style="{
 				width: progress + '%'
 			}" style="z-index: 0">
 
 			</div>
 		</div>
-
-	</div> <!-- Application Form -->
 </main>
