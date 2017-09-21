@@ -1,0 +1,523 @@
+@font-face {
+  font-family: hydrophilia-iced;
+  src: url(~assets/fonts/Hydrophilia_Iced.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,body {
+  margin: 0 0;
+  height: 100%;
+  width: 100%;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  background-color: $black;
+}
+
+body {
+  font-family: "hydrophilia-iced", sans-serif;
+}
+
+img {
+	image-rendering: pixelated;
+}
+
+#app {
+  width: 100%;
+  height: 100%;
+}
+
+#nav-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  &.hidden {
+    left: -100vw;
+  }
+
+  width: 100vw;
+  max-width: 100vw;
+  height: 100vh;
+
+  background-color: $midnight;
+  border-right: 2px solid $white;
+
+  z-index: 999999;
+  
+  transition: left 0.3s cubic-bezier(.67,.86,.57,1);
+
+  .fa {
+    position: relative;
+    top: 0;
+    left: 0;
+    color: white;
+    font-size: 2.5rem;
+    padding: 0.75rem;
+
+    cursor: pointer;
+  }
+
+  &.hidden {
+    .fa {
+      position: absolute;
+      top: 0;
+      left: 100%;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    max-width: 440px;
+    height: 100vh;
+
+    .fa {
+      font-size: 3rem;
+      padding: 1rem;
+    }
+
+    &.hidden {
+      left: -440px;
+    }
+  }
+
+}
+
+#mobile-nav-container {
+  position: absolute;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+  
+  background-color: $midnight;
+  border-top: 2px solid $white;
+}
+
+.navbar-nav {
+  display: flex;
+
+  justify-content: flex-start;
+  flex-direction: column;
+
+  align-items: center;
+  flex-wrap: wrap;
+
+  width: 100%;
+  height: 100%;
+  padding-bottom: 10px;
+
+  overflow-x: hidden;
+  .nav-item {
+    height: auto;
+    font-size: 33pt;
+    line-height: 1.2;
+    color: $white;
+    text-decoration: none;
+
+    padding: 20px 20px 0;
+    margin: 0 5px 15px;
+
+    &.active {
+      color: $spring-bud;
+      border-bottom: 3px solid $spring-bud;
+    }
+
+    &:hover:not(.active) {
+      border-bottom: 3px solid $white;
+    }
+  }
+
+}
+
+.mobile-navbar-nav {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  width: 100%;
+  height: 100%;
+  padding-bottom: 10px;
+
+  overflow-x: hidden;
+  .nav-item {
+    height: auto;
+    font-size: 33pt;
+    line-height: 1.2;
+    color: $white;
+    text-decoration: none;
+
+    padding: 20px 20px 0;
+    margin: 0 5px 15px;
+
+    &.active {
+      color: $spring-bud;
+      border-bottom: 3px solid $spring-bud;
+    }
+
+    &:hover:not(.active) {
+      border-bottom: 3px solid $white;
+    }
+  }
+  
+}
+
+.menu {
+  display: none; // REMOVE
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  top: 2vw;
+  z-index: 999999999;
+  padding: 0 10px;
+  font-size: 2rem;
+}
+
+h1 {
+  color: $spring-bud;
+  opacity: 1;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  font-size: 5em;
+  padding: 0 10px;
+}
+
+h2 {
+  color: $white;
+  font-size: 11pt;
+}
+
+h3 {
+	display: inline-block;
+	width: auto;
+	color: $white;
+	opacity: 1;
+	margin-top: 0.5rem;
+  font-size: 9pt;
+  line-height: 1.25;
+}
+
+a {
+	width: auto;
+	height: auto;
+}
+
+button {
+  cursor: pointer;
+  font-family: "hydrophilia-iced", sans-serif;
+}
+
+.content {
+  display: none;
+  position: absolute;
+  z-index: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100%;
+
+  background: linear-gradient(#0d004c, #210d7f);
+
+  font-family: "hydrophilia-iced",sans-serif;
+
+}
+
+.input-field {
+	display: block;
+	width: auto;
+	background-color: $midnight-dark;
+  border-radius: 0.5em;
+  border: none;
+  font-family: "hydrophilia-iced",sans-serif;
+	//border-bottom: 2px solid $sky;
+	margin: 0 auto;
+	font-size: 2rem;
+	line-height: 1.5rem;
+	color: $sky;
+	cursor: pointer;
+	text-align: center;
+	outline: none;
+}
+
+.input-field::-webkit-input-placeholder {
+  color: $water;
+}
+.input-field:hover::-webkit-input-placeholder {
+  color: $sky;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+}
+
+.cloud1 {
+  position: fixed;
+  margin-top: 15%;
+  animation: cloudDrift;
+  animation-duration: 300s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-delay: -60s;
+  opacity: 1;
+}
+
+.cloud2 {
+  position: fixed;
+  margin-top: 10%;
+  animation: cloudDrift;
+  animation-duration: 500s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  animation-delay: -220s;
+  opacity: 1;
+}
+
+@-webkit-keyframes cloudDrift {
+  0%   { margin-left: -10%; }
+  100% { margin-left: 110%; }
+}
+
+.wire {
+  position: absolute;
+  z-index: 50;
+  width: 100%;
+  background: url('http://thedrawingblanks.com/khe/wire.png') repeat-x;
+
+  bottom: 22vh;
+  // border: solid white 3px;
+  height: 110px;
+
+}
+
+.wireBG {
+  position: absolute;
+  z-index: 25;
+  width: 100%;
+  background: url('http://thedrawingblanks.com/khe/wire.png') repeat-x;
+  bottom: 20vh;
+  margin-left: -10%;
+  // border: solid white 3px;
+  height: 110px;
+  opacity: 0.5;
+
+}
+
+.ground {
+  position: absolute;
+  z-index: 100;
+
+  bottom: 0;
+
+  background-color: #090034;
+  // margin-left: -20px;
+
+  width: 100%;
+  height: 20vh;
+}
+
+.groundTile {
+  position: absolute;
+  background: url('http://thedrawingblanks.com/khe/floor.png') repeat-x;
+  top: -25px;
+  //background-size: 1000px 1000px;
+
+
+  height: 110px;
+  width: 100vw;
+}
+
+.underground {
+  // background-color: #340400;
+  background-color: #0F2F2F;
+  background-clip: padding-box;
+  color: lightblue;
+  text-align: center;
+
+
+  border-width: 16px;
+  border-style: solid;
+    //border-image: url(http://thedrawingblanks.com/khe/undergroundDiv.png) 14% round;
+    position: absolute;
+    width: 70%;
+    margin-left: 15%;
+    margin-right:15%;
+    margin-top: 20%;
+
+  // height: 600px;
+
+}
+.underground h2 {
+  color: lightblue;
+  margin: 60px;
+}
+.underground p {
+  margin-left: 20%;
+  margin-right: 20%;
+  line-height: 20px;
+}
+
+.uLamp {
+  position: absolute;
+  height: 40px;
+  width: 40px;
+  //background: url('http://thedrawingblanks.com/khe/lamp.png') no-repeat;
+  animation: colorChange;
+  animation-duration: 40s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+}
+
+@-webkit-keyframes flicker {
+  0%   { opacity: 1; }
+  50% { opacity: .9; }
+  100% { opacity: 1; }
+}
+
+.post {
+  position: absolute;
+  background: url('http://thedrawingblanks.com/khe/lamppost.png') repeat-y;
+  background-position: center top;
+
+  width: 38px;
+  opacity: .8;
+}
+
+#uLamp1{
+  margin-left: 5%;
+  margin-top: 25px;
+  animation-delay: -10s;
+
+}
+#post1{
+  height: 50px;
+  margin-left: 5%;
+}
+#uLamp2{
+  margin-left: 10%;
+  margin-top: 35px;
+}
+#post2{
+  height: 50px;
+  margin-left: 10%;
+}
+
+@-webkit-keyframes colorChange {
+  0%   {
+    -webkit-filter: hue-rotate(0deg);
+    filter: hue-rotate(0deg); }
+
+    100% { -webkit-filter: hue-rotate(360deg); filter: hue-rotate(3600deg); }
+  }
+
+  #rank {
+    padding-left: 30px;
+    padding-right: 30px;
+    background-color: #340400;
+    border: 4px solid white;
+    height: 150px;
+    opacity: .9;
+  }
+
+  #rank:hover {
+    opacity: 1;
+    border: 4px solid darkred;
+
+  }
+
+  .combined-logo {
+    width: 50vw;
+    height: auto; 
+  }
+  input[type=range]:focus {
+    outline: none;
+  }
+  input[type=range]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+    background: #000000;
+    border-radius: 0px;
+    border: 0px solid #000101;
+  }
+  input[type=range]::-webkit-slider-thumb {
+    box-shadow: 1px 1px 0px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 12px;
+    width: 12px;
+    border-radius: 0px;
+    background: #ffffff;
+    cursor: pointer;
+    -webkit-appearance: none;
+    margin-top: -5px;
+  }
+  input[type=range]:focus::-webkit-slider-runnable-track {
+    background: #333333;
+  }
+  input[type=range]::-moz-range-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+    background: #000000;
+    border-radius: 0px;
+    border: 0px solid #000101;
+  }
+  input[type=range]::-moz-range-thumb {
+    box-shadow: 1px 1px 0px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 12px;
+    width: 1px;
+    border-radius: 0px;
+    background: #ffffff;
+    cursor: pointer;
+  }
+  input[type=range]::-ms-track {
+    width: 100%;
+    height: 2px;
+    cursor: pointer;
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  input[type=range]::-ms-fill-lower {
+    background: #000000;
+    border: 0px solid #000101;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  }
+  input[type=range]::-ms-fill-upper {
+    background: #000000;
+    border: 0px solid #000101;
+    border-radius: 0px;
+    box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  }
+  input[type=range]::-ms-thumb {
+    box-shadow: 1px 1px 0px #000000, 0px 0px 1px #0d0d0d;
+    border: 1px solid #000000;
+    height: 12px;
+    width: 1px;
+    border-radius: 0px;
+    background: #ffffff;
+    cursor: pointer;
+    height: 2px;
+  }
+  input[type=range]:focus::-ms-fill-lower {
+    background: #000000;
+  }
+  input[type=range]:focus::-ms-fill-upper {
+    background: #333333;
+  }
+
+

@@ -1,0 +1,167 @@
+@import "~styles/_variables.scss"; // Import variables to use colors
+
+
+.textBox {
+    z-index: 100;
+    
+    position: static;
+    font-size: 8px;
+    background: $midnight;
+    padding: 10px;
+    border: $sunset 4px solid;
+    text-align: left;
+    margin-top: 10px;
+    
+    @media screen and (max-width: 620px) {
+        max-width: 150px;
+    }
+}
+
+a {
+    color: white;
+}
+
+#spaceInvadersBackground {
+    //clear: both;
+    width: 200%;
+    padding: 20px;
+    min-height: 264px;
+    margin-left: -50%;
+    background-color: black;
+}
+
+#spaceInvadersIcons {
+    display: flex;
+    flex-flow: row wrap;
+    position: center;
+    justify-content: center;
+    width: 30vw;
+    min-height: 170px;
+    margin: 0 auto;
+    padding: 3px;
+    position: relative;
+}
+
+.invader {
+    height: 20px;
+    margin: 10px;
+}
+.invader:hover {
+    animation: invaderColor 3s linear infinite;
+}
+
+@keyframes invaderColor {
+    from {
+        filter: sepia(1000%) saturate(8) hue-rotate(0deg);
+    } to {
+        filter: sepia(1000%) saturate(8) hue-rotate(360deg);
+    }
+}
+
+.logo {
+    max-height: 30px;
+    max-width: 70px;
+    margin: 10px;
+    cursor: pointer;
+    filter: brightness(0%) invert(1);
+}
+
+.logo:hover {
+    filter: none;
+}
+
+#remesh {
+    height: 13px;
+    width: 35px;
+    //left: -6px;
+}
+
+#hyland {
+    height: 16px;
+    width: 37px;
+    //filter: url(#pixelate);
+
+    //image-rendering: -webkit-optimize-contrast; 
+    //image-rendering: -webkit-crisp-edges; 
+    //image-rendering: -moz-crisp-edges; 
+    //image-rendering: -o-crisp-edges; 
+    //image-rendering: pixelated; 
+
+    &:hover {
+
+    }
+}
+
+#mri {
+    height: 23px;
+    width: 35px;
+}
+
+#americangreetings {
+    height: 30px;
+    width: 87px;
+}
+
+#cs {
+    height: 25px;
+    width: 43px;
+}
+
+#deephire {
+    height: 19px;
+    width: 40px;
+}
+
+#drund {
+    height: 13px;
+    width: 30px;
+}
+
+#explorys {
+    height: 18px;
+    width: 40px;
+}
+
+#launchnet {
+    height: 25px;
+    width: 43px;
+}
+
+#nationwide {
+    height: 30px;
+    width: 75px;
+}
+
+#progressive {
+    height: 40px;
+    width: 40px;
+}
+
+#rovisys {
+    height: 11px;
+    width: 40px;
+}
+
+#library {
+    height: 25px;
+    width: 53px;   
+}
+
+#sponsorBox {
+    display: flex;
+}
+
+.sponsorInfo {
+    width: 30vw;
+    margin: auto;
+    margin-bottom: 50px;
+    color: white;
+    text-shadow: -1px 1px 0px black;
+}
+
+#gradientSky {
+    width: 200%;
+    margin-left: -50%;
+    height: 50px;
+    background: linear-gradient(to bottom, black, #33CCFF);
+}

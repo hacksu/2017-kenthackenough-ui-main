@@ -1,0 +1,40 @@
+@import "~styles/_variables.scss";
+
+.text-info {
+	width: 100%;
+	height: auto;
+	max-width: 100%;
+
+	padding: 4rem 10px;
+	margin: 0 auto;
+
+	font-size: 1.25rem;
+
+	@media screen and (min-width: 768px) {
+		max-width: 960px;
+	}
+}
+
+h4 {
+	font-size: 1.5rem;
+	color: $midnight;
+}
+
+.link-info {
+	color: $black;
+
+	&:hover {
+		color: $midnight;
+	}
+}
+
+.top-right-logo {
+	position: absolute;
+	top: 2%;
+	right: 1%;
+	width: 70px;
+	height: 35px;
+
+	transform-origin: top right;
+	transform: translate(-5%, -21%);
+}
