@@ -19,6 +19,18 @@
     
 }
 
+.event{
+    border-color: white;
+    border-width: 5px;  
+    border-style: solid; 
+    margin: 10px;
+}
+
+#playNowBtn {
+    position: relative absolute;
+    right: 10px;
+}
+
 .livebox {
     border-color: white;
     border-width: 5px;  
@@ -32,6 +44,16 @@
     width: var(--event-width);
     height: var(--full-height);
     //background-color: pink;
+}
+
+#event-title {
+    font-size: 25pt;
+    padding: 10px;
+}
+
+#event-info {
+    font-size: 15pt;
+    padding: 10px;
 }
 
 #updates {

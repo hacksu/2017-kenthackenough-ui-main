@@ -3,9 +3,11 @@
 
     </div>
     <div id="events" class="livebox">
-        <img src="~assets/images/PlayNow.png" height="32" width="256"/>
-        <br />
-        <img src="~assets/images/PlayNowLocked.png" height="32" width="256"/>
+        <div class="event">
+            <h2 id="event-title">title</h2>
+            <p style="color: red;" id="event-info" v-if="{{ hide }}" >stuff</p>
+            <img id="playNowBtn" src="~assets/images/PlayNow.png" height="32" width="256" v-on:click="hide = !hide" />
+        </div>
     </div>
     <div id="social" class="livebox">
         <a href="https://twitter.com/@kenthackenough"       ><img src="~assets/images/twitter.png"   width="64" height="64" />Twitter  </a><br />
@@ -17,3 +19,6 @@
         
     </div>
 </div>
+
+        <!--
+        <img src="~assets/images/PlayNowLocked.png" height="32" width="256"/>-->
