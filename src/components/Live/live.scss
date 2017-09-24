@@ -1,6 +1,14 @@
 /* Universal */
+body {
+    background: grey;
+}
+
 a {
     text-decoration: none;
+}
+
+.section-title {
+    font-size: 40pt;
 }
 
 .event{
@@ -20,8 +28,10 @@ a {
 }
 
 .livebox {
+    background-color: black;
     border-width: 5px;  
-    border-style: solid;  
+    border-style: solid;
+    margin: 10px; 
 }
 
 #event-title {

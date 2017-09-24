@@ -1,9 +1,9 @@
 <div id="live">
     <div id="updates" class="livebox"> 
-        <h1>Updates</h1>
+        <h2 class="section-title" >Updates</h2>
     </div>
     <div id="events" class="livebox">
-        <h1>Events</h2>
+        <h2 class="section-title" >Mini Games</h2>
         <div class="event" v-for="e in events">
             <h2 id="event-title">{{ e.title }}</h2>
             <a @click="toggleVisibility(e)">
@@ -65,7 +65,7 @@
         </table>
     </div>
     <div id="sponsorers" class="livebox">
-        
+        <h2 class="section-title" >High Scores</h2>
     </div>
 </div>
 
