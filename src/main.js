@@ -341,6 +341,30 @@ var app1 = new Vue({
 
     clearCharacter() {
       this.user.application.extra = '';
+    },
+
+    getEvents() {
+      return this.axios.get('/events')
+      .then((response) => {
+        console.log('got event data: ', response.data);
+
+        return response;
+      })
+      .catch((error) => {
+        throw error;
+      });
+    },
+
+    getUpdates() {
+      return this.axios.get('/messages')
+      .then((response) => {
+        console.log('got event data: ', response.data);
+
+        return response.data.messages;
+      })
+      .catch((error) => {
+        throw error;
+      });
     }
   }
 

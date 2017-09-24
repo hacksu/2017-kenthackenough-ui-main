@@ -3,16 +3,22 @@
 
     </div>
     <div id="events" class="livebox">
-        <div class="event">
-            <h2 id="event-title">title</h2>
-            <p style="color: red;" id="event-info" v-if="{{ hide }}" >stuff</p>
-            <img id="playNowBtn" src="~assets/images/PlayNow.png" height="32" width="256" v-on:click="hide = !hide" />
+        <div class="event" v-for="e in events">
+            <h2 id="event-title">{{ e.title }}</h2>
+            <a @click="toggleVisibility(e)">
+                <img id="playNowBtn" 
+                     src="~assets/images/PlayNow.png"                       
+                     />          
+            </a>  
+            <p style="color: red;" 
+               id="event-info"
+               v-if="!e.hide" > {{ e.description }}</p>
         </div>
     </div>
     <div id="social" class="livebox">
         <a href="https://twitter.com/@kenthackenough"       ><img src="~assets/images/twitter.png"   width="64" height="64" />Twitter  </a><br />
-        <a href="https://www.facebook.com/kenthackenough"   ><img src="~assets/images/insta.png"     width="64" height="64" />Instagram</a><br />
-        <a href="https://www.instagram.com/kenthackenough/" ><img src="~assets/images/facebook.png"  width="64" height="64" />Facebook </a><br />
+        <a href="https://www.facebook.com/kenthackenough"   ><img src="~assets/images/facebook.png"  width="64" height="64" />Facebook </a><br />
+        <a href="https://www.instagram.com/kenthackenough/" ><img src="~assets/images/insta.png"     width="64" height="64" />Instagram </a><br />
         <a href=""                                          ><img src="~assets/images/snap.png"      width="64" height="64" />Snapchat </a><br />
     </div>
     <div id="sponsorers" class="livebox">
