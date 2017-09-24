@@ -1,9 +1,9 @@
 <div id="live">
     <div id="updates" class="livebox"> 
-
+        <h1>Updates</h1>
     </div>
     <div id="events" class="livebox">
-        <h1>MINIGAMES</h2>
+        <h1>Events</h2>
         <div class="event" v-for="e in events">
             <h2 id="event-title">{{ e.title }}</h2>
             <a @click="toggleVisibility(e)">
@@ -17,10 +17,52 @@
         </div>
     </div>
     <div id="social" class="livebox">
-        <a href="https://twitter.com/@kenthackenough"       ><img src="~assets/images/twitter.png"   width="64" height="64" />Twitter  </a><br />
-        <a href="https://www.facebook.com/kenthackenough"   ><img src="~assets/images/facebook.png"  width="64" height="64" />Facebook </a><br />
-        <a href="https://www.instagram.com/kenthackenough/" ><img src="~assets/images/insta.png"     width="64" height="64" />Instagram </a><br />
-        <a href=""                                          ><img src="~assets/images/snap.png"      width="64" height="64" />Snapchat </a><br />
+        <table>
+            <tr>
+                <td>
+                    <a href="https://twitter.com/@kenthackenough" 
+                       class="socialLink">
+                        <img src="~assets/images/twitter.png"
+                             width="64" 
+                             height="64" />
+                             <br />
+                             Twitter
+                    </a>                        
+                </td>
+                <td>
+                    <a href="https://www.facebook.com/kenthackenough" 
+                    class="socialLink">
+                        <img src="~assets/images/facebook.png"
+                             width="64"
+                             height="64" />
+                             <br />
+                             Facebook 
+                    </a>                        
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://www.instagram.com/kenthackenough/" 
+                       class="socialLink">
+                        <img src="~assets/images/insta.png"
+                             width="64"
+                             height="64" />
+                             <br />
+                             Instagram
+                    </a>                        
+                </td>
+                <td>
+                    <a href="" 
+                       class="socialLink">
+                        <img src="~assets/images/snap.png"      
+                             width="64" 
+                             height="64" />
+                             <br />
+                             Snapchat 
+                    </a>                            
+                </td>
+                </tr>
+        </table>
     </div>
     <div id="sponsorers" class="livebox">
         

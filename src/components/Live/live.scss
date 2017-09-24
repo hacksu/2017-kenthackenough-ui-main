@@ -1,4 +1,7 @@
 /* Universal */
+a {
+    text-decoration: none;
+}
 
 .event{
     border-bottom: 5px;
@@ -10,7 +13,7 @@
     margin: 10px;
 }
 
-a #playNowBtn {
+#playNowBtn {
     display: inline;
     padding: 0px;
     border: 1px red solid;
@@ -30,6 +33,22 @@ a #playNowBtn {
 #event-info {
     font-size: 15pt;
     padding: 10px;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+td {
+    width: 50%;
+    height: 50%;
+    align-content: center;
+    text-align: center;
+}
+
+.socialLink {
+    margin: auto;
 }
 
 /* Desktop specific layout */
@@ -60,7 +79,6 @@ a #playNowBtn {
         top: var(--margin-size);
         width: var(--right-col-width);
         height: var(--social-height);
-        //background-color: blue;
     }
     
     #sponsorers {
@@ -69,7 +87,6 @@ a #playNowBtn {
         top: var(--sponsorer-top);
         width: var(--right-col-width);
         height: var(--sponsorer-height);
-        //background-color: gray;
     }
 
     #events {
