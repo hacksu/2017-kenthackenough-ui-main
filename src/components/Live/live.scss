@@ -15,24 +15,28 @@
     // Calculate the starting positions of each column
     --event-left: calc(2 * var(--margin-size) + var(--update-width));
     --right-col-left: calc(3 * var(--margin-size) + var(--update-width) + var(--event-width));
-    --sponsorer-top: calc(2 * var(--margin-size) + var(--social-height));
+    --sponsorer-top: calc(2 * var(--margin-size) + var(--social-height));    
     
 }
 
 .event{
-    border-color: white;
-    border-width: 5px;  
+    border-bottom: 5px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    border-color: white; 
     border-style: solid; 
     margin: 10px;
 }
 
-#playNowBtn {
-    position: relative absolute;
+a #playNowBtn {
+    display: inline;
+    padding: 0px;
     border: 1px red solid;
 }
 
 .livebox {
-    border-color: white;
+    //border-color: white;
     border-width: 5px;  
     border-style: solid;  
 }
@@ -49,6 +53,7 @@
 #event-title {
     font-size: 25pt;
     padding: 10px;
+    display: inline;
 }
 
 #event-info {
