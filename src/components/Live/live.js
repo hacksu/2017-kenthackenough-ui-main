@@ -14,32 +14,7 @@ export default Vue.extend({
   data() {
     return {
       test: 'asohgfa;sdhg',
-      events: [{
-        _id: 'String',
-        title: 'String',
-        description: 'String',
-        start: 'Date',
-        end: 'Date',
-        type: 'String',
-        icon: 'String',
-        location: 'String',
-        group: 'String',
-        notify: false,
-        hide: true
-      },
-      {
-        _id: 'String',
-        title: 'String',
-        description: 'String',
-        start: 'Date',
-        end: 'Date',
-        type: 'String',
-        icon: 'String',
-        location: 'String',
-        group: 'String',
-        notify: false,
-        hide: false
-      }],
+      events: [],
       updates: [],
     };
   },
@@ -52,7 +27,14 @@ export default Vue.extend({
 
   mounted() {
     console.log('mounted');
-    // var eventData = this.$root.getEvents();
+    this.$root.getEvents()
+    .then((events) => {
+      console.log(events);
+      this.events = events;
+      for (var e in this.events){
+        Vue.set(this.events[e], 'hide', true);
+      }
+    });
     this.$root.getUpdates()
     .then((messages) => {
       console.log(messages);

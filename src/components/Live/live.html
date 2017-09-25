@@ -1,6 +1,10 @@
 <div id="live">
     <div id="updates" class="livebox"> 
         <h2 class="section-title" >Updates</h2>
+        <div v-for="u in updates"
+             id="wizard-say" >
+            {{ u.text }}
+        </div>
     </div>
     <div id="events" class="livebox">
         <h2 class="section-title" >Mini Games</h2>
