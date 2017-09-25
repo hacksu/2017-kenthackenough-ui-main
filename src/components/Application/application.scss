@@ -427,6 +427,7 @@ main {
 	left: 5%;
 	background: $midnight;
     z-index: -1;
+    overflow: hidden;
 }
 
 #progress {
@@ -435,4 +436,10 @@ main {
 	background: $shamrock;
 	transition-duration: 3s;
     z-index: -1;
+}
+
+#errors {
+    color: red;
+    padding: 20px;
+    background: black;
 }

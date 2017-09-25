@@ -346,9 +346,9 @@ var app1 = new Vue({
     getEvents() {
       return this.axios.get('/events')
       .then((response) => {
-        console.log('got event data: ', response.data);
+        //console.log('got event data: ', response.data);
 
-        return response;
+        return response.data.events;
       })
       .catch((error) => {
         throw error;
@@ -358,7 +358,7 @@ var app1 = new Vue({
     getUpdates() {
       return this.axios.get('/messages')
       .then((response) => {
-        console.log('got event data: ', response.data);
+        // console.log('got update data: ', response.data);
 
         return response.data.messages;
       })

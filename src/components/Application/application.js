@@ -53,7 +53,7 @@ export default Vue.extend({
       slashCount: 0,
 
       schools: [],
-      genders: ['Male', 'Female', 'Other'],
+      genders: ['Male', 'Female', 'Other', 'Prefer Not to Say'],
       resumeUrl: '',
 
       scalingObject: {
@@ -65,6 +65,8 @@ export default Vue.extend({
       },
 
       currentFieldIndex: -1,
+        
+      appError: ''
     };
   },
 
@@ -77,6 +79,13 @@ export default Vue.extend({
         return true;
       }
       this.$root.$data.user.application.phone = phoneMatches[1] + '-' + phoneMatches[2] + '-' + phoneMatches[3];
+      return false;
+    },
+    schoolErr: function() {
+      var schoolText = this.$root.$data.user.application.school;
+      if (schoolText.length <= 2 || schoolText.length > 64) {
+        return true;
+      }
       return false;
     },
 
@@ -219,9 +228,7 @@ export default Vue.extend({
     },
 
     handleKeypress(e) {
-      if (e.keyCode === keys.ENTER) {
-        this.goToNextField();
-      } else if ((e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 48 && e.keyCode < 57)) { // Letter keys
+      if ((e.keyCode >= 65 && e.keyCode <= 90) || (e.keyCode >= 48 && e.keyCode < 57)) { // Letter keys
         this.hurtMonster();
         // Shake screen todo
       }
@@ -234,7 +241,7 @@ export default Vue.extend({
         this.goToNextField();
       })
       .catch((error) => {
-        this.goToNextField();
+        this.appError = 'We\'re sorry! Your application couldn\'t be processed! Probably bad input on one of our feilds :( ';
         console.log('Error', error);
       });
     },
@@ -246,6 +253,7 @@ export default Vue.extend({
         console.log('response', response.data);
       })
       .catch((error) => {
+        this.appError = 'We\'re sorry! Your application couldn\'t be edited! ';
         console.log('Error', error);
       });
     },

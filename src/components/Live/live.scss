@@ -13,7 +13,13 @@ a {
     font-size: 40pt;
 }
 
+.event-flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+
 .event{
+    
     border-bottom: 5px;
     border-left: 0px;
     border-right: 0px;
@@ -33,7 +39,6 @@ a {
     background-color: $black;
     border-width: 5px;  
     border-style: solid;
-    margin: 10px; 
 }
 
 #event-title {
@@ -118,6 +123,7 @@ td {
     }
 
     #events {
+        
         position: absolute;
         left: var(--event-left);
         top: var(--margin-size);
