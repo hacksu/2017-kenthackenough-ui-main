@@ -103,13 +103,15 @@ export default Vue.extend({
           })
           .catch((error) => {
             if (error.response.data.errors[0].path === 'email') {
-              this.errorMessage = 'Sorry, that isn`t a valid email!';
+              vm.errorMessage = 'Sorry, that isn`t a valid email!';
             } else if (error.response.data.errors[0].path === 'password') {
-              this.errorMessage = 'Sorry, that isn`t a valid password!';
+              vm.errorMessage = 'Sorry, that isn`t a valid password!';
             } else {
-              this.errorMessage = 'Sorry, an error occurred!';
+              vm.errorMessage = 'Sorry, an error occurred!';
             }
           });
+        } else {
+          vm.errorMessage = 'Sorry, proper email/password required!';
         }
         return this;
       });
@@ -123,7 +125,7 @@ export default Vue.extend({
     },
 
     toApply() {
-      if (this.$root.$data.user.application.name === '') {
+      if (this.$root.$data.user.application.name.length < 2) {
         this.errorMessage = 'Name required!';
       } else {
         this.$root.$router.push('apply');
