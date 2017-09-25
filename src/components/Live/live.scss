@@ -1,6 +1,8 @@
+@import "~styles/_variables.scss"; // Import variables to use colors
+
 /* Universal */
 body {
-    background: grey;
+    background: $midnight-dark;
 }
 
 a {
@@ -28,7 +30,7 @@ a {
 }
 
 .livebox {
-    background-color: black;
+    background-color: $black;
     border-width: 5px;  
     border-style: solid;
     margin: 10px; 
@@ -43,6 +45,22 @@ a {
 #event-info {
     font-size: 15pt;
     padding: 10px;
+}
+
+#topMenu {
+    position: relative;
+    height: 100px;
+    background: black;
+    width: 300px;
+    z-index: 100;
+}
+
+#khe_short {
+    right: 20px;
+    top: 20px;
+    width: 40%;
+    max-height: 60px;
+    position: absolute;
 }
 
 table {
@@ -114,4 +132,8 @@ td {
         width: var(--update-width);
         height: var(--full-height);
     }
+    #topMenu {
+        width: var(--update-width);
+    }
 }
+
