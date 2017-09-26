@@ -4,6 +4,7 @@ import NotFound from 'components/NotFound/notFound';
 
 import Sponsor from 'components/Sponsor/sponsor';
 import About from 'components/About/about';
+import Rsvp from 'components/RSVP/rsvp';
 
 import EventInfo from 'components/EventInfo/eventInfo';
 import Library from 'components/Library/library';
@@ -22,6 +23,14 @@ const routes = [
   {
     path: '/sponsors',
     component: Sponsor
+  },
+  {
+    path: '/sponsor',
+    component: Sponsor
+  },
+  {
+    path: '/rsvp',
+    component: Rsvp
   },
   {
     path: '/about',
