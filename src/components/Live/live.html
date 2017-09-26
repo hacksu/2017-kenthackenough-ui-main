@@ -17,8 +17,12 @@
                 <a @click="toggleVisibility(e)">
                     <img id="playNowBtn"
                          style="margin-top: 25px;cursor: pointer;"
-                     src="~assets/images/PlayNow.png"                       
-                     /> 
+                         src="~assets/images/PlayNow.png" 
+                         v-if="now(e)" />
+                    <img id="playNowBtn"
+                         style="margin-top: 25px;cursor: pointer;"
+                         src="~assets/images/PlayNowLocked.png" 
+                         v-else />
                 </a>
             </div>
             <p style="color: red;" 

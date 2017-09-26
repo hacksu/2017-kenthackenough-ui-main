@@ -22,6 +22,12 @@ export default Vue.extend({
   methods: {
     toggleVisibility(e) {
       e.hide = !e.hide;
+    },
+    now(e) {
+      var start = new Date(e.start);
+      var end = new Date(e.end);
+      var now = new Date();
+      return start < now && now < end;
     }
   },
 

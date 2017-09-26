@@ -39,6 +39,7 @@ a {
     background-color: $black;
     border-width: 5px;  
     border-style: solid;
+    overflow-y: auto;
 }
 
 #event-title {
