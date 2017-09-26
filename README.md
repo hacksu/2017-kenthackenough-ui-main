@@ -70,4 +70,4 @@ git pull upstream develop
 ```
 
 It's important to note we only do this for pulling the latest code from the main repository. 
-Any time you want to have some new code included in the project you still need to submit a pull request to the `develop` branch.
+Any time you want to have some new code included in the project you still need to submit a pull request to the `develop` branch .
