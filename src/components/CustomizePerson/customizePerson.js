@@ -138,7 +138,13 @@ export default Vue.extend({
       this.$root.loginUser()
       .then((response) => {
         console.log('Successfully logged in', response);
-        this.$root.loadUserApplication();
+        this.$root.loadUserApplication()
+        .then(() => {
+          if (this.$parent.rsvpInProgress) {
+            this.$parent.checkRSVP();
+          }
+        });
+
         this.changeMenu('character');
 
       })

@@ -1,0 +1,46 @@
+@import '../../styles/_variables.scss';
+
+.status {
+	font-size: 3rem;
+	text-align: center;
+	text-transform: uppercase;
+	margin-bottom: 0;
+}
+
+.heading-text {
+	padding-top: 4rem;
+	font-size: 2.5rem;
+	text-align: center;
+	width: 100%;
+}
+
+.status-text {
+	width: 100%;
+	font-size: 2rem;
+	text-align: center;
+}
+
+.change-text {
+	text-decoration: underline;
+	color: white;
+	text-align: center;
+	cursor: pointer;
+}
+
+.bg-message {
+	padding: 4rem 20px;
+	background-color: $midnight;
+	margin-bottom: -3rem;
+}
+
+#settings.rsvp-settings {
+	max-width: 100%;
+	width: 100%;
+	background: transparent;
+	border: none;
+
+	* {
+		font-size: 18px;
+		line-height: 22px;
+	}
+}
