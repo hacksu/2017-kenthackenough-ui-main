@@ -1,6 +1,6 @@
 import Vue from 'vue';
 
-import template from './RSVP.html';
+import template from './rsvp.html';
 
 import './rsvp.scss';
 
