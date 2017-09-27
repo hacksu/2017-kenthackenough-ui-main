@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import VeeValidate from 'vee-validate';
 import axios from 'axios';
 import VueAxios from 'vue-axios';
+import VueMoment from 'vue-moment';
 
 import { LoadingState } from 'src/config/loading-state';
 import { CLIENT_ID } from 'src/config/constants';
@@ -13,6 +14,7 @@ import Person from 'components/Person/person';
 
 Vue.use(VueRouter);
 Vue.use(VeeValidate);
+Vue.use(VueMoment);
 
 Vue.use(VueAxios, axios);
 

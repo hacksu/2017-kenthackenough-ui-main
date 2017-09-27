@@ -4,6 +4,7 @@ import NotFound from 'components/NotFound/notFound';
 
 import Sponsor from 'components/Sponsor/sponsor';
 import About from 'components/About/about';
+import Schedule from 'components/Schedule/schedule';
 import Rsvp from 'components/RSVP/rsvp';
 
 import EventInfo from 'components/EventInfo/eventInfo';
@@ -35,6 +36,10 @@ const routes = [
   {
     path: '/about',
     component: About
+  },
+  {
+    path: '/schedule',
+    component: Schedule
   },
   {
     path: '/info',
