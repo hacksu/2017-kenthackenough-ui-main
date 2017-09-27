@@ -17,3 +17,9 @@ export const usersResource = axios.create({
   timeout: 8000,
   //headers: {'X-Custom-Header': 'foobar'}
 });
+
+export const eventsResource = axios.create({
+  baseURL: `${API_BASE}/events`,
+  timeout: 15000,
+  //headers: {'X-Custom-Header': 'foobar'}
+});

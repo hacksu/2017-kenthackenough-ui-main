@@ -1,0 +1,51 @@
+<div>
+	<main class="schedule">
+		<h1>Schedule</h1>
+		<h2 v-if="errMsg != ''">{{ errMsg }}</h2>
+		<div class="day">
+			<h2>Friday, October 6th</h2>
+			<ul>
+				<li v-for="event in days.Friday">
+					<span class="time" v-if="!event.singleTime">{{ event.start | moment("h:mm a") }} - {{ event.end | moment("h:mm a") }}</span>
+					<span class="time" v-else>{{ event.start | moment("h:mm a") }}</span>
+
+					<span class="name">{{ event.title }}</span>
+
+					<span class="location">{{ event.location }}</span>
+
+					<span class="description">{{ event.description }}</span>
+				</li>
+			</ul>
+		</div>
+		<div class="day">
+			<h2>Saturday, October 7th</h2>
+			<ul>
+				<li v-for="event in days.Saturday">
+					<span class="time" v-if="!event.singleTime">{{ event.start | moment("h:mm a") }} - {{ event.end | moment("h:mm a") }}</span>
+					<span class="time" v-else>{{ event.start | moment("h:mm a") }}</span>
+
+					<span class="name">{{ event.title }}</span>
+
+					<span class="location">{{ event.location }}</span>
+
+					<span class="description">{{ event.description }}</span>
+				</li>
+			</ul>
+		</div>
+		<div class="day">
+			<h2>Sunday, October 8th</h2>
+			<ul>
+				<li v-for="event in days.Sunday">
+					<span class="time" v-if="!event.singleTime">{{ event.start | moment("h:mm a") }} - {{ event.end | moment("h:mm a") }}</span>
+					<span class="time" v-else>{{ event.start | moment("h:mm a") }}</span>
+
+					<span class="name">{{ event.title }}</span>
+
+					<span class="location">{{ event.location }}</span>
+
+					<span class="description">{{ event.description }}</span>
+				</li>
+			</ul>
+		</div>
+	</main>
+</div>
