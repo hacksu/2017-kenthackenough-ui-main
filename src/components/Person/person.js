@@ -76,6 +76,59 @@ export default Vue.extend({
           lock: true
         }
       ],
+      extra: 0,
+      extraSrc: [
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/none.png',
+          name: 'none',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/headphones.png',
+          name: 'Headphones',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/cap.png',
+          name: 'cap',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/halo.png',
+          name: 'halo',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/horns.png',
+          name: 'horns',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/sunglasses.png',
+          name: 'sunglasses',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/makeup.png',
+          name: 'makeup',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/flower.png',
+          name: 'flower',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/glasses.png',
+          name: 'glasses',
+          lock: false
+        },
+        {
+          url: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/bunnyEars.png',
+          name: 'bunny',
+          lock: false
+        }
+      ],
       pants: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/pants1.png',
       hair: 0,
       shoes: 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/795933/shoes1.png',
@@ -120,6 +173,8 @@ export default Vue.extend({
       currentFrame: 0,  // Frame iterator, starts at 0
       context: {},      // Will hold different canvas locations
         
+      extraInvert: false,
+        
       // Stores all current sprites
       sprite: {
         skin: document.createElement('img'),
@@ -127,7 +182,8 @@ export default Vue.extend({
         hair: document.createElement('img'),
         pants: document.createElement('img'),
         shoes: document.createElement('img'),
-        eyes: document.createElement('img')
+        eyes: document.createElement('img'),
+        extras: document.createElement('img')
       }
           
     };
@@ -148,7 +204,7 @@ export default Vue.extend({
       } else if (this.customize === 'face') {
         this.inFront = true;
         return '200px';
-      } else if (this.customize === 'shirts' || this.customize === 'pants') {
+      } else if (this.customize === 'shirts' || this.customize === 'pants' || this.customize === 'extra') {
         this.inFront = true;
         return '120px';
       } else {
@@ -161,7 +217,7 @@ export default Vue.extend({
         return '230px';
       } else if (this.customize === 'face') {
         return '230px';
-      } else if (this.customize === 'shirts' || this.customize === 'pants') {
+      } else if (this.customize === 'shirts' || this.customize === 'pants' || this.customize === 'extra') {
         return '225px';
       } else {
         return (this.xLHS - 25) + 'px';
@@ -216,6 +272,9 @@ export default Vue.extend({
     canvas = document.getElementById('eyes');
     this.context.eyes = canvas.getContext('2d');
       
+    canvas = document.getElementById('extras');
+    this.context.extras = canvas.getContext('2d');
+      
     this.loadSprites();
     this.animLoop();
   },
@@ -259,6 +318,7 @@ export default Vue.extend({
     loadSprites() {
       this.sprite.skin.src = this.skin;
       this.sprite.shirt.src = this.shirtSrc[this.shirt].url;
+      this.sprite.extras.src = this.extraSrc[this.extra].url;
       this.sprite.hair.src = hairSrc[this.hair];
       this.sprite.pants.src = this.pants;
       this.sprite.shoes.src = this.shoes;
@@ -308,6 +368,22 @@ export default Vue.extend({
       }
       this.locked = false;
       this.sprite.shirt.src = this.shirtSrc[this.shirt].url;
+    },
+      
+    changeExtra(dir) {
+      this.extra += dir;
+      if (this.extra > (this.extraSrc.length - 1)) {
+        this.extra = 0;
+      }
+      if (this.extra < 0) {
+        this.extra = (this.extraSrc.length - 1);
+      }
+      if (this.extraSrc[this.extra].lock) {
+        this.locked = true;
+        return;
+      }
+      this.locked = false;
+      this.sprite.extras.src = this.extraSrc[this.extra].url;
     },
       
     changePants(dir) {
@@ -365,7 +441,7 @@ export default Vue.extend({
     animLoop: function() {
       this.delayI++;
       if (this.delayI === this.delay) {
-        var parts = ['skin', 'shirt', 'hair', 'pants', 'shoes', 'eyes'];
+        var parts = ['skin', 'shirt', 'hair', 'pants', 'shoes', 'eyes', 'extras'];
         for (var i in parts) {
           this.context[parts[i]].clearRect(0, 0, 300, 300);
  
