@@ -1,0 +1,15 @@
+<div>
+	<h1 class="status-text bg-message" v-if="message != ''">{{ message }}</h1>
+	<div v-if="!$root.isLoggedIn()">
+		<h2 class="heading-text">Please login to RSVP.</h2>
+		<customize-person class="rsvp-settings"></customize-person>
+		<person ref="you" style="display: none"></person>
+	</div>
+	<div v-else>
+		<h2 class="heading-text">Hi {{ $root.user.application.name.split(' ')[0] || 'there' }}!</h2>
+		<h3 class="status-text">Your RSVP status is</h3>
+		<h1 class="status">{{ $root.user.application.going ? 'going' : 'not going' || 'undetermined' }}</h1>
+		<p class="change-text" @click="changeRSVP(!$root.user.application.going)">Change</p>
+	</div>
+	
+</div>
