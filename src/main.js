@@ -34,7 +34,7 @@ export const router = new VueRouter({
 
 Vue.router = router;
 
-Vue.axios.defaults.baseURL = 'http://localhost:3000/test';
+Vue.axios.defaults.baseURL = 'https://api.khe.io/v1.0';
 
 var app1 = new Vue({
   router,
