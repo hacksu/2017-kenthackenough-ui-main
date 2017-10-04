@@ -81,6 +81,21 @@ td {
     text-align: center;
 }
 
+#username {
+    color: white;
+    font-size: 30pt;     
+}
+
+#score {
+    color: white;
+    text-align: right;
+    font-size: 30pt; 
+}
+
+#sponsorers {
+    overflow-y: hidden;
+}
+
 .socialLink {
     margin: auto;
 }

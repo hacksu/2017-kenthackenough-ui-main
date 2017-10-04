@@ -378,6 +378,16 @@ var app1 = new Vue({
         console.log('points err');
         throw error;
       });
+    },
+
+    getLeaderboard() {
+      return this.axios.get('/gamify/scoreboard')
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        throw err;
+      });
     }
   }
 

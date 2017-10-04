@@ -16,6 +16,7 @@ export default Vue.extend({
       test: 'asohgfa;sdhg',
       events: [],
       updates: [],
+      leaderboard: [],
     };
   },
 
@@ -32,7 +33,6 @@ export default Vue.extend({
   },
 
   mounted() {
-    console.log('mounted');
     this.$root.getEvents()
     .then((events) => {
       console.log(events);
@@ -43,8 +43,11 @@ export default Vue.extend({
     });
     this.$root.getUpdates()
     .then((messages) => {
-      console.log(messages);
       this.updates = messages;
+    });
+    this.$root.getLeaderboard()
+    .then((scores) => {
+      this.leaderboard = scores;
     });
   }
 });
