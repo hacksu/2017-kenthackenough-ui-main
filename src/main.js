@@ -32,7 +32,7 @@ export const router = new VueRouter({
 
 Vue.router = router;
 
-Vue.axios.defaults.baseURL = 'https://api.khe.io/v1.0';
+Vue.axios.defaults.baseURL = 'http://localhost:3000/test';
 
 var app1 = new Vue({
   router,
@@ -363,6 +363,19 @@ var app1 = new Vue({
         return response.data.messages;
       })
       .catch((error) => {
+        throw error;
+      });
+    },
+
+    gamifyPoints(pointsParams) {
+      return this.axios.get(pointsParams, this.user)
+      .then((response) => {
+        console.log(response);
+        // continue to the home layout
+        router.push('/');
+      })
+      .catch((error) => {
+        console.log('points err');
         throw error;
       });
     }

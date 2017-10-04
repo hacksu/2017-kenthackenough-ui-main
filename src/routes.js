@@ -45,6 +45,11 @@ const routes = [
     component: live,
     meta: { auth: false }
   },
+  {
+    path: '/gamify/*',
+    component: Home,
+    meta: { auth: true }
+  },
   // {
   //   path: '/oauth/callback',
     
