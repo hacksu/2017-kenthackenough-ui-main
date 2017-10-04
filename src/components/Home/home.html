@@ -37,6 +37,11 @@
                 v-if="$root.isLoggedIn()"
                 >Go To Your Profile!</span>
                 </button>
+                
+            <br><br>
+
+            <p style="font-size: 8px;">Plan on coming to KHE?</p>
+            <router-link class="login-link" to="/rsvp" tag="p" style="font-size: 10px;">RSVP Here</router-link>
         </div>
             
         <div class="darken" @click="paused = false" 
@@ -48,7 +53,6 @@
             :scaledViewportWidth="scaledViewportWidth" 
             :scaledViewportHeight="scaledViewportHeight"></customize-person>
         </transition>
-        
         
         <span v-on:click="togglePaused()" style="cursor: pointer;"><person ref="you"></person>
         </span>

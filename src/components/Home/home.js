@@ -80,6 +80,7 @@ export default Vue.extend({
       
     setInterval(this.move, 10);
 
+    setTimeout(this.checkRSVP(), 300);
   },
   
   beforeDestroy: function() {
@@ -194,6 +195,29 @@ export default Vue.extend({
       }
       if (this.monster === 'ent') {
         this.$refs.homeEnt.hurt();
+      }
+    },
+
+    checkRSVP() {
+      console.log(this.$route);
+
+      if (this.$route.query.going) {
+        this.rsvpInProgress = true;
+
+        if (this.$root.isLoggedIn()) {
+          console.log('Is logged in');
+        } else {
+          console.log('not logged in. Log in to rsvp');
+          this.paused = true;
+        }
+
+        if (this.$route.query.going === 'true') {
+          console.log('Going to KHE');
+        } else {
+          console.log('Not Going to KHE');
+        }
+      } else {
+        console.log('RSVP Not Given');
       }
     }
   }

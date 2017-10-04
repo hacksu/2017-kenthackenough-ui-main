@@ -7,18 +7,23 @@
 <div :style="{ 'width': scaledViewportWidth, 'height': scaledViewportHeight }">
   <!-- Apply menu -->
   <div class="menuWindow" v-if="menu == 'apply'">
-    <p class="close-button" @click="$parent.paused = false">X</p>
-    <h2>Apply for Kent Hack Enough</h2>
+    <p class="close-button" @click="$parent.paused = false" v-if="!$parent.rsvpInProgress">X</p>
+    <h2 v-if="!$parent.rsvpInProgress">Apply for Kent Hack Enough</h2>
     <p class="error-message">{{ errorMessage || errors.first('email') }}</p>
     <input type="email" id="email" placeholder="Email..." v-model="$root.$data.user.email" v-validate.initial="emailValidationRule"/>
     <input type="password" id="password" placeholder="Password..." v-model="$root.$data.user.password"/>
     <br>
     <div class="flex-row">
-<!--      <router-link class="login-link" tag="p" to="/reset" exact>Forgot password?</router-link>-->
+      <a class="login-link" href="http://2016.khe.io/recover"><p>Forgot password?</p></a>
       <!-- <p>Remember Me&nbsp;<input type="checkbox" name="Remember Me" v-model="rememberMe"></p> -->
     </div>
     <div class="flex-row align-right">
-      <p class="login-link" @click="handleLogin()">Login</p><p>&nbsp;or&nbsp;</p><button @click="handleSubmit()" class="apply-link">Apply</button>
+      <span v-if="$parent.rsvpInProgress">
+        <button @click="handleLogin()" class="apply-link">Login</button>
+      </span>
+      <span v-else>
+        <p class="login-link" @click="handleLogin()">Login</p><p>&nbsp;or&nbsp;</p><button @click="handleSubmit()" class="apply-link">Apply</button>
+      </span>
     </div>
   </div>
 

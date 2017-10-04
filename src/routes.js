@@ -5,6 +5,8 @@ import live from 'components/Live/live';
 
 import Sponsor from 'components/Sponsor/sponsor';
 import About from 'components/About/about';
+import Schedule from 'components/Schedule/schedule';
+import Rsvp from 'components/RSVP/rsvp';
 
 import EventInfo from 'components/EventInfo/eventInfo';
 import Library from 'components/Library/library';
@@ -25,8 +27,20 @@ const routes = [
     component: Sponsor
   },
   {
+    path: '/sponsor',
+    component: Sponsor
+  },
+  {
+    path: '/rsvp',
+    component: Rsvp
+  },
+  {
     path: '/about',
     component: About
+  },
+  {
+    path: '/schedule',
+    component: Schedule
   },
   {
     path: '/info',
