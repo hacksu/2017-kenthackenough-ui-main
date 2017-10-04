@@ -117,7 +117,7 @@ export default Vue.extend({
           space.classList.add('gridSpace');
           space.style.left = ((x * 20) + 40) + 'px';
           space.style.top = (y * 20) + 'px';
-          this.renderSideBlock(x, y, space, 'fTop');
+          this.renderSideBlock(x, y, space, 'f2');
           space.classList.add('bottomDirt');
         
           document.getElementById('grid').appendChild(space);
@@ -258,9 +258,20 @@ export default Vue.extend({
           space.classList.add('castleTile2');
         } else if (this.grid[y][x] === 'e') {
           space.classList.add('castleBgBrick1');
+        } else if (this.grid[y][x] === 'E') {
+          space.classList.add('castleBgBrick2');
         } else if (this.grid[y][x] === 'r') {
           space.classList.add('castleBrick2');
           space.style.filter = 'hue-rotate(' + (Math.floor(Math.random() * 360)) + 'deg)';
+        } else if (this.grid[y][x] === 'f2') {
+          space.classList.add('castleBrickBTM');
+        } else if (this.grid[y][x] === 'b') {
+          space.classList.add('bookshelf');
+        } else if (this.grid[y][x][0] === 'd') {
+          space.classList.add('deco2x1');
+          space.classList.add('door');
+          space.style.left = ((x * 20) + 40) + 'px';
+          space.style.top = ((y - 1) * 20) + 'px';
         }
       }
       
@@ -270,7 +281,7 @@ export default Vue.extend({
       if (this.theme === 'grass') {
         if (fill === 'f') {
           space.classList.add('bottomDirt');
-        } else if (fill === 'fTop') {
+        } else if (fill === 'fTop' || fill === 'f2') {
           space.classList.add('topDirt');
                 
           var deco = document.createElement('div');
@@ -287,8 +298,10 @@ export default Vue.extend({
         }
         
       } else if (this.theme === 'castle') {
-        if (fill === 'f' || fill === 'fTop') {
+        if (fill === 'f') {
           space.classList.add('castleBrick1');
+        } else if (fill === 'f2') {
+          space.classList.add('castleBrickBTM');
         }
       }
     }

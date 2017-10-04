@@ -184,7 +184,12 @@ export default Vue.extend({
         shoes: document.createElement('img'),
         eyes: document.createElement('img'),
         extras: document.createElement('img')
-      }
+      },
+        
+      // Used to signify the player can do an action
+      toRoute: '',
+      actionTime: 500,
+      actionI: 0
           
     };
   },
@@ -435,6 +440,13 @@ export default Vue.extend({
         this.currentFrame = 0;
       }
         
+      if (this.actionI > 0) {
+        this.actionI--;
+      } else {
+        this.actionI = this.actionTime;
+        this.$parent.actionMsg = '';
+      }
+        
       return;
     },
       
@@ -668,10 +680,21 @@ export default Vue.extend({
       this.facing = 'scale(-1,1)';
     },
       
+    action: function() {
+      if (this.toRoute.length > 1) {
+        this.$router.push('/' + this.toRoute);
+      }
+    },
+      
     collCheck(tile) {
     // Add all tiles from the Grid component you want to collide.
     // Equivelant to: tile === 'f' || tile === 'g' || tile === 'r' || tile === 'p' || tile === 'w'
-      if (tile !== 'e') {
+      if (tile[0] === 'd') {
+        var tempLink = tile.split('-')[1];
+        this.$parent.actionMsg = 'Press Z or Enter to go to /' + tempLink + '!';
+        this.toRoute = tempLink;
+      }
+      if (tile !== 'e' && tile !== 'E' && tile[0] !== 'd') {
         return true;
       } else {
         return false;

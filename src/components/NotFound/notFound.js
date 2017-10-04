@@ -27,6 +27,7 @@ var keys = {
   P: 80,
   ESC: 27,
   ENTER: 13,
+  Z: 90,
     
   H: 72 // HURTS ENEMY
 };
@@ -53,7 +54,9 @@ export default Vue.extend({
       paused: false,
       monsters: ['ogre', 'ent'],
       monster: 'none',
-      slash: [false, false, false] // Dictates which, if any, slash animations are playing
+      slash: [false, false, false], // Dictates which, if any, slash animations are playing
+        
+      actionMsg: ''
     };
   },
   // bind event handlers to the `doResize` method (defined below)
@@ -64,13 +67,7 @@ export default Vue.extend({
     this.doResize();
       
     // Movement detection
-    var self = this;
-    window.addEventListener('keydown', function(e){
-      keys[e.keyCode || e.which] = true;
-      if (e.keyCode === Number(keys.ESC)) {
-        self.togglePaused();
-      }
-    }, true);
+    window.addEventListener('keydown', this.handleKeyDown, true);
 
     window.addEventListener('keyup', function(e){
       keys[e.keyCode || e.which] = false;
@@ -82,9 +79,17 @@ export default Vue.extend({
   
   beforeDestroy: function() {
     window.removeEventListener('resize', this.doResize);
+    window.removeEventListener('keydown', this.handleKeyDown);
   },
 
   methods: {
+      
+    handleKeyDown(e) {
+      keys[e.keyCode || e.which] = true;
+      if (e.keyCode === Number(keys.ESC)) {
+        this.togglePaused();
+      }
+    },
 
     /* This method scales the main #scaling-container
      * to fill the full height of the viewport
@@ -141,6 +146,9 @@ export default Vue.extend({
       }
       if (keys[keys.H]) {
         this.hurtMonster();
+      }
+      if (keys[keys.Z] || keys[keys.ENTER]) {
+        this.$refs.you.action();
       }
     },
 
