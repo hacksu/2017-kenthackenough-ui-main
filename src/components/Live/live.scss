@@ -54,20 +54,31 @@ a {
     padding: 10px;
 }
 
-#topMenu {
-    position: relative;
-    height: 100px;
-    background: transparent;
-    width: 300px;
+#khe_short {
+    position: absolute;
+    height: 5rem;
+    padding: 1rem;
     z-index: 100;
+    
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 
-#khe_short {
-    right: 20px;
-    top: 20px;
-    width: 40%;
-    max-height: 60px;
+#navBar{
     position: absolute;
+    z-index: 99;
+}
+
+.topBar {
+    position: relative;
+    height: 5rem;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: $black;
+    border-bottom-color: black;
+    border-style: solid;
+    border-bottom-width: 5px;
 }
 
 table {
@@ -124,15 +135,16 @@ td {
         // Only modify these size variables, the page will resize accordingly.
         --margin-size: 15px;    
         --event-width: 50%;
-        --social-height: 30%;
+        --social-height: 33%;
         
         // Calcuate the widths of the side bars.
         --update-width:     calc((100% - var(--event-width) - (4 * var(--margin-size))) / 2);
         --right-col-width:  calc((100% - var(--event-width) - (4 * var(--margin-size))) / 2);
     
         // Calculate the heights 
-        --sponsorer-height: calc(100% - ((3 * var(--margin-size)) + var(--social-height))); 
-        --full-height: calc(100% - (2 * var(--margin-size)));
+        --full-height: calc(100% - (2 * var(--margin-size)) - 10px);
+        --sponsorer-height: calc(var(--full-height) - (var(--margin-size) + var(--social-height))); 
+        --update-height: calc(var(--full-height) - 5rem);
     
         // Calculate the starting positions of each column
         --event-left: calc(2 * var(--margin-size) + var(--update-width));
@@ -168,21 +180,22 @@ td {
     #updates {
         position: absolute;
         left: var(--margin-size);
-        top: var(--margin-size);
+        top: 5rem;
         width: var(--update-width);
-        height: var(--full-height);
-    }
-
-    #topMenu {
-        width: var(--update-width);
+        height: var(--update-height);
     }
 
     #wizard {
         visibility: visible;
     }
 
-    #updateTitle {
-        margin-top: 80px;
+    #khe_short {
+        left: 4rem;
+        transform: translate(0,0);
+    }
+
+    .topBar {
+        visibility: collapse;
     }
 }
 
