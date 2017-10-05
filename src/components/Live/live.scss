@@ -40,7 +40,7 @@ a {
     border-width: 5px;  
     border-style: solid;
     overflow-y: auto;
-    margin: 5px;
+    margin: 10px;
 }
 
 #event-title {
@@ -179,6 +179,10 @@ td {
 
     #wizard {
         visibility: visible;
+    }
+
+    #updateTitle {
+        margin-top: 80px;
     }
 }
 
