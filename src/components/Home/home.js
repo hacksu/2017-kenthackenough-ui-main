@@ -60,6 +60,10 @@ export default Vue.extend({
     console.log('ready');
     window.addEventListener('resize', this.doResize);
     this.doResize();
+
+    if (this.$route.fullPath.indexOf('gamify') > -1) {
+      this.$root.gamifyPoints(this.$route.fullPath);
+    }
       
     // Movement detection
     var self = this;

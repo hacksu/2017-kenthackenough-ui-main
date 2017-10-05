@@ -4787,6 +4787,10 @@ moment@2.x.x:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.17.1.tgz#fed9506063f36b10f066c8b59a144d7faebe1d82"
 
+moment@^2.11.1:
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
+
 mozjpeg@^4.0.0:
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/mozjpeg/-/mozjpeg-4.1.1.tgz#859030b24f689a53db9b40f0160d89195b88fd50"
@@ -7209,6 +7213,12 @@ vue-loader@^10.0.3:
     vue-hot-reload-api "^2.0.1"
     vue-style-loader "^1.0.0"
     vue-template-es2015-compiler "^1.2.2"
+
+vue-moment@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/vue-moment/-/vue-moment-2.0.2.tgz#c480341f281d8edc08126ffea5c45ce92e6c584b"
+  dependencies:
+    moment "^2.11.1"
 
 vue-router@^2.0.1:
   version "2.1.1"

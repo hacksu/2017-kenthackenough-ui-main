@@ -1,5 +1,11 @@
 @import "~styles/_variables.scss"; // Import variables to use colors
 
+#invert {
+    background: $shamrock-dark;
+    padding: 2px;
+    color: white;
+}
+
 #settings {
   position: absolute;
   top: 50%;
