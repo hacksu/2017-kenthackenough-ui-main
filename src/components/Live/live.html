@@ -1,7 +1,7 @@
 <div id="live">
     <div id="topMenu">
         <img src="~assets/images/khe_short.png" id="khe_short">
-        </div>
+    </div>
     <div id="updates" class="livebox"> 
         <h2 class="section-title" style="margin-top: 80px;">Updates</h2>
         <div v-for="u in updates"
@@ -24,10 +24,13 @@
                          style="margin-top: 25px;cursor: pointer;"
                          src="~assets/images/PlayNow.png" 
                          v-if="now(e)" />
-                    <img id="playNowBtn"
-                         style="margin-top: 25px;cursor: pointer;"
-                         src="~assets/images/PlayNowLocked.png" 
-                         v-else />
+                    <div v-else >
+                        @ {{ e.start | moment("h:mm a") }}                            
+                        <img id="playNowBtn"
+                             style="margin-top: 25px;cursor: pointer;"
+                             src="~assets/images/PlayNowLocked.png" 
+                             />
+                    </div>
                 </a>
             </div>
             <p style="color: red;" 
