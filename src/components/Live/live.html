@@ -15,7 +15,7 @@
              />
     </div>
     <div id="events" class="livebox">
-        <h2 class="section-title" >Mini Games (Schedule)</h2>
+        <h2 class="section-title" ><u>Mini Games (Schedule)</u></h2>
         <div class="event" v-for="e in events">
             <div class="event-flex-container">
                 <h2 id="event-title">{{ e.title }}</h2>
@@ -25,11 +25,14 @@
                          src="~assets/images/PlayNow.png" 
                          v-if="now(e)" />
                     <div v-else >
-                        @ {{ e.start | moment("h:mm a") }}                            
                         <img id="playNowBtn"
-                             style="margin-top: 25px;cursor: pointer;"
+                             style="margin-top: 10px;cursor: pointer;"
                              src="~assets/images/PlayNowLocked.png" 
                              />
+                             <br />
+                             <div style="text-align: center;">
+                             @ {{ e.start | moment("h:mm a") }} 
+                            </div>                                                        
                     </div>
                 </a>
             </div>

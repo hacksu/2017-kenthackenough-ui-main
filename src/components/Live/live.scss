@@ -40,6 +40,7 @@ a {
     border-width: 5px;  
     border-style: solid;
     overflow-y: auto;
+    margin: 5px;
 }
 
 #event-title {
@@ -113,6 +114,8 @@ td {
     position: absolute;
     left: 5px;
     bottom: 5px;
+    // Not hidden in desktop version.
+    visibility: hidden;
 }
 
 /* Desktop specific layout */
@@ -169,8 +172,13 @@ td {
         width: var(--update-width);
         height: var(--full-height);
     }
+
     #topMenu {
         width: var(--update-width);
+    }
+
+    #wizard {
+        visibility: visible;
     }
 }
 
