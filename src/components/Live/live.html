@@ -1,0 +1,103 @@
+<div id="live">
+    <img src="~assets/images/khe_short.png" 
+        id="khe_short" >
+    <div class="topBar" id="navBar"></div>
+    <div class="topBar"></div>
+    <div id="updates" class="livebox"> 
+        <h2 class="section-title" id="updateTitle">Updates</h2>
+        <div v-for="u in updates"
+             id="wizard-say" >
+            <div class="speech"> {{ u.text }}</div>
+        </div>
+        <img id="wizard" 
+             src="~assets/images/wizard.png" 
+             width="100"
+             height="150"
+             />
+    </div>
+    <div id="events" class="livebox">
+        <h2 class="section-title" ><u>Mini Games (Schedule)</u></h2>
+        <div class="event" v-for="e in events">
+            <div class="event-flex-container">
+                <h2 id="event-title">{{ e.title }}</h2>
+                <a @click="toggleVisibility(e)">
+                    <img id="playNowBtn"
+                         style="margin-top: 25px;cursor: pointer;"
+                         src="~assets/images/PlayNow.png" 
+                         v-if="now(e)" />
+                    <div v-else >
+                        <img id="playNowBtn"
+                             style="margin-top: 10px;cursor: pointer;"
+                             src="~assets/images/PlayNowLocked.png" 
+                             />
+                             <br />
+                             <div style="text-align: center;">
+                             @ {{ e.start | moment("h:mm a") }} 
+                            </div>                                                        
+                    </div>
+                </a>
+            </div>
+            <p style="color: red;" 
+               id="event-info"
+               v-if="!e.hide" > {{ e.description }}</p>
+        </div>
+    </div>
+    <div id="social" class="livebox">
+        <table>
+            <tr>
+                <td>
+                    <a href="https://twitter.com/@kenthackenough" 
+                       class="socialLink">
+                        <img src="~assets/images/twitter.png"
+                             width="64" 
+                             height="64" />
+                             <br />
+                             Twitter
+                    </a>                        
+                </td>
+                <td>
+                    <a href="https://www.facebook.com/kenthackenough" 
+                    class="socialLink">
+                        <img src="~assets/images/facebook.png"
+                             width="64"
+                             height="64" />
+                             <br />
+                             Facebook 
+                    </a>                        
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <a href="https://www.instagram.com/kenthackenough/" 
+                       class="socialLink">
+                        <img src="~assets/images/insta.png"
+                             width="64"
+                             height="64" />
+                             <br />
+                             Instagram
+                    </a>                        
+                </td>
+                <td>
+                    <a href="/snapcode" 
+                       class="socialLink">
+                        <img src="~assets/images/snap.png"      
+                             width="64" 
+                             height="64" />
+                             <br />
+                             Snapchat 
+                    </a>                            
+                </td>
+                </tr>
+        </table>
+    </div>
+    <div id="sponsorers" class="livebox">
+        <h2 class="section-title" ><u>High Scores</u></h2>
+        <div class="" v-for="player in leaderboard">
+            <b id="username">{{ player.email }}:</b> 
+            <i id="score">{{ player.points }}</i>
+        </div>
+    </div>
+</div>
+
+        <!--
+        <img src="~assets/images/PlayNowLocked.png" height="32" width="256"/>-->

@@ -1,0 +1,201 @@
+@import "~styles/_variables.scss"; // Import variables to use colors
+
+/* Universal */
+body {
+    background: $midnight-dark;
+}
+
+a {
+    text-decoration: none;
+}
+
+.section-title {
+    font-size: 40pt;
+}
+
+.event-flex-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.event{
+    
+    border-bottom: 5px;
+    border-left: 0px;
+    border-right: 0px;
+    border-top: 0px;
+    border-color: white; 
+    border-style: solid; 
+    margin: 10px;
+}
+
+#playNowBtn {
+    display: inline;
+    padding: 0px;
+    border: 1px red solid;
+}
+
+.livebox {
+    background-color: $black;
+    border-width: 5px;  
+    border-style: solid;
+    overflow-y: auto;
+    margin: 10px;
+}
+
+#event-title {
+    font-size: 25pt;
+    padding: 10px;
+    display: inline;
+}
+
+#event-info {
+    font-size: 15pt;
+    padding: 10px;
+}
+
+#khe_short {
+    position: absolute;
+    height: 5rem;
+    padding: 1rem;
+    z-index: 100;
+    
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+#navBar{
+    position: absolute;
+    z-index: 99;
+}
+
+.topBar {
+    position: relative;
+    height: 5rem;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background-color: $black;
+    border-bottom-color: black;
+    border-style: solid;
+    border-bottom-width: 5px;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+td {
+    width: 50%;
+    height: 50%;
+    align-content: center;
+    text-align: center;
+}
+
+#username {
+    color: white;
+    font-size: 30pt;     
+}
+
+#score {
+    color: white;
+    text-align: right;
+    font-size: 30pt; 
+}
+
+#sponsorers {
+    overflow-y: hidden;
+}
+
+.socialLink {
+    margin: auto;
+}
+
+.speech {
+    background-color: white;
+    text-align: center;
+    border-radius: 20px 20px 20px 0px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    margin-bottom: 5px;
+}
+
+#wizard {
+    position: absolute;
+    left: 5px;
+    bottom: 5px;
+    // Not hidden in desktop version.
+    visibility: hidden;
+}
+
+/* Desktop specific layout */
+@media only screen and (min-width: 768px) {
+    :root {
+        // Only modify these size variables, the page will resize accordingly.
+        --margin-size: 15px;    
+        --event-width: 50%;
+        --social-height: 33%;
+        
+        // Calcuate the widths of the side bars.
+        --update-width:     calc((100% - var(--event-width) - (4 * var(--margin-size))) / 2);
+        --right-col-width:  calc((100% - var(--event-width) - (4 * var(--margin-size))) / 2);
+    
+        // Calculate the heights 
+        --full-height: calc(100% - (2 * var(--margin-size)) - 10px);
+        --sponsorer-height: calc(var(--full-height) - (var(--margin-size) + var(--social-height))); 
+        --update-height: calc(var(--full-height) - 5rem);
+    
+        // Calculate the starting positions of each column
+        --event-left: calc(2 * var(--margin-size) + var(--update-width));
+        --right-col-left: calc(3 * var(--margin-size) + var(--update-width) + var(--event-width));
+        --sponsorer-top: calc(2 * var(--margin-size) + var(--social-height));       
+    }
+
+    #social {
+        position: absolute;
+        left: var(--right-col-left);
+        top: var(--margin-size);
+        width: var(--right-col-width);
+        height: var(--social-height);
+    }
+    
+    #sponsorers {
+        position: absolute;
+        left: var(--right-col-left);
+        top: var(--sponsorer-top);
+        width: var(--right-col-width);
+        height: var(--sponsorer-height);
+    }
+
+    #events {
+        
+        position: absolute;
+        left: var(--event-left);
+        top: var(--margin-size);
+        width: var(--event-width);
+        height: var(--full-height);
+    }
+
+    #updates {
+        position: absolute;
+        left: var(--margin-size);
+        top: 5rem;
+        width: var(--update-width);
+        height: var(--update-height);
+    }
+
+    #wizard {
+        visibility: visible;
+    }
+
+    #khe_short {
+        left: 4rem;
+        transform: translate(0,0);
+    }
+
+    .topBar {
+        visibility: collapse;
+    }
+}
+

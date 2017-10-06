@@ -55,5 +55,9 @@
                    filter: 'brightness(' + eyesTone/2 + ') hue-rotate(' + eyesHue + 'deg)' 
                    }">
     </canvas>
+    <canvas id="extras" width="22px" height="30px"
+            style="top: 0px; left: 1px;"
+            v-bind:class="{ inverted : extraInvert }">
+    </canvas>
 </div>
 
