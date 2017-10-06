@@ -56,10 +56,10 @@ const routes = [
     component: Contact
   },
   {
-<<<<<<< HEAD
     path: '/snapcode',
     component: Snapcode
-=======
+  },
+  {
     path: '/live',
     component: live,
     meta: { auth: false }
@@ -68,7 +68,6 @@ const routes = [
     path: '/gamify/*',
     component: Home,
     meta: { auth: true }
->>>>>>> 15f7b40de8ce25d5171a01b578808001f1d9f217
   },
   // {
   //   path: '/oauth/callback',
