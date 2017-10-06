@@ -162,3 +162,21 @@ main {
      box-shadow: -1px 1px 0px $midnight-dark;
   }
 }
+
+#apply-now-link1 {
+  color: white;
+  text-shadow: -1px 1px 0px $midnight-dark;
+
+  background: $shamrock;
+  border-radius: 0;
+
+  border: 1px solid $shamrock-dark;
+
+  padding: 4px 12px;
+  padding-top: -5px;
+  margin-top: 10px;
+
+  &:hover {
+     box-shadow: -1px 1px 0px $midnight-dark;
+  }
+}
