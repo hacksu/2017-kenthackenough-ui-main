@@ -30,11 +30,13 @@
             <router-link class="login-link" to="/live" tag="p" style="font-size: 10px;">
                 <button id="apply-now-link">Live Updates!</button>
             </router-link>
-                
+            <span id="apply"
+                v-if="!$root.isLoggedIn()"
+                >
+            <button>Apply Now!</button></span>
             <span 
                 v-if="$root.isLoggedIn()"
-                >Go To Your Profile!</span>
-                </button>
+                ><button>Go to Your Profile!</button></span>
                 
             <br><br>
 
