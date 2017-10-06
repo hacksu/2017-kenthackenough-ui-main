@@ -1,0 +1,29 @@
+@import '../../styles/_variables.scss';
+
+body {
+    background-color: $midnight;
+    text-align: center;
+}
+
+h6 {
+    color: $spring-bud;
+    font-size: 3em;
+    margin-bottom: 2rem;
+    padding: 0 10px;
+}
+
+#snapcode {
+    height: 50%;
+    width: 50%;
+}
+
+@media only screen and (min-width: 768px) {
+    h6 {
+        font-size: 5em;
+    }
+    
+    #snapcode {
+        height: 30%;
+        width: 30%;
+    }
+}
