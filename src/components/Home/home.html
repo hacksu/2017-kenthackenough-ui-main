@@ -27,12 +27,10 @@
 -->
             <h3 class="location">Kent State University Library</h3><br>
             
-            <button
-                id="apply-now-link"
-                v-on:click="togglePaused()">
-            <span id="apply"
-                v-if="!$root.isLoggedIn()"
-                >Apply Now!!!</span>
+            <router-link class="login-link" to="/live" tag="p" style="font-size: 10px;">
+                <button id="apply-now-link">JOIN LIVE!!!</button>
+            </router-link>
+                
             <span 
                 v-if="$root.isLoggedIn()"
                 >Go To Your Profile!</span>
@@ -40,8 +38,6 @@
                 
             <br><br>
 
-            <p style="font-size: 8px;">Plan on coming to KHE?</p>
-            <router-link class="login-link" to="/rsvp" tag="p" style="font-size: 10px;">RSVP Here</router-link>
         </div>
             
         <div class="darken" @click="paused = false" 
