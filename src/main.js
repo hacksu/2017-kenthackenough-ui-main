@@ -343,6 +343,53 @@ var app1 = new Vue({
 
     clearCharacter() {
       this.user.application.extra = '';
+    },
+
+    getEvents() {
+      return this.axios.get('/events')
+      .then((response) => {
+        //console.log('got event data: ', response.data);
+
+        return response.data.events;
+      })
+      .catch((error) => {
+        throw error;
+      });
+    },
+
+    getUpdates() {
+      return this.axios.get('/messages')
+      .then((response) => {
+        // console.log('got update data: ', response.data);
+
+        return response.data.messages;
+      })
+      .catch((error) => {
+        throw error;
+      });
+    },
+
+    gamifyPoints(pointsParams) {
+      return this.axios.get(pointsParams, this.user)
+      .then((response) => {
+        console.log(response);
+        // continue to the home layout
+        router.push('/');
+      })
+      .catch((error) => {
+        console.log('points err');
+        throw error;
+      });
+    },
+
+    getLeaderboard() {
+      return this.axios.get('/gamify/scoreboard')
+      .then((response) => {
+        return response.data;
+      })
+      .catch((err) => {
+        throw err;
+      });
     }
   }
 

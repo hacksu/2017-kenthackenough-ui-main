@@ -1,6 +1,7 @@
 import Home from 'components/Home/home';
 import Application from 'components/Application/application';
 import NotFound from 'components/NotFound/notFound';
+import live from 'components/Live/live';
 
 import Sponsor from 'components/Sponsor/sponsor';
 import About from 'components/About/about';
@@ -52,6 +53,16 @@ const routes = [
   {
     path: '/contact',
     component: Contact
+  },
+  {
+    path: '/live',
+    component: live,
+    meta: { auth: false }
+  },
+  {
+    path: '/gamify/*',
+    component: Home,
+    meta: { auth: true }
   },
   // {
   //   path: '/oauth/callback',
