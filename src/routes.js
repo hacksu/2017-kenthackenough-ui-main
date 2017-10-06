@@ -7,7 +7,7 @@ import Sponsor from 'components/Sponsor/sponsor';
 import About from 'components/About/about';
 import Schedule from 'components/Schedule/schedule';
 import Rsvp from 'components/RSVP/rsvp';
-import Snapcode from 'components/Snapcode/snapcode';
+import Snapcode from 'components/Snapcode/Snapcode';
 
 import EventInfo from 'components/EventInfo/eventInfo';
 import Library from 'components/Library/library';
