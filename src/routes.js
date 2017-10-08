@@ -13,6 +13,8 @@ import EventInfo from 'components/EventInfo/eventInfo';
 import Library from 'components/Library/library';
 import Contact from 'components/Contact/contact';
 
+import Expo from 'components/Expo/expo';
+
 const routes = [
   {
     path: '/',
@@ -68,6 +70,10 @@ const routes = [
     path: '/gamify/*',
     component: Home,
     meta: { auth: true }
+  },
+  {
+    path: '/expo',
+    component: Expo
   },
   // {
   //   path: '/oauth/callback',
